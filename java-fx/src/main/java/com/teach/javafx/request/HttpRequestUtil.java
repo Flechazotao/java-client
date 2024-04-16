@@ -55,7 +55,7 @@ public class HttpRequestUtil {
                     .uri(URI.create(serverUrl + "/api/user/login"))
                     .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
                     .headers("Content-Type", "application/json")
-                    .build();
+                    .build();//
             try {
                 HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
                 System.out.println("response.statusCode===="+response.statusCode());
