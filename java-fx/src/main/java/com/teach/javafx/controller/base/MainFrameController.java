@@ -28,7 +28,7 @@ import java.util.Map;
  *  @FXML  属性 对应fxml文件中的
  *  @FXML 方法 对应于fxml文件中的 on***Click的属性
  */
-public class MainFrameController {
+public class MainFrameController {/*
     class ChangePanelHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -79,7 +79,7 @@ public class MainFrameController {
      * 项目开发过程中，同学可以扩该方法，增肌自己设计的功能菜单，也可以通过菜单管理程序添加菜单，框架自动加载菜单管理维护的菜单，
      * 是新功能扩展
      */
-    public void addMenuItem(Menu menu, String name, String title){
+    /*public void addMenuItem(Menu menu, String name, String title){
         MenuItem item;
         item = new MenuItem();
         item.setText(title);
@@ -199,14 +199,14 @@ public class MainFrameController {
             }
         });
     }*/
-    @FXML
+    /*@FXML
     public void initialize() {
         handler =new ChangePanelHandler();
         DataResponse res = HttpRequestUtil.request("/api/base/getMenuList",new DataRequest());
         //initMenuBar(mList);
         //initMenuTree(mList);
-        contentTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
-        contentTabPane.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover;");  //inline选择器
+        //contentTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
+        //contentTabPane.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover;");  //inline选择器
 
 
     }
@@ -216,7 +216,7 @@ public class MainFrameController {
      * 点击菜单栏中的“退出”菜单，执行onLogoutMenuClick方法 加载登录页面，切换回登录界面
      * @param event
      */
-    protected void onLogoutMenuClick(ActionEvent event){
+    /*protected void onLogoutMenuClick(ActionEvent event){
         logout();
     }
 
@@ -254,7 +254,7 @@ public class MainFrameController {
      * @param title 菜单标题 工作区中的TablePane的标题
      */
 
-    public  void changeContent(String name, String title) {
+    /*public  void changeContent(String name, String title) {
         if(name == null || name.length() == 0)
             return;
         Tab tab = tabMap.get(name);
@@ -303,7 +303,7 @@ public class MainFrameController {
      * @param e
      */
 
-    public void tabOnClosed(Event e) {
+    /*public void tabOnClosed(Event e) {
         Tab tab = (Tab)e.getSource();
         String name = tab.getId();
         contentTabPane.getTabs().remove(tab);
@@ -313,7 +313,7 @@ public class MainFrameController {
      * ToolController getCurrentToolController() 获取当前显示的面板的控制对象， 如果面板响应编辑菜单中的编辑命名，交互控制需要继承 ToolController， 重写里面的方法
      * @return
      */
-    public ToolController getCurrentToolController(){
+    /*public ToolController getCurrentToolController(){
         Iterator<String> iterator = controlMap.keySet().iterator();
         String name;
         Tab tab;
@@ -329,7 +329,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“新建”菜单，执行doNewCommand方法， 执行当前显示的面板对应的控制类中的doNew()方法
      */
-    protected  void doNewCommand(){
+    /*protected  void doNewCommand(){
         ToolController c = getCurrentToolController();
         if(c == null)
             return;
@@ -338,7 +338,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“保存”菜单，执行doSaveCommand方法， 执行当前显示的面板对应的控制类中的doSave()方法
      */
-    protected  void doSaveCommand(){
+    /*protected  void doSaveCommand(){
         ToolController c = getCurrentToolController();
         if(c == null)
             return;
@@ -347,7 +347,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“删除”菜单，执行doDeleteCommand方法， 执行当前显示的面板对应的控制类中的doDelete()方法
      */
-    protected  void doDeleteCommand(){
+    /*protected  void doDeleteCommand(){
         ToolController c = getCurrentToolController();
         if(c == null)
             return;
@@ -356,7 +356,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“打印”菜单，执行doPrintCommand方法， 执行当前显示的面板对应的控制类中的doPrint()方法
      */
-    protected  void doPrintCommand(){
+    /*protected  void doPrintCommand(){
         ToolController c = getCurrentToolController();
         if(c == null)
             return;
@@ -365,7 +365,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“导出”菜单，执行doExportCommand方法， 执行当前显示的面板对应的控制类中的doExport方法
      */
-    protected  void doExportCommand(){
+    /*protected  void doExportCommand(){
         ToolController c = getCurrentToolController();
         if(c == null)
             return;
@@ -374,7 +374,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“导入”菜单，执行doImportCommand方法， 执行当前显示的面板对应的控制类中的doImport()方法
      */
-    protected  void doImportCommand(){
+    /*protected  void doImportCommand(){
         ToolController c = getCurrentToolController();
         if(c == null)
             return;
@@ -383,7 +383,7 @@ public class MainFrameController {
     /**
      * 点击编辑菜单中的“测试”菜单，执行doTestCommand方法， 执行当前显示的面板对应的控制类中的doImport()方法
      */
-    protected  void doTestCommand(){
+    /*protected  void doTestCommand(){
         ToolController c = getCurrentToolController();
         if(c == null) {
             c= new ToolController(){
@@ -393,5 +393,5 @@ public class MainFrameController {
     }
     public ToolController getToolController(String name){
         return  controlMap.get(name);
-    }
+    }*/
 }

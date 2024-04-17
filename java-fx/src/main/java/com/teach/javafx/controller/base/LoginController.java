@@ -46,7 +46,7 @@ public class LoginController {
         passwordField.setText("123456");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
-        AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover;");  //inline选择器
+        AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
 //        loginButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
     }
 
@@ -64,10 +64,10 @@ public class LoginController {
             return;
         }
         if (checkBox1.isSelected()||checkBox3.isSelected()||checkBox2.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/main-frame.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/manager_MainFrame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((MainFrameController) fxmlLoader.getController());
+                AppStore.setMainFrameController((manage_MainFrame_conrtoller) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);

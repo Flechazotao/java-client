@@ -1,7 +1,7 @@
 package com.teach.javafx;
 
 
-import com.teach.javafx.controller.base.MainFrameController;
+import com.teach.javafx.controller.base.manage_MainFrame_conrtoller;
 import com.teach.javafx.request.JwtResponse;
 
 /**
@@ -10,7 +10,7 @@ import com.teach.javafx.request.JwtResponse;
  */
 public class AppStore {
     private static JwtResponse jwt;
-    private static MainFrameController mainFrameController;
+    private static manage_MainFrame_conrtoller manage_MainFrame_conrtoller;
     private AppStore(){
     }
 
@@ -22,11 +22,11 @@ public class AppStore {
         AppStore.jwt = jwt;
     }
 
-    public static MainFrameController getMainFrameController() {
-        return mainFrameController;
+    public static manage_MainFrame_conrtoller getMainFrameController() {
+        return manage_MainFrame_conrtoller;
     }
 
-    public static void setMainFrameController(MainFrameController mainFrameController) {
-        AppStore.mainFrameController = mainFrameController;
+    public static void setMainFrameController(manage_MainFrame_conrtoller mainFrameController) {
+        AppStore.manage_MainFrame_conrtoller = mainFrameController;
     }
 }
