@@ -1,78 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <!-- 用户登录对话框FXML配置文件 对应页面交互控制类 com.teach.javafx.controller.base.LoginController -->
 
-<VBox fx:id="vbox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="243.0" prefWidth="469.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.LoginController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-   <TextField alignment="TOP_CENTER" editable="false" prefHeight="41.0" prefWidth="411.0" text="山 东 大 学 教 学 管 理 系 统">
-      <font>
-         <Font name="System Bold" size="20.0" />
-      </font>
-   </TextField>
-   <AnchorPane>
-      <children>
-          <HBox>
-            <AnchorPane>
-               <children>
-                    <ImageView fx:id="imageView" fitHeight="97.0" fitWidth="140.0" layoutX="25.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../picture/logo.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <AnchorPane>
-               <children>
-                   <GridPane layoutX="-23.0" prefHeight="62.0" prefWidth="249.0">
-                     <columnConstraints>
-                       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="86.66668701171875" />
-                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.00001525878906" minWidth="10.0" prefWidth="74.33333333333333" />
-                     </columnConstraints>
-                     <rowConstraints>
-                       <RowConstraints maxHeight="40.66669718424479" minHeight="10.0" prefHeight="35.3333314259847" vgrow="SOMETIMES" />
-                       <RowConstraints maxHeight="28.000001907348633" minHeight="10.0" prefHeight="26.000001907348633" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                      <children>
-                         <Label prefHeight="25.0" prefWidth="47.0" text="用户名">
-                           <GridPane.margin>
-                              <Insets right="5.0" />
-                           </GridPane.margin>
+<AnchorPane fx:id="AnchorpaneRoot" prefHeight="358.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.LoginController">
+   <children>
+      <VBox fx:id="vbox" alignment="CENTER" layoutX="63.0" layoutY="108.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="235.0" prefWidth="475.0" spacing="20.0">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+         <AnchorPane>
+            <children>
+                <HBox>
+                  <AnchorPane>
+                     <children>
+                          <ImageView fx:id="imageView" fitHeight="97.0" fitWidth="140.0" layoutX="13.0" layoutY="14.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../picture/logo.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                         <GridPane layoutX="-23.0" prefHeight="62.0" prefWidth="249.0">
+                           <columnConstraints>
+                             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="86.66668701171875" />
+                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.00001525878906" minWidth="10.0" prefWidth="74.33333333333333" />
+                           </columnConstraints>
+                           <rowConstraints>
+                             <RowConstraints maxHeight="40.66669718424479" minHeight="10.0" prefHeight="35.3333314259847" vgrow="SOMETIMES" />
+                             <RowConstraints maxHeight="28.000001907348633" minHeight="10.0" prefHeight="26.000001907348633" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                            <children>
+                               <Label prefHeight="28.0" prefWidth="55.0" text="用户名">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                               <TextField fx:id="usernameField" prefHeight="23.0" prefWidth="136.0" GridPane.columnIndex="1" />
+                               <Label prefHeight="25.0" prefWidth="43.0" text="密码" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                               </Label>
+                               <PasswordField fx:id="passwordField" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            </children>
+                         </GridPane>
+                        <Label layoutX="11.0" layoutY="72.0" text="登陆身份">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold Italic" size="15.0" />
                            </font>
                         </Label>
-                         <TextField fx:id="usernameField" prefHeight="23.0" prefWidth="136.0" GridPane.columnIndex="1" />
-                         <Label prefHeight="25.0" prefWidth="35.0" text="密码" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets right="5.0" />
-                           </GridPane.margin>
+                        <CheckBox fx:id="checkBox1" layoutX="79.0" layoutY="74.0" mnemonicParsing="false" onAction="#oncheckBox1Click" text="学生">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="checkBox2" layoutX="136.0" layoutY="74.0" mnemonicParsing="false" onAction="#oncheckBox2Click" text="教师">
                            <font>
                               <Font name="System Bold" size="14.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="checkBox3" layoutX="197.0" layoutY="74.0" mnemonicParsing="false" onAction="#oncheckBox3Click" text="管理员">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
-                         </Label>
-                         <PasswordField fx:id="passwordField" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                      </children>
-                   </GridPane>
-                  <Label layoutX="9.0" layoutY="73.0" text="登陆身份">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <CheckBox fx:id="checkBox1" onAction="#oncheckBox1Click" layoutX="71.0" layoutY="74.0" mnemonicParsing="false" text="学生" />
-                  <CheckBox fx:id="checkBox2" onAction="#oncheckBox2Click" layoutX="129.0" layoutY="75.0" mnemonicParsing="false" text="教师" />
-               </children>
-            </AnchorPane>
-          </HBox>
-         <CheckBox fx:id="checkBox3" onAction="#oncheckBox3Click" layoutX="319.0" layoutY="75.0" mnemonicParsing="false" text="管理员" />
-      </children>
-   </AnchorPane>
-    <Button fx:id="loginButton" minWidth="53.0" onAction="#onLoginButtonClick" prefHeight="90.0" prefWidth="53.0" text="登录" />
-</VBox>
+                        </CheckBox>
+                     </children>
+                  </AnchorPane>
+                </HBox>
+            </children>
+         </AnchorPane>
+          <Button fx:id="loginButton" minWidth="38.0" onAction="#onLoginButtonClick" prefHeight="38.0" prefWidth="55.0" text="登录">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font></Button>
+      </VBox>
+      <HBox id="HBox" layoutX="-1.0" layoutY="-2.0" prefHeight="97.0" prefWidth="603.0" stylesheets="@../css/stylesdemo.css" />
+   </children>
+</AnchorPane>

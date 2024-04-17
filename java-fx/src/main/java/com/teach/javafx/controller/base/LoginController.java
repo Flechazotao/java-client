@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class LoginController {
     private CheckBox checkBox2;
     @FXML
     private CheckBox checkBox3;
+    @FXML
+    private AnchorPane AnchorpaneRoot;
 
     /**
      * 页面加载对象创建完成初始话方法，页面中控件属性的设置，初始数据显示等初始操作都在这里完成，其他代码都事件处理方法里
@@ -43,7 +46,7 @@ public class LoginController {
         passwordField.setText("123456");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
-        vbox.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover;");  //inline选择器
+        AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover;");  //inline选择器
 //        loginButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
     }
 
