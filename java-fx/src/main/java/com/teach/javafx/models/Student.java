@@ -1,7 +1,5 @@
 package com.teach.javafx.models;
 
-import org.fatmansoft.teach.models.Person;
-
 public class Student {
     private Integer studentId;
     private Integer personId;

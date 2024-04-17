@@ -203,7 +203,6 @@ public class MainFrameController {
     public void initialize() {
         handler =new ChangePanelHandler();
         DataResponse res = HttpRequestUtil.request("/api/base/getMenuList",new DataRequest());
-        List<Map> mList = (List<Map>)res.getData();
         //initMenuBar(mList);
         //initMenuTree(mList);
         contentTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);

@@ -2,6 +2,7 @@ package com.teach.javafx.request;
 
 import com.teach.javafx.AppStore;
 import com.google.gson.Gson;
+import com.teach.javafx.models.DO.User;
 import org.fatmansoft.teach.payload.request.DataRequest;
 import org.fatmansoft.teach.payload.response.DataResponse;
 import org.fatmansoft.teach.util.JsonConvertUtil;
@@ -42,14 +43,19 @@ public class HttpRequestUtil {
 
     /**
      * String login(LoginRequest request)  用户登录请求实现
-     * @param request  username 登录账号 password 登录密码
+     * @param  username 登录账号
+     * @param  password 登录密码
      * @return  返回null 登录成功 AppStore注册登录账号信息 非空，登录错误信息
      */
 
     public static String login(String username,String password){
-
+        DataRequest request = new DataRequest();
+        User user = new User();
+        user.setUserName(username);
+        user.setPassword(password);
+        request.add("user",user);
         if(isLocal) {
-            return SQLiteJDBC.getInstance().login(request.getUsername(),request.getPassword());
+            return SQLiteJDBC.getInstance().login(username,password);
         }else {
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(URI.create(serverUrl + "/api/user/login"))

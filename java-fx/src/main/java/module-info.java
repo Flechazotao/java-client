@@ -9,8 +9,11 @@ module com.teach.javafx {
     requires java.net.http;
     requires spring.security.crypto;
     requires javafx.media;
+    requires lombok;
+    requires jakarta.persistence;
 
     opens com.teach.javafx to javafx.fxml;
+    opens com.teach.javafx.models.DO to com.google.gson;
     opens com.teach.javafx.request to com.google.gson, javafx.fxml;
     opens com.teach.javafx.controller.base to com.google.gson, javafx.fxml;
     opens com.teach.javafx.controller to com.google.gson, javafx.fxml;
@@ -20,6 +23,7 @@ module com.teach.javafx {
     opens org.fatmansoft.teach.payload.response to com.google.gson, javafx.fxml;
 
     exports com.teach.javafx;
+    exports com.teach.javafx.models.DO to com.google.gson;
     exports com.teach.javafx.controller;
     exports com.teach.javafx.controller.base;
     exports com.teach.javafx.request;
