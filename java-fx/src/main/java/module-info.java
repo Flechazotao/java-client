@@ -21,13 +21,15 @@ module com.teach.javafx {
     opens org.fatmansoft.teach.util to com.google.gson, javafx.fxml;
     opens org.fatmansoft.teach.payload.request to com.google.gson, javafx.fxml;
     opens org.fatmansoft.teach.payload.response to com.google.gson, javafx.fxml;
+    opens com.teach.javafx.models to com.google.gson, javafx.base;
+    opens com.teach.javafx.controller.tryController to  javafx.graphics;
 
+    exports com.teach.javafx.controller.tryController;
     exports com.teach.javafx;
     exports com.teach.javafx.models.DO to com.google.gson;
     exports com.teach.javafx.controller;
     exports com.teach.javafx.controller.base;
     exports com.teach.javafx.request;
     exports org.fatmansoft.teach.util;
-    opens com.teach.javafx.models to com.google.gson, javafx.base;
 
 }
