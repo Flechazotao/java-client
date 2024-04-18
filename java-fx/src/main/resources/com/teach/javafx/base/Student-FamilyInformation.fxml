@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="1045.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="183.0" text="家庭信息" textFill="#4a3030" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+    </top>
+    <right>
+        <Pane prefHeight="501.0" prefWidth="115.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="209.0" fitWidth="339.0" layoutY="242.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../picture/logo.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+    </right>
+    <left>
+        <Pane prefHeight="501.0" prefWidth="135.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="209.0" fitWidth="339.0" layoutX="-99.0" layoutY="78.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../picture/logo.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+    </left>
+    <bottom>
+        <HBox prefHeight="103.0" prefWidth="1050.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane prefHeight="103.0" prefWidth="250.0" />
+                <Pane prefHeight="103.0" prefWidth="39.0" />
+                <Pane prefHeight="200.0" prefWidth="200.0" />
+            </children>
+        </HBox>
+    </bottom>
+   <center>
+      <TableView prefHeight="501.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="87.33337152004242" style="-fx-font-size: 20px;" text="关系" />
+          <TableColumn prefWidth="99.99999237060547" style="-fx-font-size: 20px;" text="姓名" />
+            <TableColumn prefWidth="96.66667175292969" style="-fx-font-size: 20px;" text="性别" />
+            <TableColumn prefWidth="108.66665649414062" style="-fx-font-size: 20px;" text="出生日期" />
+            <TableColumn prefWidth="179.33334350585938" style="-fx-font-size: 20px;" text="联系电话" />
+            <TableColumn prefWidth="232.6666259765625" style="-fx-font-size: 20px;" text="工作单位" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

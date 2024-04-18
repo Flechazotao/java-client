@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: oldlace;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_conrtoller">
+    <children>
+        <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
+        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
+            <children>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生管理" textFill="#fbf7f7">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="教师管理" textFill="#fbf5f5">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="210.0" style="-fx-background-color: indianred;" text="学习信息管理" textFill="#fbf5f5">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="课程信息" />
+                        <MenuItem mnemonicParsing="false" text="课程中心" />
+                        <MenuItem mnemonicParsing="false" text="考勤中心" />
+                        <MenuItem mnemonicParsing="false" text="作业信息" />
+                        <MenuItem mnemonicParsing="false" text="成绩信息" />
+                    </items>
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="社会实践" />
+                        <MenuItem mnemonicParsing="false" text="学科竞赛" />
+                        <MenuItem mnemonicParsing="false" text="科技成果" />
+                        <MenuItem mnemonicParsing="false" text="培训讲座" />
+                        <MenuItem mnemonicParsing="false" text="创新项目" />
+                        <MenuItem mnemonicParsing="false" text="校外实习" />
+                    </items>
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fdfafa">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日常活动" textFill="#f8f5f5">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="体育活动" />
+                        <MenuItem mnemonicParsing="false" text="外出旅游" />
+                        <MenuItem mnemonicParsing="false" text="文艺演出" />
+                        <MenuItem mnemonicParsing="false" text="聚会" />
+                    </items>
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日志信息" textFill="#fdf9f9">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="学生外出请假信息" />
+                        <MenuItem mnemonicParsing="false" text="生活学习消费" />
+                    </items>
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+            </children>
+        </HBox>
+        <Label layoutX="100.0" layoutY="262.0" text="教师管理" textFill="#667fe2f0">
+            <font>
+                <Font name="System Bold Italic" size="32.0" />
+            </font>
+        </Label>
+        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="49.0" style="-fx-background-color: peachpuff;" text="查询">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+        <TableView id="Tableview" layoutX="100.0" layoutY="409.0" prefHeight="506.0" prefWidth="1455.0" style="-fx-background-color: cornsilk;" styleClass="Tableview" stylesheets="@../css/Tableview.css">
+            <columns>
+                <TableColumn prefWidth="187.33332061767578" style="-fx-background-color: palegoldenrod;" text="学号" />
+                <TableColumn prefWidth="79.33331298828125" style="-fx-background-color: palegoldenrod;" text="姓名" />
+                <TableColumn prefWidth="63.3333740234375" style="-fx-background-color: palegoldenrod;" text="院系" />
+                <TableColumn prefWidth="62.00006103515625" style="-fx-background-color: palegoldenrod;" text="职称" />
+                <TableColumn prefWidth="62.666656494140625" style="-fx-background-color: palegoldenrod;" text="学位" />
+                <TableColumn prefWidth="216.0" style="-fx-background-color: palegoldenrod;" text="证件号码" />
+                <TableColumn prefWidth="44.0" style="-fx-background-color: palegoldenrod;" text="性别" />
+                <TableColumn prefWidth="129.3333740234375" style="-fx-background-color: palegoldenrod;" text="出生日期" />
+                <TableColumn prefWidth="179.33331298828125" style="-fx-background-color: palegoldenrod;" text="邮箱" />
+                <TableColumn prefWidth="169.3333740234375" style="-fx-background-color: palegoldenrod;" text="电话" />
+                <TableColumn prefWidth="258.66658528645826" style="-fx-background-color: palegoldenrod;" text="地址" />
+            </columns>
+        </TableView>
+        <TextField layoutX="100.0" layoutY="333.0" prefHeight="29.0" prefWidth="210.0" promptText="请输入学号或姓名" />
+        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加教师">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="button1" layoutX="1621.0" layoutY="185.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="83.0" style="-fx-background-color: indianred;" text="注销" textFill="#fbf5f5">
+            <font>
+                <Font name="System Bold Italic" size="24.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1461.0" layoutY="185.0" prefHeight="48.0" prefWidth="147.0" style="-fx-background-color: indianred;" text="欢迎登录! admin" textAlignment="CENTER" textFill="#ebe1e1">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

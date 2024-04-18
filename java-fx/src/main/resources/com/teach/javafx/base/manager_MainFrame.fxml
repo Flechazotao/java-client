@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_conrtoller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_conrtoller">
    <children>
       <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1920.0" stylesheets="@../css/stylesdemo.css" />
       <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1250.0">
@@ -23,8 +21,7 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="210.0" style="-fx-background-color: indianred;" text="学习信息管理" textFill="#fbf5f5">
                <items>
-                  <MenuItem mnemonicParsing="false" text="课程信息" />
-                  <MenuItem mnemonicParsing="false" text="课程中心" />
+                  <MenuItem mnemonicParsing="false" text="课程管理" />
                   <MenuItem mnemonicParsing="false" text="考勤中心" />
                   <MenuItem mnemonicParsing="false" text="作业信息" />
                   <MenuItem mnemonicParsing="false" text="成绩信息" />
@@ -64,8 +61,8 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日志信息" textFill="#fdf9f9">
                <items>
-                  <MenuItem mnemonicParsing="false" text="学生外出请假信息"  style="-fx-background-color: indianred;"/>
-                  <MenuItem mnemonicParsing="false" text="生活学习消费" style="-fx-background-color: indianred;"/>
+                  <MenuItem mnemonicParsing="false" text="学生外出请假信息" />
+                  <MenuItem mnemonicParsing="false" text="生活学习消费" />
                </items>
                <font>
                   <Font name="System Bold Italic" size="24.0" />
