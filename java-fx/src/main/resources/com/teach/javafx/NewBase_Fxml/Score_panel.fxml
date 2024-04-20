@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_conrtoller">
+    <children>
+        <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
+        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
+            <children>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生管理" textFill="#fbf7f7">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="教师管理" textFill="#fbf5f5">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="210.0" style="-fx-background-color: indianred;" text="学习信息管理" textFill="#fbf5f5">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="课程管理" />
+                        <MenuItem mnemonicParsing="false" text="考勤中心" />
+                        <MenuItem mnemonicParsing="false" text="作业信息" />
+                        <MenuItem mnemonicParsing="false" text="成绩信息" />
+                    </items>
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fdfafa">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日常活动" textFill="#f8f5f5">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="体育活动" />
+                        <MenuItem mnemonicParsing="false" text="外出旅游" />
+                        <MenuItem mnemonicParsing="false" text="文艺演出" />
+                        <MenuItem mnemonicParsing="false" text="聚会" />
+                    </items>
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日志信息" textFill="#fdf9f9">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="学生外出请假信息" />
+                        <MenuItem mnemonicParsing="false" text="生活学习消费" />
+                    </items>
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+            </children>
+        </HBox>
+        <Label layoutX="100.0" layoutY="262.0" text="学习信息管理&lt;&lt;成绩信息" textFill="#667fe2f0">
+            <font>
+                <Font name="System Bold Italic" size="32.0" />
+            </font>
+        </Label>
+        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1245.0">
+            <columns>
+                <TableColumn prefWidth="186.6666488647461" style="-fx-font-size: 20px;" text="课程编号" />
+                <TableColumn prefWidth="156.66668701171875" style="-fx-font-size: 20px;" text="课程名称" />
+                <TableColumn editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
+                <TableColumn prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
+                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
+                <TableColumn prefWidth="91.3333740234375" style="-fx-font-size: 20px;" text="姓名" />
+            <TableColumn prefWidth="218.0" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn prefWidth="102.0001220703125" style="-fx-font-size: 20px;" text="成绩" />
+                <TableColumn prefWidth="105.333251953125" style="-fx-font-size: 20px;" text="绩点" />
+            <TableColumn prefWidth="108.0001220703125" style="-fx-font-size: 20px;" text="排名" />
+            </columns>
+        </TableView>
+        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <Button fx:id="button1" layoutX="1622.0" layoutY="185.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="83.0" style="-fx-background-color: indianred;" text="注销" textFill="#fbf5f5">
+            <font>
+                <Font name="System Bold Italic" size="24.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1461.0" layoutY="185.0" prefHeight="48.0" prefWidth="147.0" style="-fx-background-color: indianred;" text="欢迎登录! admin" textAlignment="CENTER" textFill="#ebe1e1">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

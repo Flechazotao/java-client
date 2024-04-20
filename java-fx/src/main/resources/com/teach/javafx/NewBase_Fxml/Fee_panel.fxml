@@ -38,14 +38,6 @@
                     </font>
                 </MenuButton>
                 <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="社会实践" />
-                        <MenuItem mnemonicParsing="false" text="学科竞赛" />
-                        <MenuItem mnemonicParsing="false" text="科技成果" />
-                        <MenuItem mnemonicParsing="false" text="培训讲座" />
-                        <MenuItem mnemonicParsing="false" text="创新项目" />
-                        <MenuItem mnemonicParsing="false" text="校外实习" />
-                    </items>
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
@@ -77,7 +69,7 @@
                 </MenuButton>
             </children>
         </HBox>
-        <Label layoutX="100.0" layoutY="262.0" text="成绩信息" textFill="#667fe2f0">
+        <Label layoutX="100.0" layoutY="262.0" text="日志信息&lt;&lt;学习生活消费" textFill="#667fe2f0">
             <font>
                 <Font name="System Bold Italic" size="32.0" />
             </font>
@@ -87,21 +79,22 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1245.0">
+        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="843.0">
             <columns>
-                <TableColumn prefWidth="186.6666488647461" style="-fx-font-size: 20px;" text="课程编号" />
-                <TableColumn prefWidth="156.66668701171875" style="-fx-font-size: 20px;" text="课程名称" />
-                <TableColumn editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
-                <TableColumn prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
-                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
-                <TableColumn prefWidth="91.3333740234375" style="-fx-font-size: 20px;" text="姓名" />
-            <TableColumn prefWidth="218.0" style="-fx-font-size: 20px;" text="学号" />
-                <TableColumn prefWidth="102.0001220703125" style="-fx-font-size: 20px;" text="成绩" />
-                <TableColumn prefWidth="105.333251953125" style="-fx-font-size: 20px;" text="绩点" />
-            <TableColumn prefWidth="108.0001220703125" style="-fx-font-size: 20px;" text="排名" />
+                <TableColumn prefWidth="145.33330535888672" style="-fx-font-size: 20px;" text="消费项目" />
+                <TableColumn prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="学生姓名" />
+                <TableColumn editable="false" prefWidth="121.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn prefWidth="121.333251953125" style="-fx-font-size: 20px;" text="消费日期" />
+                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="消费金额" />
+            <TableColumn prefWidth="183.33339436848962" style="-fx-font-size: 20px;" text="消费描述" />
             </columns>
         </TableView>
         <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
         <Button fx:id="button1" layoutX="1622.0" layoutY="185.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="83.0" style="-fx-background-color: indianred;" text="注销" textFill="#fbf5f5">
             <font>
                 <Font name="System Bold Italic" size="24.0" />

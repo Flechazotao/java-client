@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_conrtoller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_conrtoller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
@@ -38,14 +31,6 @@
                     </font>
                 </MenuButton>
                 <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="社会实践" />
-                        <MenuItem mnemonicParsing="false" text="学科竞赛" />
-                        <MenuItem mnemonicParsing="false" text="科技成果" />
-                        <MenuItem mnemonicParsing="false" text="培训讲座" />
-                        <MenuItem mnemonicParsing="false" text="创新项目" />
-                        <MenuItem mnemonicParsing="false" text="校外实习" />
-                    </items>
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
@@ -77,7 +62,7 @@
                 </MenuButton>
             </children>
         </HBox>
-        <Label layoutX="100.0" layoutY="262.0" text="课程管理" textFill="#667fe2f0">
+        <Label layoutX="100.0" layoutY="262.0" text="学习信息管理&lt;&lt;作业信息" textFill="#667fe2f0">
             <font>
                 <Font name="System Bold Italic" size="32.0" />
             </font>
@@ -87,28 +72,22 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1551.0">
+        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1553.0">
             <columns>
-                <TableColumn prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
-                <TableColumn prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />
-                <TableColumn editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
-                <TableColumn prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="课程时间" />
-                <TableColumn prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
-                <TableColumn prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程起始周" />
-                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
-                <TableColumn prefWidth="169.33343505859375" style="-fx-font-size: 20px;" text="上课地点" />
-                <TableColumn prefWidth="106.0" style="-fx-font-size: 20px;" text="课程类型" />
-                <TableColumn prefWidth="118.0" style="-fx-font-size: 20px;" text="课程资料" />
-                <TableColumn prefWidth="141.333251953125" style="-fx-font-size: 20px;" text="当前选课人数" />
-                <TableColumn prefWidth="152.6666259765625" style="-fx-font-size: 20px;" text="选课学生名额" />
+                <TableColumn prefWidth="241.99996948242188" style="-fx-font-size: 20px;" text="课程编号" />
+                <TableColumn prefWidth="122.0" style="-fx-font-size: 20px;" text="课程名称" />
+            <TableColumn prefWidth="129.3333740234375" style="-fx-font-size: 20px;" text="作业名称" />
+            <TableColumn editable="false" prefWidth="262.0" sortable="false" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn editable="false" prefWidth="111.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学生" />
+                <TableColumn prefWidth="113.33331298828125" style="-fx-font-size: 20px;" text="提交状态" />
+                <TableColumn prefWidth="119.99993896484375" style="-fx-font-size: 20px;" text="提交时间" />
+                <TableColumn prefWidth="118.0001220703125" style="-fx-font-size: 20px;" text="批改状态" />
+                <TableColumn prefWidth="110.6666259765625" style="-fx-font-size: 20px;" text="批改时间" />
+                <TableColumn prefWidth="107.9998779296875" style="-fx-font-size: 20px;" text="作业文件" />
+                <TableColumn prefWidth="116.0" style="-fx-font-size: 20px;" text="作业成绩" />
             </columns>
         </TableView>
         <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加课程">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
         <Button fx:id="button1" layoutX="1622.0" layoutY="185.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="83.0" style="-fx-background-color: indianred;" text="注销" textFill="#fbf5f5">
             <font>
                 <Font name="System Bold Italic" size="24.0" />

@@ -31,14 +31,6 @@
                </font>
             </MenuButton>
             <MenuButton mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="社会实践" />
-                  <MenuItem mnemonicParsing="false" text="学科竞赛" />
-                  <MenuItem mnemonicParsing="false" text="科技成果" />
-                  <MenuItem mnemonicParsing="false" text="培训讲座" />
-                  <MenuItem mnemonicParsing="false" text="创新项目" />
-                  <MenuItem mnemonicParsing="false" text="校外实习" />
-               </items>
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
