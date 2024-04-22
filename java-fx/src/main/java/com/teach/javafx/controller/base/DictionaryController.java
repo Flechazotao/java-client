@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.base;
 
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.*;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -8,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 
 import java.util.List;
 
@@ -137,11 +137,11 @@ public class DictionaryController {
         parent.getValue().getChildren().remove(node);
         DataRequest req = new DataRequest();
         req.add("id",node.getId());
-        DataResponse res= HttpRequestUtil.request("/api/base/dictionaryDelete", req);
+        com.teach.javafx.models.DTO.DataResponse res= HttpRequestUtil.request("/api/base/dictionaryDelete", req);
         if(res.getCode() == 0) {
             MessageDialog.showDialog("删除成功！");
         }else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
     @FXML
@@ -160,7 +160,7 @@ public class DictionaryController {
         if(res.getCode() == 0) {
             MessageDialog.showDialog("保存成功！");
         }else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
 
     }

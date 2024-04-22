@@ -1,10 +1,11 @@
 package com.teach.javafx.request;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.teach.javafx.AppStore;
 import com.google.gson.Gson;
 import com.teach.javafx.models.DO.User;
+import com.teach.javafx.models.DTO.DataResponse;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 import org.fatmansoft.teach.util.JsonConvertUtil;
 import org.fatmansoft.teach.util.CommonMethod;
 
@@ -64,12 +65,13 @@ public class HttpRequestUtil {
                     .build();//
             try {
                 HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+                DataResponse dataResponse = JSONObject.parseObject(response.body(), DataResponse.class);
                 System.out.println("response.statusCode===="+response.statusCode());
-                if (response.statusCode() == 200) {
+                if (dataResponse.getCode() == 200) {
                     JwtResponse jwt = gson.fromJson(response.body(), JwtResponse.class);
                     AppStore.setJwt(jwt);
                     return null;
-                } else if (response.statusCode() == 401) {
+                } else if (dataResponse.getCode() == 404) {
                     return "用户名或密码不存在！";
                 }
             } catch (IOException e) {
@@ -123,7 +125,7 @@ public class HttpRequestUtil {
         return null;
     }
 
-    public static DataResponse requestDataResponse(String url,DataRequest request){
+    public static org.fatmansoft.teach.payload.response.DataResponse requestDataResponse(String url, DataRequest request){
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(URI.create(serverUrl + url))
                     .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))

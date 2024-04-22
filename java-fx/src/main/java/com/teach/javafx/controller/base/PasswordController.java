@@ -1,10 +1,10 @@
 package com.teach.javafx.controller.base;
 
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 
 /**
  * PasswordController 登录交互控制类 对应 base/password-panel.fxml
@@ -43,7 +43,7 @@ public class PasswordController {
         if(res.getCode() == 0) {
             MessageDialog.showDialog("修改成功！");
         }else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 }

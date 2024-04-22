@@ -1,5 +1,6 @@
 package com.teach.javafx.controller;
 
+import com.teach.javafx.models.DTO.DataResponse;
 import javafx.scene.control.cell.MapValueFactory;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.FXCollections;
@@ -8,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,7 @@ public class CourseController {
     private List<Map> courseList = new ArrayList();  // 学生信息列表数据
     private ObservableList<Map> observableList= FXCollections.observableArrayList();  // TableView渲染列表
 
+    //查询
     @FXML
     private void onQueryButtonClick(){
         DataResponse res;

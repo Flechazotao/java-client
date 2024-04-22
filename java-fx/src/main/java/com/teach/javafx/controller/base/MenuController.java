@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.base;
 
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -182,11 +182,11 @@ public class MenuController {
                 return;
             DataRequest req = new DataRequest();
             req.add("id",node.getId());
-            DataResponse res= HttpRequestUtil.request("/api/base/menuDelete", req);
+            com.teach.javafx.models.DTO.DataResponse res= HttpRequestUtil.request("/api/base/menuDelete", req);
             if(res.getCode() == 0) {
                 MessageDialog.showDialog("删除成功！");
             }else {
-                MessageDialog.showDialog(res.getMsg());
+                MessageDialog.showDialog(res.getMessage());
             }
             parent.getChildren().remove(treeItem);
             treeItem = null;
@@ -227,7 +227,7 @@ public class MenuController {
                 treeItem.getChildren().add(new TreeItem<>(editNode));
             }
         }else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 }

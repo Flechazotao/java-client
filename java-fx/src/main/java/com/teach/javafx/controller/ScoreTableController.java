@@ -2,10 +2,10 @@ package com.teach.javafx.controller;
 
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.base.MessageDialog;
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import com.teach.javafx.request.OptionItem;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 import org.fatmansoft.teach.util.CommonMethod;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -78,7 +78,7 @@ public class ScoreTableController {
         op = courseComboBox.getSelectionModel().getSelectedItem();
         if(op != null)
             courseId = Integer.parseInt(op.getValue());
-        DataResponse res;
+        com.teach.javafx.models.DTO.DataResponse res;
         DataRequest req =new DataRequest();
         req.add("studentId",studentId);
         req.add("courseId",courseId);
@@ -171,7 +171,7 @@ public class ScoreTableController {
         stage.close();
         if(!"ok".equals(cmd))
             return;
-        DataResponse res;
+        com.teach.javafx.models.DTO.DataResponse res;
         Integer studentId = CommonMethod.getInteger(data,"studentId");
         if(studentId == null) {
             MessageDialog.showDialog("没有选中学生不能添加保存！");
@@ -231,7 +231,7 @@ public class ScoreTableController {
             onQueryButtonClick();
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 

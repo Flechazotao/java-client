@@ -42,8 +42,8 @@ public class LoginController {
     public void initialize() {
 //        usernameField.setText("2022030001");
 //        usernameField.setText("200799013517");
-        usernameField.setText("admin");
-        passwordField.setText("123456");
+//        usernameField.setText("admin");
+  //      passwordField.setText("123456");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
         AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
@@ -64,7 +64,7 @@ public class LoginController {
             return;
         }
         if (checkBox1.isSelected()||checkBox3.isSelected()||checkBox2.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/manager_MainFrame.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/manager_MainFrame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
                 AppStore.setMainFrameController((manage_MainFrame_conrtoller) fxmlLoader.getController());

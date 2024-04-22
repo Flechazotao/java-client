@@ -2,9 +2,9 @@ package com.teach.javafx.controller;
 
 import com.teach.javafx.controller.base.LocalDateStringConverter;
 import com.teach.javafx.controller.base.ToolController;
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.*;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 import org.fatmansoft.teach.util.CommonMethod;
 import com.teach.javafx.controller.base.MessageDialog;
 import javafx.collections.FXCollections;
@@ -102,7 +102,7 @@ public class StudentController extends ToolController {
 
     @FXML
     public void initialize() {
-        DataResponse res;
+        com.teach.javafx.models.DTO.DataResponse res;
         DataRequest req =new DataRequest();
         req.add("numName","");
         res = HttpRequestUtil.request("/api/student/getStudentList",req); //从后台获取所有学生信息列表集合
@@ -157,9 +157,9 @@ public class StudentController extends ToolController {
         studentId = CommonMethod.getInteger(form,"studentId");
         DataRequest req = new DataRequest();
         req.add("studentId",studentId);
-        DataResponse res = HttpRequestUtil.request("/api/student/getStudentInfo",req);
+        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/getStudentInfo",req);
         if(res.getCode() != 0){
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
             return;
         }
         form = (Map)res.getData();
@@ -192,7 +192,7 @@ public class StudentController extends ToolController {
         String numName = numNameTextField.getText();
         DataRequest req = new DataRequest();
         req.add("numName",numName);
-        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",req);
+        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",req);
         if(res != null && res.getCode()== 0) {
             studentList = (ArrayList<Map>)res.getData();
             setTableViewData();
@@ -224,13 +224,13 @@ public class StudentController extends ToolController {
         studentId = CommonMethod.getInteger(form,"studentId");
         DataRequest req = new DataRequest();
         req.add("studentId", studentId);
-        DataResponse res = HttpRequestUtil.request("/api/student/studentDelete",req);
+        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/studentDelete",req);
         if(res.getCode() == 0) {
             MessageDialog.showDialog("删除成功！");
             onQueryButtonClick();
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
     /**
@@ -265,7 +265,7 @@ public class StudentController extends ToolController {
             onQueryButtonClick();
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 
@@ -318,12 +318,12 @@ public class StudentController extends ToolController {
                 new FileChooser.ExtensionFilter("XLSX 文件", "*.xlsx"));
         File file = fileDialog.showOpenDialog(null);
         String paras = "";
-        DataResponse res =HttpRequestUtil.importData("/api/term/importStudentData",file.getPath(),paras);
+        com.teach.javafx.models.DTO.DataResponse res =HttpRequestUtil.importData("/api/term/importStudentData",file.getPath(),paras);
         if(res.getCode() == 0) {
             MessageDialog.showDialog("上传成功！");
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 

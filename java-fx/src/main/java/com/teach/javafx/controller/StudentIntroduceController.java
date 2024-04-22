@@ -2,9 +2,9 @@ package com.teach.javafx.controller;
 
 import com.teach.javafx.controller.base.MessageDialog;
 import com.teach.javafx.controller.base.ToolController;
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
 import org.fatmansoft.teach.util.CommonMethod;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -101,7 +101,7 @@ public class StudentIntroduceController extends ToolController {
      */
     public void getIntroduceData(){
         DataRequest req = new DataRequest();
-        DataResponse res;
+        com.teach.javafx.models.DTO.DataResponse res;
         res = HttpRequestUtil.request("/api/student/getStudentIntroduceData",req);
         if(res.getCode() != 0)
             return;
@@ -197,13 +197,13 @@ public class StudentIntroduceController extends ToolController {
         File file = fileDialog.showOpenDialog(null);
         if(file == null)
             return;
-        DataResponse res =HttpRequestUtil.uploadFile("/api/base/uploadPhoto",file.getPath(),"photo/" + personId + ".jpg");
+        com.teach.javafx.models.DTO.DataResponse res =HttpRequestUtil.uploadFile("/api/base/uploadPhoto",file.getPath(),"photo/" + personId + ".jpg");
         if(res.getCode() == 0) {
             MessageDialog.showDialog("上传成功！");
             displayPhoto();
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
     /**
@@ -215,11 +215,11 @@ public class StudentIntroduceController extends ToolController {
         DataRequest req = new DataRequest();
         req.add("studentId",studentId);
         req.add("introduce",introduce);
-        DataResponse res = HttpRequestUtil.request("/api/student/saveStudentIntroduce", req);
+        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/saveStudentIntroduce", req);
         if(res.getCode() == 0) {
             MessageDialog.showDialog("提交成功！");
         }else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 
@@ -240,7 +240,7 @@ public class StudentIntroduceController extends ToolController {
             MessageDialog.showDialog("上传成功！");
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 

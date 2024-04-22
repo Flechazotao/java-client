@@ -222,13 +222,13 @@ public class TeacherController extends ToolController {
         teacherId = teacher.getTeacherId();
         DataRequest req = new DataRequest();
         req.add("teacherId", teacherId);
-        DataResponse res = HttpRequestUtil.request("/api/teacher/teacherDelete",req);
+        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/teacher/teacherDelete",req);
         if(res.getCode() == 0) {
             MessageDialog.showDialog("删除成功！");
             onQueryButtonClick();
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
     /**
@@ -258,14 +258,14 @@ public class TeacherController extends ToolController {
         DataRequest req = new DataRequest();
         req.add("teacherId", teacherId);
         req.add("form", t);
-        DataResponse res = HttpRequestUtil.request("/api/teacher/teacherEditSave",req);
+        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/teacher/teacherEditSave",req);
         if(res.getCode() == 0) {
             teacherId = CommonMethod.getIntegerFromObject(res.getData());
             MessageDialog.showDialog("提交成功！");
             onQueryButtonClick();
         }
         else {
-            MessageDialog.showDialog(res.getMsg());
+            MessageDialog.showDialog(res.getMessage());
         }
     }
 

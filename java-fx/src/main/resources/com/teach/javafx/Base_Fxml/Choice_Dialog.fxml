@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<!-- 消息确认对话框FXML配置文件 对应页面交互控制类 om.teach.javafx.controller.base.ChoiceController -->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.ChoiceController">
+    <center>
+        <TextFlow fx:id="textFLow" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: burlywood;" BorderPane.alignment="CENTER" />
+    </center>
+    <bottom>
+        <FlowPane alignment="CENTER" prefHeight="59.0" prefWidth="300.0" style="-fx-background-color: burlywood;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#yesButtonClick" prefHeight="33.0" prefWidth="39.0" style="-fx-background-color: #4a3030;" text="是" textFill="#fdfdfd">
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#noButtonClick" prefHeight="33.0" prefWidth="41.0" style="-fx-background-color: #4a3030;" text="否" textFill="#fbf0f0">
+                    <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </FlowPane.margin>
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="34.0" prefWidth="52.0" style="-fx-background-color: #4a3030;" text="取消" textFill="#edecec">
+                    <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </FlowPane.margin>
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+                </Button>
+            </children>
+        </FlowPane>
+    </bottom>
+</BorderPane>
