@@ -1,28 +1,5 @@
 package com.teach.javafx.controller.base;
 
-import com.teach.javafx.AppStore;
-import com.teach.javafx.MainApplication;
-import com.teach.javafx.request.HttpRequestUtil;
-import com.teach.javafx.request.MyTreeNode;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
-
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 /**
  * MainFrameController 登录交互控制类 对应 base/main-frame.fxml
  *  @FXML  属性 对应fxml文件中的

@@ -19,11 +19,10 @@ module com.teach.javafx {
     opens com.teach.javafx.request to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
     opens com.teach.javafx.controller.base to com.google.gson, javafx.fxml;
     opens com.teach.javafx.controller to com.google.gson, javafx.fxml;
-    opens org.fatmansoft.teach.models to javafx.base,com.google.gson;
-    opens org.fatmansoft.teach.util to com.google.gson, javafx.fxml;
-    opens org.fatmansoft.teach.payload.request to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
-    opens org.fatmansoft.teach.payload.response to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
-    opens com.teach.javafx.models to com.google.gson, javafx.base,com.alibaba.fastjson2;
+    opens com.teach.javafx.useless.teach.models to javafx.base,com.google.gson;
+    opens com.teach.javafx.useless.teach.util to com.google.gson, javafx.fxml;
+    opens com.teach.javafx.useless.teach.payload.request to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
+    opens com.teach.javafx.useless.teach.payload.response to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
     opens com.teach.javafx.controller.tryController to  javafx.graphics;
 
     exports com.teach.javafx.controller.tryController;
@@ -33,6 +32,11 @@ module com.teach.javafx {
     exports com.teach.javafx.controller;
     exports com.teach.javafx.controller.base;
     exports com.teach.javafx.request to com.alibaba.fastjson2;
-    exports org.fatmansoft.teach.util;
+    exports com.teach.javafx.useless.teach.util;
+    opens com.teach.javafx.useless to com.alibaba.fastjson2, com.google.gson, javafx.base;
+    exports com.teach.javafx.useless.request to com.alibaba.fastjson2;
+    opens com.teach.javafx.useless.request to com.alibaba.fastjson2, com.google.gson, javafx.fxml;
+    exports com.teach.javafx.useless.controller;
+    opens com.teach.javafx.useless.controller to com.google.gson, javafx.fxml;
 
 }

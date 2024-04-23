@@ -4,7 +4,7 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.fatmansoft.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
 
 /**
  * PasswordController 登录交互控制类 对应 base/password-panel.fxml

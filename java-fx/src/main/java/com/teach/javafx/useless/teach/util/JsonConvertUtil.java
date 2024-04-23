@@ -1,6 +1,6 @@
-package org.fatmansoft.teach.util;
+package com.teach.javafx.useless.teach.util;
 
-import org.fatmansoft.teach.payload.response.DataResponse;
+import com.teach.javafx.useless.teach.payload.response.DataResponse;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

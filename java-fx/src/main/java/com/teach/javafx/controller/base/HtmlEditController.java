@@ -11,7 +11,7 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
-import org.fatmansoft.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
 
 import java.io.*;
 import java.net.URL;

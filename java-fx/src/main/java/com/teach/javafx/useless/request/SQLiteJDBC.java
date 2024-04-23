@@ -1,10 +1,10 @@
-package com.teach.javafx.request;
+package com.teach.javafx.useless.request;
 
 import com.teach.javafx.AppStore;
-import org.fatmansoft.teach.models.Person;
-import com.teach.javafx.models.Student;
-import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.payload.response.DataResponse;
+import com.teach.javafx.request.JwtResponse;
+import com.teach.javafx.useless.Student;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.payload.response.DataResponse;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

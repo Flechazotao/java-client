@@ -4,9 +4,9 @@ import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.base.MessageDialog;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
-import com.teach.javafx.request.OptionItem;
-import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.util.CommonMethod;
+import com.teach.javafx.useless.request.OptionItem;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.util.CommonMethod;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -120,25 +120,25 @@ public class ScoreTableController {
     public void initialize() {
 
 
-        studentNumColumn.setCellValueFactory(new MapValueFactory("studentNum"));  //设置列值工程属性
-        studentNameColumn.setCellValueFactory(new MapValueFactory<>("studentName"));
-        classNameColumn.setCellValueFactory(new MapValueFactory<>("className"));
-        courseNumColumn.setCellValueFactory(new MapValueFactory<>("courseNum"));
-        courseNameColumn.setCellValueFactory(new MapValueFactory<>("courseName"));
-        creditColumn.setCellValueFactory(new MapValueFactory<>("credit"));
-        markColumn.setCellValueFactory(new MapValueFactory<>("mark"));
-        editColumn.setCellValueFactory(new MapValueFactory<>("edit"));
-
-        DataRequest req =new DataRequest();
-        studentList = HttpRequestUtil.requestOptionItemList("/api/score/getStudentItemOptionList",req); //从后台获取所有学生信息列表集合
-        courseList = HttpRequestUtil.requestOptionItemList("/api/score/getCourseItemOptionList",req); //从后台获取所有学生信息列表集合
-        OptionItem item = new OptionItem(null,"0","请选择");
-        studentComboBox.getItems().addAll(item);
-        studentComboBox.getItems().addAll(studentList);
-        courseComboBox.getItems().addAll(item);
-        courseComboBox.getItems().addAll(courseList);
-        dataTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        onQueryButtonClick();
+//        studentNumColumn.setCellValueFactory(new MapValueFactory("studentNum"));  //设置列值工程属性
+//        studentNameColumn.setCellValueFactory(new MapValueFactory<>("studentName"));
+//        classNameColumn.setCellValueFactory(new MapValueFactory<>("className"));
+//        courseNumColumn.setCellValueFactory(new MapValueFactory<>("courseNum"));
+//        courseNameColumn.setCellValueFactory(new MapValueFactory<>("courseName"));
+//        creditColumn.setCellValueFactory(new MapValueFactory<>("credit"));
+//        markColumn.setCellValueFactory(new MapValueFactory<>("mark"));
+//        editColumn.setCellValueFactory(new MapValueFactory<>("edit"));
+//
+//        DataRequest req =new DataRequest();
+//        studentList = HttpRequestUtil.requestOptionItemList("/api/score/getStudentItemOptionList",req); //从后台获取所有学生信息列表集合
+//        courseList = HttpRequestUtil.requestOptionItemList("/api/score/getCourseItemOptionList",req); //从后台获取所有学生信息列表集合
+//        OptionItem item = new OptionItem(null,"0","请选择");
+//        studentComboBox.getItems().addAll(item);
+//        studentComboBox.getItems().addAll(studentList);
+//        courseComboBox.getItems().addAll(item);
+//        courseComboBox.getItems().addAll(courseList);
+//        dataTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        onQueryButtonClick();
     }
 
     private void initDialog() {

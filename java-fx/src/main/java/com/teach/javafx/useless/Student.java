@@ -1,6 +1,7 @@
-package org.fatmansoft.teach.models;
+package com.teach.javafx.useless;
 
-public class Person {
+public class Student {
+    private Integer studentId;
     private Integer personId;
     private String num;
     private String name;
@@ -14,6 +15,39 @@ public class Person {
     private String phone;
     private String address;
     private String introduce;
+    private String major;
+    private String className;
+    public Student(){
+
+    }
+    public Student(String num, String name){
+        this.num = num;
+        this.name = name;
+    }
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
     public Integer getPersonId() {
         return personId;
@@ -71,6 +105,14 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getGenderName() {
+        return genderName;
+    }
+
+    public void setGenderName(String genderName) {
+        this.genderName = genderName;
+    }
+
     public String getBirthday() {
         return birthday;
     }
@@ -111,11 +153,7 @@ public class Person {
         this.introduce = introduce;
     }
 
-    public String getGenderName() {
-        return genderName;
-    }
-
-    public void setGenderName(String genderName) {
-        this.genderName = genderName;
+    public String toString(){
+        return num+"-" + name;
     }
 }

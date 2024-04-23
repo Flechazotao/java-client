@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.fatmansoft.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
 
 import java.util.ArrayList;
 import java.util.List;

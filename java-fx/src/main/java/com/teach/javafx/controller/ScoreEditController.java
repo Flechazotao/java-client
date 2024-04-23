@@ -1,7 +1,7 @@
 package com.teach.javafx.controller;
 
-import com.teach.javafx.request.OptionItem;
-import org.fatmansoft.teach.util.CommonMethod;
+import com.teach.javafx.useless.request.OptionItem;
+import com.teach.javafx.useless.teach.util.CommonMethod;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;

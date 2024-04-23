@@ -2,17 +2,15 @@ package com.teach.javafx.controller.base;
 
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.*;
+import com.teach.javafx.useless.request.MyTreeNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import org.fatmansoft.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
 
-import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -87,12 +85,12 @@ public class MenuController {
     }
     public void updateTreeView(){
         DataRequest req = new DataRequest();
-        List<MyTreeNode> nodeList = HttpRequestUtil.requestTreeNodeList("/api/base/getMenuTreeNodeList", req);
-        if (nodeList == null ||nodeList.size()== 0)
-            return;
-        for (int i = 0; i < nodeList.size(); i++) {
-            root.getChildren().add(getTreeItem(nodeList.get(i)));
-        }
+//        List<MyTreeNode> nodeList = HttpRequestUtil.requestTreeNodeList("/api/base/getMenuTreeNodeList", req);
+//        if (nodeList == null ||nodeList.size()== 0)
+//            return;
+//        for (int i = 0; i < nodeList.size(); i++) {
+//            root.getChildren().add(getTreeItem(nodeList.get(i)));
+//        }
     }
     public void setRoleCheckBox(){
         nodeAdminCheckBox.setSelected(false);

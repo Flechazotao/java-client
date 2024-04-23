@@ -1,7 +1,7 @@
-package org.fatmansoft.teach.payload.request;
+package com.teach.javafx.useless.teach.payload.request;
 
 import lombok.Getter;
-import org.fatmansoft.teach.util.DateTimeTool;
+import com.teach.javafx.useless.teach.util.DateTimeTool;
 
 import java.util.*;
 

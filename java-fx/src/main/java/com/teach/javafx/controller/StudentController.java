@@ -4,8 +4,9 @@ import com.teach.javafx.controller.base.LocalDateStringConverter;
 import com.teach.javafx.controller.base.ToolController;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.*;
-import org.fatmansoft.teach.payload.request.DataRequest;
-import org.fatmansoft.teach.util.CommonMethod;
+import com.teach.javafx.useless.request.OptionItem;
+import com.teach.javafx.useless.teach.payload.request.DataRequest;
+import com.teach.javafx.useless.teach.util.CommonMethod;
 import com.teach.javafx.controller.base.MessageDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -124,7 +125,7 @@ public class StudentController extends ToolController {
         ObservableList<Integer> list = tsm.getSelectedIndices();
         list.addListener(this::onTableRowSelect);
         setTableViewData();
-        genderList = HttpRequestUtil.getDictionaryOptionItemList("XBM");
+//        genderList = HttpRequestUtil.getDictionaryOptionItemList("XBM");
 
         genderComboBox.getItems().addAll(genderList);
         birthdayPick.setConverter(new LocalDateStringConverter("yyyy-MM-dd"));

@@ -1,4 +1,4 @@
-package org.fatmansoft.teach.models;
+package com.teach.javafx.useless.teach.models;
 
 public class Teacher {
     private Integer teacherId;

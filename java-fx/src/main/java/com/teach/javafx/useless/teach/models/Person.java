@@ -1,7 +1,6 @@
-package com.teach.javafx.models;
+package com.teach.javafx.useless.teach.models;
 
-public class Student {
-    private Integer studentId;
+public class Person {
     private Integer personId;
     private String num;
     private String name;
@@ -15,39 +14,6 @@ public class Student {
     private String phone;
     private String address;
     private String introduce;
-    private String major;
-    private String className;
-    public Student(){
-
-    }
-    public Student(String num, String name){
-        this.num = num;
-        this.name = name;
-    }
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
 
     public Integer getPersonId() {
         return personId;
@@ -105,14 +71,6 @@ public class Student {
         this.gender = gender;
     }
 
-    public String getGenderName() {
-        return genderName;
-    }
-
-    public void setGenderName(String genderName) {
-        this.genderName = genderName;
-    }
-
     public String getBirthday() {
         return birthday;
     }
@@ -153,7 +111,11 @@ public class Student {
         this.introduce = introduce;
     }
 
-    public String toString(){
-        return num+"-" + name;
+    public String getGenderName() {
+        return genderName;
+    }
+
+    public void setGenderName(String genderName) {
+        this.genderName = genderName;
     }
 }

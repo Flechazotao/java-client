@@ -1,6 +1,6 @@
-package com.teach.javafx.request;
+package com.teach.javafx.useless.request;
 
-import org.fatmansoft.teach.util.CommonMethod;
+import com.teach.javafx.useless.teach.util.CommonMethod;
 
 import java.util.Map;
 

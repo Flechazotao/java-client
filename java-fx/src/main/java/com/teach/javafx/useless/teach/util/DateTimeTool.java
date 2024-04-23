@@ -1,4 +1,4 @@
-package org.fatmansoft.teach.util;
+package com.teach.javafx.useless.teach.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

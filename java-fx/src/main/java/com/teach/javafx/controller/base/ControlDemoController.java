@@ -3,7 +3,7 @@ package com.teach.javafx.controller.base;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import com.teach.javafx.models.Student;
+import com.teach.javafx.useless.Student;
 
 import java.util.ArrayList;
 import java.util.List;

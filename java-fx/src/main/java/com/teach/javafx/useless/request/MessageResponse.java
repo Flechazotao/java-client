@@ -1,4 +1,4 @@
-package com.teach.javafx.request;
+package com.teach.javafx.useless.request;
 
 /**
  * MessageResponse  消息返回对象 系统框架返回的消息对象

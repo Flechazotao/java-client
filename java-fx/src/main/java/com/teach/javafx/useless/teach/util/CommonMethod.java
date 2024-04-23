@@ -1,7 +1,7 @@
-package org.fatmansoft.teach.util;
+package com.teach.javafx.useless.teach.util;
 
 
-import com.teach.javafx.request.OptionItem;
+import com.teach.javafx.useless.request.OptionItem;
 /**
  * CommonMethod 公共处理方法实例类
  */

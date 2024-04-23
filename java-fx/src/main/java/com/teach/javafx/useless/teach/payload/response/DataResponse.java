@@ -1,4 +1,4 @@
-package org.fatmansoft.teach.payload.response;
+package com.teach.javafx.useless.teach.payload.response;
 
 /**
  * DataResponse 前端HTTP请求返回数据对象
