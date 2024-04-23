@@ -42,8 +42,8 @@ public class LoginController {
     public void initialize() {
 //        usernameField.setText("2022030001");
 //        usernameField.setText("200799013517");
-//        usernameField.setText("admin");
-  //      passwordField.setText("123456");
+        usernameField.setText("admin");
+        passwordField.setText("123456");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
         AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器

@@ -1,5 +1,6 @@
 package org.fatmansoft.teach.payload.request;
 
+import lombok.Getter;
 import org.fatmansoft.teach.util.DateTimeTool;
 
 import java.util.*;
@@ -8,18 +9,15 @@ import java.util.*;
  * DataRequest 请求参数数据类
  * Map data 保存前端请求参数的Map集合
  */
+@Getter
 public class DataRequest {
-    private Map data;
+    private Map<String,Object> data;
 
     public DataRequest() {
-        data = new HashMap();
+        data = new HashMap<>();
     }
 
-    public Map getData() {
-        return data;
-    }
-
-    public void setData(Map data) {
+    public void setData(Map<String,Object> data) {
         this.data = data;
     }
 
