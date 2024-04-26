@@ -29,7 +29,7 @@ public class ChoiceController {
     public void initialize() {
         text = new Text("");
         text.setFill(Color.BLACK);
-        text.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        text.setFont(Font.font("Arial", FontWeight.BOLD, 29));
         textFLow.getChildren().add(text);
         textFLow.setLineSpacing(5);
         textFLow.setDisable(false);
@@ -38,7 +38,8 @@ public class ChoiceController {
                 "-fx-border-width: 1;" +
                 "-fx-border-insets: 5;" +
                 "-fx-border-radius: 5;" +
-                "-fx-border-color: black;");
+                "-fx-border-color: #6b3109;"+
+                "-fx-background-color: burlywood;");
     }
 
     @FXML

@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -14,7 +9,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
-        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
+        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1250.0">
             <children>
                 <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生信息" textFill="#fbf7f7">
                     <font>
@@ -64,41 +59,15 @@
                 </MenuButton>
             </children>
         </HBox>
-        <Label layoutX="100.0" layoutY="262.0" text="学习信息管理&lt;&lt;作业信息" textFill="#667fe2f0">
+        <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
+            <items>
+                <MenuItem mnemonicParsing="false" text="退出" />
+                <MenuItem mnemonicParsing="false" text="个人信息" />
+                <MenuItem mnemonicParsing="false" text="修改密码" />
+            </items>
             <font>
-                <Font name="System Bold Italic" size="32.0" />
+                <Font name="System Bold Italic" size="14.0" />
             </font>
-        </Label>
-        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1553.0">
-            <columns>
-                <TableColumn prefWidth="241.99996948242188" style="-fx-font-size: 20px;" text="课程编号" />
-                <TableColumn prefWidth="122.0" style="-fx-font-size: 20px;" text="课程名称" />
-                <TableColumn prefWidth="129.3333740234375" style="-fx-font-size: 20px;" text="作业名称" />
-                <TableColumn editable="false" prefWidth="262.0" sortable="false" style="-fx-font-size: 20px;" text="学号" />
-                <TableColumn editable="false" prefWidth="111.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学生" />
-                <TableColumn prefWidth="113.33331298828125" style="-fx-font-size: 20px;" text="提交状态" />
-                <TableColumn prefWidth="119.99993896484375" style="-fx-font-size: 20px;" text="提交时间" />
-                <TableColumn prefWidth="118.0001220703125" style="-fx-font-size: 20px;" text="批改状态" />
-                <TableColumn prefWidth="80.6666259765625" style="-fx-font-size: 20px;" text="批改" />
-                <TableColumn prefWidth="138.0" style="-fx-font-size: 20px;" text="作业文件" />
-                <TableColumn prefWidth="116.0" style="-fx-font-size: 20px;" text="作业成绩" />
-            </columns>
-        </TableView>
-        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-      <MenuButton layoutX="1589.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
-         <items>
-            <MenuItem mnemonicParsing="false" text="退出" />
-            <MenuItem mnemonicParsing="false" text="个人信息" />
-            <MenuItem mnemonicParsing="false" text="修改密码" />
-         </items>
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </MenuButton>
+        </MenuButton>
     </children>
 </AnchorPane>

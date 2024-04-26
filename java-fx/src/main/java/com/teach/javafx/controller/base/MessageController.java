@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 public class MessageController {
     @FXML
     private TextFlow textFLow;
-
     private Text text;
     private Stage stage;
     /**
@@ -29,7 +28,7 @@ public class MessageController {
     public void initialize() {
         text = new Text("");
         text.setFill(Color.BLACK);
-        text.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        text.setFont(Font.font("Arial", FontWeight.BOLD, 25));
         textFLow.getChildren().add(text);
         textFLow.setLineSpacing(5);
         textFLow.setDisable(false);
@@ -38,7 +37,8 @@ public class MessageController {
                 "-fx-border-width: 1;" +
                 "-fx-border-insets: 5;" +
                 "-fx-border-radius: 5;" +
-                "-fx-border-color: black;");
+                "-fx-border-color: black;" +
+                "-fx-background-color: burlywood;");
     }
 
     @FXML

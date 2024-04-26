@@ -69,8 +69,8 @@ public class MainApplication extends Application {
         double y = (stageHeight-240)/2;
         mainStage.setX(x);
         mainStage.setY(y);
-        mainStage.setWidth(320);
-        mainStage.setHeight(240);
+        mainStage.setWidth(596);
+        mainStage.setHeight(358);
         mainStage.show();
     }
 
@@ -78,8 +78,7 @@ public class MainApplication extends Application {
         launch();
     }
 
-    public static Stage getMainStage() {
-        return mainStage;
+    public static Stage getMainStage() {return mainStage;
     }
 
     public static void setCanClose(boolean canClose) {

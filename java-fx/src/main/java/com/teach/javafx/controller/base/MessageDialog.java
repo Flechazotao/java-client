@@ -47,7 +47,7 @@ public class MessageDialog {
             messageController = (MessageController) fxmlLoader.getController();
             messageController.setStage(stage);
 
-            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/choice-dialog.fxml"));
+            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Choice_Dialog.fxml"));
             scene = new Scene(fxmlLoader.load(), 300, 260);
             stage = new Stage();
             stage.initOwner(MainApplication.getMainStage());

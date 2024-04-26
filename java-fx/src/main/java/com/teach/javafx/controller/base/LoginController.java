@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import java.io.IOException;
-import javafx.scene.control.ChoiceBox;
+
 /**
  * LoginController 登录交互控制类 对应 base/login-view.fxml
  *  @FXML  属性 对应fxml文件中的 fx:id 属性 如TextField usernameField 对应 fx:id="usernameField"
@@ -49,35 +49,6 @@ public class LoginController {
         AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
 //        loginButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
     }
-
-    /**
-     *  点击登录按钮 执行onLoginButtonClick 方法 从面板上获取用户名和密码，请求后台登录服务，登录成功加载主框架，切换舞台到主框架，登录不成功，提示错误信息
-     */
-    @FXML
-    protected void onLoginButtonClick() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        LoginRequest loginRequest = new LoginRequest(username,password);
-        String msg = HttpRequestUtil.login(username,password);
-        if(msg != null) {
-            MessageDialog.showDialog( msg );
-            return;
-        }
-        if (checkBox1.isSelected()||checkBox3.isSelected()||checkBox2.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/manager_MainFrame.fxml"));
-            try {
-                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((manage_MainFrame_conrtoller) fxmlLoader.getController());
-                MainApplication.resetStage("教学管理系统", scene);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
-            MessageDialog.showDialog("请选择您的登陆身份!");
-        }
-    }
-
     @FXML
     protected void oncheckBox1Click() {
         checkBox2.setSelected(false);
@@ -93,4 +64,53 @@ public class LoginController {
         checkBox1.setSelected(false);
         checkBox2.setSelected(false);
     }
+
+    /**
+     *  点击登录按钮 执行onLoginButtonClick 方法 从面板上获取用户名和密码，请求后台登录服务，登录成功加载主框架，切换舞台到主框架，登录不成功，提示错误信息
+     */
+    @FXML
+    protected void onLoginButtonClick() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        LoginRequest loginRequest = new LoginRequest(username,password);
+        String msg = HttpRequestUtil.login(username,password);
+        if(msg != null) {
+            MessageDialog.showDialog( msg );
+            return;
+        }
+        if (checkBox3.isSelected()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/manager_MainFrame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if (checkBox1.isSelected()){
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_MainFrame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if (checkBox2.isSelected()){
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher_MainFrame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            MessageDialog.showDialog("请选择您的登陆身份!");
+        }
+    }
+
 }
