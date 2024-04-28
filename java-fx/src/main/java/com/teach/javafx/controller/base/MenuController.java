@@ -180,12 +180,12 @@ public class MenuController {
                 return;
             DataRequest req = new DataRequest();
             req.add("id",node.getId());
-            com.teach.javafx.models.DTO.DataResponse res= HttpRequestUtil.request("/api/base/menuDelete", req);
-            if(res.getCode() == 0) {
-                MessageDialog.showDialog("删除成功！");
-            }else {
-                MessageDialog.showDialog(res.getMessage());
-            }
+//            com.teach.javafx.models.DTO.DataResponse res= HttpRequestUtil.request("/api/base/menuDelete", req);
+//            if(res.getCode() == 0) {
+//                MessageDialog.showDialog("删除成功！");
+//            }else {
+//                MessageDialog.showDialog(res.getMessage());
+//            }
             parent.getChildren().remove(treeItem);
             treeItem = null;
         }
@@ -213,7 +213,7 @@ public class MenuController {
         }
         editNode.setUserTypeIds(str);
         editNode.setLabel(editNode.getId()+"-"+editNode.getTitle());
-        DataRequest req = new DataRequest();
+        com.teach.javafx.models.DTO.DataRequest req = new com.teach.javafx.models.DTO.DataRequest();
         req.add("editType", editType);
         req.add("node",editNode);
         DataResponse res = HttpRequestUtil.request("/api/base/menuSave", req);

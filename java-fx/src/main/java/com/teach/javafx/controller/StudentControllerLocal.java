@@ -208,7 +208,7 @@ public class StudentControllerLocal extends ToolController {
         s.setEmail(emailField.getText());
         s.setPhone(phoneField.getText());
         s.setAddress(addressField.getText());
-        Object res = SQLiteJDBC.getInstance().studentEditSave(s,studentId,personId);
+        /*Object res = SQLiteJDBC.getInstance().studentEditSave(s,studentId,personId);
         if(res instanceof String) {
             MessageDialog.showDialog(res.toString());
         }
@@ -217,6 +217,6 @@ public class StudentControllerLocal extends ToolController {
             studentId = oa[0];
             personId = oa[1];
             MessageDialog.showDialog("提交成功！");
-        }
+        }*/
     }
 }

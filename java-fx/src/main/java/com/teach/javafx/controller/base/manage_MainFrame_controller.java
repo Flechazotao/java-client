@@ -167,8 +167,11 @@ public class manage_MainFrame_controller {
     }
 
     public void onChangePassword() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/ChangePassword_panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Password_panel.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 260);
-        MainApplication.loginStage("ChangePassword", scene);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("修改密码");
+        stage.show();
     }
 }

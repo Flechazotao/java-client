@@ -78,7 +78,8 @@ public class MainApplication extends Application {
         launch();
     }
 
-    public static Stage getMainStage() {return mainStage;
+    public static Stage getMainStage() {
+        return mainStage;
     }
 
     public static void setCanClose(boolean canClose) {

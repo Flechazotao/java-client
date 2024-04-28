@@ -435,11 +435,11 @@ public class SQLiteJDBC {
      * @param personId
      * @return
      */
-    public Object studentEditSave(Student s, Integer studentId, Integer personId) {
+    public Object studentEditSave(com.teach.javafx.models.DO.Student s, Integer studentId, Integer personId) {
         Statement stmt = null;
         String sql;
         String sql1;
-        String newNum = s.getNum();
+        String newNum = s.getPerson().getNumber();
         Integer nPersonId = getPersonIdByNum(newNum);
         Integer userId;
         String num;
@@ -479,28 +479,7 @@ public class SQLiteJDBC {
             }
             sql = " update person set ";
             sql1 = "";
-            if(s.getName() != null)
-                sql1 += "name='" + s.getName() + "',";
-            if(s.getDept() != null)
-                sql += "dept='" + s.getDept() + "',";
-            if(s.getCard() != null)
-                sql1 += "card='" + s.getCard() + "',";
-            if(s.getGender() != null)
-                sql1 += "gender='" + s.getGender() + "',";
-            if(s.getBirthday() != null)
-                sql1 += "birthday='" + s.getBirthday() + "',";
-            if(s.getEmail() != null)
-                sql1 += "email='" + s.getEmail() + "',";
-            if(s.getPhone() != null)
-                sql1 += "phone='" + s.getPhone() + "',";
-            if(s.getAddress() != null)
-                sql1 += "address='" + s.getAddress() + "',";
-            if(sql1.length() > 0) {
-                sql = sql + sql1.substring(0, sql1.length() - 1) + " where person_id=" + personId;
-                stmt = con.createStatement();
-                stmt.executeUpdate(sql);
-                stmt.close();
-            }
+
             sql = " update student set ";
             sql1 = "";
             if(s.getMajor() != null)

@@ -1,15 +1,13 @@
 package com.teach.javafx.request;
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.teach.javafx.AppStore;
 import com.google.gson.Gson;
 import com.teach.javafx.models.DO.User;
+import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.useless.request.MyTreeNode;
-import com.teach.javafx.useless.request.OptionItem;
-import com.teach.javafx.useless.request.OptionItemList;
 import com.teach.javafx.useless.request.SQLiteJDBC;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
 import com.teach.javafx.useless.teach.util.JsonConvertUtil;
 import com.teach.javafx.useless.teach.util.CommonMethod;
 
@@ -63,7 +61,7 @@ public class HttpRequestUtil {
         }else {
             HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(URI.create(serverUrl + "/api/user/login"))
-                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
+                    .POST(HttpRequest.BodyPublishers.ofString(JSON.toJSONString(request)))
                     .headers("Content-Type", "application/json")
                     .build();//
             try {
@@ -95,7 +93,7 @@ public class HttpRequestUtil {
     public static DataResponse request(String url, DataRequest request){
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(serverUrl + url))
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
+                .POST(HttpRequest.BodyPublishers.ofString(JSON.toJSONString(request)))
                 .headers("Content-Type", "application/json")
                 .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
                 .build();

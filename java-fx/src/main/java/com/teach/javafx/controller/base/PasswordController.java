@@ -1,10 +1,11 @@
 package com.teach.javafx.controller.base;
 
+import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
+import javafx.stage.Stage;
 
 /**
  * PasswordController 登录交互控制类 对应 base/password-panel.fxml
@@ -18,31 +19,33 @@ public class PasswordController {
     private TextField newPasswordField;
     @FXML
     private TextField confirmPasswordField;
+    private Stage stage ;
 
     /**
      * 点击 确认按钮 执行 onSubmitButtonClick方法，请求后台修改密码
      */
     @FXML
     protected void onSubmitButtonClick() {
-        DataRequest request= new DataRequest();
-        String oldPassword =oldPasswordField.getText();
-        String newPassword =newPasswordField.getText();
-        String confirmPassword =confirmPasswordField.getText();
-        if( oldPassword.length() == 0  || newPassword.length() == 0  || confirmPassword.length() == 0 ) {
+        stage=this.stage;
+        DataRequest request = new DataRequest();
+        String oldPassword = oldPasswordField.getText();
+        String newPassword = newPasswordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+        if (oldPassword.length() == 0 || newPassword.length() == 0 || confirmPassword.length() == 0) {
             MessageDialog.showDialog("密码输入为空，不能修改！");
             return;
         }
-        if(!newPassword.equals(confirmPassword)) {
+        if (!newPassword.equals(confirmPassword)) {
             MessageDialog.showDialog("新密码和确认密码不同，不能修改！");
             return;
         }
         request.add("oldPassword", oldPassword);
         request.add("newPassword", newPassword);
         request.add("confirmPassword", confirmPassword);
-        DataResponse res = HttpRequestUtil.request("/api/base/updatePassword",request);
-        if(res.getCode() == 0) {
+        DataResponse res = HttpRequestUtil.request("/api/base/updatePassword", request);
+        if (res.getCode() == 0) {
             MessageDialog.showDialog("修改成功！");
-        }else {
+        } else {
             MessageDialog.showDialog(res.getMessage());
         }
     }

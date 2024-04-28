@@ -68,35 +68,34 @@
             <Font name="System Bold Italic" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+      <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1018.0">
+      <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1018.0">
         <columns>
-          <TableColumn prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="学号" />
-          <TableColumn prefWidth="97.33328247070312" style="-fx-font-size: 20px;" text="姓名" />
-            <TableColumn editable="false" prefWidth="62.66668701171875" sortable="false" style="-fx-font-size: 20px;" text="性别" />
-            <TableColumn prefWidth="118.66659545898438" style="-fx-font-size: 20px;" text="学院" />
-            <TableColumn prefWidth="112.6666259765625" style="-fx-font-size: 20px;" text="专业" />
-            <TableColumn prefWidth="121.3333740234375" style="-fx-font-size: 20px;" text="班级" />
+          <TableColumn fx:id="numColumn" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="学号" />
+          <TableColumn fx:id="nameColumn" prefWidth="97.33328247070312" style="-fx-font-size: 20px;" text="姓名" />
+            <TableColumn fx:id="genderColumn" editable="false" prefWidth="62.66668701171875" sortable="false" style="-fx-font-size: 20px;" text="性别" />
+            <TableColumn fx:id="deptColumn" prefWidth="118.66659545898438" style="-fx-font-size: 20px;" text="学院" />
+            <TableColumn fx:id="majorColumn" prefWidth="112.6666259765625" style="-fx-font-size: 20px;" text="专业" />
+            <TableColumn fx:id="classNameColumn" prefWidth="121.3333740234375" style="-fx-font-size: 20px;" text="班级" />
             <TableColumn prefWidth="122.0001220703125" style="-fx-font-size: 20px;" text="入学前信息" />
             <TableColumn prefWidth="116.00018310546875" style="-fx-font-size: 20px;" text="家庭信息" />
             <TableColumn prefWidth="66.0" style="-fx-font-size: 20px;" text="删除" />
         </columns>
       </TableView>
       <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-      <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加学生">
+      <Button fx:id="onAddStudent" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddStudent" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加学生">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
       <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
          <items>
-            <MenuItem mnemonicParsing="false" text="退出" />
-            <MenuItem mnemonicParsing="false" text="个人信息" />
-            <MenuItem mnemonicParsing="false" text="修改密码" />
+             <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
+             <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
          </items>
          <font>
             <Font name="System Bold Italic" size="14.0" />
