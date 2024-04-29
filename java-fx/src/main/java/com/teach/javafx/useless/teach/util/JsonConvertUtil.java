@@ -1,6 +1,7 @@
 package com.teach.javafx.useless.teach.util;
 
-import com.teach.javafx.useless.teach.payload.response.DataResponse;
+
+import com.teach.javafx.models.DTO.DataResponse;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

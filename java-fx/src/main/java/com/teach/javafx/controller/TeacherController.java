@@ -1,27 +1,6 @@
 package com.teach.javafx.controller;
 
-import com.teach.javafx.controller.base.LocalDateStringConverter;
 import com.teach.javafx.controller.base.ToolController;
-import com.teach.javafx.request.*;
-import com.teach.javafx.useless.request.OptionItem;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
-import com.teach.javafx.useless.teach.models.Person;
-import com.teach.javafx.useless.teach.models.Teacher;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
-import com.teach.javafx.useless.teach.payload.response.DataResponse;
-import com.teach.javafx.useless.teach.util.CommonMethod;
-import com.teach.javafx.controller.base.MessageDialog;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * StudentController 登录交互控制类 对应 student_panel.fxml  对应于学生管理的后台业务处理的控制器，主要获取数据和保存数据的方法不同

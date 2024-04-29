@@ -20,6 +20,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "teacher")
 @Entity
 public class Teacher implements Serializable {
     @Id
@@ -27,6 +28,8 @@ public class Teacher implements Serializable {
     private Integer teacherId;
 
     @OneToOne
+    @JoinColumn(name = "person_id")
+//    @TableField("person_id")
     private Person person;
 
     private String title;

@@ -21,8 +21,6 @@ module com.teach.javafx {
     opens com.teach.javafx.controller to com.google.gson, javafx.fxml;
     opens com.teach.javafx.useless.teach.models to javafx.base,com.google.gson;
     opens com.teach.javafx.useless.teach.util to com.google.gson, javafx.fxml;
-    opens com.teach.javafx.useless.teach.payload.request to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
-    opens com.teach.javafx.useless.teach.payload.response to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
     opens com.teach.javafx.controller.tryController to  javafx.graphics;
 
     exports com.teach.javafx.controller.tryController;
@@ -33,7 +31,6 @@ module com.teach.javafx {
     exports com.teach.javafx.controller.base;
     exports com.teach.javafx.request;
     exports com.teach.javafx.useless.teach.util;
-    opens com.teach.javafx.useless;
     exports com.teach.javafx.useless.request;
     opens com.teach.javafx.useless.request;
     exports com.teach.javafx.useless.controller;

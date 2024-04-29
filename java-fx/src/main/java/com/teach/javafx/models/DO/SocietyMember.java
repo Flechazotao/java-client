@@ -18,6 +18,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "society_member")
 @Entity
 public class SocietyMember implements Serializable {
     @Id
@@ -25,6 +26,7 @@ public class SocietyMember implements Serializable {
     private Integer societyId;
 
     @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 
     private String gender;

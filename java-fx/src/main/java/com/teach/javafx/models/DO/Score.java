@@ -20,18 +20,23 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "score")
 @Entity
 public class Score implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer scoreId;
+
     @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
 
     private Integer mark;
+
     private Integer ranking;
 
 }

@@ -3,7 +3,6 @@ package com.teach.javafx.useless.request;
  OptionItemList 发挥前端的OptionItemList集合对象
  Integer code 返回代码 0 正确 1 错误
  */
-import com.teach.javafx.useless.request.OptionItem;
 
 import java.util.List;
 

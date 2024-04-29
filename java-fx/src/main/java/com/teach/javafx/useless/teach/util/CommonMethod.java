@@ -2,9 +2,7 @@ package com.teach.javafx.useless.teach.util;
 
 
 import com.teach.javafx.useless.request.OptionItem;
-/**
- * CommonMethod 公共处理方法实例类
- */
+
 import java.util.*;
 
 public class CommonMethod {

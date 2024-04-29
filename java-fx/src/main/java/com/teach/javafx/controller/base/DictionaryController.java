@@ -1,18 +1,5 @@
 package com.teach.javafx.controller.base;
 
-import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.request.*;
-import com.teach.javafx.useless.request.MyTreeNode;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTreeTableCell;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
-
-import java.util.List;
-
 /**
  * DictionaryController 登录交互控制类 对应 base/dictionary-panel.fxml
  *  @FXML  属性 对应fxml文件中的

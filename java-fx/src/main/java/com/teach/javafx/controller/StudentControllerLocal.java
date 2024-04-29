@@ -3,16 +3,14 @@ package com.teach.javafx.controller;
 import com.teach.javafx.controller.base.LocalDateStringConverter;
 import com.teach.javafx.controller.base.MessageDialog;
 import com.teach.javafx.controller.base.ToolController;
+import com.teach.javafx.models.DO.Student;
+import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.useless.request.OptionItem;
-import com.teach.javafx.useless.request.SQLiteJDBC;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
-import com.teach.javafx.useless.teach.util.CommonMethod;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.teach.javafx.useless.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,9 +107,9 @@ public class StudentControllerLocal extends ToolController {
         TableView.TableViewSelectionModel<Student> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         list.addListener(this::onTableRowSelect);
-        studentList = SQLiteJDBC.getInstance().getStudentList("");
+//        studentList = SQLiteJDBC.getInstance().getStudentList("");
         setTableViewData();
-        genderList = SQLiteJDBC.getInstance().getDictionaryOptionItemList("XBM");
+//        genderList = SQLiteJDBC.getInstance().getDictionaryOptionItemList("XBM");
         genderComboBox.getItems().addAll(genderList);
         birthdayPick.setConverter(new LocalDateStringConverter("yyyy-MM-dd"));
     }
@@ -122,19 +120,19 @@ public class StudentControllerLocal extends ToolController {
             return;
         }
         studentId = s.getStudentId();
-        s = SQLiteJDBC.getInstance().getStudentById(studentId);
-        personId = s.getPersonId();
-        numField.setText(s.getNum());
-        nameField.setText(s.getName());
-        deptField.setText(s.getDept());
-        majorField.setText(s.getMajor());
-        classNameField.setText(s.getClassName());
-        cardField.setText(s.getCard());
-        genderComboBox.getSelectionModel().select(CommonMethod.getOptionItemIndexByValue(genderList, s.getGender()));
-        birthdayPick.getEditor().setText(s.getBirthday());
-        emailField.setText(s.getEmail());
-        phoneField.setText(s.getPhone());
-        addressField.setText(s.getAddress());
+//        s = SQLiteJDBC.getInstance().getStudentById(studentId);
+//        personId = s.getPersonId();
+//        numField.setText(s.getNum());
+//        nameField.setText(s.getName());
+//        deptField.setText(s.getDept());
+//        majorField.setText(s.getMajor());
+//        classNameField.setText(s.getClassName());
+//        cardField.setText(s.getCard());
+//        genderComboBox.getSelectionModel().select(CommonMethod.getOptionItemIndexByValue(genderList, s.getGender()));
+//        birthdayPick.getEditor().setText(s.getBirthday());
+//        emailField.setText(s.getEmail());
+//        phoneField.setText(s.getPhone());
+//        addressField.setText(s.getAddress());
     }
     public void onTableRowSelect(ListChangeListener.Change<? extends Integer> change){
         changeStudentInfo();
@@ -159,7 +157,7 @@ public class StudentControllerLocal extends ToolController {
         String numName = numNameTextField.getText();
         DataRequest req = new DataRequest();
         req.add("numName",numName);
-        studentList = SQLiteJDBC.getInstance().getStudentList(numName);
+//        studentList = SQLiteJDBC.getInstance().getStudentList(numName);
         setTableViewData();
     }
     @FXML
@@ -178,8 +176,9 @@ public class StudentControllerLocal extends ToolController {
             return;
         }
         studentId = s.getStudentId();
-        personId = s.getPersonId();
-        String msg =SQLiteJDBC.getInstance().studentDelete(studentId,personId);
+//        personId = s.getPersonId();
+        String msg="";
+//        SQLiteJDBC.getInstance().studentDelete(studentId,personId);
         if(msg == null) {
             MessageDialog.showDialog("删除成功！");
             onQueryButtonClick();
@@ -195,19 +194,19 @@ public class StudentControllerLocal extends ToolController {
             return;
         }
         Student s = new Student();
-        s.setIntroduce("");
-        s.setNum(numField.getText());
-        s.setName(nameField.getText());
-        s.setDept(deptField.getText());
-        s.setMajor(majorField.getText());
-        s.setClassName(classNameField.getText());
-        s.setCard(cardField.getText());
-        if(genderComboBox.getSelectionModel() != null && genderComboBox.getSelectionModel().getSelectedItem() != null)
-            s.setGender(genderComboBox.getSelectionModel().getSelectedItem().getValue());
-        s.setBirthday(birthdayPick.getEditor().getText());
-        s.setEmail(emailField.getText());
-        s.setPhone(phoneField.getText());
-        s.setAddress(addressField.getText());
+//        s.setIntroduce("");
+//        s.setNum(numField.getText());
+//        s.setName(nameField.getText());
+//        s.setDept(deptField.getText());
+//        s.setMajor(majorField.getText());
+//        s.setClassName(classNameField.getText());
+//        s.setCard(cardField.getText());
+//        if(genderComboBox.getSelectionModel() != null && genderComboBox.getSelectionModel().getSelectedItem() != null)
+//            s.setGender(genderComboBox.getSelectionModel().getSelectedItem().getValue());
+//        s.setBirthday(birthdayPick.getEditor().getText());
+//        s.setEmail(emailField.getText());
+//        s.setPhone(phoneField.getText());
+//        s.setAddress(addressField.getText());
         /*Object res = SQLiteJDBC.getInstance().studentEditSave(s,studentId,personId);
         if(res instanceof String) {
             MessageDialog.showDialog(res.toString());

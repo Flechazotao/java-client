@@ -24,6 +24,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "user")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,7 @@ public class User implements Serializable {
     private String userType;
 
     @OneToOne
+    @JoinColumn(name = "person_id")
     private Person person;
 
     private String userName;

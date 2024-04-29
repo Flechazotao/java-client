@@ -1,19 +1,5 @@
 package com.teach.javafx.useless.controller;
 
-import com.teach.javafx.controller.base.MessageDialog;
-import com.teach.javafx.request.*;
-import com.teach.javafx.useless.request.MyTreeNode;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.*;
-import javafx.stage.FileChooser;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.List;
-
 /**
  * DictionaryController 登录交互控制类 对应 base/dictionary-panel.fxml
  *  @FXML  属性 对应fxml文件中的

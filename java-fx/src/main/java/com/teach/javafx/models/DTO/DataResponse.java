@@ -19,6 +19,8 @@ public class DataResponse {  //DataResponse：响应用户请求打包返回的�
         return new DataResponse(200,"ok",null);
     }
 
+    public static DataResponse okM(String message){return new DataResponse(200,message,null);}
+
     public static DataResponse success(Object data) {  //返回响应参数
         return new DataResponse(200,"success",data);
     }

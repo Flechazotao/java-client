@@ -1,9 +1,6 @@
 package com.teach.javafx.models.DO;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +22,13 @@ import java.io.Serializable;
  * <p>String phone 电话
  * <p>String address 地址
  * <p>String introduce 个人简介
+ * <p>String politicalStatus 政治面貌
  */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "person")
 @Entity
 public class Person implements Serializable {
     @Id
@@ -57,5 +56,9 @@ public class Person implements Serializable {
     private String address;
 
     private String introduce;
-
+    /**
+     * 政治面貌：
+     * <p>群众、共青团员、共产党员、其它</p>
+     */
+    private String politicalStatus;
 }

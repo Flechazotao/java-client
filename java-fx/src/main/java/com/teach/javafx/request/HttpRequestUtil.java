@@ -2,26 +2,22 @@ package com.teach.javafx.request;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.teach.javafx.AppStore;
 import com.google.gson.Gson;
+import com.teach.javafx.AppStore;
 import com.teach.javafx.models.DO.User;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.useless.request.SQLiteJDBC;
-import com.teach.javafx.useless.teach.util.JsonConvertUtil;
 import com.teach.javafx.useless.teach.util.CommonMethod;
+import com.teach.javafx.utils.JsonUtil;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.URI;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 import java.nio.file.Path;
-import java.util.Map;
+import java.util.Base64;
 
 /**
  * HttpRequestUtil 后台请求实例程序，主要实践向后台发送请求的方法
@@ -39,8 +35,6 @@ public class HttpRequestUtil {
      *  应用关闭是需要做关闭处理
      */
     public static void close(){
-        if(isLocal)
-            SQLiteJDBC.getInstance().close();
     }
 
     /**
@@ -56,32 +50,28 @@ public class HttpRequestUtil {
         user.setUserName(username);
         user.setPassword(password);
         request.add("user",user);
-        if(isLocal) {
-            return SQLiteJDBC.getInstance().login(username,password);
-        }else {
-            HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(URI.create(serverUrl + "/api/user/login"))
-                    .POST(HttpRequest.BodyPublishers.ofString(JSON.toJSONString(request)))
-                    .headers("Content-Type", "application/json")
-                    .build();//
-            try {
-                HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-                DataResponse dataResponse = JSONObject.parseObject(response.body(), DataResponse.class);
-                System.out.println("response.statusCode===="+response.statusCode());
-                if (dataResponse.getCode() == 200) {
-                    JwtResponse jwt = gson.fromJson(response.body(), JwtResponse.class);
-                    AppStore.setJwt(jwt);
-                    return null;
-                } else if (dataResponse.getCode() == 404) {
-                    return "用户名或密码不存在！";
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/api/user/login"))
+                .POST(HttpRequest.BodyPublishers.ofString(JSON.toJSONString(request)))
+                .headers("Content-Type", "application/json")
+                .build();//
+        try {
+            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            DataResponse dataResponse = JSONObject.parseObject(response.body(), DataResponse.class);
+            System.out.println("url=" + "/api/user/login" +"    response.statusCode="+response.statusCode());
+            if (dataResponse.getCode() == 200) {
+                JwtResponse jwt = gson.fromJson(response.body(), JwtResponse.class);
+                AppStore.setJwt(jwt);
+                return null;
+            } else if (dataResponse.getCode() == 404) {
+                return "用户名或密码不存在！";
             }
-            return "登录失败";
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        return "登录失败";
     }
 
     /**
@@ -103,8 +93,7 @@ public class HttpRequestUtil {
             HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
             if (response.statusCode() == 200) {
-                //                System.out.println(response.body());
-                DataResponse dataResponse = gson.fromJson(response.body(), DataResponse.class);
+                DataResponse dataResponse = JsonUtil.parse(JSON.parse(response.body()), DataResponse.class);
                 return dataResponse;
             }
         } catch (IOException e) {
@@ -115,50 +104,50 @@ public class HttpRequestUtil {
         return null;
     }
 
-    public static List requestDataList(String url,DataRequest request){
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(serverUrl + url))
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-                .headers("Content-Type", "application/json")
-                .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
-                .build();
-        request.add("username",AppStore.getJwt().getUsername());
-        HttpClient client = HttpClient.newHttpClient();
-        try {
-            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
-            if (response.statusCode() == 200) {
-                return JsonConvertUtil.jsonToDataList(response.body());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public static Object requestDataObject(String url,DataRequest request){
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(serverUrl + url))
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-                .headers("Content-Type", "application/json")
-                .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
-                .build();
-        request.add("username",AppStore.getJwt().getUsername());
-        HttpClient client = HttpClient.newHttpClient();
-        try {
-            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
-            if (response.statusCode() == 200) {
-                return JsonConvertUtil.jsonToDataObject(response.body());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public static List requestDataList(String url,DataRequest request){
+//        HttpRequest httpRequest = HttpRequest.newBuilder()
+//                .uri(URI.create(serverUrl + url))
+//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
+//                .headers("Content-Type", "application/json")
+//                .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
+//                .build();
+//        request.add("username",AppStore.getJwt().getUsername());
+//        HttpClient client = HttpClient.newHttpClient();
+//        try {
+//            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+//            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
+//            if (response.statusCode() == 200) {
+//                return JsonConvertUtil.jsonToDataList(response.body());
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch(InterruptedException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+//    public static Object requestDataObject(String url,DataRequest request){
+//        HttpRequest httpRequest = HttpRequest.newBuilder()
+//                .uri(URI.create(serverUrl + url))
+//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
+//                .headers("Content-Type", "application/json")
+//                .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
+//                .build();
+//        request.add("username",AppStore.getJwt().getUsername());
+//        HttpClient client = HttpClient.newHttpClient();
+//        try {
+//            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+//            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
+//            if (response.statusCode() == 200) {
+//                return JsonConvertUtil.jsonToDataObject(response.body());
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch(InterruptedException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 //    /**
 //     *  MyTreeNode requestTreeNode(String url, DataRequest request) 获取树节点对象
 //     * @param url  Web请求的Url 对用后的 RequestMapping

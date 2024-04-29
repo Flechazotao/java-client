@@ -1,14 +1,14 @@
 package com.teach.javafx.controller.base;
 
+import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.request.*;
+import com.teach.javafx.request.HttpRequestUtil;
 import com.teach.javafx.useless.request.MyTreeNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import com.teach.javafx.useless.teach.payload.request.DataRequest;
 
 import java.util.List;
 import java.util.StringTokenizer;

@@ -1,10 +1,10 @@
 package com.teach.javafx.controller.base;
+
 import com.teach.javafx.models.DO.Person;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DO.User;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -94,7 +94,6 @@ public class StudentAddition_controller {
             MessageDialog.showDialog("已存在！");
         }
         else {
-
             MessageDialog.showDialog("提交成功！");
         }
     }

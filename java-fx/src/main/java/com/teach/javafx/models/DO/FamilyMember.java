@@ -22,6 +22,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "family_member")
 @Entity
 public class FamilyMember implements Serializable {
     @Id
@@ -29,12 +30,17 @@ public class FamilyMember implements Serializable {
     private Integer memberId;
 
     @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 
     private String relation;
 
     private String name;
 
+    /**
+     * 性别：
+     * <p>男、女</p>
+     */
     private String gender;
 
     private String birthday;
