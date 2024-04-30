@@ -14,8 +14,8 @@ module com.teach.javafx {
     requires com.alibaba.fastjson2;
 
     opens com.teach.javafx to com.alibaba.fastjson2;
-    opens com.teach.javafx.models.DO to com.google.gson,com.alibaba.fastjson2;
-    opens com.teach.javafx.models.DTO to com.alibaba.fastjson2,com.google.gson;
+    opens com.teach.javafx.models.DO;
+    opens com.teach.javafx.models.DTO;
     opens com.teach.javafx.request to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
     opens com.teach.javafx.controller.base to com.google.gson, javafx.fxml;
     opens com.teach.javafx.controller to com.google.gson, javafx.fxml;

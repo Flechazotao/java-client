@@ -5,8 +5,8 @@ import com.teach.javafx.MainApplication;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
-import com.teach.javafx.utils.JsonUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,37 +20,39 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class StudentManageController extends manage_MainFrame_controller {
     @FXML
-    private TableView<Student> dataTableView;
+    private TableView<StudentInfo> dataTableView;
 
     @FXML
-    private TableColumn<Student, String > classNameColumn;
+    private TableColumn<StudentInfo, String > classNameColumn;
 
     @FXML
-    private TableColumn<Student, String> deptColumn;
+    private TableColumn<StudentInfo, String> deptColumn;
 
     @FXML
-    private TableColumn<Student, String> genderColumn;
+    private TableColumn<StudentInfo, String> genderColumn;
 
     @FXML
-    private TableColumn<Student, String> majorColumn;
+    private TableColumn<StudentInfo, String> majorColumn;
 
     @FXML
-    private TableColumn<Student, String> nameColumn;
+    private TableColumn<StudentInfo, String> nameColumn;
 
     @FXML
-    private TableColumn<Student, Integer> numColumn;
+    private TableColumn<StudentInfo, Integer> numberColumn;
 
     private List<Student> studentList = new ArrayList<>();
 
-    private ObservableList<Student> observableList= FXCollections.observableArrayList();
+    private ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
     void setDataTableView(){
         observableList.clear();
         for(Student s:studentList){
-            observableList.addAll(FXCollections.observableArrayList(s));
+            StudentInfo studentInfo=new StudentInfo(s);
+            studentInfo.setMajor(s.getMajor());
+            studentInfo.setClassName(s.getClassName());
+            observableList.addAll(FXCollections.observableArrayList(studentInfo));
         }
         dataTableView.setItems(observableList);
     }
@@ -58,20 +60,20 @@ public class StudentManageController extends manage_MainFrame_controller {
     public void initialize() {
         DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
         studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
-        numColumn.setCellValueFactory(new PropertyValueFactory<>("num"));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         deptColumn.setCellValueFactory(new PropertyValueFactory<>("dept"));
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
-        genderColumn.setCellValueFactory(new PropertyValueFactory<>("genderName"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
-        TableView.TableViewSelectionModel<Student> tsm = dataTableView.getSelectionModel();
+        TableView.TableViewSelectionModel<StudentInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView();
     }
 
     protected void changeStudentInfo() {
-        Student s = dataTableView.getSelectionModel().getSelectedItem();
+        StudentInfo s = dataTableView.getSelectionModel().getSelectedItem();
         if(s == null) {
             clearPanel();
             return;

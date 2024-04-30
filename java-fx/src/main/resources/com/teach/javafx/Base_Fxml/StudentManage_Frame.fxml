@@ -75,7 +75,7 @@
       </Button>
       <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1018.0">
         <columns>
-          <TableColumn fx:id="numColumn" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="学号" />
+          <TableColumn fx:id="numberColumn" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="学号" />
           <TableColumn fx:id="nameColumn" prefWidth="97.33328247070312" style="-fx-font-size: 20px;" text="姓名" />
             <TableColumn fx:id="genderColumn" editable="false" prefWidth="62.66668701171875" sortable="false" style="-fx-font-size: 20px;" text="性别" />
             <TableColumn fx:id="deptColumn" prefWidth="118.66659545898438" style="-fx-font-size: 20px;" text="学院" />
