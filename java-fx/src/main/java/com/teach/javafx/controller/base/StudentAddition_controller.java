@@ -82,7 +82,7 @@ public class StudentAddition_controller {
         req.add("user",user);
         DataResponse res = HttpRequestUtil.request("/api/student/addStudent",req);
         if(res.getCode()==401) {//
-            MessageDialog.showDialog("已存在！");
+            MessageDialog.showDialog("该学生已存在！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
         }
@@ -90,7 +90,6 @@ public class StudentAddition_controller {
             MessageDialog.showDialog("提交成功！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
-            studentManageController.initialize();
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);

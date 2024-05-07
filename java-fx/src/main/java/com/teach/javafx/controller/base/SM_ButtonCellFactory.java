@@ -59,10 +59,8 @@ public class SM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
 
                     else if (property=="修改") {
                         studentId= getIndex();//获取正在编辑的单元格所在行序号
-                        DataRequest req = new DataRequest();
-                        req.add("uerId", userId);
-                        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/findByUserId",req);
                         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
+
                     }
 
                     else if (property=="查看入学前信息"){

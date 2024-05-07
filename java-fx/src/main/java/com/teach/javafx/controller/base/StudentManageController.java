@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.net.http.HttpClient;
 import java.util.ArrayList;
 import java.util.List;
 @Setter
@@ -71,7 +72,8 @@ public class StudentManageController extends manage_MainFrame_controller {
     private List<Student> studentList = new ArrayList<>();
 
     private ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
-    void setDataTableView(){
+    void setDataTableView(List<Student> list){
+        studentList=list;
         observableList.clear();
         for(Student s:studentList){
             StudentInfo studentInfo=new StudentInfo(s);
@@ -99,7 +101,7 @@ public class StudentManageController extends manage_MainFrame_controller {
 
         TableView.TableViewSelectionModel<StudentInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
-        setDataTableView();
+        setDataTableView(studentList);
     }
 
     protected void changeStudentInfo() {
@@ -127,19 +129,12 @@ public class StudentManageController extends manage_MainFrame_controller {
 
 
     public void onInquire() {
-        userId= Integer.valueOf(InquireField.getText());
-        DataRequest req = new DataRequest();
-        req.add("uerId", userId);
-        com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/findByUserId",req);
-        if (res.getCode()==404){
-            MessageDialog.showDialog("该学生不存在");
-        }
-        else{
-            studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
-            TableView.TableViewSelectionModel<StudentInfo> tsm = dataTableView.getSelectionModel();
-            ObservableList<Integer> list = tsm.getSelectedIndices();
-            setDataTableView();
-        }
+        String query=InquireField.getText();
+        DataRequest req=new DataRequest();
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+        studentList=JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+        setDataTableView(studentList);
     }
     class SM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
         @Getter
@@ -169,7 +164,7 @@ public class StudentManageController extends manage_MainFrame_controller {
                             DataRequest req = new DataRequest();
                             studentId=studentList.get(getIndex()).getStudentId();
                             req.add("studentId", studentId);
-                            com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/deleteStudent",req);
+                            DataResponse res = HttpRequestUtil.request("/api/student/deleteStudent",req);
                             if(res.getCode() == 401) {
                                 MessageDialog.showDialog("信息不完整!");
                             }
@@ -190,11 +185,19 @@ public class StudentManageController extends manage_MainFrame_controller {
                         }
 
                         else if (property=="修改") {
-                            studentId= (long) getIndex();//获取正在编辑的单元格所在行序号
-                            DataRequest req = new DataRequest();
-                            req.add("uerId", userId);
-                            com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/findByUserId",req);
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
+                            Scene scene = null;
+                            try {
+                                scene = new Scene(fxmlLoader.load(), 600, 677);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("修改学生");
+                            stage.show();
+                            StudentChange_Controller studentChangeController = null;
+                            studentChangeController.setIndex(getIndex());
                         }
 
                         else if (property=="查看入学前信息"){
