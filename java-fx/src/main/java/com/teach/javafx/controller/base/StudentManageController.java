@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.base;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.models.DO.BeforeUniversity;
 import com.teach.javafx.models.DO.Student;
@@ -48,7 +49,7 @@ public class StudentManageController extends manage_MainFrame_controller {
     private TableColumn<StudentInfo, String> nameColumn;
 
     @FXML
-    private TableColumn<StudentInfo, Integer> numberColumn;
+    private TableColumn<StudentInfo, Long> numberColumn;
 
     @FXML
     private TableColumn<StudentInfo, Integer> BeforeUniversityInfoColumn;
@@ -145,7 +146,7 @@ public class StudentManageController extends manage_MainFrame_controller {
         @Setter
         private Integer userId= null;
 
-        private Integer studentId=null;
+        private Long studentId=null;
 
         private final String property;
         public SM_ButtonCellFactory(@NamedArg("property") String var1) {
@@ -177,12 +178,19 @@ public class StudentManageController extends manage_MainFrame_controller {
                             }
                             else {
                                 MessageDialog.showDialog("删除成功!");
-                                initialize();
+                                fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
+                                try {
+                                    Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                                    AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
+                                    MainApplication.resetStage("教学管理系统", scene);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         }
 
                         else if (property=="修改") {
-                            studentId= getIndex();//获取正在编辑的单元格所在行序号
+                            studentId= (long) getIndex();//获取正在编辑的单元格所在行序号
                             DataRequest req = new DataRequest();
                             req.add("uerId", userId);
                             com.teach.javafx.models.DTO.DataResponse res = HttpRequestUtil.request("/api/student/findByUserId",req);

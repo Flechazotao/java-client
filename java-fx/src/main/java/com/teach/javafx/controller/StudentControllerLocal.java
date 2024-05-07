@@ -119,7 +119,7 @@ public class StudentControllerLocal extends ToolController {
             clearPanel();
             return;
         }
-        studentId = s.getStudentId();
+//        studentId = s.getStudentId();
 //        s = SQLiteJDBC.getInstance().getStudentById(studentId);
 //        personId = s.getPersonId();
 //        numField.setText(s.getNum());
@@ -175,7 +175,7 @@ public class StudentControllerLocal extends ToolController {
         if(ret != MessageDialog.CHOICE_OK) {
             return;
         }
-        studentId = s.getStudentId();
+//        studentId = s.getStudentId();
 //        personId = s.getPersonId();
         String msg="";
 //        SQLiteJDBC.getInstance().studentDelete(studentId,personId);

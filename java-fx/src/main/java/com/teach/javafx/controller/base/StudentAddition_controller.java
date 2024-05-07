@@ -107,7 +107,7 @@ public class StudentAddition_controller {
         Student s=new Student();
         Person p=new Person();
         p.setIntroduce("");
-        p.setNumber(numField.getText());
+        p.setNumber(Long.valueOf(numField.getText()));
         p.setName(NameField.getText());
         p.setDept(deptField.getText());
         s.setMajor(majorField.getText());
