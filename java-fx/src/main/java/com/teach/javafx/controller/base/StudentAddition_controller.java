@@ -1,5 +1,7 @@
 package com.teach.javafx.controller.base;
 
+import com.teach.javafx.AppStore;
+import com.teach.javafx.MainApplication;
 import com.teach.javafx.models.DO.Person;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DO.User;
@@ -7,10 +9,14 @@ import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class StudentAddition_controller {
     @FXML
@@ -52,9 +58,8 @@ public class StudentAddition_controller {
     @FXML
     private DatePicker birthdayPick;
 
-    private Integer studentId = null;
-    private Integer personId = null;
-
+    @FXML
+    private StudentManageController studentManageController;
 
     @FXML
     void onCancel() {
@@ -64,12 +69,42 @@ public class StudentAddition_controller {
 
     @FXML
     void onConformation() {
-        if( cardField.getText().equals("")) {
+        if( numField.getText().equals("")) {
             MessageDialog.showDialog("学号为空，不能添加");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
             return;
         }
-        Student s=new Student();
+        Student s = getStudent();
+        DataRequest req=new DataRequest();
+        User user = new User();
+        req.add("student",s);
+        req.add("user",user);
+        DataResponse res = HttpRequestUtil.request("/api/student/addStudent",req);
+        if(res.getCode()==401) {//
+            MessageDialog.showDialog("已存在！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("提交成功！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            studentManageController.initialize();
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
+        }
+    }
+
+    private Student getStudent() {
+        Student s=new Student();
         Person p=new Person();
         p.setIntroduce("");
         p.setNumber(numField.getText());
@@ -83,18 +118,9 @@ public class StudentAddition_controller {
         p.setEmail(emailField.getText());
         p.setPhone(phoneField.getText());
         p.setAddress(addressField.getText());
+        p.setPoliticalStatus(PoliticsField.getText());
         p.setType("student");
         s.setPerson(p);
-        DataRequest req=new DataRequest();
-        User user = new User();
-        req.add("student",s);
-        req.add("user",user);
-        DataResponse res = HttpRequestUtil.request("/api/student/addStudent",req);
-        if(res.getCode()==401) {//
-            MessageDialog.showDialog("已存在！");
-        }
-        else {
-            MessageDialog.showDialog("提交成功！");
-        }
+        return s;
     }
 }

@@ -17,6 +17,7 @@ public class JsonUtil {
         for(Field field:fields){
             field.setAccessible(true);
             if(o.containsKey(field.getName())){
+                if(o.get(field.getName())==null)continue;
                 if (o.get(field.getName()).getClass()==o.getClass()){
                     try {
                         field.set(t,parse(o.get(field.getName()),field.getType()));
