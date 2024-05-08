@@ -62,6 +62,8 @@ public class StudentFamilyInformation_Controller {
     @FXML
     private TableColumn<FamilyMember, String> phoneCol;
 
+    @Getter
+    private static Student student;
 
     @Getter
     private static List<FamilyMember> familyMemberList = new ArrayList<>();
@@ -72,13 +74,14 @@ public class StudentFamilyInformation_Controller {
         familyMemberList=list;
         observableList.clear();
         for(FamilyMember s:familyMemberList){
-            FamilyMember familyMember=new FamilyMember();
-            observableList.addAll(FXCollections.observableArrayList(familyMember));
+            observableList.addAll(FXCollections.observableArrayList(s));
         }
     }
 
     public static void updateDataTableView(){
-        DataResponse res = HttpRequestUtil.request("/api/familyMember/findAll",new DataRequest());
+        DataRequest req= new DataRequest();
+        req.add("id",student.getStudentId());
+        DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);
         setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),FamilyMember.class));
     }
 
@@ -99,8 +102,11 @@ public class StudentFamilyInformation_Controller {
     }
 
     public void initialize(){
+        student=StudentManageController.SM_ButtonCellFactory.getStudent();
         dataTableView.setItems(observableList);
-        DataResponse res = HttpRequestUtil.request("/api/familyMember/findAll",new DataRequest());
+        DataRequest req= new DataRequest();
+        req.add("id",student.getStudentId());
+        DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);
         familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()),FamilyMember.class);
 
         RelationCol.setCellValueFactory(new PropertyValueFactory<>("relation"));
@@ -124,9 +130,6 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
     @Getter
     @Setter
     private Integer userId= null;
-
-    private Long studentId=null;
-
     private final String property;
     public FI_ButtonCellFactory(@NamedArg("property") String var1) {
         this.property = var1;
@@ -149,12 +152,14 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         if(ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
-                        DataResponse res = HttpRequestUtil.request("/api/familyMember/findAll",new DataRequest());
-                        List<FamilyMember> familyMemberList = new ArrayList<>();
-                        familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()), FamilyMember.class);
-                        Integer memberid=familyMemberList.get(getIndex()).getMemberId();
-                        DataRequest req=new DataRequest();
-                        req.add("id",memberid);
+                        DataRequest req= new DataRequest();
+                        req.add("id",StudentFamilyInformation_Controller.getStudent().getStudentId());
+                        DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);
+                        List<FamilyMember> familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()), FamilyMember.class);;
+                        Integer memberId=familyMemberList.get(getIndex()).getMemberId();
+
+                        req=new DataRequest();
+                        req.add("id",memberId);
                         res=HttpRequestUtil.request("/api/familyMember/delete",req);
                         if (res.getCode()==401){
                             MessageDialog.showDialog("信息不完整!");

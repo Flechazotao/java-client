@@ -50,6 +50,7 @@ public class FamilyAdditionController {
         familyMember.setRelation(relationField.getText());
         familyMember.setUnit(WorkplaceField.getText());
         familyMember.setBirthday(birthdayPicker.getEditor().getText());
+        familyMember.setStudent(StudentManageController.SM_ButtonCellFactory.getStudent());
         DataRequest req=new DataRequest();
         req.add("familyMember",familyMember);
         DataResponse res = HttpRequestUtil.request("/api/familyMember/add",req);

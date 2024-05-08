@@ -148,9 +148,10 @@ public class StudentManageController extends manage_MainFrame_controller {
     class SM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
         @Getter
         @Setter
-        private Integer userId= null;
-
         private Long studentId=null;
+
+        @Getter
+        private static Student student;
 
         private final String property;
         public SM_ButtonCellFactory(@NamedArg("property") String var1) {
@@ -205,6 +206,7 @@ public class StudentManageController extends manage_MainFrame_controller {
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-Change.fxml"));
                         }
                         else if (property=="查看家庭信息") {
+                            student=studentList.get(getIndex());
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation.fxml"));
                         }
 
