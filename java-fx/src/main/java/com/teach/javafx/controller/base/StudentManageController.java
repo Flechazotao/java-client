@@ -36,7 +36,7 @@ public class StudentManageController extends manage_MainFrame_controller {
     private TableView<StudentInfo> dataTableView;
 
     @FXML
-    private TableColumn<StudentInfo, String > classNameColumn;
+    private TableColumn<StudentInfo, String> classNameColumn;
 
     @FXML
     private TableColumn<StudentInfo, String> deptColumn;
@@ -84,7 +84,6 @@ public class StudentManageController extends manage_MainFrame_controller {
             studentInfo.setClassName(s.getClassName());
             observableList.addAll(FXCollections.observableArrayList(studentInfo));
         }
-
     }
 
     public static void updateDataTableView(){
