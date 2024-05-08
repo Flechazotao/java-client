@@ -71,13 +71,14 @@ public class StudentChange_Controller {
 
     private Long studentId = null;
     private Integer personId = null;
-    private int index=0;
+    private static int index=0;
 
     private ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
-    private List<Student> studentList = new ArrayList<>();
+    private static List<Student> studentList = new ArrayList<>();
     public void initialize(){
-        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
-        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+//        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+//        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+        studentList=StudentManageController.getStudentList();
         numField.setText(String.valueOf(studentList.get(getIndex()).getStudentId()));
         NameField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getName()));
         cardField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getCard()));
@@ -89,6 +90,15 @@ public class StudentChange_Controller {
         majorField.setText(String.valueOf(studentList.get(getIndex()).getMajor()));
         phoneField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getPhone()));
     }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public static void setIndex(int index){
+        StudentChange_Controller.index =index;
+    }
+
     public void onConformation(ActionEvent actionEvent) {
         if( numField.getText().equals("")) {
             MessageDialog.showDialog("学号不能为空");
@@ -105,18 +115,19 @@ public class StudentChange_Controller {
         MessageDialog.showDialog("修改成功！");
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
-        try {
-            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-            AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
-            MainApplication.resetStage("教学管理系统", scene);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        StudentManageController.updateDataTableView();
+//        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
+//        try {
+//            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+//            AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
+//            MainApplication.resetStage("教学管理系统", scene);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void onCancel(ActionEvent actionEvent) {
-
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
     }

@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.net.http.HttpClient;
 import java.util.ArrayList;
 import java.util.List;
+
 @Setter
 @Getter
 public class StudentManageController extends manage_MainFrame_controller {
@@ -69,10 +70,12 @@ public class StudentManageController extends manage_MainFrame_controller {
 
     private Integer userId=null;
 
-    private List<Student> studentList = new ArrayList<>();
+    @Getter
+    private static List<Student> studentList = new ArrayList<>();
 
-    private ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
-    void setDataTableView(List<Student> list){
+    private static ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
+
+    public static void setDataTableView(List<Student> list){
         studentList=list;
         observableList.clear();
         for(Student s:studentList){
@@ -81,10 +84,16 @@ public class StudentManageController extends manage_MainFrame_controller {
             studentInfo.setClassName(s.getClassName());
             observableList.addAll(FXCollections.observableArrayList(studentInfo));
         }
-        dataTableView.setItems(observableList);
+
+    }
+
+    public static void updateDataTableView(){
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),Student.class));
     }
 
     public void initialize() {
+        dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
         studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
 
@@ -136,6 +145,7 @@ public class StudentManageController extends manage_MainFrame_controller {
         studentList=JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
         setDataTableView(studentList);
     }
+
     class SM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
         @Getter
         @Setter
@@ -173,18 +183,12 @@ public class StudentManageController extends manage_MainFrame_controller {
                             }
                             else {
                                 MessageDialog.showDialog("删除成功!");
-                                fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
-                                try {
-                                    Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                                    AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
-                                    MainApplication.resetStage("教学管理系统", scene);
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
+                                updateDataTableView();
                             }
                         }
 
                         else if (property=="修改") {
+                            StudentChange_Controller.setIndex(getIndex());
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
                             Scene scene = null;
                             try {
@@ -196,8 +200,6 @@ public class StudentManageController extends manage_MainFrame_controller {
                             stage.setScene(scene);
                             stage.setTitle("修改学生");
                             stage.show();
-                            StudentChange_Controller studentChangeController = null;
-                            studentChangeController.setIndex(getIndex());
                         }
 
                         else if (property=="查看入学前信息"){

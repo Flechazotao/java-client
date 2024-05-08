@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.base;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.models.DO.Person;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class StudentAddition_controller {
     @FXML
@@ -59,9 +61,6 @@ public class StudentAddition_controller {
     private DatePicker birthdayPick;
 
     @FXML
-    private StudentManageController studentManageController;
-
-    @FXML
     void onCancel() {
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
@@ -81,7 +80,7 @@ public class StudentAddition_controller {
         req.add("student",s);
         req.add("user",user);
         DataResponse res = HttpRequestUtil.request("/api/student/addStudent",req);
-        if(res.getCode()==401) {//
+        if(res.getCode()==401) {
             MessageDialog.showDialog("该学生已存在！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
@@ -90,15 +89,8 @@ public class StudentAddition_controller {
             MessageDialog.showDialog("提交成功！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
-            try {
-                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
-                MainApplication.resetStage("教学管理系统", scene);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
+            StudentManageController.updateDataTableView();
         }
     }
 
@@ -106,6 +98,7 @@ public class StudentAddition_controller {
         Student s=new Student();
         Person p=new Person();
         p.setIntroduce("");
+        s.setStudentId(Long.valueOf(numField.getText()));
         p.setNumber(Long.valueOf(numField.getText()));
         p.setName(NameField.getText());
         p.setDept(deptField.getText());
