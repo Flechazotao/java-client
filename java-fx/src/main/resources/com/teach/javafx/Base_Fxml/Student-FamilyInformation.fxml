@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="1045.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1255.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.StudentFamilyInformation_Controller">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="183.0" text="家庭信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -14,13 +14,17 @@
         </Label>
     </top>
     <right>
-        <Pane prefHeight="501.0" prefWidth="115.0" BorderPane.alignment="CENTER">
+        <Pane prefHeight="567.0" prefWidth="167.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="209.0" fitWidth="339.0" layoutY="242.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../picture/logo.jpg" />
                     </image>
                 </ImageView>
+            <Button fx:id="onAddition" layoutX="39.0" layoutY="4.0" mnemonicParsing="false" onAction="#onAddition" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #4a3030;" text="添加信息" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Button>
             </children>
         </Pane>
     </right>
@@ -36,7 +40,7 @@
         </Pane>
     </left>
     <bottom>
-        <HBox prefHeight="103.0" prefWidth="1050.0" BorderPane.alignment="CENTER">
+        <HBox prefHeight="103.0" prefWidth="1342.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
                 <Pane prefHeight="103.0" prefWidth="39.0" />
@@ -45,14 +49,16 @@
         </HBox>
     </bottom>
    <center>
-      <TableView prefHeight="501.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+      <TableView prefHeight="567.0" prefWidth="1037.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="87.33337152004242" style="-fx-font-size: 20px;" text="关系" />
-          <TableColumn prefWidth="99.99999237060547" style="-fx-font-size: 20px;" text="姓名" />
-            <TableColumn prefWidth="96.66667175292969" style="-fx-font-size: 20px;" text="性别" />
-            <TableColumn prefWidth="108.66665649414062" style="-fx-font-size: 20px;" text="出生日期" />
-            <TableColumn prefWidth="179.33334350585938" style="-fx-font-size: 20px;" text="联系电话" />
-            <TableColumn prefWidth="232.6666259765625" style="-fx-font-size: 20px;" text="工作单位" />
+          <TableColumn fx:id="RelationCol" prefWidth="87.33337152004242" style="-fx-font-size: 20px;" text="关系" />
+          <TableColumn fx:id="nameCol" prefWidth="99.99999237060547" style="-fx-font-size: 20px;" text="姓名" />
+            <TableColumn fx:id="genderCol" prefWidth="96.66667175292969" style="-fx-font-size: 20px;" text="性别" />
+            <TableColumn fx:id="birthdayCol" prefWidth="108.66665649414062" style="-fx-font-size: 20px;" text="出生日期" />
+            <TableColumn fx:id="phoneCol" prefWidth="179.33334350585938" style="-fx-font-size: 20px;" text="联系电话" />
+            <TableColumn fx:id="WorkPlaceCol" prefWidth="232.6666259765625" style="-fx-font-size: 20px;" text="工作单位" />
+            <TableColumn fx:id="ChangeCol" prefWidth="72.6666259765625" style="-fx-font-size: 20px;" text="修改" />
+            <TableColumn fx:id="DetectCol" prefWidth="72.6666259765625" style="-fx-font-size: 20px;" text="删除" />
         </columns>
       </TableView>
    </center>

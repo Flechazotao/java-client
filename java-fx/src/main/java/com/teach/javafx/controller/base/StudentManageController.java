@@ -211,13 +211,13 @@ public class StudentManageController extends manage_MainFrame_controller {
 
                         Scene scene = null;
                         try {
-                            scene = new Scene(fxmlLoader.load(), 1045, 677);
+                            scene = new Scene(fxmlLoader.load(), 1255, 714);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                         Stage stage = new Stage();
                         stage.setScene(scene);
-                        stage.setTitle("添加学生");
+                        stage.setTitle("查看信息");
                         stage.show();
 
                     });
