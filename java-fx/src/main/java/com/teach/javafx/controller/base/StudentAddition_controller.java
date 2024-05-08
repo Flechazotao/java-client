@@ -89,7 +89,6 @@ public class StudentAddition_controller {
             MessageDialog.showDialog("提交成功！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
-
             StudentManageController.updateDataTableView();
         }
     }

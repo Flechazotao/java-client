@@ -29,7 +29,7 @@
         </Pane>
     </right>
     <left>
-        <Pane prefHeight="501.0" prefWidth="135.0" BorderPane.alignment="CENTER">
+        <Pane  prefHeight="501.0" prefWidth="135.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="209.0" fitWidth="339.0" layoutX="-99.0" layoutY="78.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -49,7 +49,7 @@
         </HBox>
     </bottom>
    <center>
-      <TableView prefHeight="567.0" prefWidth="1037.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="dataTableView" prefHeight="567.0" prefWidth="1037.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="RelationCol" prefWidth="87.33337152004242" style="-fx-font-size: 20px;" text="关系" />
           <TableColumn fx:id="nameCol" prefWidth="99.99999237060547" style="-fx-font-size: 20px;" text="姓名" />

@@ -37,8 +37,8 @@ public class FamilyAdditionController {
     @FXML
     private TextField relationField;
 
-    @FXML
-    void onComfirmation(ActionEvent event) {
+    public void onComfirmation() {
+
         if( nameField.getText().equals("")) {
             MessageDialog.showDialog("姓名为空，不能添加");
             Stage stage = (Stage) onReturn.getScene().getWindow();
@@ -56,9 +56,8 @@ public class FamilyAdditionController {
         MessageDialog.showDialog("添加成功!!!");
     }
 
-    @FXML
-    void onReturn(ActionEvent event) {
-            Stage stage = (Stage) onReturn.getScene().getWindow();
-            stage.close();
+    public void onReturn() {
+        Stage stage = (Stage) onReturn.getScene().getWindow();
+        stage.close();
     }
 }

@@ -7,8 +7,11 @@ import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
@@ -58,11 +62,33 @@ public class StudentFamilyInformation_Controller {
     @FXML
     private TableColumn<FamilyMember, String> phoneCol;
 
+
+    @Getter
+    private static List<FamilyMember> familyMemberList = new ArrayList<>();
+    private static ObservableList<FamilyMember> observableList= FXCollections.observableArrayList();
+
+
+    public static void setDataTableView(List<FamilyMember> list){
+        familyMemberList=list;
+        observableList.clear();
+        for(FamilyMember s:familyMemberList){
+            FamilyMember familyMember=new FamilyMember();
+            observableList.addAll(FXCollections.observableArrayList(familyMember));
+        }
+    }
+
+    public static void updateDataTableView(){
+        DataResponse res = HttpRequestUtil.request("/api/familyMember/findAll",new DataRequest());
+        setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),FamilyMember.class));
+    }
+
+
+
     public void onAddition() {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Change.fxml"));
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 161, 604);
+            scene = new Scene(fxmlLoader.load(), 600, 677);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -73,10 +99,22 @@ public class StudentFamilyInformation_Controller {
     }
 
     public void initialize(){
+        dataTableView.setItems(observableList);
+        DataResponse res = HttpRequestUtil.request("/api/familyMember/findAll",new DataRequest());
+        familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()),FamilyMember.class);
 
+        RelationCol.setCellValueFactory(new PropertyValueFactory<>("relation"));
+        WorkPlaceCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        birthdayCol.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+//        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
         DetectCol.setCellFactory(new FI_ButtonCellFactory<>("删除"));
         ChangeCol.setCellFactory(new FI_ButtonCellFactory<>("修改"));
 
+        TableView.TableViewSelectionModel<FamilyMember> tsm = dataTableView.getSelectionModel();
+        ObservableList<Integer> list = tsm.getSelectedIndices();
+        setDataTableView(familyMemberList);
     }
 
 
