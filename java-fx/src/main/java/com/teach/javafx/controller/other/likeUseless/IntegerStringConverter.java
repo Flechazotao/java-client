@@ -1,34 +1,35 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other.likeUseless;
 
 import javafx.util.StringConverter;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 /**
  * LocalDateStringConverter 实践转换工具类，支持DatePicker的使用
  */
-public class LocalDateStringConverter  extends StringConverter<LocalDate> {
+public class IntegerStringConverter extends StringConverter<Integer> {
     private String pattern = "yyyy-MM-dd";
     private DateTimeFormatter dtFormatter;
-    public LocalDateStringConverter() {
+    public IntegerStringConverter() {
         dtFormatter = DateTimeFormatter.ofPattern(pattern);
     }
-    public LocalDateStringConverter(String pattern) {
+    public IntegerStringConverter(String pattern) {
         this.pattern = pattern;
         dtFormatter = DateTimeFormatter.ofPattern(pattern);
     }
     @Override
-    public LocalDate fromString(String text) {
-        LocalDate date = null;
+    public Integer fromString(String text) {
+        Integer value = null;
         if (text != null && !text.trim().isEmpty()) {
-            date = LocalDate.parse(text, dtFormatter);
+            value = Integer.parseInt(text);
         }
-        return date;
-    }    @Override
-    public String toString(LocalDate date) {
+        return value;
+    }
+    @Override
+    public String toString(Integer value) {
         String text = null;
-        if (date != null) {
-            text = dtFormatter.format(date);
+        if (value != null) {
+            text = value.toString();
         }
         return text;
     }

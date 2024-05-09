@@ -1,4 +1,4 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other;
 
 import com.teach.javafx.MainApplication;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +17,9 @@ public class MessageDialog {
     public final static int CHOICE_YES = 3;
     public final static int CHOICE_NO = 4;
 
-    private  MessageController messageController= null;
-    private  ChoiceController choiceController= null;
-    private  PdfViewerController pdfViewerController = null;
+    private MessageController messageController= null;
+    private ChoiceController choiceController= null;
+    private PdfViewerController pdfViewerController = null;
     private static MessageDialog instance = new MessageDialog();
 
     /**

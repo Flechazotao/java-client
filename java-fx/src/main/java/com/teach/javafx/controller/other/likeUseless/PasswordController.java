@@ -1,5 +1,6 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other.likeUseless;
 
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;

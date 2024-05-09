@@ -1,6 +1,7 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other;
 
 
+import com.teach.javafx.controller.other.PdfModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Pagination;

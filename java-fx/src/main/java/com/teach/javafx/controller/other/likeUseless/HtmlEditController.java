@@ -1,6 +1,7 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other.likeUseless;
 
 
+import com.teach.javafx.controller.other.PdfModel;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;

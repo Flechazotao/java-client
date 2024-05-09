@@ -1,4 +1,4 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other.likeUseless;
 
 import com.teach.javafx.MainApplication;
 import javafx.fxml.FXMLLoader;

@@ -1,8 +1,8 @@
-package com.teach.javafx.controller;
+package com.teach.javafx.useless.controller;
 
-import com.teach.javafx.controller.base.LocalDateStringConverter;
-import com.teach.javafx.controller.base.MessageDialog;
-import com.teach.javafx.controller.base.ToolController;
+import com.teach.javafx.controller.other.likeUseless.LocalDateStringConverter;
+import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.likeUseless.ToolController;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;

@@ -1,4 +1,4 @@
-package com.teach.javafx.controller;
+package com.teach.javafx.useless.controller;
 
 public class TeacherIntroduceController {
 }

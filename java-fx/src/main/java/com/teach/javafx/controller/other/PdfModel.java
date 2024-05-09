@@ -1,4 +1,4 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other;
 
 
 import javafx.embed.swing.SwingFXUtils;

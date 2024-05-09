@@ -2,11 +2,10 @@ package com.teach.javafx.controller.base;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
-import com.teach.javafx.models.DO.Teacher;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.Teacher;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.models.DTO.TeacherInfo;
 import com.teach.javafx.models.DTO.TeacherInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;

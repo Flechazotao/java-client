@@ -33,7 +33,7 @@ public class AttendanceInfo implements Serializable {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    private Integer activityName;
+    private String activityName;
     /**
      * 上课考勤、会议考勤、活动考勤
      */
