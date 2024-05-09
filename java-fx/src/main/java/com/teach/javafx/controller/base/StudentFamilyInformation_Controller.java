@@ -152,20 +152,16 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         if(ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
-                        DataRequest req= new DataRequest();
-                        req.add("id",StudentFamilyInformation_Controller.getStudent().getStudentId());
-                        DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);
-                        List<FamilyMember> familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()), FamilyMember.class);;
-                        Integer memberId=familyMemberList.get(getIndex()).getMemberId();
-
-                        req=new DataRequest();
+                        Integer memberId=StudentFamilyInformation_Controller.getFamilyMemberList().get(getIndex()).getMemberId();
+                        DataRequest req=new DataRequest();
                         req.add("id",memberId);
-                        res=HttpRequestUtil.request("/api/familyMember/delete",req);
+                        DataResponse res=HttpRequestUtil.request("/api/familyMember/deleteById",req);
                         if (res.getCode()==401){
                             MessageDialog.showDialog("信息不完整!");
                         }
                         else {
                             MessageDialog.showDialog("删除成功!");
+                            StudentFamilyInformation_Controller.updateDataTableView();
                         }
                     }
                 });
