@@ -49,6 +49,7 @@ public class FamilyAdditionController {
         familyMember.setRelation(relationField.getText());
         familyMember.setUnit(WorkplaceField.getText());
         familyMember.setBirthday(birthdayPicker.getEditor().getText());
+        familyMember.setPhone(phoneField.getText());
         familyMember.setStudent(StudentManageController.SM_ButtonCellFactory.getStudent());
         DataRequest req=new DataRequest();
         req.add("familyMember",familyMember);
@@ -60,6 +61,7 @@ public class FamilyAdditionController {
         }
         else {
             MessageDialog.showDialog("添加成功!!!");
+            FamilyInformation_Controller.updateDataTableView();
             Stage stage = (Stage) onReturn.getScene().getWindow();
             stage.close();
         }

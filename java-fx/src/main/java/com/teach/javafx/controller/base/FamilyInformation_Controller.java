@@ -3,6 +3,7 @@ package com.teach.javafx.controller.base;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class StudentFamilyInformation_Controller {
+public class FamilyInformation_Controller {
     @FXML
     private TableView<FamilyMember> dataTableView;
 
@@ -68,6 +69,8 @@ public class StudentFamilyInformation_Controller {
     @Getter
     private static List<FamilyMember> familyMemberList = new ArrayList<>();
     private static ObservableList<FamilyMember> observableList= FXCollections.observableArrayList();
+    @Setter
+    private static int index;
 
 
     public static void setDataTableView(List<FamilyMember> list){
@@ -88,7 +91,7 @@ public class StudentFamilyInformation_Controller {
 
 
     public void onAddition() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Change.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Addition.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -114,7 +117,7 @@ public class StudentFamilyInformation_Controller {
         birthdayCol.setCellValueFactory(new PropertyValueFactory<>("birthday"));
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
         DetectCol.setCellFactory(new FI_ButtonCellFactory<>("删除"));
         ChangeCol.setCellFactory(new FI_ButtonCellFactory<>("修改"));
 
@@ -129,7 +132,7 @@ public class StudentFamilyInformation_Controller {
 class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
     @Getter
     @Setter
-    private Integer userId= null;
+    private  static Integer index= null;
     private final String property;
     public FI_ButtonCellFactory(@NamedArg("property") String var1) {
         this.property = var1;
@@ -144,7 +147,20 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                     FXMLLoader fxmlLoader = null;
 
                     if (Objects.equals(property, "修改")){
-
+                        index=getIndex();
+                        List<FamilyMember> familyMemberList = FamilyInformation_Controller.getFamilyMemberList();
+                        Integer memberid=familyMemberList.get(getIndex()).getMemberId();
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Change.fxml"));
+                        Scene scene = null;
+                        try {
+                            scene = new Scene(fxmlLoader.load(), 600, 677);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.setTitle("修改家庭信息");
+                        stage.show();
 
                     }
                     else if (Objects.equals(property, "删除")) {
@@ -153,7 +169,7 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                             return;
                         }
 
-                        List<FamilyMember> familyMemberList = StudentFamilyInformation_Controller.getFamilyMemberList();
+                        List<FamilyMember> familyMemberList = FamilyInformation_Controller.getFamilyMemberList();
                         Integer memberid=familyMemberList.get(getIndex()).getMemberId();
                         DataRequest request=new DataRequest();
                         request.add("id",memberid);
@@ -164,7 +180,7 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         }
                         else {
                             MessageDialog.showDialog("删除成功!");
-                            StudentFamilyInformation_Controller.updateDataTableView();
+                            FamilyInformation_Controller.updateDataTableView();
                         }
                     }
                 });
