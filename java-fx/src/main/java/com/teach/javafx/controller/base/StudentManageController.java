@@ -1,16 +1,14 @@
 package com.teach.javafx.controller.base;
 
 import com.alibaba.fastjson2.JSON;
-import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
-import com.teach.javafx.models.DO.BeforeUniversity;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +22,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.net.http.HttpClient;
 import java.util.ArrayList;
 import java.util.List;
 

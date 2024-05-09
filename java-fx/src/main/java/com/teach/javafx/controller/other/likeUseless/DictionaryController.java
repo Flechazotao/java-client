@@ -1,4 +1,4 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other.likeUseless;
 
 /**
  * DictionaryController 登录交互控制类 对应 base/dictionary-panel.fxml

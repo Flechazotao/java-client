@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.base;
 import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;

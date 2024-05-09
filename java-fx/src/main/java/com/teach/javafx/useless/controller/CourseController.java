@@ -1,4 +1,4 @@
-package com.teach.javafx.controller;
+package com.teach.javafx.useless.controller;
 
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;

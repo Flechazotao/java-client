@@ -18,16 +18,12 @@ module com.teach.javafx {
     opens com.teach.javafx.models.DTO;
     opens com.teach.javafx.request to com.google.gson, javafx.fxml,com.alibaba.fastjson2;
     opens com.teach.javafx.controller.base to com.google.gson, javafx.fxml;
-    opens com.teach.javafx.controller to com.google.gson, javafx.fxml;
     opens com.teach.javafx.useless.teach.models to javafx.base,com.google.gson;
     opens com.teach.javafx.useless.teach.util to com.google.gson, javafx.fxml;
-    opens com.teach.javafx.controller.tryController to  javafx.graphics;
 
-    exports com.teach.javafx.controller.tryController;
     exports com.teach.javafx;
     exports com.teach.javafx.models.DTO;
     exports com.teach.javafx.models.DO;
-    exports com.teach.javafx.controller;
     exports com.teach.javafx.controller.base;
     exports com.teach.javafx.request;
     exports com.teach.javafx.useless.teach.util;
@@ -35,5 +31,9 @@ module com.teach.javafx {
     opens com.teach.javafx.useless.request;
     exports com.teach.javafx.useless.controller;
     opens com.teach.javafx.useless.controller ;
+    exports com.teach.javafx.controller.other;
+    opens com.teach.javafx.controller.other to com.google.gson, javafx.fxml;
+    exports com.teach.javafx.controller.other.likeUseless;
+    opens com.teach.javafx.controller.other.likeUseless to com.google.gson, javafx.fxml;
 
 }

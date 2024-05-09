@@ -1,6 +1,6 @@
-package com.teach.javafx.controller;
+package com.teach.javafx.useless.controller;
 
-import com.teach.javafx.controller.base.ToolController;
+import com.teach.javafx.controller.other.likeUseless.ToolController;
 
 /**
  * StudentController 登录交互控制类 对应 student_panel.fxml  对应于学生管理的后台业务处理的控制器，主要获取数据和保存数据的方法不同

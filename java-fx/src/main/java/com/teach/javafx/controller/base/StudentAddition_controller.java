@@ -1,8 +1,6 @@
 package com.teach.javafx.controller.base;
 
-import com.alibaba.fastjson2.JSON;
-import com.teach.javafx.AppStore;
-import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.Person;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DO.User;
@@ -10,15 +8,10 @@ import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.List;
 
 public class StudentAddition_controller {
     @FXML

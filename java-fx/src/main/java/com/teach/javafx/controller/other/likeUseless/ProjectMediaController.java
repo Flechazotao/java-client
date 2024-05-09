@@ -1,4 +1,4 @@
-package com.teach.javafx.controller.base;
+package com.teach.javafx.controller.other.likeUseless;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -68,22 +68,22 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1201.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1201.0">
             <columns>
-                <TableColumn prefWidth="246.66665649414062" style="-fx-font-size: 20px;" text="活动名称" />
-                <TableColumn prefWidth="115.33331298828125" style="-fx-font-size: 20px;" text="活动类型" />
-                <TableColumn editable="false" prefWidth="230.66668701171875" sortable="false" style="-fx-font-size: 20px;" text="考勤时间" />
-                <TableColumn prefWidth="118.66668701171875" style="-fx-font-size: 20px;" text="学生" />
-                <TableColumn prefWidth="289.333251953125" style="-fx-font-size: 20px;" text="学号" />
-                <TableColumn prefWidth="200.0" style="-fx-font-size: 20px;" text="是否考勤" />
+                <TableColumn fx:id="activityNameColumn" prefWidth="246.66665649414062" style="-fx-font-size: 20px;" text="活动名称" />
+                <TableColumn fx:id="typeColumn" prefWidth="115.33331298828125" style="-fx-font-size: 20px;" text="活动类型" />
+                <TableColumn fx:id="attendanceTimeColumn" editable="false" prefWidth="230.66668701171875" sortable="false" style="-fx-font-size: 20px;" text="考勤时间" />
+                <TableColumn fx:id="studentColumn" prefWidth="118.66668701171875" style="-fx-font-size: 20px;" text="学生" />
+                <TableColumn fx:id="studentIdColumn" prefWidth="289.333251953125" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn fx:id="isAttendedColumn" prefWidth="200.0" style="-fx-font-size: 20px;" text="是否考勤" />
             </columns>
         </TableView>
-        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
       <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
          <items>
              <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />

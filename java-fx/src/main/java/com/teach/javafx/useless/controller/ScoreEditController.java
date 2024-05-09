@@ -1,4 +1,4 @@
-package com.teach.javafx.controller;
+package com.teach.javafx.useless.controller;
 
 import com.teach.javafx.useless.request.OptionItem;
 import com.teach.javafx.useless.teach.util.CommonMethod;
