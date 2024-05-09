@@ -54,7 +54,16 @@ public class FamilyAdditionController {
         DataRequest req=new DataRequest();
         req.add("familyMember",familyMember);
         DataResponse res = HttpRequestUtil.request("/api/familyMember/add",req);
-        MessageDialog.showDialog("添加成功!!!");
+        if (res.getCode()==401){
+            MessageDialog.showDialog("添加失败!");
+            Stage stage = (Stage) onReturn.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("添加成功!!!");
+            Stage stage = (Stage) onReturn.getScene().getWindow();
+            stage.close();
+        }
     }
 
     public void onReturn() {

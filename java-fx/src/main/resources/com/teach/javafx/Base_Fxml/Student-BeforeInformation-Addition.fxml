@@ -7,7 +7,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="256.0" text="修改入学前信息" textFill="#4a3030" BorderPane.alignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="264.0" text="添加入学前信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
@@ -98,13 +98,13 @@
         <HBox prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button fx:id="onConfirmation" mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
+                <Button fx:id="onConfirmation" mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="#fbf6f6">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
                 <Pane prefHeight="103.0" prefWidth="39.0" />
-                <Button fx:id="onReturn" mnemonicParsing="false" onAction="#onReturn" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="返回" textFill="WHITE">
+                <Button fx:id="onReturn" mnemonicParsing="false" onAction="#onReturn" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="返回" textFill="#fbfbfb">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

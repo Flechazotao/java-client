@@ -103,12 +103,12 @@ public class StudentFamilyInformation_Controller {
 
     public void initialize(){
         student=StudentManageController.SM_ButtonCellFactory.getStudent();
-        dataTableView.setItems(observableList);
         DataRequest req= new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);
         familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()),FamilyMember.class);
 
+        dataTableView.setItems(observableList);
         RelationCol.setCellValueFactory(new PropertyValueFactory<>("relation"));
         WorkPlaceCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
         birthdayCol.setCellValueFactory(new PropertyValueFactory<>("birthday"));
@@ -152,20 +152,19 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         if(ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
-                        DataRequest req= new DataRequest();
-                        req.add("id",StudentFamilyInformation_Controller.getStudent().getStudentId());
-                        DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);
-                        List<FamilyMember> familyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()), FamilyMember.class);;
-                        Integer memberId=familyMemberList.get(getIndex()).getMemberId();
 
-                        req=new DataRequest();
-                        req.add("id",memberId);
-                        res=HttpRequestUtil.request("/api/familyMember/delete",req);
-                        if (res.getCode()==401){
+                        List<FamilyMember> familyMemberList = StudentFamilyInformation_Controller.getFamilyMemberList();
+                        Integer memberid=familyMemberList.get(getIndex()).getMemberId();
+                        DataRequest request=new DataRequest();
+                        request.add("id",memberid);
+                        DataResponse response=HttpRequestUtil.request("/api/familyMember/deleteById",request);
+
+                        if (response.getCode()==401){
                             MessageDialog.showDialog("信息不完整!");
                         }
                         else {
                             MessageDialog.showDialog("删除成功!");
+                            StudentFamilyInformation_Controller.updateDataTableView();
                         }
                     }
                 });

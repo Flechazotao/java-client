@@ -201,9 +201,9 @@ public class StudentManageController extends manage_MainFrame_controller {
                             stage.setTitle("修改学生");
                             stage.show();
                         }
-
                         else if (property=="查看入学前信息"){
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-Change.fxml"));
+                            student=studentList.get(getIndex());
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation_panel.fxml"));
                         }
                         else if (property=="查看家庭信息") {
                             student=studentList.get(getIndex());
