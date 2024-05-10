@@ -68,24 +68,24 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" onAction="#onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1058.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1058.0">
             <columns>
-                <TableColumn prefWidth="161.99996948242188" style="-fx-font-size: 20px;" text="请假日期" />
-                <TableColumn prefWidth="139.33328247070312" style="-fx-font-size: 20px;" text="请假学生" />
-                <TableColumn editable="false" prefWidth="252.00006103515625" sortable="false" style="-fx-font-size: 20px;" text="请假理由" />
-                <TableColumn prefWidth="128.66668701171875" style="-fx-font-size: 20px;" text="请假开始时间" />
-                <TableColumn prefWidth="133.99993896484375" style="-fx-font-size: 20px;" text="请假结束时间" />
-                <TableColumn prefWidth="136.66668701171875" style="-fx-font-size: 20px;" text="批假人" />
-            <TableColumn prefWidth="107.33343505859375" style="-fx-font-size: 20px;" text="是否销假" />
+                <TableColumn fx:id="leaveTime" prefWidth="161.99996948242188" style="-fx-font-size: 20px;" text="请假日期" />
+                <TableColumn fx:id="studentId" prefWidth="139.33328247070312" style="-fx-font-size: 20px;" text="请假学生" />
+                <TableColumn fx:id="leaveReason" editable="false" prefWidth="252.00006103515625" sortable="false" style="-fx-font-size: 20px;" text="请假理由" />
+                <TableColumn fx:id="leaveBeginTime" prefWidth="128.66668701171875" style="-fx-font-size: 20px;" text="请假开始时间" />
+                <TableColumn fx:id="leaveEndTime" prefWidth="133.99993896484375" style="-fx-font-size: 20px;" text="请假结束时间" />
+                <TableColumn fx:id="approver" prefWidth="136.66668701171875" style="-fx-font-size: 20px;" text="批假人" />
+                <TableColumn fx:id="isBackSchool" prefWidth="107.33343505859375" style="-fx-font-size: 20px;" text="是否销假" />
             </columns>
         </TableView>
-        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <Button fx:id="onAdd" onAction="#onAdd" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>

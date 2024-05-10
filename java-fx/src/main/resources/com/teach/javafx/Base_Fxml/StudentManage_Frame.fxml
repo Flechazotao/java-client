@@ -75,8 +75,8 @@
             <TableColumn fx:id="majorColumn" prefWidth="112.6666259765625" style="-fx-font-size: 20px;" text="专业" />
             <TableColumn fx:id="classNameColumn" prefWidth="121.3333740234375" style="-fx-font-size: 20px;" text="班级" />
             <TableColumn fx:id="BeforeUniversityInfoColumn" prefWidth="180.0" style="-fx-font-size: 20px;" text="入学前信息" />
-            <TableColumn fx:id="FamilyInfomationColumn" prefWidth="156.0001220703125" style="-fx-font-size: 20px;" text="家庭信息" />
-            <TableColumn fx:id="DelectColumn" prefWidth="77.333251953125" style="-fx-font-size: 20px;" text="删除" />
+            <TableColumn fx:id="FamilyInformationColumn" prefWidth="156.0001220703125" style="-fx-font-size: 20px;" text="家庭信息" />
+            <TableColumn fx:id="DeleteColumn" prefWidth="77.333251953125" style="-fx-font-size: 20px;" text="删除" />
             <TableColumn fx:id="ChangeColumn" prefWidth="78.0" style="-fx-font-size: 20px;" text="修改" />
         </columns>
       </TableView>

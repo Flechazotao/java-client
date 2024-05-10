@@ -16,6 +16,7 @@ import java.io.Serializable;
  * <p>String endTime 活动结束时间
  * <p>String activityType 活动类型
  * <p>String location 活动地点
+ * <p>String activityName 活动名称
  */
 @Getter
 @Setter
@@ -34,6 +35,8 @@ public class DailyActivity implements Serializable {
     private Student student;
 
     private String beginTime;
+
+    private String activityName;
 
     private String endTime;
 

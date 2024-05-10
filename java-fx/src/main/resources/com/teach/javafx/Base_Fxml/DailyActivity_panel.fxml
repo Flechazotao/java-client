@@ -68,24 +68,23 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" onAction="#onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1097.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1097.0">
             <columns>
-                <TableColumn prefWidth="145.33330535888672" style="-fx-font-size: 20px;" text="活动编号" />
-                <TableColumn prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
-                <TableColumn prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
-                <TableColumn editable="false" prefWidth="121.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="开始时间" />
-                <TableColumn prefWidth="121.333251953125" style="-fx-font-size: 20px;" text="结束时间" />
-                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="活动地点" />
-                <TableColumn prefWidth="302.6666463216145" style="-fx-font-size: 20px;" text="参与成员" />
+                <TableColumn fx:id="activityIdColumn" prefWidth="145.33330535888672" style="-fx-font-size: 20px;" text="活动编号" />
+                <TableColumn fx:id="activityTypeColumn" prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
+                <TableColumn fx:id="nameColumn" prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
+                <TableColumn fx:id="beginTimeColumn" editable="false" prefWidth="121.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="开始时间" />
+                <TableColumn fx:id="endTimeColumn" prefWidth="121.333251953125" style="-fx-font-size: 20px;" text="结束时间" />
+                <TableColumn fx:id="locationColumn" prefWidth="108.0" style="-fx-font-size: 20px;" text="活动地点" />
             </columns>
         </TableView>
-        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加活动">
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <Button fx:id="onAddDailyActivity" onAction="#onAddStudent" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加活动">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>

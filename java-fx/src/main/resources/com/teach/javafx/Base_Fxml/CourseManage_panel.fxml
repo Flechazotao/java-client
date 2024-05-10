@@ -73,7 +73,7 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1551.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1551.0">
             <columns>
                 <TableColumn fx:id="number" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
                 <TableColumn fx:id="name" prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />

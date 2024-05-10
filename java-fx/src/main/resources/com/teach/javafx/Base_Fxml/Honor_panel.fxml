@@ -68,25 +68,25 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" onAction="#onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1219.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1219.0">
             <columns>
-                <TableColumn prefWidth="121.33331298828125" style="-fx-font-size: 20px;" text="荣誉类别" />
-                <TableColumn prefWidth="147.33328247070312" style="-fx-font-size: 20px;" text="荣誉名称" />
-                <TableColumn editable="false" prefWidth="98.6666259765625" sortable="false" style="-fx-font-size: 20px;" text="获奖学生" />
-                <TableColumn prefWidth="233.3333740234375" style="-fx-font-size: 20px;" text="学号" />
-                <TableColumn prefWidth="131.99993896484375" style="-fx-font-size: 20px;" text="荣誉等级" />
-                <TableColumn prefWidth="222.666748046875" style="-fx-font-size: 20px;" text="授予单位" />
-            <TableColumn prefWidth="156.6666259765625" style="-fx-font-size: 20px;" text="获奖时间" />
-            <TableColumn prefWidth="104.0" style="-fx-font-size: 20px;" text="相关文件" />
+                <TableColumn fx:id="type" prefWidth="121.33331298828125" style="-fx-font-size: 20px;" text="荣誉类别" />
+                <TableColumn fx:id="honorName" prefWidth="147.33328247070312" style="-fx-font-size: 20px;" text="荣誉名称" />
+                <TableColumn fx:id="studentName" editable="false" prefWidth="98.6666259765625" sortable="false" style="-fx-font-size: 20px;" text="获奖学生" />
+                <TableColumn fx:id="studentId" prefWidth="233.3333740234375" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn fx:id="level" prefWidth="131.99993896484375" style="-fx-font-size: 20px;" text="荣誉等级" />
+                <TableColumn fx:id="honorFrom" prefWidth="222.666748046875" style="-fx-font-size: 20px;" text="授予单位" />
+                <TableColumn fx:id="honorTime" prefWidth="156.6666259765625" style="-fx-font-size: 20px;" text="获奖时间" />
+                <TableColumn fx:id="file" prefWidth="104.0" style="-fx-font-size: 20px;" text="相关文件" />
             </columns>
         </TableView>
-        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <Button fx:id="onAdd" onAction="#onAdd" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>

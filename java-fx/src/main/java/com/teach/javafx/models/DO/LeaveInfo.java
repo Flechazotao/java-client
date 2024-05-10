@@ -5,6 +5,7 @@ package com.teach.javafx.models.DO;
  * <p>Student student 对应学生
  * <p>String leaveBeginTime 请假开始时间
  * <p>String leaveEndTime 请假结束时间
+ * <p>String leaveTime 请假时间
  * <p>String approver 批准人
  * <p>String leaveReason 请假原因
  * <p>String isBackSchool 是否回到学校（是否销假）
@@ -35,6 +36,8 @@ public class LeaveInfo implements Serializable {
     private String leaveBeginTime;
 
     private String leaveEndTime;
+
+    private String leaveTime;
 
     private String approver;
 
