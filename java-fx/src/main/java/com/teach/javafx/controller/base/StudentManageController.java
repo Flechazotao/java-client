@@ -65,7 +65,6 @@ public class StudentManageController extends manage_MainFrame_controller {
     @FXML
     private TextField InquireField;
 
-    private Integer userId=null;
 
     @Getter
     private static List<Student> studentList = new ArrayList<>();
