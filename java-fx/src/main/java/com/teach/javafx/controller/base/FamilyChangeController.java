@@ -61,6 +61,7 @@ public class FamilyChangeController {
             familyMember.setRelation(relationField.getText());
             familyMember.setUnit(WorkplaceField.getText());
             familyMember.setBirthday(birthdayPicker.getEditor().getText());
+            familyMember.setMemberId(FamilyInformation_Controller.getFamilyMemberList().get(FI_ButtonCellFactory.getIndex()).getMemberId());
             familyMember.setStudent(StudentManageController.SM_ButtonCellFactory.getStudent());
             DataRequest req=new DataRequest();
             req.add("familyMember",familyMember);

@@ -57,11 +57,11 @@
     <center>
         <TableView fx:id="dataTableView" prefHeight="567.0" prefWidth="1037.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="nameCol" prefWidth="91.9999669790268" style="-fx-font-size: 20px;" text="毕业省份" />
-                <TableColumn fx:id="genderCol" prefWidth="147.99999237060547" style="-fx-font-size: 20px;" text="毕业学校" />
+                <TableColumn fx:id="graduatedProvinceCol" prefWidth="91.9999669790268" style="-fx-font-size: 20px;" text="毕业省份" />
+                <TableColumn fx:id="graduatedSchoolCol" prefWidth="147.99999237060547" style="-fx-font-size: 20px;" text="毕业学校" />
                 <TableColumn fx:id="phoneCol" prefWidth="159.3333282470703" style="-fx-font-size: 20px;" text="联系电话" />
-                <TableColumn fx:id="WorkPlaceCol" prefWidth="223.33340454101562" style="-fx-font-size: 20px;" text="家庭住址" />
-                <TableColumn fx:id="RelationCol" prefWidth="169.3333740234375" style="-fx-font-size: 20px;" text="邮箱" />
+                <TableColumn fx:id="addressCol" prefWidth="223.33340454101562" style="-fx-font-size: 20px;" text="家庭住址" />
+                <TableColumn fx:id="emailCol" prefWidth="169.3333740234375" style="-fx-font-size: 20px;" text="邮箱" />
                 <TableColumn fx:id="ChangeCol" prefWidth="85.3333740234375" style="-fx-font-size: 20px;" text="修改" />
                 <TableColumn fx:id="DetectCol" prefWidth="77.33331298828125" style="-fx-font-size: 20px;" text="删除" />
             </columns>

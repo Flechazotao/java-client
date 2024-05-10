@@ -68,29 +68,29 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
         <TableView layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1551.0">
             <columns>
-                <TableColumn prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
-                <TableColumn prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />
-                <TableColumn editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
-                <TableColumn prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="课程时间" />
-                <TableColumn prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
-                <TableColumn prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程起始周" />
-                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
-                <TableColumn prefWidth="169.33343505859375" style="-fx-font-size: 20px;" text="上课地点" />
-                <TableColumn prefWidth="106.0" style="-fx-font-size: 20px;" text="课程类型" />
-            <TableColumn prefWidth="118.0" style="-fx-font-size: 20px;" text="课程资料" />
-            <TableColumn prefWidth="141.333251953125" style="-fx-font-size: 20px;" text="当前选课人数" />
-            <TableColumn prefWidth="152.6666259765625" style="-fx-font-size: 20px;" text="选课学生名额" />
+                <TableColumn fx:id="number" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
+                <TableColumn fx:id="name" prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />
+                <TableColumn fx:id="credit" editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
+                <TableColumn fx:id="courseTime" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="课程时间" />
+                <TableColumn fx:id="teacherName" prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
+                <TableColumn fx:id="courseBeginWeek" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程起始周" />
+                <TableColumn fx:id="wayOfTest" prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
+                <TableColumn fx:id="location" prefWidth="169.33343505859375" style="-fx-font-size: 20px;" text="上课地点" />
+                <TableColumn fx:id="type" prefWidth="106.0" style="-fx-font-size: 20px;" text="课程类型" />
+                <TableColumn fx:id="file" prefWidth="118.0" style="-fx-font-size: 20px;" text="课程资料" />
+                <TableColumn fx:id="numberOfSelected" prefWidth="141.333251953125" style="-fx-font-size: 20px;" text="当前选课人数" />
+                <TableColumn fx:id="MaxNumberOfSelected" prefWidth="152.6666259765625" style="-fx-font-size: 20px;" text="选课学生名额" />
             </columns>
         </TableView>
-        <TextField layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加课程">
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <Button fx:id="onAddCourse" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddStudent" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加课程">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
