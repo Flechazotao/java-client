@@ -7,13 +7,12 @@ import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -28,21 +27,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InnovativePracticeController extends manage_MainFrame_controller {
-    public TableView<InnovativePractice> dataTableView;
-    public TableColumn<InnovativePractice,Integer> innovativeIdColumn;
-    public TableColumn<InnovativePractice,String> typeColumn;
-    public TableColumn<InnovativePractice,String> activityNameColumn;
-    public TableColumn<InnovativePractice,String> beginTimeColumn;
-    public TableColumn<InnovativePractice,String> endTimeColumn;
-    public TableColumn<InnovativePractice,String> teacherNameColumn;
-    public TableColumn<InnovativePractice,String> studentColumn;
-    public TableColumn<InnovativePractice,String> achievementColumn;
-    public TableColumn<InnovativePractice,String> fileColumn;
-    public TableColumn<InnovativePractice,String> changeColumn;
-    public TableColumn<InnovativePractice,String> deleteColumn;
-    public Button onInquire;
-    public TextField InquireField;
-    public Button onAdd;
+
+    @FXML
+    private TextField InquireField;
+
+    @FXML
+    private TableColumn<InnovativePractice, String> achievementColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, String> activityNameColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, String> beginTimeColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, String>changeColumn;
+
+    @FXML
+    private TableView<InnovativePractice> dataTableView;
+
+    @FXML
+    private TableColumn<InnovativePractice, Void> deleteColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, Void>endTimeColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, String>fileColumn;
+
+    @FXML
+    private Button onAdd;
+
+
+    @FXML
+    private TableColumn<InnovativePractice, String> studentColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, String>teacherNameColumn;
+
+    @FXML
+    private TableColumn<InnovativePractice, String>typeColumn;
+
+    @FXML
+    void onAdd(ActionEvent event) {
+
+    }
 
     @Getter
     private static List<InnovativePractice> innovativePracticeList = new ArrayList<>();
@@ -67,7 +96,6 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
         DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findAll",new DataRequest());
         innovativePracticeList= JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
 
-        innovativeIdColumn.setCellValueFactory(new PropertyValueFactory<>("innovativeId"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         activityNameColumn.setCellValueFactory(new PropertyValueFactory<>("activityName"));
         beginTimeColumn.setCellValueFactory(new PropertyValueFactory<>("beginTime"));

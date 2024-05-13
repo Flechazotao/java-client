@@ -32,7 +32,7 @@ public class InnovativePractice_Addition_Controller {
 
     @FXML
     private TextField typeField;
-    
+
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
