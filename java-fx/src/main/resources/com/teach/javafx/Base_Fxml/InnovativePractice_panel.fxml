@@ -75,15 +75,17 @@
         </Button>
         <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1303.0">
             <columns>
-                <TableColumn fx:id="innovativeId" prefWidth="145.33330535888672" style="-fx-font-size: 20px;" text="活动编号" />
-                <TableColumn fx:id="type" prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
-                <TableColumn fx:id="activityName" prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
-                <TableColumn fx:id="beginTime" editable="false" prefWidth="121.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="开始时间" />
-                <TableColumn fx:id="endTime" prefWidth="121.333251953125" style="-fx-font-size: 20px;" text="结束时间" />
-                <TableColumn fx:id="teacherName" prefWidth="108.0" style="-fx-font-size: 20px;" text="指导老师" />
-                <TableColumn fx:id="student" prefWidth="216.66656494140625" style="-fx-font-size: 20px;" text="参与成员" />
-                <TableColumn fx:id="achievement" prefWidth="160.666748046875" style="-fx-font-size: 20px;" text="获奖情况" />
-                <TableColumn fx:id="file" prefWidth="131.9998779296875" style="-fx-font-size: 20px;" text="相关文件" />
+                <TableColumn fx:id="innovativeIdColumn" prefWidth="145.33330535888672" style="-fx-font-size: 20px;" text="活动编号" />
+                <TableColumn fx:id="typeColumn" prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
+                <TableColumn fx:id="activityNameColumn" prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
+                <TableColumn fx:id="beginTimeColumn" editable="false" prefWidth="121.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="开始时间" />
+                <TableColumn fx:id="endTimeColumn" prefWidth="121.333251953125" style="-fx-font-size: 20px;" text="结束时间" />
+                <TableColumn fx:id="teacherNameColumn" prefWidth="108.0" style="-fx-font-size: 20px;" text="指导老师" />
+                <TableColumn fx:id="studentColumn" prefWidth="216.66656494140625" style="-fx-font-size: 20px;" text="参与成员" />
+                <TableColumn fx:id="achievementColumn" prefWidth="160.666748046875" style="-fx-font-size: 20px;" text="获奖情况" />
+                <TableColumn fx:id="fileColumn" prefWidth="131.9998779296875" style="-fx-font-size: 20px;" text="相关文件" />
+                <TableColumn fx:id="changeColumn" prefWidth="131.9998779296875" style="-fx-font-size: 20px;" text="相关文件" />
+                <TableColumn fx:id="deleteColumn" prefWidth="131.9998779296875" style="-fx-font-size: 20px;" text="相关文件" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
