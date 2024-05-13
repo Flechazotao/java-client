@@ -83,13 +83,11 @@ public class StudentChange_Controller {
     private static List<Student> studentList = new ArrayList<>();
 
     public void initialize(){
-        student =StudentManageController.SM_ButtonCellFactory.getStudent();
+        student =StudentManageController.getStudentList().get(index);
         DataRequest req=new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);
         BeforeUniversity beforeUni= JSON.parseObject(JSON.toJSONString(res.getData()), BeforeUniversity.class);
-
-
         studentList=StudentManageController.getStudentList();
         numField.setText(String.valueOf(studentList.get(getIndex()).getStudentId()));
         NameField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getName()));
