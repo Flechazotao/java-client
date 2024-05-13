@@ -124,9 +124,10 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
         innovativePracticeList.clear();
     }
 
-
+    @FXML
     public void onAdd() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Addition-panel.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePractice_Addition.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 677);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -134,7 +135,7 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
         stage.show();
     }
 
-
+    @FXML
     public void onInquire() {
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
@@ -194,7 +195,7 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
 
                         else if (property=="修改") {
                             StudentChange_Controller.setIndex(getIndex());
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePractice_Change.fxml"));
                             Scene scene = null;
                             try {
                                 scene = new Scene(fxmlLoader.load(), 600, 677);

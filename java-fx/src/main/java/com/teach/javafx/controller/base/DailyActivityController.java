@@ -9,6 +9,7 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,25 +24,65 @@ import java.util.List;
 import java.util.Objects;
 
 public class DailyActivityController extends manage_MainFrame_controller {
-    public TableView dataTableView;
-    public TableColumn activityIdColumn;
-    public TableColumn activityTypeColumn;
-    public TableColumn nameColumn;
-    public TableColumn beginTimeColumn;
-    public TableColumn endTimeColumn;
-    public TableColumn locationColumn;
-    public TextField InquireField;
-    public Button onInquire;
-    public Button onAddDailyActivity;
+    @FXML
+    private TextField InquireField;
+
+    @FXML
+    private TableColumn<DailyActivity, String>activityTypeColumn;
+
+    @FXML
+    private TableColumn<DailyActivity, String> beginTimeColumn;
+
+    @FXML
+    private TableColumn<DailyActivity, String>changeCol;
+
+    @FXML
+    private TableView<?> dataTableView;
+
+    @FXML
+    private TableColumn<DailyActivity, String> deleteCol;
+
+    @FXML
+    private TableColumn<DailyActivity, String> endTimeColumn;
+
+    @FXML
+    private TableColumn<DailyActivity, String>locationColumn;
+
+    @FXML
+    private TableColumn<DailyActivity, String>locationColumn1;
+
+    @FXML
+    private TableColumn<DailyActivity, String> nameColumn;
+
+    @FXML
+    private Button onAddDailyActivity;
+
+    @FXML
+    private Button onInquire;
 
 
+    @FXML
+    void onInquire(ActionEvent event) {
 
-
-    public void onAddStudent(ActionEvent actionEvent) {
     }
 
-    public void onInquire(ActionEvent actionEvent) {
+    @FXML
+    void onAddDailyActivity(ActionEvent event) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/DailyActivity_Addition.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 677);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("修改日常活动信息");
+        stage.show();
+
     }
+
 }
 
 
@@ -67,7 +108,7 @@ class DA_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         index=getIndex();
                         List<FamilyMember> familyMemberList = FamilyInformation_Controller.getFamilyMemberList();
                         Integer memberid=familyMemberList.get(getIndex()).getMemberId();
-                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Change.fxml"));
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/DailyActivity_Change.fxml"));
                         Scene scene = null;
                         try {
                             scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -87,7 +128,7 @@ class DA_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         }
                         List<DailyActivity> dailyActivityList = new ArrayList<>();
                         DataResponse response=HttpRequestUtil.request("/api/dailyActivity/findAll",new DataRequest());
-//                        dailyActivityList=response.getData();
+
                         if (response.getCode()==401){
                             MessageDialog.showDialog("信息不完整!");
                         }
