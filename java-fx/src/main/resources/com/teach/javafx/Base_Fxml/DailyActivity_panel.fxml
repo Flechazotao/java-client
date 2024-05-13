@@ -86,7 +86,7 @@
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button fx:id="onAddDailyActivity" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddStudent" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加活动">
+        <Button fx:id="onAddDailyActivity" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddDailyActivity" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加活动">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>

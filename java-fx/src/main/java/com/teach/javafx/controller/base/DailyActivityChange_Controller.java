@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class DailyActivityAddition_Controller {
+public class DailyActivityChange_Controller {
+
     @FXML
     private TextField NameField;
 
@@ -37,5 +38,4 @@ public class DailyActivityAddition_Controller {
     void onConformation(ActionEvent event) {
 
     }
-
 }
