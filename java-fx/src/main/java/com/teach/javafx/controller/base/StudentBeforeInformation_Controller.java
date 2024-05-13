@@ -70,17 +70,14 @@ public class StudentBeforeInformation_Controller {
         DataRequest req=new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);
-        beforeUniversitylist= JSON.parseArray(JSON.toJSONString(res.getData()), BeforeUniversity.class);
-        BeforeUniversity beforeUniversity1= (BeforeUniversity) res.getData();
+        BeforeUniversity beforeUni= JSON.parseObject(JSON.toJSONString(res.getData()), BeforeUniversity.class);
 
         addressColumn.setText(getStudent().getPerson().getAddress());
         emailColumn.setText(getStudent().getPerson().getEmail());
         nameColumn.setText(getStudent().getPerson().getName());
         phoneColumn.setText(getStudent().getPerson().getPhone());
-        provinceColumn.setText(beforeUniversity1.getGraduatedProvince());
-        schoolColumn.setText(beforeUniversity1.getGraduatedSchool());
-//        provinceColumn.setText(beforeUniversitylist.get(StudentManageController.SM_ButtonCellFactory.getIndex()).getGraduatedProvince());
-//        schoolColumn.setText(beforeUniversitylist.get(StudentManageController.SM_ButtonCellFactory.getIndex()).getGraduatedSchool());
+        provinceColumn.setText(beforeUni.getGraduatedProvince());
+        schoolColumn.setText(beforeUni.getGraduatedSchool());
     }
 
     public void onReturn() {
