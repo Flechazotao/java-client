@@ -38,7 +38,7 @@ public class StudentBeforeInformation_Controller {
     private TextField nameColumn;
 
     @FXML
-    private Button onConfirmation;
+    private Button onChange;
 
     @FXML
     private Button onReturn;
@@ -53,7 +53,6 @@ public class StudentBeforeInformation_Controller {
     private TextField schoolColumn;
 
 
-
     @Getter
     private static BeforeUniversity beforeUniversity;
 
@@ -62,35 +61,44 @@ public class StudentBeforeInformation_Controller {
 
     @Getter
     private static List<BeforeUniversity> beforeUniversitylist = new ArrayList<>();
-    private static ObservableList<BeforeUniversity> observableList= FXCollections.observableArrayList();
-    public Button onAddition;
 
-    public void onAddition(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-Addition.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 677);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("添加入学前信息");
-        stage.show();
-    }
+
+
+
     public  void  initialize(){
         student =StudentManageController.SM_ButtonCellFactory.getStudent();
         DataRequest req=new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);
         beforeUniversitylist= JSON.parseArray(JSON.toJSONString(res.getData()), BeforeUniversity.class);
+        BeforeUniversity beforeUniversity1= (BeforeUniversity) res.getData();
 
-        addressColumn.setText(beforeUniversity.getStudent().getPerson().getAddress());
-        emailColumn.setText(beforeUniversity.getStudent().getPerson().getEmail());
-        nameColumn.setText(beforeUniversity.getStudent().getPerson().getName());
-        phoneColumn.setText(beforeUniversity.getStudent().getPerson().getPhone());
-        provinceColumn.setText(beforeUniversity.getGraduatedProvince());
-        schoolColumn.setText(beforeUniversity.getGraduatedSchool());
+        addressColumn.setText(getStudent().getPerson().getAddress());
+        emailColumn.setText(getStudent().getPerson().getEmail());
+        nameColumn.setText(getStudent().getPerson().getName());
+        phoneColumn.setText(getStudent().getPerson().getPhone());
+        provinceColumn.setText(beforeUniversity1.getGraduatedProvince());
+        schoolColumn.setText(beforeUniversity1.getGraduatedSchool());
+//        provinceColumn.setText(beforeUniversitylist.get(StudentManageController.SM_ButtonCellFactory.getIndex()).getGraduatedProvince());
+//        schoolColumn.setText(beforeUniversitylist.get(StudentManageController.SM_ButtonCellFactory.getIndex()).getGraduatedSchool());
     }
 
-    public void onConfirmation(ActionEvent actionEvent) {
+    public void onReturn() {
+        Stage stage = (Stage) onReturn.getScene().getWindow();
+        stage.close();
     }
 
-    public void onReturn(ActionEvent actionEvent) {
+    public void onChange() {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-Change.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 677);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("修改入学前信息");
+        stage.show();
     }
 }

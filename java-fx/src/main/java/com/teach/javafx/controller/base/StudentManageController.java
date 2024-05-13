@@ -149,6 +149,8 @@ public class StudentManageController extends manage_MainFrame_controller {
         @Getter
         private static Student student;
 
+        @Getter
+        private static Integer index;
         private final String property;
         public SM_ButtonCellFactory(@NamedArg("property") String var1) {
             this.property = var1;
@@ -198,8 +200,9 @@ public class StudentManageController extends manage_MainFrame_controller {
                             stage.show();
                         }
                         else if (property=="查看入学前信息"){
+                            index=getIndex();
                             student=studentList.get(getIndex());
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation_panel.fxml"));
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-panel.fxml"));
                         }
                         else if (property=="查看家庭信息") {
                             student=studentList.get(getIndex());

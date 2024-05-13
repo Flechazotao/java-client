@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.base;
 
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.models.DO.BeforeUniversity;
 import com.teach.javafx.models.DO.Person;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DO.User;
@@ -54,6 +55,12 @@ public class StudentAddition_controller {
     private DatePicker birthdayPick;
 
     @FXML
+    private TextField graduatedProvince;
+
+    @FXML
+    private TextField graduatedSchool;
+
+    @FXML
     void onCancel() {
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
@@ -68,11 +75,20 @@ public class StudentAddition_controller {
             return;
         }
         Student s = getStudent();
+        BeforeUniversity beforeUniversity=new BeforeUniversity();
+        beforeUniversity.setGraduatedProvince(graduatedProvince.getText());
+        beforeUniversity.setGraduatedSchool(graduatedSchool.getText());
+
         DataRequest req=new DataRequest();
         User user = new User();
         req.add("student",s);
         req.add("user",user);
         DataResponse res = HttpRequestUtil.request("/api/student/addStudent",req);
+
+        DataRequest request=new DataRequest();
+        request.add("beforeUniversity",beforeUniversity);
+        DataResponse response=HttpRequestUtil.request("/api/beforeUniversity/add",req);
+
         if(res.getCode()==401) {
             MessageDialog.showDialog("该学生已存在！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
@@ -89,6 +105,7 @@ public class StudentAddition_controller {
     private Student getStudent() {
         Student s=new Student();
         Person p=new Person();
+
         p.setIntroduce("");
         s.setStudentId(Long.valueOf(numField.getText()));
         p.setNumber(Long.valueOf(numField.getText()));
