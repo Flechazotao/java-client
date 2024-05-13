@@ -203,6 +203,16 @@ public class StudentManageController extends manage_MainFrame_controller {
                             index=getIndex();
                             student=studentList.get(getIndex());
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-panel.fxml"));
+                            Scene scene = null;
+                            try {
+                                scene = new Scene(fxmlLoader.load(), 600, 677);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("修改学生");
+                            stage.show();
                         }
                         else if (property=="查看家庭信息") {
                             student=studentList.get(getIndex());

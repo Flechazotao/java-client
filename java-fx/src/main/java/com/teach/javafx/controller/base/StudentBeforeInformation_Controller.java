@@ -54,14 +54,10 @@ public class StudentBeforeInformation_Controller {
 
 
     @Getter
-    private static BeforeUniversity beforeUniversity;
+    private static BeforeUniversity beforeUni;
 
     @Getter
     private static Student student;
-
-    @Getter
-    private static List<BeforeUniversity> beforeUniversitylist = new ArrayList<>();
-
 
 
 
@@ -70,7 +66,7 @@ public class StudentBeforeInformation_Controller {
         DataRequest req=new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);
-        BeforeUniversity beforeUni= JSON.parseObject(JSON.toJSONString(res.getData()), BeforeUniversity.class);
+        beforeUni= JSON.parseObject(JSON.toJSONString(res.getData()), BeforeUniversity.class);
 
         addressColumn.setText(getStudent().getPerson().getAddress());
         emailColumn.setText(getStudent().getPerson().getEmail());
@@ -83,19 +79,5 @@ public class StudentBeforeInformation_Controller {
     public void onReturn() {
         Stage stage = (Stage) onReturn.getScene().getWindow();
         stage.close();
-    }
-
-    public void onChange() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-Change.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 600, 677);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("修改入学前信息");
-        stage.show();
     }
 }
