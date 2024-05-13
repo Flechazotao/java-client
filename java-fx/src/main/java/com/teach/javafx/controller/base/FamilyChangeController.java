@@ -11,7 +11,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyChangeController {
@@ -28,7 +27,7 @@ public class FamilyChangeController {
         private TextField nameField;
 
         @FXML
-        private Button onComfirmation;
+        private Button onConfirmation;
 
         @FXML
         private Button onReturn;
@@ -49,7 +48,7 @@ public class FamilyChangeController {
             phoneField.setText(familyMember.getPhone());
             relationField.setText(familyMember.getRelation());
         }
-        public void onComfirmation() {
+        public void onConfirmation() {
             if( nameField.getText().equals("")) {
                 MessageDialog.showDialog("姓名为空，不能修改!!!");
                 Stage stage = (Stage) onReturn.getScene().getWindow();
@@ -58,7 +57,7 @@ public class FamilyChangeController {
             FamilyMember familyMember=new FamilyMember();
             familyMember.setName(nameField.getText());
             familyMember.setGender(genderField.getText());
-            familyMember.setRelation(relationField.getText());
+
             familyMember.setUnit(WorkplaceField.getText());
             familyMember.setBirthday(birthdayPicker.getEditor().getText());
             familyMember.setMemberId(FamilyInformation_Controller.getFamilyMemberList().get(FI_ButtonCellFactory.getIndex()).getMemberId());

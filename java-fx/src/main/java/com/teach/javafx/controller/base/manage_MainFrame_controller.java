@@ -3,14 +3,38 @@ package com.teach.javafx.controller.base;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class manage_MainFrame_controller {
+    /*
+    public TableView dataTableView;
+    public TableColumn courseNumberColumn;
+    public TableColumn courseNameColumn;
+    public TableColumn homeworkNameColumn;
+    public TableColumn studentIdColumn;
+    public TableColumn studentNameColumn;
+    public TableColumn isSubmitColumn;
+    public TableColumn submitTimeColumn;
+    public TableColumn isCheckedColumn;
+    public TableColumn checkColumn;
+    public TableColumn fileColumn;
+    public TableColumn homeworkScoreColumn;
+    public TextField InquireField;
+    public Button onInquire;
+    public void onInquire(ActionEvent actionEvent) {
+    }
+     */
+
     @FXML
     void onAttendance() {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Attendance_panel.fxml"));

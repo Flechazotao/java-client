@@ -90,7 +90,7 @@
                 <TableColumn prefWidth="118.0" style="-fx-font-size: 15px;" text="课程资料" />
                 <TableColumn prefWidth="141.333251953125" style="-fx-font-size: 15px;" text="当前选课人数" />
                 <TableColumn prefWidth="114.0" style="-fx-font-size: 15px;" text="选课学生名额" />
-            <TableColumn prefWidth="108.0" style="-fx-font-size: 15px;" text="操作">
+                <TableColumn prefWidth="108.0" style="-fx-font-size: 15px;" text="操作">
                <columns>
                   <TableColumn prefWidth="55.3333740234375" style="-fx-font-size: 15px;" text="选课" />
                   <TableColumn prefWidth="56.6666259765625" style="-fx-font-size: 15px;" text="选课" />

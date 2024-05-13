@@ -3,9 +3,12 @@ package com.teach.javafx.controller.base;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class CourseManageController extends manage_MainFrame_controller{
+
+    public TableView dataTableView;
     public TableColumn number;
     public TableColumn name;
     public TableColumn credit;

@@ -54,10 +54,10 @@ public class StudentManageController extends manage_MainFrame_controller {
     private TableColumn<StudentInfo, Integer> BeforeUniversityInfoColumn;
 
     @FXML
-    private TableColumn<StudentInfo, Integer> FamilyInfomationColumn;
+    private TableColumn<StudentInfo, Integer> FamilyInformationColumn;
 
     @FXML
-    private TableColumn<StudentInfo, Integer> DelectColumn;
+    private TableColumn<StudentInfo, Integer> DeleteColumn;
 
     @FXML
     private TableColumn<StudentInfo, Integer> ChangeColumn;
@@ -99,8 +99,8 @@ public class StudentManageController extends manage_MainFrame_controller {
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         BeforeUniversityInfoColumn.setCellFactory(new SM_ButtonCellFactory<>("查看入学前信息"));
-        FamilyInfomationColumn.setCellFactory(new SM_ButtonCellFactory<>("查看家庭信息"));
-        DelectColumn.setCellFactory(new SM_ButtonCellFactory<>("删除"));
+        FamilyInformationColumn.setCellFactory(new SM_ButtonCellFactory<>("查看家庭信息"));
+        DeleteColumn.setCellFactory(new SM_ButtonCellFactory<>("删除"));
         ChangeColumn.setCellFactory(new SM_ButtonCellFactory<>("修改"));
 
         TableView.TableViewSelectionModel<StudentInfo> tsm = dataTableView.getSelectionModel();
