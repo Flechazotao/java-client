@@ -73,13 +73,14 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1031.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1317.0">
             <columns>
                 <TableColumn fx:id="activityTypeColumn" prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
                 <TableColumn fx:id="nameColumn" prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
                 <TableColumn fx:id="beginTimeColumn" editable="false" prefWidth="150.66659545898438" sortable="false" style="-fx-font-size: 20px;" text="开始时间" />
                 <TableColumn fx:id="endTimeColumn" prefWidth="130.66668701171875" style="-fx-font-size: 20px;" text="结束时间" />
                 <TableColumn fx:id="locationColumn" prefWidth="286.6666259765625" style="-fx-font-size: 20px;" text="活动地点" />
+            <TableColumn fx:id="locationColumn1" prefWidth="286.6666259765625" style="-fx-font-size: 20px;" text="参与人员" />
             <TableColumn fx:id="changeCol" prefWidth="84.66668701171875" style="-fx-font-size: 20px;" text="修改" />
             <TableColumn fx:id="deleteCol" prefWidth="77.33349609375" style="-fx-font-size: 20px;" text="删除" />
             </columns>

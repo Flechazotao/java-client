@@ -68,14 +68,13 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button fx:id="onInquire" onAction="#onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1303.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1301.0">
             <columns>
-                <TableColumn fx:id="innovativeId" prefWidth="145.33330535888672" style="-fx-font-size: 20px;" text="活动编号" />
                 <TableColumn fx:id="type" prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
                 <TableColumn fx:id="activityName" prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
                 <TableColumn fx:id="beginTime" editable="false" prefWidth="121.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="开始时间" />
@@ -84,10 +83,12 @@
                 <TableColumn fx:id="student" prefWidth="216.66656494140625" style="-fx-font-size: 20px;" text="参与成员" />
                 <TableColumn fx:id="achievement" prefWidth="160.666748046875" style="-fx-font-size: 20px;" text="获奖情况" />
                 <TableColumn fx:id="file" prefWidth="131.9998779296875" style="-fx-font-size: 20px;" text="相关文件" />
+            <TableColumn fx:id="change" prefWidth="70.6666259765625" style="-fx-font-size: 20px;" text="修改" />
+            <TableColumn fx:id="delete" prefWidth="70.6666259765625" style="-fx-font-size: 20px;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button fx:id="onAdd" onAction="#onAdd" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加项目">
+        <Button fx:id="onAdd" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加项目">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
