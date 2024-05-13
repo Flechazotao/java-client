@@ -3,14 +3,9 @@ package com.teach.javafx.controller.base;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -115,7 +110,7 @@ public class manage_MainFrame_controller {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePractice_panel.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-            AppStore.setMainFrameController((InnovativePracticeController) fxmlLoader.getController());
+            AppStore.setMainFrameController((InnovativePracticeManageController) fxmlLoader.getController());
             MainApplication.resetStage("教学管理系统", scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
