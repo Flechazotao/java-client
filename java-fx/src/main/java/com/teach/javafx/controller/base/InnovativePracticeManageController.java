@@ -26,52 +26,35 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InnovativePracticeController extends manage_MainFrame_controller {
-
-    @FXML
-    private TextField InquireField;
-
-    @FXML
-    private TableColumn<InnovativePractice, String> achievementColumn;
-
-    @FXML
-    private TableColumn<InnovativePractice, String> activityNameColumn;
-
-    @FXML
-    private TableColumn<InnovativePractice, String> beginTimeColumn;
-
-    @FXML
-    private TableColumn<InnovativePractice, String>changeColumn;
+public class InnovativePracticeManageController extends manage_MainFrame_controller {
 
     @FXML
     private TableView<InnovativePractice> dataTableView;
-
+    @FXML
+    private TableColumn<InnovativePractice, String> activityNameColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String> beginTimeColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String>endTimeColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String>fileColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String> studentColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String>teacherNameColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String>typeColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String> achievementColumn;
+    @FXML
+    private TableColumn<InnovativePractice, String>changeColumn;
     @FXML
     private TableColumn<InnovativePractice, Void> deleteColumn;
 
     @FXML
-    private TableColumn<InnovativePractice, Void>endTimeColumn;
-
-    @FXML
-    private TableColumn<InnovativePractice, String>fileColumn;
-
+    private TextField InquireField;
     @FXML
     private Button onAdd;
-
-
-    @FXML
-    private TableColumn<InnovativePractice, String> studentColumn;
-
-    @FXML
-    private TableColumn<InnovativePractice, String>teacherNameColumn;
-
-    @FXML
-    private TableColumn<InnovativePractice, String>typeColumn;
-
-    @FXML
-    void onAdd(ActionEvent event) {
-
-    }
 
     @Getter
     private static List<InnovativePractice> innovativePracticeList = new ArrayList<>();
@@ -104,8 +87,8 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
         studentColumn.setCellValueFactory(new PropertyValueFactory<>("student"));
         achievementColumn.setCellValueFactory(new PropertyValueFactory<>("achievement"));
         fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
-        changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("删除"));
-        deleteColumn.setCellFactory(new IPM_ButtonCellFactory<>("修改"));
+        changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("修改"));
+        deleteColumn.setCellFactory(new IPM_ButtonCellFactory<>("删除"));
 
         TableView.TableViewSelectionModel<InnovativePractice> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
@@ -126,7 +109,7 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
 
 
     public void onAdd() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Addition-panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePractice_Addition.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 677);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -170,7 +153,6 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
                     button.setOnAction(event -> {
 
                         FXMLLoader fxmlLoader = null;
-
                         if (property=="删除"){
                             int ret = MessageDialog.choiceDialog("确认要删除吗?");
                             if(ret != MessageDialog.CHOICE_YES) {
@@ -193,8 +175,8 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
                         }
 
                         else if (property=="修改") {
-                            StudentChange_Controller.setIndex(getIndex());
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
+                            InnovativePractice_Change_Controller.setIndex(getIndex());
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePractice_Change.fxml"));
                             Scene scene = null;
                             try {
                                 scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -206,18 +188,18 @@ public class InnovativePracticeController extends manage_MainFrame_controller {
                             stage.setTitle("修改创新实践信息");
                             stage.show();
                         }
-
-                        Scene scene = null;
-                        try {
-                            scene = new Scene(fxmlLoader.load(), 1255, 714);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                        else{//不知道这里有啥用
+                            Scene scene = null;
+                            try {
+                                scene = new Scene(fxmlLoader.load(), 1255, 714);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("查看信息");
+                            stage.show();
                         }
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.setTitle("查看信息");
-                        stage.show();
-
                     });
                 }
 
