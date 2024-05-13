@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.StudentBeforeInformation_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.StudentBeforeInformation_Controller">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="264.0" text="入学前信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -36,7 +45,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="nameColumn" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
+                        <TextField fx:id="nameColumn" editable="false" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
                         <Label prefHeight="24.0" prefWidth="81.0" text="毕业省份" textFill="#4a3030" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -57,16 +66,16 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="provinceColumn" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="schoolColumn" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="phoneColumn" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="emailColumn" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="provinceColumn" editable="false" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="schoolColumn" editable="false" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="phoneColumn" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="emailColumn" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label prefHeight="24.0" prefWidth="77.0" text="家庭住址" textFill="#4a3030" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="addressColumn" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="addressColumn" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
             </children>
@@ -98,11 +107,6 @@
         <HBox prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button fx:id="onChange" mnemonicParsing="false" onAction="#onChange" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="修改" textFill="#fbf6f6">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Button>
                 <Pane prefHeight="103.0" prefWidth="39.0" />
                 <Button fx:id="onReturn" mnemonicParsing="false" onAction="#onReturn" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="返回" textFill="#fbfbfb">
                     <font>

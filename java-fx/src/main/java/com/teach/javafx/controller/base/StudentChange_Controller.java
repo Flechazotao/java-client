@@ -1,6 +1,9 @@
 package com.teach.javafx.controller.base;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.models.DO.BeforeUniversity;
+import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DO.Person;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -63,15 +66,30 @@ public class StudentChange_Controller {
     @FXML
     private DatePicker birthdayPick;
 
+    @FXML
+    private TextField graduatedProvinceCol;
+
+    @FXML
+    private TextField graduatedSchoolCol;
+
+    @Getter
+    private static Student student;
+
     private Long studentId = null;
     private Integer personId = null;
     private static int index=0;
 
     private ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
     private static List<Student> studentList = new ArrayList<>();
+
     public void initialize(){
-//        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
-//        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+        student =StudentManageController.SM_ButtonCellFactory.getStudent();
+        DataRequest req=new DataRequest();
+        req.add("id",student.getStudentId());
+        DataResponse res = HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);
+        BeforeUniversity beforeUni= JSON.parseObject(JSON.toJSONString(res.getData()), BeforeUniversity.class);
+
+
         studentList=StudentManageController.getStudentList();
         numField.setText(String.valueOf(studentList.get(getIndex()).getStudentId()));
         NameField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getName()));
@@ -83,6 +101,8 @@ public class StudentChange_Controller {
         emailField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getEmail()));
         majorField.setText(String.valueOf(studentList.get(getIndex()).getMajor()));
         phoneField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getPhone()));
+        graduatedSchoolCol.setText(beforeUni.getGraduatedSchool());
+        graduatedProvinceCol.setText(beforeUni.getGraduatedProvince());
     }
 
     public int getIndex() {
@@ -100,25 +120,27 @@ public class StudentChange_Controller {
             stage.close();
             return;
         }
+
         Student s=studentList.get(getIndex());
         setStudent(s);
         DataRequest req=new DataRequest();
         req.add("student",s);
         DataResponse res = HttpRequestUtil.request("/api/student/addOrUpdateStudent",req);
 
+        BeforeUniversity beforeUniversity=new BeforeUniversity();
+        beforeUniversity.setGraduatedProvince(graduatedProvinceCol.getText());
+        beforeUniversity.setGraduatedSchool(graduatedSchoolCol.getText());
+        beforeUniversity.setStudent(s);
+        DataRequest request=new DataRequest();
+        request.add("beforeUniversity",beforeUniversity);
+        DataResponse response=HttpRequestUtil.request("/api/beforeUniversity/add",request);
+
+
         MessageDialog.showDialog("修改成功！");
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
 
         StudentManageController.updateDataTableView();
-//        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
-//        try {
-//            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-//            AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
-//            MainApplication.resetStage("教学管理系统", scene);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     public void onCancel(ActionEvent actionEvent) {
