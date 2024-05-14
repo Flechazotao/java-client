@@ -37,30 +37,30 @@ public class manage_MainFrame_controller {
     }
      */
     public void initialize(){
-        Pagination pagination = new Pagination();
-        pagination.setPageCount(20);
-        pagination.setMaxPageIndicatorCount(10);
-        pagination.setCurrentPageIndex(5);
-//设置样式
-        pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
-        Scene scene=new Scene(pagination);
-        Stage stage=new Stage();
-        stage.setScene(scene);
-        stage.sizeToScene();
-        stage.show();
-        pagination.setPageFactory(new Callback<Integer, Node>() {
-            @Override
-            public Node call(Integer param) {
-                Label label = new Label("页面" + (param + 1));
-                label.setTextFill(Paint.valueOf("#0cc"));
-                label.setStyle("-fx-background-color: #6b3109");
-                label.setPrefWidth(200);
-                label.setPrefHeight(200);
-                label.setFont(Font.font(30));
-                label.setAlignment(Pos.CENTER);
-                return label;
-            }
-        });
+//        Pagination pagination = new Pagination();
+//        pagination.setPageCount(20);
+//        pagination.setMaxPageIndicatorCount(10);
+//        pagination.setCurrentPageIndex(5);
+////设置样式
+//        pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+//        Scene scene=new Scene(pagination);
+//        Stage stage=new Stage();
+//        stage.setScene(scene);
+//        stage.sizeToScene();
+//        stage.show();
+//        pagination.setPageFactory(new Callback<Integer, Node>() {
+//            @Override
+//            public Node call(Integer param) {
+//                Label label = new Label("页面" + (param + 1));
+//                label.setTextFill(Paint.valueOf("#0cc"));
+//                label.setStyle("-fx-background-color: #6b3109");
+//                label.setPrefWidth(200);
+//                label.setPrefHeight(200);
+//                label.setFont(Font.font(30));
+//                label.setAlignment(Pos.CENTER);
+//                return label;
+//            }
+//        });
     }
     @FXML
     void onAttendance() {
