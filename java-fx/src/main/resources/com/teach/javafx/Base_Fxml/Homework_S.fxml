@@ -14,18 +14,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.HomeworkController">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
-        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
+        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1250.0">
             <children>
-                <Button fx:id="onStudentManage" mnemonicParsing="false" onAction="#onStudentManage" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生管理" textFill="#fbf7f7">
-                    <font>
-                        <Font name="System Bold Italic" size="24.0" />
-                    </font>
-                </Button>
-                <Button fx:id="onTeacherManage" mnemonicParsing="false" onAction="#onTeacherManage" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="教师管理" textFill="#fbf7f7">
-                    <font>
-                        <Font name="System Bold Italic" size="24.0" />
-                    </font>
-                </Button>
                 <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="210.0" style="-fx-background-color: indianred;" text="学习信息管理" textFill="#fbf5f5">
                     <items>
                         <MenuItem fx:id="onCourseManage" mnemonicParsing="false" onAction="#onCourseManage" text="课程管理" />
@@ -54,7 +44,7 @@
                 </Button>
                 <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日志信息" textFill="#fdf9f9">
                     <items>
-                        <MenuItem fx:id="onLeaveInformation" mnemonicParsing="false" onAction="#onLeaveInformation" text="学生外出请假信息" />
+                        <MenuItem fx:id="onLeaveInformation" mnemonicParsing="false" onAction="#onLeaveInformation" text="外出请假信息" />
                         <MenuItem fx:id="onFee" mnemonicParsing="false" onAction="#onFee" text="生活学习消费" />
                     </items>
                     <font>
@@ -73,37 +63,28 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1553.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1185.0">
             <columns>
-                <TableColumn fx:id="courseNumberColumn" prefWidth="241.99996948242188" style="-fx-font-size: 15px;" text="课程编号" />
-                <TableColumn fx:id="courseNameColumn" prefWidth="105.33331298828125" style="-fx-font-size: 15;" text="课程名称" />
-                <TableColumn fx:id="homeworkNameColumn" prefWidth="116.66665649414062" style="-fx-font-size: 15;" text="作业名称" />
-                <TableColumn fx:id="studentIdColumn" editable="false" prefWidth="200.6666259765625" sortable="false" style="-fx-font-size: 15;" text="学号" />
-                <TableColumn fx:id="studentNameColumn" editable="false" prefWidth="99.3333740234375" sortable="false" style="-fx-font-size: 15;" text="学生" />
-                <TableColumn fx:id="isSubmitColumn" prefWidth="97.333251953125" style="-fx-font-size: 15;" text="提交状态" />
-                <TableColumn fx:id="submitTimeColumn" prefWidth="130.00006103515625" style="-fx-font-size: 15;" text="提交时间" />
-                <TableColumn fx:id="isCheckedColumn" prefWidth="94.666748046875" style="-fx-font-size: 15;" text="批改状态" />
-                <TableColumn fx:id="checkTimeColumn" prefWidth="134.6666259765625" style="-fx-font-size: 15;" text="批改时间" />
-                <TableColumn fx:id="fileColumn" prefWidth="83.3333740234375" style="-fx-font-size: 15;" text="作业文件" />
-                <TableColumn fx:id="homeworkScoreColumn" prefWidth="94.6666259765625" style="-fx-font-size: 15;" text="作业成绩" />
-            <TableColumn fx:id="homeworkScoreColumn1" prefWidth="74.666748046875" style="-fx-font-size: 15;" text="修改" />
-            <TableColumn fx:id="homeworkScoreColumn11" prefWidth="83.9998779296875" style="-fx-font-size: 15;" text="删除" />
+                <TableColumn fx:id="courseNumberColumn" prefWidth="241.99996948242188" style="-fx-font-size: 20;" text="课程编号" />
+                <TableColumn fx:id="courseNameColumn" prefWidth="134.0" style="-fx-font-size: 20;" text="课程名称" />
+                <TableColumn fx:id="homeworkNameColumn" prefWidth="129.33328247070312" style="-fx-font-size: 20;" text="作业名称" />
+                <TableColumn fx:id="isSubmitColumn" prefWidth="94.66668701171875" style="-fx-font-size: 20;" text="提交状态" />
+                <TableColumn fx:id="submitTimeColumn" prefWidth="142.0" style="-fx-font-size: 20;" text="提交时间" />
+                <TableColumn fx:id="isCheckedColumn" prefWidth="98.66668701171875" style="-fx-font-size: 20;" text="批改状态" />
+                <TableColumn fx:id="checkTimeColumn" prefWidth="145.33331298828125" style="-fx-font-size: 20;" text="批改时间" />
+                <TableColumn fx:id="fileColumn" prefWidth="96.666748046875" style="-fx-font-size: 20;" text="作业文件" />
+                <TableColumn fx:id="homeworkScoreColumn" prefWidth="97.3333740234375" style="-fx-font-size: 20;" text="作业成绩" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-      <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
-         <items>
-             <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
-             <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
-         </items>
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </MenuButton>
-      <Button fx:id="onInquire1" layoutX="397.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
+        <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
+            <items>
+                <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
+                <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
+            </items>
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+        </MenuButton>
     </children>
 </AnchorPane>

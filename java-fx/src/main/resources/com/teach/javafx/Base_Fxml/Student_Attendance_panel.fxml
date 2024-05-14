@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
-<?improt javafx.scene.control.Button?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.manage_MainFrame_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.AttendanceController">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1250.0">
@@ -50,11 +46,29 @@
                 </MenuButton>
             </children>
         </HBox>
+        <Label layoutX="100.0" layoutY="262.0" text="学习信息管理&lt;&lt;考勤中心" textFill="#667fe2f0">
+            <font>
+                <Font name="System Bold Italic" size="32.0" />
+            </font>
+        </Label>
+        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="408.0" prefHeight="435.0" prefWidth="685.0">
+            <columns>
+                <TableColumn fx:id="activityNameColumn" prefWidth="246.66665649414062" style="-fx-font-size: 20px;" text="活动名称" />
+                <TableColumn fx:id="typeColumn" prefWidth="115.33331298828125" style="-fx-font-size: 20px;" text="活动类型" />
+                <TableColumn fx:id="attendanceTimeColumn" editable="false" prefWidth="230.66668701171875" sortable="false" style="-fx-font-size: 20px;" text="考勤时间" />
+                <TableColumn fx:id="isAttendedColumn" prefWidth="90.66670735677087" style="-fx-font-size: 20px;" text="是否考勤" />
+            </columns>
+        </TableView>
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入活动名称" />
         <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
             <items>
-                <MenuItem mnemonicParsing="false" text="退出" />
-                <MenuItem mnemonicParsing="false" text="个人信息" />
-                <MenuItem mnemonicParsing="false" text="修改密码" />
+                <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
+                <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
             </items>
             <font>
                 <Font name="System Bold Italic" size="14.0" />
