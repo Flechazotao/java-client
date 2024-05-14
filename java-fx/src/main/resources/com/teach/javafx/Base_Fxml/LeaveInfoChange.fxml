@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.FeeAddition_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.FeeChangeController">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="296.0" text="修改学生请假信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -58,7 +58,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="studentidField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="studentIdField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label prefHeight="24.0" prefWidth="109.0" text="请假开始时间" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>

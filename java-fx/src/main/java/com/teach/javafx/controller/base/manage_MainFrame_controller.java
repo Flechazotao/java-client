@@ -101,7 +101,7 @@ public class manage_MainFrame_controller {
 
     @FXML
     void onFee() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Fee_panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/FeepManage.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
             AppStore.setMainFrameController((FeeController) fxmlLoader.getController());

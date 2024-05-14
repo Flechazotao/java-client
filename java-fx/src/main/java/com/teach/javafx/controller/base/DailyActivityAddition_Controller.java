@@ -2,7 +2,6 @@ package com.teach.javafx.controller.base;
 
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.DailyActivity;
-import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
@@ -44,7 +43,7 @@ public class DailyActivityAddition_Controller {
     }
 
     @FXML
-    public void onConformation(ActionEvent actionEvent) {
+    public void onConfirmation(ActionEvent actionEvent) {
         if(activityNameField.getText().equals("")) {
             MessageDialog.showDialog("项目名为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
