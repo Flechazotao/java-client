@@ -47,9 +47,6 @@ public class InnovativePractice_Change_Controller {
 //    public TextField fileField;
 
     @Getter
-    private static Student student;
-
-    @Getter
     private static InnovativePractice innovativePractice;
 
     @Getter

@@ -40,7 +40,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="typeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
+                        <TextField fx:id="activityTypeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
                         <Label prefHeight="24.0" prefWidth="72.0" text="活动类型" textFill="#4a3030">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -51,7 +51,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="NameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="activityNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label prefHeight="24.0" prefWidth="78.0" text="开始时间" textFill="#4a3030" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -67,15 +67,15 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="placeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="participantsField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="locationField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="studentField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label prefHeight="24.0" prefWidth="76.0" text="结束时间" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
                         <DatePicker fx:id="endTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <DatePicker fx:id="startTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="beginTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                     </children>
                 </GridPane>
             </children>
@@ -107,7 +107,7 @@
         <HBox prefHeight="82.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button mnemonicParsing="false" onAction="#onConformation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
+                <Button mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
