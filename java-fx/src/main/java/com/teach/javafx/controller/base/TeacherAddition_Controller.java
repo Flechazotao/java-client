@@ -1,16 +1,14 @@
 package com.teach.javafx.controller.base;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
+public class TeacherAddition_Controller {
 
-public class TeacherChange_Controller {
-    public static void setIndex(int index) {
-    }
     @FXML
     private TextField addressField;
 
@@ -39,9 +37,6 @@ public class TeacherChange_Controller {
     private TextField nameField;
 
     @FXML
-    private Button onCancel;
-
-    @FXML
     private TextField phoneField;
 
     @FXML
@@ -50,11 +45,14 @@ public class TeacherChange_Controller {
     @FXML
     private TextField titleField;
 
+    @FXML
+    private Button onCancel;
 
-    public void onComfirmation(javafx.event.ActionEvent actionEvent) {
+
+    public void onComfirmation(ActionEvent actionEvent) {
     }
 
-    public void onCancel(javafx.event.ActionEvent actionEvent) {
+    public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
     }
