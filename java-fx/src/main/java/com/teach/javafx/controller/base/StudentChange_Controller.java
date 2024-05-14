@@ -10,6 +10,7 @@ import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
+import jakarta.persistence.SqlResultSetMapping;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,6 +78,9 @@ public class StudentChange_Controller {
 
     private Long studentId = null;
     private Integer personId = null;
+
+    @Getter
+    @Setter
     private static int index=0;
 
     private ObservableList<StudentInfo> observableList= FXCollections.observableArrayList();
@@ -103,15 +107,7 @@ public class StudentChange_Controller {
         graduatedProvinceCol.setText(beforeUni.getGraduatedProvince());
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public static void setIndex(int index){
-        StudentChange_Controller.index =index;
-    }
-
-    public void onConformation(ActionEvent actionEvent) {
+    public void onConfirmation(ActionEvent actionEvent) {
         if( numField.getText().equals("")) {
             MessageDialog.showDialog("学号不能为空");
             Stage stage = (Stage) onCancel.getScene().getWindow();

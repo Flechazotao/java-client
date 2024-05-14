@@ -3,6 +3,7 @@ package com.teach.javafx.controller.base;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DO.Teacher;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
@@ -55,17 +56,18 @@ public class TeacherManageController extends manage_MainFrame_controller {
     @FXML
     public TableColumn<TeacherInfo,String> addressColumn;
 
-    public Button onInquire;
-    public Button onAddTeacher;
-    @FXML
-    public TextField InquireField;
-
     @FXML
     private TableColumn<TeacherInfo, Integer> DeleteColumn;
-
     @FXML
     private TableColumn<Teacher, Integer> ChangeColumn;
 
+    @FXML
+    public TextField InquireField;
+    public Button onInquire;
+    public Button onAddTeacher;
+
+
+    @Getter
     private static List<Teacher> teacherList = new ArrayList<>();
 
     private static ObservableList<TeacherInfo> observableList= FXCollections.observableArrayList();
@@ -75,8 +77,6 @@ public class TeacherManageController extends manage_MainFrame_controller {
         observableList.clear();
         for(Teacher t:teacherList){
             TeacherInfo teacherInfo=new TeacherInfo(t);
-            teacherInfo.setDegree(t.getDegree());
-            teacherInfo.setTitle(t.getTitle());
             observableList.addAll(FXCollections.observableArrayList(teacherInfo));
         }
     }
@@ -111,10 +111,22 @@ public class TeacherManageController extends manage_MainFrame_controller {
         setDataTableView(teacherList);
     }
     
-    public void onAddTeacher(ActionEvent actionEvent) {
+    public void onAddTeacher(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher-Addition-panel.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 677);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("添加教师");
+        stage.show();
     }
 
     public void onInquire(ActionEvent actionEvent) {
+        String query=InquireField.getText();
+        DataRequest req=new DataRequest();
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/teacher/findByTeacherIdOrName",req);
+        teacherList=JSON.parseArray(JSON.toJSONString(res.getData()), Teacher.class);
+        setDataTableView(teacherList);
     }
 
     class TM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
@@ -144,7 +156,7 @@ public class TeacherManageController extends manage_MainFrame_controller {
                             }
                             DataRequest req = new DataRequest();
                             teacherId=teacherList.get(getIndex()).getTeacherId();
-                            req.add("teacher", teacherId);
+                            req.add("TeacherId", teacherId);
                             DataResponse res = HttpRequestUtil.request("/api/teacher/deleteTeacher",req);
                             if(res.getCode() == 401) {
                                 MessageDialog.showDialog("信息不完整!");
@@ -157,7 +169,6 @@ public class TeacherManageController extends manage_MainFrame_controller {
                                 updateDataTableView();
                             }
                         }
-
                         else if (property=="修改") {
                             TeacherChange_Controller.setIndex(getIndex());
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher-Change_panel.fxml"));
@@ -169,28 +180,21 @@ public class TeacherManageController extends manage_MainFrame_controller {
                             }
                             Stage stage = new Stage();
                             stage.setScene(scene);
-                            stage.setTitle("修改学生");
+                            stage.setTitle("修改教师");
                             stage.show();
                         }
-
-                        else if (property=="查看入学前信息"){
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher-BeforeInformation-Change.fxml"));
+                        else{
+                            Scene scene = null;
+                            try {
+                                scene = new Scene(fxmlLoader.load(), 1045, 677);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("添加教师");
+                            stage.show();
                         }
-                        else if (property=="查看家庭信息") {
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher-FamilyInformation.fxml"));
-                        }
-
-                        Scene scene = null;
-                        try {
-                            scene = new Scene(fxmlLoader.load(), 1045, 677);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.setTitle("添加学生");
-                        stage.show();
-
                     });
                 }
 

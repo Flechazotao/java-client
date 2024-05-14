@@ -18,49 +18,37 @@ import javafx.stage.Stage;
 
 public class StudentAddition_controller {
     @FXML
-    private TextField cardField;
-
+    private TextField numberField;
     @FXML
-    private TextField NameField;
-
+    private TextField nameField;
     @FXML
-    private TextField PoliticsField;
-
+    private TextField genderField;
     @FXML
-    private TextField SexField;
-
-    @FXML
-    private TextField numField;
-
-    @FXML
-    private TextField addressField;
-
-    @FXML
-    private TextField classField;
-
+    private TextField politicsField;
     @FXML
     private TextField deptField;
-
-    @FXML
-    private TextField emailField;
-
     @FXML
     private TextField majorField;
-
+    @FXML
+    private TextField classField;
+    @FXML
+    private TextField cardField;
     @FXML
     private TextField phoneField;
-
     @FXML
-    private Button onCancel;
-
+    private TextField emailField;
+    @FXML
+    private TextField addressField;
     @FXML
     private DatePicker birthdayPick;
 
     @FXML
     private TextField graduatedProvince;
-
     @FXML
     private TextField graduatedSchool;
+
+    @FXML
+    private Button onCancel;
 
     @FXML
     void onCancel() {
@@ -69,8 +57,8 @@ public class StudentAddition_controller {
     }
 
     @FXML
-    void onConformation() {
-        if( numField.getText().equals("")) {
+    void onConfirmation() {
+        if( numberField.getText().equals("")) {
             MessageDialog.showDialog("学号为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
@@ -110,19 +98,19 @@ public class StudentAddition_controller {
         Person p=new Person();
 
         p.setIntroduce("");
-        s.setStudentId(Long.valueOf(numField.getText()));
-        p.setNumber(Long.valueOf(numField.getText()));
-        p.setName(NameField.getText());
+        s.setStudentId(Long.valueOf(numberField.getText()));
+        p.setNumber(Long.valueOf(numberField.getText()));
+        p.setName(nameField.getText());
         p.setDept(deptField.getText());
         s.setMajor(majorField.getText());
         s.setClassName(classField.getText());
         p.setCard(cardField.getText());
-        p.setGender(SexField.getText());
+        p.setGender(genderField.getText());
         p.setBirthday(birthdayPick.getEditor().getText());
         p.setEmail(emailField.getText());
         p.setPhone(phoneField.getText());
         p.setAddress(addressField.getText());
-        p.setPoliticalStatus(PoliticsField.getText());
+        p.setPoliticalStatus(politicsField.getText());
         p.setType("student");
         s.setPerson(p);
         return s;

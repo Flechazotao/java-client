@@ -59,7 +59,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <Label prefHeight="24.0" prefWidth="41.0" text="年龄" textFill="#4a3030" GridPane.rowIndex="5">
+                        <Label prefHeight="24.0" prefWidth="41.0" text="政治面貌" textFill="#4a3030" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
@@ -91,9 +91,9 @@
                         </Label>
                         <TextField fx:id="cardField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="genderField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="politicsField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField fx:id="majorField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="degreeField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <TextField fx:id="deptField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
@@ -140,7 +140,7 @@
         <HBox prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button mnemonicParsing="false" onAction="#onComfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
+                <Button mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
