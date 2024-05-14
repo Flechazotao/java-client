@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.TeacherAddition_Controller">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="183.0" text="添加教师" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -140,13 +140,13 @@
         <HBox prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button mnemonicParsing="false" onAction="#onComfirmation" prefHeight="31.0" prefWidth="55.0" text="确定" textFill="#4a3030">
+                <Button mnemonicParsing="false" onAction="#onComfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
                 <Pane prefHeight="103.0" prefWidth="39.0" />
-                <Button mnemonicParsing="false" onAction="#onCancel" prefHeight="31.0" prefWidth="55.0" text="取消" textFill="#4a3030">
+                <Button fx:id="onCancel" mnemonicParsing="false" onAction="#onCancel" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="取消" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
