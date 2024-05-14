@@ -123,7 +123,7 @@ public class StudentManageController extends manage_MainFrame_controller {
 
 
     public void onAddStudent() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Addition-panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_Addition_panel.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 677);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -187,7 +187,7 @@ public class StudentManageController extends manage_MainFrame_controller {
 
                         else if (property=="修改") {
                             StudentChange_Controller.setIndex(getIndex());
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_Change_panel.fxml"));
                             Scene scene = null;
                             try {
                                 scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -202,7 +202,7 @@ public class StudentManageController extends manage_MainFrame_controller {
                         else if (property=="查看入学前信息"){
                             index=getIndex();
                             student=studentList.get(getIndex());
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-panel.fxml"));
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_BeforeInformation_panel.fxml"));
                             Scene scene = null;
                             try {
                                 scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -216,7 +216,7 @@ public class StudentManageController extends manage_MainFrame_controller {
                         }
                         else if (property=="查看家庭信息") {
                             student=studentList.get(getIndex());
-                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation.fxml"));
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_FamilyInformation.fxml"));
                         }
 
                         Scene scene = null;

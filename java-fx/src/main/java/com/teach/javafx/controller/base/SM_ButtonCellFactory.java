@@ -60,15 +60,15 @@ public class SM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
 
                     else if (property=="修改") {
                         studentId= getIndex();//获取正在编辑的单元格所在行序号
-                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-Change_panel.fxml"));
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_Change_panel.fxml"));
 
                     }
 
                     else if (property=="查看入学前信息"){
-                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-BeforeInformation-Change.fxml"));
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_BeforeInformation_Change.fxml"));
                     }
                     else if (property=="查看家庭信息") {
-                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation.fxml"));
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_FamilyInformation.fxml"));
                     }
 
                     Scene scene = null;

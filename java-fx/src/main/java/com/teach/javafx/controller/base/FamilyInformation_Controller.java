@@ -91,7 +91,7 @@ public class FamilyInformation_Controller {
 
 
     public void onAddition() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Addition.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_FamilyInformation_Addition.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -150,7 +150,7 @@ class FI_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         index=getIndex();
                         List<FamilyMember> familyMemberList = FamilyInformation_Controller.getFamilyMemberList();
                         Integer memberid=familyMemberList.get(getIndex()).getMemberId();
-                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student-FamilyInformation-Change.fxml"));
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_FamilyInformation_Change.fxml"));
                         Scene scene = null;
                         try {
                             scene = new Scene(fxmlLoader.load(), 600, 677);

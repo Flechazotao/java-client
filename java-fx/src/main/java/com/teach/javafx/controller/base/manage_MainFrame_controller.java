@@ -64,7 +64,7 @@ public class manage_MainFrame_controller {
     }
     @FXML
     void onAttendance() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Attendance_panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/AttendanceManage.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
             AppStore.setMainFrameController((AttendanceController) fxmlLoader.getController());
