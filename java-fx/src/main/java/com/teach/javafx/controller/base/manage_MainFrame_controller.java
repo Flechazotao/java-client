@@ -5,8 +5,15 @@ import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
@@ -29,7 +36,32 @@ public class manage_MainFrame_controller {
     public void onInquire(ActionEvent actionEvent) {
     }
      */
-
+    public void initialize(){
+        Pagination pagination = new Pagination();
+        pagination.setPageCount(20);
+        pagination.setMaxPageIndicatorCount(10);
+        pagination.setCurrentPageIndex(5);
+//设置样式
+        pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+        Scene scene=new Scene(pagination);
+        Stage stage=new Stage();
+        stage.setScene(scene);
+        stage.sizeToScene();
+        stage.show();
+        pagination.setPageFactory(new Callback<Integer, Node>() {
+            @Override
+            public Node call(Integer param) {
+                Label label = new Label("页面" + (param + 1));
+                label.setTextFill(Paint.valueOf("#0cc"));
+                label.setStyle("-fx-background-color: #6b3109");
+                label.setPrefWidth(200);
+                label.setPrefHeight(200);
+                label.setFont(Font.font(30));
+                label.setAlignment(Pos.CENTER);
+                return label;
+            }
+        });
+    }
     @FXML
     void onAttendance() {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Attendance_panel.fxml"));

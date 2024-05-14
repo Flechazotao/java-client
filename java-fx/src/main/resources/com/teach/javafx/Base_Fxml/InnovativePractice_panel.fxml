@@ -66,7 +66,7 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1301.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1318.0">
             <columns>
                 <TableColumn fx:id="typeColumn" prefWidth="134.0000762939453" style="-fx-font-size: 20px;" text="活动类型" />
                 <TableColumn fx:id="activityNameColumn" prefWidth="161.33334350585938" style="-fx-font-size: 20px;" text="活动名称" />
@@ -75,9 +75,9 @@
                 <TableColumn fx:id="teacherNameColumn" prefWidth="108.0" style="-fx-font-size: 20px;" text="指导老师" />
                 <TableColumn fx:id="studentColumn" prefWidth="216.66656494140625" style="-fx-font-size: 20px;" text="参与成员" />
                 <TableColumn fx:id="achievementColumn" prefWidth="160.666748046875" style="-fx-font-size: 20px;" text="获奖情况" />
-                <TableColumn fx:id="fileColumn" prefWidth="131.9998779296875" style="-fx-font-size: 20px;" text="相关文件" />
-            <TableColumn fx:id="changeColumn" prefWidth="70.6666259765625" style="-fx-font-size: 20px;" text="修改" />
-            <TableColumn fx:id="deleteColumn" prefWidth="70.6666259765625" style="-fx-font-size: 20px;" text="删除" />
+                <TableColumn fx:id="fileColumn" prefWidth="138.0" style="-fx-font-size: 20px;" text="相关文件" />
+            <TableColumn fx:id="changeColumn" prefWidth="78.0" style="-fx-font-size: 20px;" text="修改" />
+            <TableColumn fx:id="deleteColumn" prefWidth="75.0" style="-fx-font-size: 20px;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
