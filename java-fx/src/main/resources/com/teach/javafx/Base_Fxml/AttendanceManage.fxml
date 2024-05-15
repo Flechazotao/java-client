@@ -95,7 +95,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </MenuButton>
-      <Button fx:id="onInquire1" layoutX="396.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
+      <Button fx:id="onAddAttendance" layoutX="396.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddAttendance" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

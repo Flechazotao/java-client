@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.FeeChangeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.AttendanceAdditionController">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="237.0" text="添加考勤信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -40,7 +40,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="feeTypeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
+                        <TextField fx:id="activityNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="活动名称" textFill="#4a3030">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -51,7 +51,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="NameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="typeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label prefHeight="24.0" prefWidth="41.0" text="学生" textFill="#4a3030" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -62,20 +62,20 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="studentidField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="moneyField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="studentField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="studentIdField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label prefHeight="24.0" prefWidth="73.0" text="考勤时间" textFill="#4a3030" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <DatePicker fx:id="dayPicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="timePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label prefHeight="24.0" prefWidth="91.0" text="是否考勤" textFill="#4a3030" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="isAttendedField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
             </children>
