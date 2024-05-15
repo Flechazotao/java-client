@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.Honor_Change_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.base.HonorChangeController">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="243.0" text="修改荣誉信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -52,7 +52,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="NameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="studentNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label prefHeight="24.0" prefWidth="79.0" text="荣誉类别" textFill="#4a3030" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -73,14 +73,14 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="tupeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="typeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="honorFromField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="荣誉名称" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <DatePicker fx:id="honorFromPicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="honorTimePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="honorNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="levelField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
@@ -114,7 +114,7 @@
         <HBox prefHeight="82.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button mnemonicParsing="false" onAction="#onConformation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
+                <Button fx:id="onConfirmation" mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

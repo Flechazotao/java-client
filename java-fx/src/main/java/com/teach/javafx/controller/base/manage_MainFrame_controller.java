@@ -5,15 +5,8 @@ import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Pagination;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 
@@ -126,10 +119,10 @@ public class manage_MainFrame_controller {
 
     @FXML
     void onHonor() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Honor_panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Honorpanel.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-            AppStore.setMainFrameController((HonorController) fxmlLoader.getController());
+            AppStore.setMainFrameController((HonorManageController) fxmlLoader.getController());
             MainApplication.resetStage("教学管理系统", scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
