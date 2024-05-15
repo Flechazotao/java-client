@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="changeCol" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.base.LeaveInfomationController">
+<AnchorPane fx:id="changeCol" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.LeaveInfoManageController">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
@@ -75,13 +75,13 @@
         </Button>
         <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1223.0">
             <columns>
-                <TableColumn fx:id="leaveTime" prefWidth="161.99996948242188" style="-fx-font-size: 20px;" text="请假日期" />
-                <TableColumn fx:id="studentId" prefWidth="139.33328247070312" style="-fx-font-size: 20px;" text="请假学生" />
-                <TableColumn fx:id="leaveReason" editable="false" prefWidth="252.00006103515625" sortable="false" style="-fx-font-size: 20px;" text="请假理由" />
-                <TableColumn fx:id="leaveBeginTime" prefWidth="128.66668701171875" style="-fx-font-size: 20px;" text="请假开始时间" />
-                <TableColumn fx:id="leaveEndTime" prefWidth="133.99993896484375" style="-fx-font-size: 20px;" text="请假结束时间" />
-                <TableColumn fx:id="approver" prefWidth="136.66668701171875" style="-fx-font-size: 20px;" text="批假人" />
-                <TableColumn fx:id="isBackSchool" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="是否销假" />
+                <TableColumn fx:id="leaveTimeColumn" prefWidth="161.99996948242188" style="-fx-font-size: 20px;" text="请假日期" />
+                <TableColumn fx:id="studentIdColumn" prefWidth="139.33328247070312" style="-fx-font-size: 20px;" text="请假学生" />
+                <TableColumn fx:id="leaveReasonColumn" editable="false" prefWidth="252.00006103515625" sortable="false" style="-fx-font-size: 20px;" text="请假理由" />
+                <TableColumn fx:id="leaveBeginTimeColumn" prefWidth="128.66668701171875" style="-fx-font-size: 20px;" text="请假开始时间" />
+                <TableColumn fx:id="leaveEndTimeColumn" prefWidth="133.99993896484375" style="-fx-font-size: 20px;" text="请假结束时间" />
+                <TableColumn fx:id="approverColumn" prefWidth="136.66668701171875" style="-fx-font-size: 20px;" text="批假人" />
+                <TableColumn fx:id="isBackSchoolColumn" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="是否销假" />
             <TableColumn fx:id="ChangeCol" prefWidth="73.333251953125" style="-fx-font-size: 20px;" text="修改" />
             <TableColumn fx:id="deleteCol" prefWidth="77.33349609375" style="-fx-font-size: 20px;" text="删除" />
             </columns>
