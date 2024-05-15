@@ -6,7 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
@@ -25,137 +25,113 @@ import java.util.Map;
 public class CourseSelectedS_Controller extends manage_MainFrame_controller{
     @FXML
     private GridPane GridPane;
-    @FXML
-    private Button FridayFifth;
 
     @FXML
-    private Button FridayFirst;
+    private Button onFridayFifth;
 
     @FXML
-    private Button FridayFourth;
+    private Button onFridayFirst;
 
     @FXML
-    private Button FridaySecond;
+    private Button onFridayFourth;
 
     @FXML
-    private Button FridayThird;
+    private Button onFridaySecond;
 
     @FXML
-    private Button MondayFifth;
+    private Button onFridayThird;
 
     @FXML
-    private Button MondayFirst;
+    private Button onMondayFifth;
 
     @FXML
-    private Button MondayFourth;
+    private Button onMondayFirst;
 
     @FXML
-    private Button MondaySecond;
+    private Button onMondayFourth;
 
     @FXML
-    private Button MondayThird;
+    private Button onMondaySecond;
 
     @FXML
-    private Button SaturdayFifth;
+    private Button onMondayThird;
 
     @FXML
-    private Button SaturdayFirst;
+    private Button onSaturdayFifth;
 
     @FXML
-    private Button SaturdayFourth;
+    private Button onSaturdayFirst;
 
     @FXML
-    private Button SaturdaySecond;
+    private Button onSaturdayFourth;
 
     @FXML
-    private Button SaturdayThird;
+    private Button onSaturdaySecond;
 
     @FXML
-    private Button SundayFifth;
+    private Button onSaturdayThird;
 
     @FXML
-    private Button SundayFirst;
+    private Button onSundayFifth;
 
     @FXML
-    private Button SundayFourth;
+    private Button onSundayFirst;
 
     @FXML
-    private Button SundaySecond;
+    private Button onSundayFourth;
 
     @FXML
-    private Button SundayThird;
+    private Button onSundaySecond;
 
     @FXML
-    private Button ThursdayFifth;
+    private Button onSundayThird;
 
     @FXML
-    private Button ThursdayFirst;
+    private Button onThursdayFifth;
 
     @FXML
-    private Button ThursdayFourth;
+    private Button onThursdayFirst;
 
     @FXML
-    private Button ThursdaySecond;
+    private Button onThursdayFourth;
 
     @FXML
-    private Button ThursdayThird;
+    private Button onThursdaySecond;
 
     @FXML
-    private Button TuesdayFifth;
+    private Button onThursdayThird;
 
     @FXML
-    private Button TuesdayFirst;
+    private Button onTuesdayFifth;
 
     @FXML
-    private Button TuesdayFourth;
+    private Button onTuesdayFirst;
 
     @FXML
-    private Button TuesdaySecond;
+    private Button onTuesdayFourth;
 
     @FXML
-    private Button TuesdayThird;
+    private Button onTuesdaySecond;
 
     @FXML
-    private Button WednesdayFifth;
+    private Button onTuesdayThird;
 
     @FXML
-    private Button WednesdayFirst;
+    private Button onWednesdayFifth;
 
     @FXML
-    private Button WednesdayFourth;
+    private Button onWednesdayFirst;
 
     @FXML
-    private Button WednesdaySecond;
+    private Button onWednesdayFourth;
 
     @FXML
-    private Button WednesdayThird;
+    private Button onWednesdaySecond;
 
     @FXML
-    private MenuItem onAttendance;
+    private Button onWednesdayThird;
 
-    @FXML
-    private MenuItem onCourseManage;
 
-    @FXML
-    private Button onDailyActivity;
-
-    @FXML
-    private MenuItem onFee;
-
-    @FXML
-    private MenuItem onHomework;
-
-    @FXML
-    private Button onHonor;
-
-    @FXML
-    private Button onInnovativePractice;
-
-    @FXML
-    private MenuItem onLeaveInformation;
-
-    @FXML
-    private MenuItem onScore;
 
     public void initialize() {
 
