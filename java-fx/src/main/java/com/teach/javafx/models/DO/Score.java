@@ -35,7 +35,7 @@ public class Score implements Serializable {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    private Integer mark;
+    private Double mark;
 
     private Integer ranking;
 
