@@ -14,6 +14,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 
@@ -70,6 +72,10 @@ public class LoginController {
         checkBox2.setSelected(false);
     }
 
+    @Getter
+    @Setter
+    private static String number;
+
     /**
      *  点击登录按钮 执行onLoginButtonClick 方法 从面板上获取用户名和密码，请求后台登录服务，登录成功加载主框架，切换舞台到主框架，登录不成功，提示错误信息
      */
@@ -94,6 +100,7 @@ public class LoginController {
             }
         }
         else if (checkBox1.isSelected()){
+            setNumber(usernameField.getText());
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_MainFrame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
