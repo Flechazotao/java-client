@@ -4,6 +4,7 @@ import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
+import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.request.HttpRequestUtil;
 import com.teach.javafx.request.LoginRequest;
 import javafx.fxml.FXML;
@@ -104,7 +105,7 @@ public class LoginController {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_MainFrame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((student_MainFrame_controller) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);

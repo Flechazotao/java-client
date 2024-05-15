@@ -27,7 +27,6 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 596, 358);
-//        scene.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
         stage.setTitle("登录");
         stage.setScene(scene);
         stage.show();
