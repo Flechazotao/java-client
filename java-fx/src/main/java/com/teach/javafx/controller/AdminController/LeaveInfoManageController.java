@@ -3,7 +3,6 @@ package com.teach.javafx.controller.AdminController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.controller.other.base.HM_ButtonCellFactory;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.models.DO.LeaveInfo;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -98,8 +97,8 @@ public class LeaveInfoManageController extends manage_MainFrame_controller {
         approverColumn.setCellValueFactory(new PropertyValueFactory<>("approver"));
         leaveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveTime"));
         isBackSchoolColumn.setCellValueFactory(new PropertyValueFactory<>("isBackSchool"));
-        ChangeCol.setCellFactory(new HM_ButtonCellFactory<>("修改"));
-        deleteCol.setCellFactory(new HM_ButtonCellFactory<>("删除"));
+        ChangeCol.setCellFactory(new LIM_ButtonCellFactory<>("修改"));
+        deleteCol.setCellFactory(new LIM_ButtonCellFactory<>("删除"));
 
         TableView.TableViewSelectionModel<LeaveInfoInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
