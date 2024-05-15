@@ -39,4 +39,6 @@ public class Score implements Serializable {
 
     private Integer ranking;
 
+    private Boolean IsCal;
+
 }
