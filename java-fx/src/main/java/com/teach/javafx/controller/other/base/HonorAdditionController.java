@@ -57,11 +57,7 @@ public class HonorAdditionController {
         req.add("honorInfo",honorInfo);
         DataResponse res = HttpRequestUtil.request("/api/honorInfo/add",req);
         if(res.getCode()==401) {
-            MessageDialog.showDialog("该荣誉已存在！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
-        }else if(res.getCode()==404) {
-            MessageDialog.showDialog("学号错误");
+            MessageDialog.showDialog("该课程已存在！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
         }
