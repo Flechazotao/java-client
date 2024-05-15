@@ -69,7 +69,17 @@ public class CourseManageController extends manage_MainFrame_controller {
     private Button inSelectingCourse;
 
     public void inSelectingCourse(ActionEvent actionEvent) {
-        
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseSelect-S.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1000, 600);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("选课中心");
+        stage.show();
     }
 
     @FXML
