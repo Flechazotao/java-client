@@ -162,7 +162,7 @@ class ScoreM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Tabl
                         Integer scoreId=Score_Manage_Controller.getScoreList().get(getIndex()).getScoreId();
                         DataRequest req=new DataRequest();
                         req.add("id",scoreId);
-                        DataResponse response=HttpRequestUtil.request("/api/score/deleteById",req);
+                        DataResponse response=HttpRequestUtil.request("/api/score/deleteByScoreId",req);
 
                         if (response.getCode()==401){
                             MessageDialog.showDialog("信息不完整!");

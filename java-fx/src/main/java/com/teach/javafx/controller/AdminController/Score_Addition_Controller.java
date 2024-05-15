@@ -59,6 +59,10 @@ public class Score_Addition_Controller {
             MessageDialog.showDialog("该成绩已存在！");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
+        }else if(res.getCode()==404) {
+            MessageDialog.showDialog("学号或课程编号错误");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
         }
         else {
             MessageDialog.showDialog("提交成功！");
@@ -82,8 +86,8 @@ public class Score_Addition_Controller {
         c.setCredit(creditField.getText());
         c.setNumber(courseNumberField.getText());
         score.setCourse(c);
-        score.setMark(Double.valueOf(markField.getText()));
-        score.setRanking(Integer.valueOf(rankingField.getText()));
+        score.setMark(markField.getText().isEmpty()?0.0:Double.parseDouble(markField.getText()));
+        score.setRanking(rankingField.getText().isEmpty()?0:Integer.parseInt(rankingField.getText()));
         return score;
     }
 }
