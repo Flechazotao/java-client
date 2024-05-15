@@ -1,7 +1,7 @@
 package com.teach.javafx;
 
 
-import com.teach.javafx.controller.base.manage_MainFrame_controller;
+import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.request.JwtResponse;
 
 /**
