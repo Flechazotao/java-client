@@ -32,7 +32,6 @@ public class HonorAdditionController {
     private TextField levelField;
     @FXML
     private TextField honorFromField;
-
     @FXML
     private Button onCancel;
     @FXML

@@ -29,43 +29,26 @@ public class Honor_S_Controller extends student_MainFrame_controller {
     private TextField InquireField;
 
     @FXML
-    private TableView<HonorInfo> dataTableView;
+    private TableView<HonorInfoInfo> dataTableView;
+
 
     @FXML
-    private AnchorPane deleteCol;
+    private TableColumn<HonorInfoInfo, String> fileColumn;
 
     @FXML
-    private TableColumn<HonorInfo, String> fileColumn;
+    private TableColumn<HonorInfoInfo, String>honorFromColumn;
 
     @FXML
-    private TableColumn<HonorInfo, String> honorFromColumn;
+    private TableColumn<HonorInfoInfo, String> honorNameColumn;
 
     @FXML
-    private TableColumn<HonorInfo, String> honorNameColumn;
+    private TableColumn<HonorInfoInfo, String>honorTimeColumn;
 
     @FXML
-    private TableColumn<HonorInfo, String> honorTimeColumn;
+    private TableColumn<HonorInfoInfo, String> levelColumn;
 
     @FXML
-    private TableColumn<HonorInfo, String> levelColumn;
-
-    @FXML
-    private TableColumn<HonorInfo, String> typeColumn;
-
-    @FXML
-    private MenuItem onAttendance;
-
-    @FXML
-    private MenuItem onChangePassword;
-
-    @FXML
-    private MenuItem onCourseManage;
-
-    @FXML
-    private Button onDailyActivity;
-
-    @FXML
-    private MenuItem onExit;
+    private TableColumn<HonorInfoInfo, String>typeColumn;
 
     @FXML
     private Button onInquire;
@@ -83,6 +66,7 @@ public class Honor_S_Controller extends student_MainFrame_controller {
         req.add("id",studentid);
         DataResponse res= HttpRequestUtil.request("/api/honorInfo/findByStudent",req);
         honorInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HonorInfo.class);
+        dataTableView.setItems(observableList);
 
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         honorNameColumn.setCellValueFactory(new PropertyValueFactory<>("honorName"));
@@ -91,7 +75,7 @@ public class Honor_S_Controller extends student_MainFrame_controller {
         honorTimeColumn.setCellValueFactory(new PropertyValueFactory<>("honorTime"));
         fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
 
-        TableView.TableViewSelectionModel<HonorInfo> tsm = dataTableView.getSelectionModel();
+        TableView.TableViewSelectionModel<HonorInfoInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(honorInfoList);
     }

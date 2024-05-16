@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.CourseManageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.CourseSelected_Controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
@@ -73,23 +73,25 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1287.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1549.0">
             <columns>
                 <TableColumn fx:id="courseNumber" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
                 <TableColumn fx:id="courseName" prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />
                 <TableColumn fx:id="credit" editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
                 <TableColumn fx:id="courseTime" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="课程时间" />
                 <TableColumn fx:id="teacherName" prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
-                <TableColumn fx:id="courseBeginWeek" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程起始周" />
+                <TableColumn fx:id="courseBeginWeek" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程周期" />
                 <TableColumn fx:id="wayOfTest" prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
                 <TableColumn fx:id="location" prefWidth="169.33343505859375" style="-fx-font-size: 20px;" text="上课地点" />
                 <TableColumn fx:id="type" prefWidth="106.0" style="-fx-font-size: 20px;" text="课程类型" />
-                <TableColumn fx:id="file1" prefWidth="72.0" style="-fx-font-size: 20px;" text="修改" />
-                <TableColumn fx:id="file11" prefWidth="74.666748046875" style="-fx-font-size: 20px;" text="删除" />
+            <TableColumn fx:id="nowSelectNumberColumn" prefWidth="130.6666259765625" style="-fx-font-size: 20px;" text="当前选课人数" />
+            <TableColumn fx:id="maxSelectedColumn" prefWidth="128.6666259765625" style="-fx-font-size: 20px;" text="选课学生名额" />
+                <TableColumn fx:id="change" prefWidth="73.333251953125" style="-fx-font-size: 20px;" text="修改" />
+                <TableColumn fx:id="delete" prefWidth="76.6666259765625" style="-fx-font-size: 20px;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button fx:id="onAddCourse" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddStudent" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加课程">
+        <Button fx:id="onAddCourse" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddCourse" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加选课">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
@@ -103,5 +105,10 @@
                 <Font name="System Bold Italic" size="14.0" />
             </font>
         </MenuButton>
+      <Button fx:id="onReturn" layoutX="488.0" layoutY="333.0" mnemonicParsing="false" onAction="#onReturn" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: peachpuff;" text="返回课程管理">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

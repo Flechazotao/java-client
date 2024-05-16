@@ -1,26 +1,22 @@
 package com.teach.javafx.controller.other.base;
 
-import com.teach.javafx.models.DO.Course;
-import com.teach.javafx.models.DTO.AttendanceInfoInfo;
+import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.models.DO.*;
+import com.teach.javafx.models.DTO.*;
+import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.shape.Line;
+import lombok.Getter;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CourseSelectedS_Controller extends manage_MainFrame_controller{
     @FXML
@@ -131,11 +127,72 @@ public class CourseSelectedS_Controller extends manage_MainFrame_controller{
     @FXML
     private Button onWednesdayThird;
 
+    @FXML
+    private TableView<SelectedCourseInfoInfo> dataTableView;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> courseNumberColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> courseNameColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> creditColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> courseTimeColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> teacherNameColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> courseBeginWeekColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> wayOfTestColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> locationColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> typeColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> nowSelectNumberColumn;
+    @FXML
+    private TableColumn<SelectedCourseInfoInfo,String> maxSelectedColumn;
 
+    @Getter
+    private static List<SelectedCourseInfo> selectedCourseInfoList = new ArrayList<>();
+
+    private static ObservableList<SelectedCourseInfoInfo> observableList= FXCollections.observableArrayList();
+
+    public static void setDataTableView(List<SelectedCourseInfo> list){
+        selectedCourseInfoList =list;
+        observableList.clear();
+        for(SelectedCourseInfo selectedCourseInfo: selectedCourseInfoList){
+            observableList.addAll(FXCollections.observableArrayList(new SelectedCourseInfoInfo(selectedCourseInfo)));
+        }
+    }
+
+    public static void updateDataTableView(){
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourseInfo/findAll",new DataRequest());
+        setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),SelectedCourseInfo.class));
+    }
 
     public void initialize() {
+        dataTableView.setItems(observableList);
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourseInfo/findAll",new DataRequest());
+        selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
 
+        courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
+        courseTimeColumn.setCellValueFactory(new PropertyValueFactory<>("courseTime"));
+        teacherNameColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
+        courseBeginWeekColumn.setCellValueFactory(new PropertyValueFactory<>("courseBeginWeek"));
+        wayOfTestColumn.setCellValueFactory(new PropertyValueFactory<>("wayOfTest"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        nowSelectNumberColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfSelected"));
+        maxSelectedColumn.setCellValueFactory(new PropertyValueFactory<>("MaxNumberOfSelected"));
+
+
+        TableView.TableViewSelectionModel<SelectedCourseInfoInfo> tsm = dataTableView.getSelectionModel();
+        ObservableList<Integer> list = tsm.getSelectedIndices();
+        setDataTableView(selectedCourseInfoList);
     }
+
 
     public void MondayFirst(ActionEvent actionEvent) {
     }
@@ -241,4 +298,6 @@ public class CourseSelectedS_Controller extends manage_MainFrame_controller{
 
     public void MondayFifth(ActionEvent actionEvent) {
     }
+
+
 }

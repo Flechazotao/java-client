@@ -30,6 +30,6 @@ public class SelectedCourse implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "course_id")
-    private Course course;
+    private SelectedCourseInfo selectedCourseInfo;
 
 }

@@ -119,7 +119,6 @@ public class LeaveInfoManageController extends manage_MainFrame_controller {
         stage.setTitle("添加请假信息");
         stage.show();
     }
-
 }
 
 
