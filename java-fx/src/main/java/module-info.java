@@ -12,6 +12,7 @@ module com.teach.javafx {
     requires lombok;
     requires jakarta.persistence;
     requires com.alibaba.fastjson2;
+    requires com.fasterxml.jackson.annotation;
 
     opens com.teach.javafx;
     opens com.teach.javafx.models.DO;
