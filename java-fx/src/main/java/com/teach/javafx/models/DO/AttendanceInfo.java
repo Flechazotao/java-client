@@ -12,7 +12,7 @@ import java.io.Serializable;
  * <p>Course 考勤信息实体类  保存课程或活动的考勤信息
  * <p>Integer attendanceId 主键
  * <p>Student student 对应学生 student_id
- * <p>Integer activityId 活动名称
+ * <p>String activityName 活动名称
  * <p>String type 活动类型
  * <p>String attendanceTime 考勤时间
  * <p>String isAttended 是否考勤
@@ -41,5 +41,8 @@ public class AttendanceInfo implements Serializable {
 
     private String attendanceTime;
 
+    /**
+     * 已考勤、未考勤
+     */
     private String isAttended;
 }

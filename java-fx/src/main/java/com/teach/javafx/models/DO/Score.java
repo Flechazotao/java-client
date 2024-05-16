@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -15,6 +12,7 @@ import java.io.Serializable;
  * <p>Course course 关联课程 course_id 关联课程的主键 course_id
  * <p>Integer mark 成绩
  * <p>Integer ranking 排名
+ * <p>Boolean IsCal 是否计入学分绩点
  */
 @Getter
 @Setter
@@ -40,5 +38,4 @@ public class Score implements Serializable {
     private Integer ranking;
 
     private Boolean IsCal;
-
 }

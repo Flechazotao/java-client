@@ -1,5 +1,6 @@
 package com.teach.javafx.models.DO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,8 +40,12 @@ public class User implements Serializable {
     private String userName;
     private String password;
 
+    @JsonIgnore
     private Integer loginCount;
+    @JsonIgnore
     private String lastLoginTime;
+    @JsonIgnore
     private String  createTime;
+    @JsonIgnore
     private Integer creatorId;
 }

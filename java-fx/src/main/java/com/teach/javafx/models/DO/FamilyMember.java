@@ -17,6 +17,7 @@ import java.io.Serializable;
  * <p>String gender 性别
  * <p>String unit 工作单位
  * <p>String birthday 出生日期
+ * <p>String phone 联系电话
  */
 @Getter
 @Setter
