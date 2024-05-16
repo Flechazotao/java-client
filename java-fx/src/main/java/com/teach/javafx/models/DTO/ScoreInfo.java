@@ -38,11 +38,11 @@ public class ScoreInfo implements Serializable {
         scoreId=score.getScoreId();
         courseNumber=score.getCourse().getNumber();
         courseName=score.getCourse().getName();
-        credit= Double.valueOf(score.getCourse().getCredit());
+        credit= score.getCourse().getCredit();
         studentName=score.getStudent().getPerson().getName();
         studentNumber=score.getStudent().getStudentId();
-        mark= Double.valueOf(score.getMark());
-        markPoint= Double.valueOf(score.getMark())/10-5;
+        mark= score.getMark();
+        markPoint= score.getMark() /10-5;
         if(markPoint<0)markPoint=0.0;
         ranking=score.getRanking();
     }

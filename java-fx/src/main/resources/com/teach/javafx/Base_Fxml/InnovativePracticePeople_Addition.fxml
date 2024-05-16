@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.DailyActivityPeople_Change_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.InnovativePracticePeople_Addition_Controller">
     <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="237.0" text="修改活动人员" textFill="#4a3030" BorderPane.alignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="380.0" text="添加创新实践参与人员" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
@@ -92,24 +92,19 @@
     <bottom>
         <HBox prefHeight="82.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <Pane prefHeight="82.0" prefWidth="205.0" />
+                <Pane prefHeight="103.0" prefWidth="250.0" />
                 <Button fx:id="onConfirmation" mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Pane prefHeight="82.0" prefWidth="45.0" />
+                <Pane prefHeight="103.0" prefWidth="39.0" />
                 <Button fx:id="onCancel" mnemonicParsing="false" onAction="#onCancel" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="取消" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Pane prefHeight="82.0" prefWidth="43.0" />
-            <Button fx:id="onDelete" mnemonicParsing="false" onAction="#onDelete" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="删除" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
+                <Pane prefHeight="200.0" prefWidth="200.0" />
             </children>
         </HBox>
     </bottom>

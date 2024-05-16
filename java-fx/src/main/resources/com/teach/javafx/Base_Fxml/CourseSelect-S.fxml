@@ -69,7 +69,7 @@
                 <TableColumn fx:id="typeColumn" prefWidth="117.333251953125" style="-fx-font-size: 20px;" text="课程类型" />
                 <TableColumn fx:id="nowSelectNumberColumn" prefWidth="141.333251953125" style="-fx-font-size: 20px;" text="当前选课人数" />
                 <TableColumn fx:id="maxSelectedColumn" prefWidth="132.6666259765625" style="-fx-font-size: 20px;" text="选课学生名额" />
-            <TableColumn prefWidth="78.0" style="-fx-font-size: 20px;" text="操作" />
+                <TableColumn fx:id="workButton" prefWidth="78.0" style="-fx-font-size: 20px;" text="操作" />
             </columns>
         </TableView>
         <TextField layoutX="100.0" layoutY="660.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入课程名称或编号" />

@@ -60,7 +60,7 @@ public class CourseSelected_Controller extends manage_MainFrame_controller {
     private TableColumn<SelectedCourseInfoInfo, String> credit;
 
     @FXML
-    private TableColumn<SelectedCourseInfoInfo, String> location;
+    private TableColumn<SelectedCourseInfoInfo, String> locationColumn;
 
     @FXML
     private TableColumn<SelectedCourseInfoInfo, String> maxSelectedColumn;
@@ -101,7 +101,7 @@ public class CourseSelected_Controller extends manage_MainFrame_controller {
         teacherName.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
         courseBeginWeek.setCellValueFactory(new PropertyValueFactory<>("courseBeginWeek"));
         wayOfTest.setCellValueFactory(new PropertyValueFactory<>("wayOfTest"));
-        location.setCellValueFactory(new PropertyValueFactory<>("location"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("courseLocation"));
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
         nowSelectNumberColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfSelected"));
         maxSelectedColumn.setCellValueFactory(new PropertyValueFactory<>("MaxNumberOfSelected"));

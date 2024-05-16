@@ -82,7 +82,7 @@
                 <TableColumn fx:id="teacherName" prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
                 <TableColumn fx:id="courseBeginWeek" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程周期" />
                 <TableColumn fx:id="wayOfTest" prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
-                <TableColumn fx:id="location" prefWidth="169.33343505859375" style="-fx-font-size: 20px;" text="上课地点" />
+                <TableColumn fx:id="locationColumn" prefWidth="169.33343505859375" style="-fx-font-size: 20px;" text="上课地点" />
                 <TableColumn fx:id="type" prefWidth="106.0" style="-fx-font-size: 20px;" text="课程类型" />
             <TableColumn fx:id="nowSelectNumberColumn" prefWidth="130.6666259765625" style="-fx-font-size: 20px;" text="当前选课人数" />
             <TableColumn fx:id="maxSelectedColumn" prefWidth="128.6666259765625" style="-fx-font-size: 20px;" text="选课学生名额" />

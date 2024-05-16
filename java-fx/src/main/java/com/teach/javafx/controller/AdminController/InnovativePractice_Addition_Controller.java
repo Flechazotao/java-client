@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -7,11 +8,14 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class InnovativePractice_Addition_Controller {
@@ -26,8 +30,7 @@ public class InnovativePractice_Addition_Controller {
     private DatePicker beginTime;
     @FXML
     private DatePicker endTime;
-    @FXML
-    private TextField studentField;
+
     @FXML
     private TextField typeField;
     @FXML
@@ -75,4 +78,17 @@ public class InnovativePractice_Addition_Controller {
         return ip;
     }
 
+    public void onAdd(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePracticePeople_Addition.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 677);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("添加创新实践参与人员");
+        stage.show();
+    }
 }

@@ -63,19 +63,18 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <Label prefHeight="24.0" prefWidth="76.0" text="获奖情况" textFill="#4a3030" GridPane.rowIndex="6">
+                        <Label prefHeight="24.0" prefWidth="76.0" text="获奖情况" textFill="#4a3030" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <Label prefHeight="24.0" prefWidth="76.0" text="参与成员" textFill="#4a3030" GridPane.rowIndex="5">
+                        <Label prefHeight="24.0" prefWidth="76.0" text="参与成员" textFill="#4a3030" GridPane.rowIndex="6">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
                         <TextField fx:id="teacherNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="studentField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField fx:id="achievementField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="achievementField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label prefHeight="24.0" prefWidth="74.0" text="结束时间" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -83,6 +82,11 @@
                         </Label>
                         <DatePicker fx:id="endTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <DatePicker fx:id="beginTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="onChangePeople" mnemonicParsing="false" onAction="#onChangePeople" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: #4a3030;" text="修改人员" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Button>
                     </children>
                 </GridPane>
             </children>

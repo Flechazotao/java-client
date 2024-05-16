@@ -37,7 +37,7 @@ public class SelectedCourseInfoInfo extends Course implements Serializable {
     /**
      * 上课地点
      */
-    private String location;
+    private String courseLocation;
     /**
      * 课程类型 必修，选修，通选，限选，任选
      */
@@ -54,11 +54,11 @@ public class SelectedCourseInfoInfo extends Course implements Serializable {
         number=selectedCourseInfo.getCourse().getNumber();
         name=selectedCourseInfo.getCourse().getName();
         credit=selectedCourseInfo.getCourse().getCredit();
-        courseTime=selectedCourseInfo.getCourse().getWayOfTest();
+        courseTime=selectedCourseInfo.getCourse().getCourseTime();
         teacherName=selectedCourseInfo.getCourse().getTeacherName();
         courseBeginWeek=selectedCourseInfo.getCourse().getCourseBeginWeek();
         wayOfTest=selectedCourseInfo.getCourse().getWayOfTest();
-        location=selectedCourseInfo.getCourse().getLocation();
+        courseLocation=selectedCourseInfo.getCourse().getLocation();
         type=selectedCourseInfo.getCourse().getType();
         numberOfSelected=selectedCourseInfo.getCourse().getCourseId();
         MaxNumberOfSelected=selectedCourseInfo.getCourse().getCourseId();

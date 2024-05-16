@@ -89,7 +89,7 @@ public class DailyActivity_Addition_Controller {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("修改参与人员");
+        stage.setTitle("添加参与人员");
         stage.show();
     }
 }

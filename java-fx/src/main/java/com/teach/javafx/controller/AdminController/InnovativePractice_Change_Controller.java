@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -7,6 +8,8 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -14,6 +17,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class InnovativePractice_Change_Controller {
@@ -25,8 +29,6 @@ public class InnovativePractice_Change_Controller {
     public DatePicker beginTime;
     @FXML
     public DatePicker endTime;
-    @FXML
-    public TextField studentField;
     @FXML
     public TextField teacherNameField;
     @FXML
@@ -49,7 +51,6 @@ public class InnovativePractice_Change_Controller {
         activityNameField.setText(innovativePractice.getActivityName());
         beginTime.setValue(LocalDate.parse(innovativePractice.getBeginTime()));
         endTime.setValue(LocalDate.parse(innovativePractice.getEndTime()));
-        studentField.setText("");
         teacherNameField.setText(innovativePractice.getTeacherName());
         typeField.setText(innovativePractice.getType());
         achievementField.setText(innovativePractice.getAchievement());
@@ -93,5 +94,19 @@ public class InnovativePractice_Change_Controller {
         ip.setTeacherName(teacherNameField.getText());
         ip.setType(typeField.getText());
         ip.setAchievement(achievementField.getText());
+    }
+
+    public void onChangePeople(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePracticePeople_Change.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 677);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("添加创新实践参与人员");
+        stage.show();
     }
 }

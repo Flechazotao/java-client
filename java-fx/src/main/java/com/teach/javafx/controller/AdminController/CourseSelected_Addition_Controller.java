@@ -80,7 +80,8 @@ public class CourseSelected_Addition_Controller {
             MessageDialog.showDialog("添加成功!!!");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
-        };
+        }
+        CourseSelected_Controller.updateDataTableView();
     }
 
     public void onCancel(ActionEvent actionEvent) {

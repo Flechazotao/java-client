@@ -1,5 +1,8 @@
 package com.teach.javafx.controller.StudentController;
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.AppStore;
+import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.base.CourseSelectedS_Controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.models.DO.Course;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -9,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,9 +95,18 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void inSelectingCourse(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseSelect-S.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+            AppStore.setMainFrameController((CourseSelectedS_Controller) fxmlLoader.getController());
+            MainApplication.resetStage("教学管理系统", scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     public void onInquire(ActionEvent actionEvent) {
+
     }
 }
