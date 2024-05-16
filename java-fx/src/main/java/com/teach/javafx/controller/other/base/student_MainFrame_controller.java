@@ -27,11 +27,6 @@ public class student_MainFrame_controller {
         }
     }
 
-    public void onInquire(ActionEvent actionEvent) {
-
-    }
-
-
     public void onExit(ActionEvent actionEvent) {
         int ret = MessageDialog.choiceDialog("请确认是否退出系统?");
         if(ret == MessageDialog.CHOICE_YES) {

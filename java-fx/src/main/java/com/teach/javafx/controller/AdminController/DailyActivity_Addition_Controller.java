@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.DailyActivity;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -7,11 +8,14 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class DailyActivity_Addition_Controller {
@@ -23,9 +27,6 @@ public class DailyActivity_Addition_Controller {
 
     @FXML
     private Button onCancel;
-
-    @FXML
-    private TextField studentField;
 
     @FXML
     private TextField locationField;
@@ -78,4 +79,17 @@ public class DailyActivity_Addition_Controller {
         return daily;
     }
 
+    public void onAdd(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/DailyActivityPeople_Addition.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 677);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("修改参与人员");
+        stage.show();
+    }
 }

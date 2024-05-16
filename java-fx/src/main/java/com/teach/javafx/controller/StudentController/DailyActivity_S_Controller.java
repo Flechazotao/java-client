@@ -1,12 +1,14 @@
 package com.teach.javafx.controller.StudentController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
+import com.teach.javafx.controller.other.likeUseless.LoginController;
 import com.teach.javafx.models.DO.DailyActivity;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -39,12 +41,6 @@ public class DailyActivity_S_Controller extends student_MainFrame_controller{
 
     @FXML
     private TableColumn<DailyActivity, String> nameColumn;
-
-    @FXML
-    private Button onHonor;
-
-    @FXML
-    private Button onInnovativePractice;
 
     @FXML
     private Button onInquire;
@@ -83,9 +79,15 @@ public class DailyActivity_S_Controller extends student_MainFrame_controller{
         setDataTableView(dailyActivityList);
     }
 
-    public void onInquire(){
+    public void onInquire(ActionEvent actionEvent) {
 
+        String query = InquireField.getText();
+        DataRequest req = new DataRequest();
+        req.add("type", query);
+        req.add("id", LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findByStudentIdAndType", req);
+        dailyActivityList = JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
+        setDataTableView(dailyActivityList);
 
     }
-
 }
