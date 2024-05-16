@@ -20,7 +20,7 @@ public class SelectedCourseInfoInfo extends Course implements Serializable {
     private Integer courseId;
     private String number;
     private String name;
-    private String credit;
+    private Double credit;
     /**
      * 课程时间
      * <p>xx:xx-xx:xx</p>

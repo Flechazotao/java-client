@@ -83,7 +83,7 @@ public class Score_Addition_Controller {
         score.setStudent(s);
         Course c=new Course();
         c.setName(courseNameField.getText());
-        c.setCredit(creditField.getText());
+        c.setCredit(Double.valueOf(creditField.getText()));
         c.setNumber(courseNumberField.getText());
         score.setCourse(c);
         score.setMark(markField.getText().isEmpty()?0.0:Double.parseDouble(markField.getText()));

@@ -51,7 +51,7 @@ public class Score_Change_Controller {
 
         courseNumberField.setText(score.getCourse().getNumber());
         courseNameField.setText(score.getCourse().getName());
-        creditField.setText(score.getCourse().getCredit());
+        creditField.setText(String.valueOf(score.getCourse().getCredit()));
         studentNameField.setText(score.getStudent().getPerson().getName());
         studentNumberField.setText(String.valueOf(score.getStudent().getStudentId()));
         markField.setText(String.valueOf(score.getMark()));
@@ -101,7 +101,7 @@ public class Score_Change_Controller {
         person.setName(studentNameField.getText());
         Course c=score.getCourse();
         c.setName(courseNameField.getText());
-        c.setCredit(creditField.getText());
+        c.setCredit(Double.valueOf(creditField.getText()));
         c.setNumber(courseNumberField.getText());
         score.setMark(Double.valueOf(markField.getText()));
         score.setRanking(Integer.valueOf(rankingField.getText()));

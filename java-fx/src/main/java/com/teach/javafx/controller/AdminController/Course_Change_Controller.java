@@ -54,7 +54,7 @@ public class Course_Change_Controller {
         course = CourseManageController.getCourseList().get(index);
         courseNumberField.setText(course.getNumber());
         courseNameField.setText(course.getName());
-        creditField.setText(course.getCredit());
+        creditField.setText(String.valueOf(course.getCredit()));
         teacherNameField.setText(course.getTeacherName());
         courseWeekField.setText(course.getCourseBeginWeek());
         courseTimeField.setText(course.getCourseTime());
@@ -96,7 +96,7 @@ public class Course_Change_Controller {
     private void setCourse(Course course) {
         course.setNumber(courseNumberField.getText());
         course.setName(courseNameField.getText());
-        course.setCredit(creditField.getText());
+        course.setCredit(Double.valueOf(creditField.getText()));
         course.setTeacherName(teacherNameField.getText());
         course.setCourseBeginWeek(courseWeekField.getText());
         course.setCourseTime(courseTimeField.getText());
