@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.Fee_Change_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.Homework_Addition_Controller">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="237.0" text="添加作业信息" textFill="#4a3030" BorderPane.alignment="CENTER">
             <font>
@@ -42,7 +32,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="feeTypeField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
+                        <TextField fx:id="courseNumberField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="课程编号" textFill="#4a3030">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -53,7 +43,7 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="NameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="courseNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="作业名称" textFill="#4a3030" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -69,16 +59,16 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="studentidField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="moneyField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="homeworkNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="studentNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="submitStatusField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label prefHeight="24.0" prefWidth="40.0" text="学号" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label prefHeight="24.0" prefWidth="75.0" text="批改时间" textFill="#4a3030" GridPane.rowIndex="6">
+                        <TextField fx:id="studentNumberField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label prefHeight="24.0" prefWidth="75.0" text="提交时间" textFill="#4a3030" GridPane.rowIndex="6">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
@@ -88,8 +78,8 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="homeworkScoreField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <DatePicker fx:id="submitTimePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                     </children>
                 </GridPane>
             </children>
@@ -121,7 +111,7 @@
         <HBox prefHeight="82.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
+                <Button fx:id="onConfirmation" mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.base.HomeworkController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.Homework_Manage_Controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
@@ -86,8 +86,8 @@
                 <TableColumn fx:id="checkTimeColumn" prefWidth="134.6666259765625" style="-fx-font-size: 15;" text="批改时间" />
                 <TableColumn fx:id="fileColumn" prefWidth="83.3333740234375" style="-fx-font-size: 15;" text="作业文件" />
                 <TableColumn fx:id="homeworkScoreColumn" prefWidth="94.6666259765625" style="-fx-font-size: 15;" text="作业成绩" />
-            <TableColumn fx:id="homeworkScoreColumn1" prefWidth="74.666748046875" style="-fx-font-size: 15;" text="修改" />
-            <TableColumn fx:id="homeworkScoreColumn11" prefWidth="83.9998779296875" style="-fx-font-size: 15;" text="删除" />
+            <TableColumn fx:id="changeColumn" prefWidth="74.666748046875" style="-fx-font-size: 15;" text="修改" />
+            <TableColumn fx:id="deleteColumn" prefWidth="83.9998779296875" style="-fx-font-size: 15;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
