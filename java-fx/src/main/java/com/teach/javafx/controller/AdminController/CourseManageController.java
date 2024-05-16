@@ -146,9 +146,6 @@ public class CourseManageController extends manage_MainFrame_controller {
         stage.show();
     }
 }
-
-
-
 class CM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
     private final String property;
     public CM_ButtonCellFactory(@NamedArg("property") String var1) {

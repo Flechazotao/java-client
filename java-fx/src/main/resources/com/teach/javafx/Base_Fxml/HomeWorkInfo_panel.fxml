@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.base.HomeworkController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.base.HomeWorkInfo_Controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
@@ -63,7 +56,7 @@
                 </MenuButton>
             </children>
         </HBox>
-        <Label layoutX="100.0" layoutY="262.0" text="学习信息管理&lt;&lt;作业信息" textFill="#667fe2f0">
+        <Label layoutX="100.0" layoutY="262.0" prefHeight="42.0" prefWidth="551.0" text="学习信息管理&lt;&lt;作业信息&lt;&lt;作业中心" textFill="#667fe2f0">
             <font>
                 <Font name="System Bold Italic" size="32.0" />
             </font>
@@ -86,26 +79,26 @@
                 <TableColumn fx:id="checkTimeColumn" prefWidth="134.6666259765625" style="-fx-font-size: 15;" text="批改时间" />
                 <TableColumn fx:id="fileColumn" prefWidth="83.3333740234375" style="-fx-font-size: 15;" text="作业文件" />
                 <TableColumn fx:id="homeworkScoreColumn" prefWidth="94.6666259765625" style="-fx-font-size: 15;" text="作业成绩" />
-            <TableColumn fx:id="homeworkScoreColumn1" prefWidth="74.666748046875" style="-fx-font-size: 15;" text="修改" />
-            <TableColumn fx:id="homeworkScoreColumn11" prefWidth="83.9998779296875" style="-fx-font-size: 15;" text="删除" />
+                <TableColumn fx:id="homeworkScoreColumn1" prefWidth="74.666748046875" style="-fx-font-size: 15;" text="修改" />
+                <TableColumn fx:id="homeworkScoreColumn11" prefWidth="83.9998779296875" style="-fx-font-size: 15;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-      <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
-         <items>
-             <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
-             <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
-         </items>
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </MenuButton>
-      <Button fx:id="onAdd" layoutX="397.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="inHomeworkCenter" layoutX="469.0" layoutY="333.0" mnemonicParsing="false" onAction="#inHomeworkCenter" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: peachpuff;" text="进入作业中心">
+        <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
+            <items>
+                <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
+                <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
+            </items>
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+        </MenuButton>
+        <Button fx:id="onAdd" layoutX="397.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+      <Button fx:id="onReturn" layoutX="469.0" layoutY="333.0" mnemonicParsing="false" onAction="#onReturn" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: peachpuff;" text="返回作业信息">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

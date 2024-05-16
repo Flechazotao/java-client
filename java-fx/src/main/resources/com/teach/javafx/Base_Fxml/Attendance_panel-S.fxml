@@ -63,7 +63,7 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1262.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1092.0">
             <columns>
                 <TableColumn fx:id="activityNameColumn" prefWidth="246.66665649414062" style="-fx-font-size: 20px;" text="活动名称" />
                 <TableColumn fx:id="typeColumn" prefWidth="115.33331298828125" style="-fx-font-size: 20px;" text="活动类型" />
@@ -71,8 +71,6 @@
                 <TableColumn fx:id="studentColumn" prefWidth="118.66668701171875" style="-fx-font-size: 20px;" text="学生" />
                 <TableColumn fx:id="studentIdColumn" prefWidth="289.333251953125" style="-fx-font-size: 20px;" text="学号" />
                 <TableColumn fx:id="isAttendedColumn" prefWidth="87.3333740234375" style="-fx-font-size: 20px;" text="是否考勤" />
-                <TableColumn fx:id="studentIdColumn1" prefWidth="87.9998779296875" style="-fx-font-size: 20px;" text="修改" />
-                <TableColumn fx:id="studentIdColumn11" prefWidth="83.333251953125" style="-fx-font-size: 20px;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
@@ -85,10 +83,5 @@
                 <Font name="System Bold Italic" size="14.0" />
             </font>
         </MenuButton>
-        <Button fx:id="onInquire1" layoutX="396.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="添加">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
     </children>
 </AnchorPane>

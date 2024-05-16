@@ -22,7 +22,14 @@ public class HomeworkController extends manage_MainFrame_controller {
 
     public Button onInquire;
     public TextField InquireField;
+    
 
     public void onInquire(ActionEvent actionEvent) {
+    }
+
+    public void inHomeworkCenter(ActionEvent actionEvent) {
+    }
+
+    public void onAdd(ActionEvent actionEvent) {
     }
 }
