@@ -40,7 +40,8 @@ public class HonorInfoInfo implements Serializable {
 
     public HonorInfoInfo(HonorInfo honorInfo){
         honorId=honorInfo.getHonorId();
-        studentName=honorInfo.getHonorName();
+        honorName=honorInfo.getHonorName();
+        studentName=honorInfo.getStudent().getPerson().getName();
         studentId=honorInfo.getStudent().getStudentId();
         type=honorInfo.getType();
         level=honorInfo.getLevel();
