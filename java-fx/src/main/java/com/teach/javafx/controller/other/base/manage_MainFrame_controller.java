@@ -107,7 +107,7 @@ public class manage_MainFrame_controller {
 
     @FXML
     void onHomework() {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeWork_panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Homework_panel.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
             AppStore.setMainFrameController((Homework_Manage_Controller) fxmlLoader.getController());

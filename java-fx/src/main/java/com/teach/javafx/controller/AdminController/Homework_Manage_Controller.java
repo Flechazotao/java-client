@@ -1,49 +1,212 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.AppStore;
+import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.models.DO.Homework;
+import com.teach.javafx.models.DTO.DataRequest;
+import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.HomeworkView;
+import com.teach.javafx.request.HttpRequestUtil;
+import javafx.beans.NamedArg;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import lombok.Getter;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Homework_Manage_Controller extends manage_MainFrame_controller {
     @FXML
-    public TableView<Homework> dataTableView;
+    public TableView<HomeworkView> dataTableView;
     @FXML
-    public TableColumn<Homework,String> courseNumberColumn;
+    public TableColumn<HomeworkView,String> courseNumberColumn;
     @FXML
-    public TableColumn<Homework,String> courseNameColumn;
+    public TableColumn<HomeworkView,String> courseNameColumn;
     @FXML
-    public TableColumn<Homework,String> homeworkNameColumn;
+    public TableColumn<HomeworkView,String> homeworkNameColumn;
     @FXML
-    public TableColumn<Homework,String> studentIdColumn;
+    public TableColumn<HomeworkView,String> studentIdColumn;
     @FXML
-    public TableColumn<Homework,String> studentNameColumn;
+    public TableColumn<HomeworkView,String> studentNameColumn;
     @FXML
-    public TableColumn<Homework,String> isSubmitColumn;
+    public TableColumn<HomeworkView,String> isSubmitColumn;
     @FXML
-    public TableColumn<Homework,String> submitTimeColumn;
+    public TableColumn<HomeworkView,String> submitTimeColumn;
     @FXML
-    public TableColumn<Homework,String> isCheckedColumn;
+    public TableColumn<HomeworkView,String> isCheckedColumn;
     @FXML
-    public TableColumn<Homework,String> checkTimeColumn;
+    public TableColumn<HomeworkView,String> checkTimeColumn;
     @FXML
-    public TableColumn<Homework,String> fileColumn;
+    public TableColumn<HomeworkView,String> fileColumn;
     @FXML
-    public TableColumn<Homework,String> homeworkScoreColumn;
+    public TableColumn<HomeworkView,String> homeworkScoreColumn;
     @FXML
-    public TableColumn<Homework,String> changeColumn;
+    public TableColumn<HomeworkView,String> changeColumn;
     @FXML
-    public TableColumn<Homework,String> deleteColumn;
+    public TableColumn<HomeworkView,String> deleteColumn;
 
     @FXML
     public Button onInquire;
     @FXML
     public TextField InquireField;
+    @FXML
+    public Button inHomeworkCenter;
+    @FXML
+    public Button onAdd;
 
-    public void onInquire(ActionEvent actionEvent) {
+    public void inHomeworkCenter(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkInfo_panel.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+            AppStore.setMainFrameController((HomeworkInfo_Manage_Controller) fxmlLoader.getController());
+            MainApplication.resetStage("选课信息中心", scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void onInquire(ActionEvent event){
+        String query=InquireField.getText();
+        DataRequest req=new DataRequest();
+        req.add("id",query);
+        DataResponse res= HttpRequestUtil.request("/api/homework/findByStudent",req);
+        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
+        setDataTableView(homeworkList);
+    }
+
+    @Getter
+    private static List<Homework> homeworkList = new ArrayList<>();
+
+    private static ObservableList<HomeworkView> observableList= FXCollections.observableArrayList();
+
+    public static void setDataTableView(List<Homework> list){
+        homeworkList=list;
+        observableList.clear();
+        for(Homework homework:homeworkList){
+            observableList.addAll(FXCollections.observableArrayList(new HomeworkView(homework)));
+        }
+    }
+
+    public static void updateDataTableView(){
+        DataResponse res = HttpRequestUtil.request("/api/homework/findAll",new DataRequest());
+        setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),Homework.class));
+    }
+
+    public void initialize() {
+        dataTableView.setItems(observableList);
+        DataResponse res = HttpRequestUtil.request("/api/homework/findAll",new DataRequest());
+        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
+
+        courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("courseNumber"));
+        courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        homeworkNameColumn.setCellValueFactory(new PropertyValueFactory<>("homeworkName"));
+        studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        isSubmitColumn.setCellValueFactory(new PropertyValueFactory<>("isSubmit"));
+        submitTimeColumn.setCellValueFactory(new PropertyValueFactory<>("submitTime"));
+        isCheckedColumn.setCellValueFactory(new PropertyValueFactory<>("isChecked"));
+        checkTimeColumn.setCellValueFactory(new PropertyValueFactory<>("checkTime"));
+        homeworkScoreColumn.setCellValueFactory(new PropertyValueFactory<>("homeworkScore"));
+        fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
+        changeColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("修改"));
+        deleteColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("删除"));
+
+        TableView.TableViewSelectionModel<HomeworkView> tsm = dataTableView.getSelectionModel();
+        ObservableList<Integer> list = tsm.getSelectedIndices();
+        setDataTableView(homeworkList);
+    }
+
+    @FXML
+    void onAdd(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkAddition.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 677);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("添加作业信息");
+        stage.show();
+    }
+
+}
+
+
+
+class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
+    private final String property;
+    public HomeworkM_ButtonCellFactory(@NamedArg("property") String var1) {
+        this.property = var1;
+    }
+    @Override
+    public TableCell<S, T> call(TableColumn<S, T> param) {
+        return new TableCell<S, T>() {
+            private Button button = new Button(property);
+            {
+                button.setOnAction(event -> {
+
+                    FXMLLoader fxmlLoader = null;
+
+                    if (Objects.equals(property, "修改")){
+                        Homework_Change_Controller.setIndex(getIndex());
+                        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkChange.fxml"));
+                        Scene scene;
+                        try {
+                            scene = new Scene(fxmlLoader.load(), 600, 677);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.setTitle("修改作业信息");
+                        stage.show();
+                    }
+                    else if (Objects.equals(property, "删除")) {
+                        int ret = MessageDialog.choiceDialog("确认要删除吗?");
+                        if(ret != MessageDialog.CHOICE_YES) {
+                            return;
+                        }
+                        Integer homeworkId= Homework_Manage_Controller.getHomeworkList().get(getIndex()).getHomeworkId();
+                        DataRequest req=new DataRequest();
+                        req.add("id",homeworkId);
+                        DataResponse response=HttpRequestUtil.request("/api/homework/deleteById",req);
+
+                        if (response.getCode()==401){
+                            MessageDialog.showDialog("信息不完整!");
+                        }
+                        else {
+                            MessageDialog.showDialog("删除成功!");
+                            Homework_Manage_Controller.updateDataTableView();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(button);
+                }
+            }
+        };
     }
 }
