@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * <p>InnovativePractice 创新实践信息类
  * <p>Integer innovativeId 主键id
- * <p>Student student 对应的学生
+ * <p>String studentName 学生们的姓名
  * <p>String activityName 活动名称
  * <p>String teacherName 指导老师的姓名
  * <p>String achievement 成果
@@ -30,9 +30,8 @@ public class InnovativePractice implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer innovativeId;
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+
+    private String studentName;
 
     private String activityName;
 

@@ -11,7 +11,6 @@ import java.io.Serializable;
 /**
  * <p>HomeworkInfo 作业信息实体类 用来记录作业的要求和对应的课程
  * <p>Integer homeworkInfoId 主键id
- * <p>Integer homeworkInfoId 主键id
  * <p>Course course 对应的课程
  * <p>String demand 作业要求
  * <p>String name 作业名称
@@ -40,5 +39,6 @@ public class HomeworkInfo implements Serializable {
     private String time;
 
     private String file;
+
 
 }

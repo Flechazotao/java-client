@@ -3,6 +3,7 @@ package com.teach.javafx.controller.AdminController;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.DailyActivity;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
@@ -17,25 +18,37 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DailyActivity_Addition_Controller {
+
     @FXML
     private TextField activityNameField;
-
     @FXML
     private DatePicker endTime;
-
-    @FXML
-    private Button onCancel;
-
-    @FXML
-    private TextField locationField;
-
     @FXML
     private DatePicker beginTime;
-
+    @FXML
+    private Button onCancel;
+    @FXML
+    private TextField locationField;
     @FXML
     private TextField activityTypeField;
+
+    public static List<Student> addedStudents;
+
+    public void initialize(){
+        addedStudents=new ArrayList<>();
+    }
+
+    public static String getStudentName(){
+        String names="";
+        for(Student student:addedStudents){
+            names=names+student.getPerson().getName()+" ";
+        }
+        return names;
+    }
 
     @FXML
     public void onCancel(ActionEvent actionEvent) {
@@ -54,6 +67,7 @@ public class DailyActivity_Addition_Controller {
         DailyActivity daily=getDailyActivity();
         DataRequest req=new DataRequest();
         req.add("dailyActivity",daily);
+        req.add("students",addedStudents);
         DataResponse res = HttpRequestUtil.request("/api/dailyActivity/add",req);
         if(res.getCode()==401) {
             MessageDialog.showDialog("该项目已存在！");
@@ -74,12 +88,13 @@ public class DailyActivity_Addition_Controller {
         daily.setActivityType(activityTypeField.getText());
         daily.setBeginTime(beginTime.getValue()==null ? LocalDate.now().toString() : beginTime.getValue().toString());
         daily.setEndTime(endTime.getValue()==null ? LocalDate.now().toString() : endTime.getValue().toString());
-        daily.setStudent(null);
+        daily.setStudentName(getStudentName());
         daily.setLocation(locationField.getText());
         return daily;
     }
 
     public void onAdd(ActionEvent actionEvent) {
+        DailyActivityPeople_Addition_Controller.setAddedStudents(addedStudents);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/DailyActivityPeople_Addition.fxml"));
         Scene scene;
         try {

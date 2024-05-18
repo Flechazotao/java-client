@@ -90,7 +90,7 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("activityName"));
         beginTimeColumn.setCellValueFactory(new PropertyValueFactory<>("beginTime"));
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        studentColumn.setCellValueFactory(new PropertyValueFactory<>("student"));
+        studentColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         changeCol.setCellFactory(new DA_ButtonCellFactory<>("修改"));
         deleteCol.setCellFactory(new DA_ButtonCellFactory<>("删除"));

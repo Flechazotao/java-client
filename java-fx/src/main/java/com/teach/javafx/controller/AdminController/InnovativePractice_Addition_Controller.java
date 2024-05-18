@@ -72,7 +72,7 @@ public class InnovativePractice_Addition_Controller {
         ip.setBeginTime(beginTime.getValue()==null ? LocalDate.now().toString() : beginTime.getValue().toString());
         ip.setEndTime(endTime.getValue()==null ? LocalDate.now().toString() : endTime.getValue().toString());
         ip.setTeacherName(teacherField.getText());
-        ip.setStudent(null);
+//        ip.setStudent(null);
         ip.setAchievement(achievementField.getText());
         ip.setFile("");
         return ip;

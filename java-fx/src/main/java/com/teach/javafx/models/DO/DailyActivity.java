@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * <p>DailyActivity 日常活动类
  * <p>Integer activityId 主键id
- * <p>Student student 对应学生
+ * <p>String studentName 学生们的姓名
  * <p>String beginTime 活动开始时间
  * <p>String endTime 活动结束时间
  * <p>String activityType 活动类型
@@ -30,9 +30,7 @@ public class DailyActivity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer activityId;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private String studentName;
 
     private String beginTime;
 
