@@ -48,6 +48,7 @@ public class LoginController {
      */
     @FXML
     public void initialize() {
+//        数据库:C:/Users\17991/Desktop/java shared code/java-course-program/data.db
 //        usernameField.setText("2022030001");
 //        usernameField.setText("200799013517");
         usernameField.setText("admin");

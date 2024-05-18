@@ -359,8 +359,9 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
     }
 
 
+    public void onSave(ActionEvent actionEvent) {
 
-
+    }
 }
 class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
     private String property;
@@ -385,10 +386,18 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         rowIndex=index[0];
                         columnIndex=index[1];
                         Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
+                        button1.setStyle(
+                                "-fx-background-radius:20;"+//设置背景圆角
+                                        "-fx-background-color:#FFA07A;"+//设置背景颜色
+                                        "-fx-text-fill:#4a2107;"+        //设置字体颜色
+                                        "-fx-font-weight:bold;"+         //设置字体粗细
+                                        "-fx-font-size:16;"+             //设置字体颜色
+                                        "-fx-border-radius:10;"          //设置边框圆角
+                        );
                         button1.setText(selectedCourseInfo.getCourse().getName());
                         CourseSelectedS_Controller.getSelectedCourseView()[rowIndex][columnIndex]=selectedCourseInfo;
                         button1.setOnAction((ActionEvent event1) -> {
-                            MessageDialog.showDialog(selectedCourseInfo.getCourse().getName()+"\n"+selectedCourseInfo.getCourse().getTeacherName()+"\n"+selectedCourseInfo.getCourse().getLocation()+"\n"+selectedCourseInfo.getCourse().getCredit());
+                            MessageDialog.showDialog("课程名称: "+selectedCourseInfo.getCourse().getName()+"\n"+"授课教师: "+selectedCourseInfo.getCourse().getTeacherName()+"\n"+"上课地点: "+selectedCourseInfo.getCourse().getLocation()+"\n"+"学分: "+selectedCourseInfo.getCourse().getCredit());
                         });
                         button.setText("退课");
                         property="退课";
@@ -402,6 +411,9 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         rowIndex=index[0];
                         columnIndex=index[1];
                         Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
+                        button1.setStyle(
+                                "-fx-background-color: peachpuff;"
+                        );
                         button1.setText("");
                         button1.setOnAction(null);
                         button.setText("选课");

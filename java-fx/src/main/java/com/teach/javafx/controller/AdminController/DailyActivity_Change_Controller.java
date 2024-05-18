@@ -88,12 +88,10 @@ public class DailyActivity_Change_Controller {
         for(DailyActivityStudent dailyActivityStudent:dailyActivityStudents){
             addedStudents.add(dailyActivityStudent.getStudent());
         }
-
-
     }
 
     public void onConfirmation(ActionEvent actionEvent) {
-        if( activityNameField.getText().equals("")) {
+        if( activityNameField.getText()==null) {
             MessageDialog.showDialog("项目名称不能为空");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();

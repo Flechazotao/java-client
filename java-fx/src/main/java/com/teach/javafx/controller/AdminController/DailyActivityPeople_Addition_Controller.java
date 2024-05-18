@@ -16,7 +16,6 @@ import java.util.List;
 
 public class DailyActivityPeople_Addition_Controller {
 
-
     @FXML
     public Button onConfirmation;
     @FXML
