@@ -147,8 +147,8 @@ class SoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCe
                             return;
                         }
 
-                        List<FamilyMember> familyMemberList = Family_Manage_Controller.getFamilyMemberList();
-                        Integer memberid=familyMemberList.get(getIndex()).getMemberId();
+                        List<SocietyMember> societyMemberList = SocietyMember_Controller.getSocietyMemberList();
+                        Integer memberid=societyMemberList.get(getIndex()).getSocietyId();
                         DataRequest request=new DataRequest();
                         request.add("id",memberid);
                         DataResponse response= HttpRequestUtil.request("/api/societyMember/deleteById",request);
@@ -158,7 +158,7 @@ class SoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCe
                         }
                         else {
                             MessageDialog.showDialog("删除成功!");
-                            Family_Manage_Controller.updateDataTableView();
+                            SocietyMember_Controller.updateDataTableView();
                         }
                     }
                 });
