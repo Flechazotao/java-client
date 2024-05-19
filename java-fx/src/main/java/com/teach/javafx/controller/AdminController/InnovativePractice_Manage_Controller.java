@@ -84,7 +84,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
         beginTimeColumn.setCellValueFactory(new PropertyValueFactory<>("beginTime"));
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         teacherNameColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
-        studentColumn.setCellValueFactory(new PropertyValueFactory<>("student"));
+        studentColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         achievementColumn.setCellValueFactory(new PropertyValueFactory<>("achievement"));
         fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
         changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("修改"));
@@ -95,19 +95,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
         setDataTableView(innovativePracticeList);
     }
 
-    protected void changeStudentInfo() {
-        InnovativePractice innovativePractice = dataTableView.getSelectionModel().getSelectedItem();
-        if(innovativePractice == null) {
-            clearPanel();
-            return;
-        }
-    }
-
-    public void clearPanel(){
-        innovativePracticeList.clear();
-    }
-
-
+    @FXML
     public void onAdd() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePractice_Addition.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 677);
