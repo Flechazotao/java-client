@@ -9,6 +9,7 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,9 +18,9 @@ import java.time.LocalDate;
 public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controller {
 
     @FXML
-    public TextField courseNumberField;
+    public ComboBox<String> courseNumberField;
     @FXML
-    public TextField courseNameField;
+    public ComboBox<String> courseNameField;
     @FXML
     public TextField homeworkNameField;
     @FXML
@@ -38,7 +39,7 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
 
     @FXML
     public void onConfirmation(ActionEvent actionEvent) {
-        if(courseNumberField.getText().equals("")) {
+        if(courseNumberField.getValue().equals("")) {
             MessageDialog.showDialog("课程号为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
@@ -69,9 +70,15 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
         HomeworkInfo homeworkInfo=new HomeworkInfo();
         Course course=new Course();
         homeworkInfo.setName(homeworkNameField.getText());
-        course.setNumber(courseNumberField.getText());
-        course.setName(courseNameField.getText());
+        course.setNumber(courseNumberField.getValue());
+        course.setName(courseNameField.getValue());
         homeworkInfo.setCourse(course);
         return homeworkInfo;
+    }
+
+    public void courseNumberField(ActionEvent actionEvent) {
+    }
+
+    public void courseNameField(ActionEvent actionEvent) {
     }
 }

@@ -4,9 +4,11 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
+import com.teach.javafx.models.DO.Score;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.ScoreInfo;
 import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;
@@ -52,6 +54,9 @@ public class StudentManageController extends manage_MainFrame_controller {
     private TableColumn<StudentInfo, Long> numberColumn;
 
     @FXML
+    private TableColumn<StudentInfo, Long> GPAColumn;
+
+    @FXML
     private TableColumn<StudentInfo, Integer> BeforeUniversityInfoColumn;
 
     @FXML
@@ -92,14 +97,25 @@ public class StudentManageController extends manage_MainFrame_controller {
 
     public void initialize() {
         dataTableView.setItems(observableList);
+
+        for (Student s:studentList) {
+            DataRequest req = new DataRequest();
+            req.add("id", s.getStudentId());
+            DataResponse res=HttpRequestUtil.request("/api/score/getGradePointsByStudentId",req);
+            s.setGPA(String.valueOf(JSON.parseObject(JSON.toJSONString(res.getData()),double.class)));
+        }
+
         DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
         studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+
+
 
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         deptColumn.setCellValueFactory(new PropertyValueFactory<>("dept"));
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
+        GPAColumn.setCellValueFactory(new PropertyValueFactory<>("GPA"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         BeforeUniversityInfoColumn.setCellFactory(new SM_ButtonCellFactory<>("查看入学前信息"));
         FamilyInformationColumn.setCellFactory(new SM_ButtonCellFactory<>("查看家庭信息"));

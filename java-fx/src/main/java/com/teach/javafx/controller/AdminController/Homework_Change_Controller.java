@@ -51,8 +51,6 @@ public class Homework_Change_Controller {
     @Getter
     private static Homework homework;
 
-    private static List<Course> courseList =CourseManageController.getCourseList();
-
     public List<Student> students;
 
     @Getter

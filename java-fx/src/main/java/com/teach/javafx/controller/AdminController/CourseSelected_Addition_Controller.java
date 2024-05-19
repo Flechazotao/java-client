@@ -90,28 +90,12 @@ public class CourseSelected_Addition_Controller {
     }
 
    public void courseNumber(ActionEvent actionEvent) {
-//        String query=courseNumber.getValue();
-//        DataRequest req=new DataRequest();
-//        req.add("number",query);
-//        DataResponse res= HttpRequestUtil.request("/api/course/findByCourseNumber",req);
-//        courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
-//        for (int i=0;i<courseList.size();i++){
-//            courseNameList.add(courseList.get(i).getName());
-//        }
-//
+       courseName.getSelectionModel().select(courseNumber.getSelectionModel().getSelectedIndex());
+
    }
-//
+
  public void courseName(ActionEvent actionEvent) {
-//        String query= courseName.getValue();
-//        DataRequest req=new DataRequest();
-//        req.add("name",query);
-//        DataResponse res= HttpRequestUtil.request("/api/course/findByCourseName",req);
-//        courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
-//        for (int i=0;i<courseList.size();i++){
-//            courseNameList.add(courseList.get(i).getName());
-//        }
-//
-//        courseNumber.setItems(FXCollections.observableArrayList(courseNameList));
+        courseNumber.getSelectionModel().select(courseName.getSelectionModel().getSelectedIndex());
    }
 
 

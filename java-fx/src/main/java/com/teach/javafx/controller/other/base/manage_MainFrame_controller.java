@@ -140,8 +140,6 @@ public class manage_MainFrame_controller {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @FXML

@@ -73,7 +73,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1362.0">
+      <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1439.0">
         <columns>
           <TableColumn fx:id="numberColumn" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="学号" />
           <TableColumn fx:id="nameColumn" prefWidth="97.33328247070312" style="-fx-font-size: 20px;" text="姓名" />
@@ -81,6 +81,7 @@
             <TableColumn fx:id="deptColumn" prefWidth="118.66659545898438" style="-fx-font-size: 20px;" text="学院" />
             <TableColumn fx:id="majorColumn" prefWidth="112.6666259765625" style="-fx-font-size: 20px;" text="专业" />
             <TableColumn fx:id="classNameColumn" prefWidth="121.3333740234375" style="-fx-font-size: 20px;" text="班级" />
+            <TableColumn fx:id="GPAColumn" prefWidth="78.0" style="-fx-font-size: 20px;" text="绩点" />
             <TableColumn fx:id="BeforeUniversityInfoColumn" prefWidth="180.0" style="-fx-font-size: 20px;" text="入学前信息" />
             <TableColumn fx:id="FamilyInformationColumn" prefWidth="156.0001220703125" style="-fx-font-size: 20px;" text="家庭信息" />
             <TableColumn fx:id="SocietyMemberColumn" prefWidth="156.0001220703125" style="-fx-font-size: 20px;" text="社会关系" />

@@ -1,21 +1,23 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.HonorManageController;
-import com.teach.javafx.models.DO.Course;
-import com.teach.javafx.models.DO.HonorInfo;
-import com.teach.javafx.models.DO.Person;
-import com.teach.javafx.models.DO.Student;
+import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Course_Addition_Controller {
     @FXML
@@ -25,22 +27,46 @@ public class Course_Addition_Controller {
     @FXML
     public TextField creditField;
     @FXML
-    public TextField teacherNameField;
+    public ComboBox<String> teacherNameField;
     @FXML
     public TextField courseWeekField;
     @FXML
     public TextField courseTimeField;
     @FXML
-    public TextField wayOfTestField;
+    public ComboBox<String> wayOfTestField;
     @FXML
     public TextField locationField;
     @FXML
-    public TextField typeField;
+    public ComboBox<String> typeField;
     @FXML
     public Button onCancel;
     @FXML
     public Button onConfirmation;
 
+    private static List<Teacher> teacherList = new ArrayList<>();
+
+    //    "必修", "选修", "通选", "限选", "任选"
+    private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
+    //        考试、无、项目答辩、提交报告、其它
+    private static String[] wayOfTestlist= {"无", "考试", "项目答辩", "提交报告", "其它"};
+
+    public void initialize(){
+        //展示授课教师下拉框
+        DataResponse res = HttpRequestUtil.request("/api/teacher/getTeacherList",new DataRequest());
+        teacherList= JSON.parseArray(JSON.toJSONString(res.getData()), Teacher.class);
+        for(Teacher teacher:teacherList){
+            teacherNameField.getItems().add(teacher.getPerson().getName());
+        }
+        //展示课程类型下拉框
+
+        for(String s:typelist){
+            typeField.getItems().add(s);
+        }
+        //展示考核方式下拉框
+        for (String s:wayOfTestlist){
+            wayOfTestField.getItems().add(s);
+        }
+    }
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
@@ -77,12 +103,12 @@ public class Course_Addition_Controller {
         course.setNumber(courseNumberField.getText());
         course.setName(courseNameField.getText());
         course.setCredit(Double.valueOf(creditField.getText()));
-        course.setTeacherName(teacherNameField.getText());
+        course.setTeacherName(teacherNameField.getValue());
         course.setCourseBeginWeek(courseWeekField.getText());
         course.setCourseTime(courseTimeField.getText());
-        course.setWayOfTest(wayOfTestField.getText());
+        course.setWayOfTest(wayOfTestField.getValue());
         course.setLocation(locationField.getText());
-        course.setType(typeField.getText());
+        course.setType(typeField.getValue());
         return course;
     }
 }
