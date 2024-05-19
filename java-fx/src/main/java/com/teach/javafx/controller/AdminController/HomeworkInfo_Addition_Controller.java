@@ -1,11 +1,13 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controller {
 
@@ -30,6 +34,26 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
     public Button onConfirmation;
     @FXML
     public Button onCancel;
+
+    ArrayList<String> courseNameList = new ArrayList<>();
+    ArrayList<String> courseNumberList = new ArrayList<>();
+
+    private static List<Course> courseList = new ArrayList<>();
+    public void initialize(){
+
+        DataResponse res = HttpRequestUtil.request("/api/course/findAll",new DataRequest());
+        courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
+        int i=0;
+        for (;i<courseList.size();i++){
+            courseNameList.add(courseList.get(i).getName());
+            courseNumberList.add(courseList.get(i).getNumber());
+        }
+        courseNameField.setItems(FXCollections.observableArrayList(courseNameList));
+        courseNumberField.setItems(FXCollections.observableArrayList(courseNumberList));
+        courseNameField.setVisibleRowCount(5);
+        courseNumberField.setVisibleRowCount(5);
+
+    }
 
     @FXML
     public void onCancel(ActionEvent actionEvent) {
@@ -77,8 +101,10 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
     }
 
     public void courseNumberField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(courseNumberField.getSelectionModel().getSelectedIndex());
     }
 
     public void courseNameField(ActionEvent actionEvent) {
+        courseNumberField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
     }
 }

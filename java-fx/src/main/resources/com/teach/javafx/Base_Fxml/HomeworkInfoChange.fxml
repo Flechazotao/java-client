@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ComboBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="600.0" style="-fx-background-color: navajowhite;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.HomeworkInfo_Change_Controller">
     <top>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="237.0" text="添加作业信息" textFill="#4a3030" BorderPane.alignment="CENTER">
@@ -27,8 +28,8 @@
             <children>
                 <GridPane prefHeight="499.0" prefWidth="265.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.66664632161456" minWidth="0.0" prefWidth="77.66666666666666" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0000098546346" minWidth="10.0" prefWidth="188.33333333333334" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.66664632161456" minWidth="0.0" prefWidth="105.99998474121094" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0000098546346" minWidth="10.0" prefWidth="156.6666819254557" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -42,7 +43,6 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="courseNumberField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="课程名称" textFill="#4a3030" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -53,7 +53,6 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="courseNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="homeworkNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="文件" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>
@@ -61,13 +60,15 @@
                             </font>
                         </Label>
                         <TextField fx:id="fileField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="courseNumberField" onAction="#courseNumberField" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="courseNameField" onAction="#courseNameField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
             </children>
         </VBox>
     </center>
     <right>
-        <Pane prefHeight="523.0" prefWidth="99.0" BorderPane.alignment="CENTER">
+        <Pane prefHeight="522.0" prefWidth="191.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="209.0" fitWidth="339.0" layoutX="74.0" layoutY="260.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
                     <image>

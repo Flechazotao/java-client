@@ -190,17 +190,17 @@ class CS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         if(ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
-                        Integer selectedCourseInfoId= HonorManageController.getHonorInfoList().get(getIndex()).getHonorId();
+                        Integer selectedCourseInfoId= CourseSelected_Controller.getSelectedCourseInfoList().get(getIndex()).getSelectedCourseInfoId();
                         DataRequest req=new DataRequest();
                         req.add("id",selectedCourseInfoId);
-                        DataResponse response= HttpRequestUtil.request("/api/honorInfo/deleteById",req);
+                        DataResponse response= HttpRequestUtil.request("/api/selectedCourseInfo/deleteById",req);
 
                         if (response.getCode()==401){
                             MessageDialog.showDialog("信息不完整!");
                         }
                         else {
                             MessageDialog.showDialog("删除成功!");
-                            HonorManageController.updateDataTableView();
+                            CourseSelected_Controller.updateDataTableView();
                         }
                     }
                 });

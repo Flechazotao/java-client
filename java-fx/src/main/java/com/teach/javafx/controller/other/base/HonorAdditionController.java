@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.other.base;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.HonorInfo;
 import com.teach.javafx.models.DO.Person;
@@ -10,18 +11,20 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class HonorAdditionController {
 
     @FXML
-    private TextField studentIdField;
+    private ComboBox<String> studentIdField;
     @FXML
-    private TextField studentNameField;
+    private ComboBox<String> studentNameField;
     @FXML
     private TextField typeField;
     @FXML
@@ -29,23 +32,45 @@ public class HonorAdditionController {
     @FXML
     private DatePicker honorTimePicker;
     @FXML
-    private TextField levelField;
+    private ComboBox<String> levelField;
     @FXML
     private TextField honorFromField;
     @FXML
     private Button onCancel;
     @FXML
     public Button onConfirmation;
+    public List<Student> students;
 
+    public static String[]levellist={"班级","年级","院级","校级","市级","省级","国家级","世界级"};
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
     }
 
+
+    public void initialize(){
+
+        //学生有关信息下拉框
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        students= JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        studentIdField.getItems().add("请选择学号");
+        studentNameField.getItems().add("请选择学生");
+        for(Student student:students){
+            studentIdField.getItems().add(student.getStudentId().toString());
+            studentNameField.getItems().add(student.getPerson().getName());
+        }
+
+        //荣誉等级下拉框
+        for (String s:levellist){
+            levelField.getItems().add(s);
+        }
+
+    }
+
     @FXML
     public void onConfirmation(ActionEvent actionEvent) {
-        if(studentIdField.getText().equals("")) {
+        if(studentIdField.getValue().equals("")) {
             MessageDialog.showDialog("学号为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
@@ -72,16 +97,24 @@ public class HonorAdditionController {
         HonorInfo honorInfo=new HonorInfo();
         Student s=new Student();
         Person person=new Person();
-        s.setStudentId(Long.valueOf(studentIdField.getText()));
-        person.setNumber(Long.valueOf(studentIdField.getText()));
-        person.setName(studentNameField.getText());
+        s.setStudentId(Long.valueOf(studentIdField.getValue()));
+        person.setNumber(Long.valueOf(studentIdField.getValue()));
+        person.setName(studentNameField.getValue());
         s.setPerson(person);
         honorInfo.setStudent(s);
         honorInfo.setType(typeField.getText());
         honorInfo.setHonorName(honorNameField.getText());
         honorInfo.setHonorTime(honorTimePicker.getValue()==null ? LocalDate.now().toString() : honorTimePicker.getValue().toString());
-        honorInfo.setLevel(levelField.getText());
+        honorInfo.setLevel(levelField.getValue());
         honorInfo.setHonorFrom(honorFromField.getText());
         return honorInfo;
+    }
+
+    public void studentIdField(ActionEvent actionEvent) {
+            studentNameField.getSelectionModel().select(studentIdField.getSelectionModel().getSelectedIndex());
+    }
+
+    public void studentNameField(ActionEvent actionEvent) {
+        studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
     }
 }
