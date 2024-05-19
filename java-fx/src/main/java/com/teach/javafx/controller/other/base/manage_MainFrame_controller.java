@@ -149,7 +149,7 @@ public class manage_MainFrame_controller {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/LeaveInformation_panel.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-            AppStore.setMainFrameController((LeaveInfoManageController) fxmlLoader.getController());
+            AppStore.setMainFrameController((LeaveInfo_Manage_Controller) fxmlLoader.getController());
             MainApplication.resetStage("教学管理系统", scene);
         } catch (IOException e) {
             throw new RuntimeException(e);

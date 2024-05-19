@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class LeaveInfoManageController extends manage_MainFrame_controller {
+public class LeaveInfo_Manage_Controller extends manage_MainFrame_controller {
     @FXML
     private TableView<LeaveInfoInfo> dataTableView;
     @FXML
@@ -156,7 +156,7 @@ class LIM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCe
                         if(ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
-                        Integer leaveInfoId=LeaveInfoManageController.getLeaveInfoList().get(getIndex()).getLeaveId();
+                        Integer leaveInfoId= LeaveInfo_Manage_Controller.getLeaveInfoList().get(getIndex()).getLeaveId();
                         DataRequest req=new DataRequest();
                         req.add("id",leaveInfoId);
                         DataResponse response=HttpRequestUtil.request("/api/leaveInfo/deleteById",req);
@@ -166,7 +166,7 @@ class LIM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCe
                         }
                         else {
                             MessageDialog.showDialog("删除成功!");
-                            LeaveInfoManageController.updateDataTableView();
+                            LeaveInfo_Manage_Controller.updateDataTableView();
                         }
                     }
                 });
