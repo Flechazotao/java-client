@@ -3,6 +3,7 @@ package com.teach.javafx.controller.AdminController;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.InnovativePractice;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
@@ -17,6 +18,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InnovativePractice_Addition_Controller {
 
@@ -36,6 +39,20 @@ public class InnovativePractice_Addition_Controller {
     @FXML
     private Button onCancel;
 
+    public static List<Student> addedStudents;
+
+    public void initialize(){
+        addedStudents=new ArrayList<>();
+    }
+
+    public static String getStudentName(){
+        String names="";
+        for(Student student:addedStudents){
+            names=names+student.getPerson().getName()+" ";
+        }
+        return names;
+    }
+
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
@@ -51,6 +68,7 @@ public class InnovativePractice_Addition_Controller {
         InnovativePractice ip=getInnovativePractice();
         DataRequest req=new DataRequest();
         req.add("innovativePractice",ip);
+        req.add("students",addedStudents);
         DataResponse res = HttpRequestUtil.request("/api/innovativePractice/add",req);
         if(res.getCode()==401) {
             MessageDialog.showDialog("该项目已存在！");
@@ -72,13 +90,14 @@ public class InnovativePractice_Addition_Controller {
         ip.setBeginTime(beginTime.getValue()==null ? LocalDate.now().toString() : beginTime.getValue().toString());
         ip.setEndTime(endTime.getValue()==null ? LocalDate.now().toString() : endTime.getValue().toString());
         ip.setTeacherName(teacherField.getText());
-//        ip.setStudent(null);
+        ip.setStudentName(getStudentName());
         ip.setAchievement(achievementField.getText());
         ip.setFile("");
         return ip;
     }
 
     public void onAdd(ActionEvent actionEvent) {
+        InnovativePracticePeople_Addition_Controller.setAddedStudents(addedStudents);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/InnovativePracticePeople_Addition.fxml"));
         Scene scene;
         try {

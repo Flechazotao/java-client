@@ -1,10 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
-import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.models.DO.Student;
-import com.teach.javafx.models.DTO.DataRequest;
-import com.teach.javafx.models.DTO.DataResponse;
-import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +8,6 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DailyActivityPeople_Change_Controller {
