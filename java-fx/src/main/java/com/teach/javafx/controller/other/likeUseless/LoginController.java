@@ -5,8 +5,12 @@ import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
+import com.teach.javafx.models.DO.User;
+import com.teach.javafx.models.DTO.DataRequest;
+import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import com.teach.javafx.request.LoginRequest;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +30,8 @@ import java.io.IOException;
  *  @FXML 方法 对应于fxml文件中的 on***Click的属性  如onLoginButtonClick() 对应onAction="#onLoginButtonClick"
  */
 public class LoginController {
+    @FXML
+    public Button SduLogin;
     @FXML
     private TextField usernameField;
     @FXML
@@ -88,7 +94,7 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         LoginRequest loginRequest = new LoginRequest(username,password);
-        String msg = HttpRequestUtil.login(username,password);
+        String msg = HttpRequestUtil.login(username,password,"/api/user/login");
         if(msg != null) {
             MessageDialog.showDialog( msg );
             return;
@@ -129,4 +135,47 @@ public class LoginController {
         }
     }
 
+    public void SduLogin(ActionEvent actionEvent) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String msg = HttpRequestUtil.login(username,password,"/api/user/sduLogin");
+        if(msg != null) {
+            MessageDialog.showDialog( msg );
+            return;
+        }
+        if (checkBox3.isSelected()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/manager_MainFrame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if (checkBox1.isSelected()){
+            setNumber(usernameField.getText());
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_MainFrame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((student_MainFrame_controller) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if (checkBox2.isSelected()){
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher_MainFrame.fxml"));
+            try {
+                Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                MainApplication.resetStage("教学管理系统", scene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            MessageDialog.showDialog("请选择您的登陆身份!");
+        }
+    }
 }

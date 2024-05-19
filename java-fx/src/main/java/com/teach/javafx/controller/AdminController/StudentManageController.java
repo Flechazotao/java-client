@@ -56,6 +56,8 @@ public class StudentManageController extends manage_MainFrame_controller {
 
     @FXML
     private TableColumn<StudentInfo, Integer> FamilyInformationColumn;
+    @FXML
+    private TableColumn<StudentInfo, Integer> SocietyMemberColumn;
 
     @FXML
     private TableColumn<StudentInfo, Integer> DeleteColumn;
@@ -101,6 +103,7 @@ public class StudentManageController extends manage_MainFrame_controller {
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         BeforeUniversityInfoColumn.setCellFactory(new SM_ButtonCellFactory<>("查看入学前信息"));
         FamilyInformationColumn.setCellFactory(new SM_ButtonCellFactory<>("查看家庭信息"));
+        SocietyMemberColumn.setCellFactory(new SM_ButtonCellFactory<>("查看社会关系"));
         DeleteColumn.setCellFactory(new SM_ButtonCellFactory<>("删除"));
         ChangeColumn.setCellFactory(new SM_ButtonCellFactory<>("修改"));
 
@@ -212,24 +215,38 @@ public class StudentManageController extends manage_MainFrame_controller {
                             }
                             Stage stage = new Stage();
                             stage.setScene(scene);
-                            stage.setTitle("修改学生");
+                            stage.setTitle("查看入学前信息");
                             stage.show();
                         }
                         else if (property=="查看家庭信息") {
                             student=studentList.get(getIndex());
                             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_FamilyInformation.fxml"));
+                            Scene scene = null;
+                            try {
+                                scene = new Scene(fxmlLoader.load(), 1255, 714);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("查看家庭信息");
+                            stage.show();
+                        }
+                        else if (property=="查看社会关系") {
+                            student=studentList.get(getIndex());
+                            fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_SocietyMember.fxml"));
+                            Scene scene = null;
+                            try {
+                                scene = new Scene(fxmlLoader.load(), 925, 714);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.setTitle("查看社会关系");
+                            stage.show();
                         }
 
-                        Scene scene = null;
-                        try {
-                            scene = new Scene(fxmlLoader.load(), 1255, 714);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.setTitle("查看信息");
-                        stage.show();
 
                     });
                 }

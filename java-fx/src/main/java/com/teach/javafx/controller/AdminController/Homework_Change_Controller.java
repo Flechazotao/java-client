@@ -1,16 +1,16 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.models.DO.Homework;
-import com.teach.javafx.models.DO.HomeworkInfo;
-import com.teach.javafx.models.DO.Person;
-import com.teach.javafx.models.DO.Student;
+import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.HomeworkInfoView;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,18 +18,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Homework_Change_Controller {
     @FXML
-    public TextField homeworkInfoIdField;
+    public ComboBox<String> courseNumField;
     @FXML
-    public TextField courseNameField;
+    public ComboBox<String> courseNameField;
     @FXML
     public TextField homeworkNameField;
     @FXML
-    public TextField studentNameField;
+    public ComboBox<String> studentNameField;
     @FXML
-    public TextField studentIdField;
+    public ComboBox<String> studentIdField;
     @FXML
     public TextField submitStatusField;
     @FXML
@@ -49,27 +51,66 @@ public class Homework_Change_Controller {
     @Getter
     private static Homework homework;
 
+    private static List<Course> courseList =CourseManageController.getCourseList();
+
+    public List<Student> students;
+
+    @Getter
+    private static List<HomeworkInfo> homeworkInfoList = new ArrayList<>();
+
     public void initialize(){
         homework = Homework_Manage_Controller.getHomeworkList().get(index);
 
-        homeworkInfoIdField.setText(String.valueOf(homework.getHomeworkInfo().getHomeworkInfoId()));
-        courseNameField.setText(String.valueOf(homework.getHomeworkInfo().getCourse().getName()));
+        courseNumField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getNumber()));
+        courseNameField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getName()));
         homeworkNameField.setText(homework.getHomeworkInfo().getName());
-        studentNameField.setText(String.valueOf(homework.getStudent().getPerson().getName()));
+        studentNameField.setValue(String.valueOf(homework.getStudent().getPerson().getName()));
         submitStatusField.setText(String.valueOf(homework.getIsSubmit()));
-        studentIdField.setText(String.valueOf(homework.getStudent().getStudentId()));
+        studentIdField.setValue(String.valueOf(homework.getStudent().getStudentId()));
         homeworkScoreField.setText(String.valueOf(homework.getHomeworkScore()));
-        checkTimeField.setValue(LocalDate.parse(homework.getCheckTime()));
+        checkTimeField.setValue(LocalDate.parse(homework.getSubmitTime()));
+
+        //学生有关信息下拉框
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        students= JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        studentIdField.getItems().add("请选择学号");
+        studentNameField.getItems().add("请选择学生");
+        for(Student student:students){
+            studentIdField.getItems().add(student.getStudentId().toString());
+            studentNameField.getItems().add(student.getPerson().getName());
+        }
+
+        //课程有关信息下拉框
+
+        DataResponse response = HttpRequestUtil.request("/api/homeworkInfo/findAll",new DataRequest());
+        homeworkInfoList= JSON.parseArray(JSON.toJSONString(response.getData()), HomeworkInfo.class);
+        for(HomeworkInfo homeworkInfo:homeworkInfoList){
+            courseNameField.getItems().add(homeworkInfo.getCourse().getName());
+            courseNumField.getItems().add(homeworkInfo.getCourse().getNumber());
+        }
+
+    }
+    public void studentId(ActionEvent actionEvent) {
+        studentNameField.getSelectionModel().select(studentIdField.getSelectionModel().getSelectedIndex());
     }
 
+    public void studentName(ActionEvent actionEvent) {
+        studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
+    }
+    public void courseNameField(ActionEvent actionEvent) {
+        courseNumField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
+
+    }
+    public void courseNumField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
+    }
+
+
+
+
     public void onConfirmation(ActionEvent actionEvent) {
-        if( studentIdField.getText().equals("")) {
+        if( studentIdField.getValue().equals("")) {
             MessageDialog.showDialog("学号为空，不能添加");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
-            return;
-        }else if(homeworkInfoIdField.getText().isEmpty()){
-            MessageDialog.showDialog("作业信息编号为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             return;
@@ -104,13 +145,16 @@ public class Homework_Change_Controller {
     private void setHomework(Homework homework) {
         Student s=homework.getStudent();
         Person person=s.getPerson();
-        s.setStudentId(Long.valueOf(studentIdField.getText()));
-        person.setNumber(Long.valueOf(studentIdField.getText()));
-        person.setName(studentNameField.getText());
+        s.setStudentId(Long.valueOf(studentIdField.getValue()));
+        person.setNumber(Long.valueOf(studentIdField.getValue()));
+        person.setName(studentNameField.getValue());
         HomeworkInfo homeworkInfo=homework.getHomeworkInfo();
-        homeworkInfo.setHomeworkInfoId(Integer.valueOf(homeworkInfoIdField.getText()));
+        homeworkInfo.setHomeworkInfoId(homework.getHomeworkInfo().getHomeworkInfoId());
         homework.setIsSubmit(submitStatusField.getText());
         homework.setHomeworkScore(homeworkScoreField.getText());
         homework.setSubmitTime(checkTimeField.getValue()==null ? LocalDate.now().toString() : checkTimeField.getValue().toString());
     }
+
+
+
 }

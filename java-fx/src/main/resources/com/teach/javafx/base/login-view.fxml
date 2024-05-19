@@ -6,8 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<!-- 用户登录对话框FXML配置文件 对应页面交互控制类 com.teach.javafx.controller.other.likeUseless.LoginController -->
-
 <AnchorPane fx:id="AnchorpaneRoot" prefHeight="358.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.likeUseless.LoginController">
    <children>
       <VBox fx:id="vbox" alignment="CENTER" layoutX="63.0" layoutY="108.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="235.0" prefWidth="475.0" spacing="20.0">
@@ -81,7 +79,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SduLogin" layoutX="123.0" layoutY="137.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="149.0" text="山东大学统一认证登录">
+                  <Button fx:id="SduLogin" layoutX="123.0" layoutY="137.0" onAction="#SduLogin" mnemonicParsing="false" prefHeight="35.0" prefWidth="149.0" text="山东大学统一认证登录">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
                      </font>

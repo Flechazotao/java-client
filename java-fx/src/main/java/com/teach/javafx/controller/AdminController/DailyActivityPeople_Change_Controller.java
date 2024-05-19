@@ -43,7 +43,6 @@ public class DailyActivityPeople_Change_Controller {
             studentId.getItems().add(student.getStudentId().toString());
             studentName.getItems().add(student.getPerson().getName());
         }
-
     }
 
 

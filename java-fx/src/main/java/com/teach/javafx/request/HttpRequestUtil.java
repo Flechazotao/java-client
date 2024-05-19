@@ -44,14 +44,14 @@ public class HttpRequestUtil {
      * @return  返回null 登录成功 AppStore注册登录账号信息 非空，登录错误信息
      */
 
-    public static String login(String username,String password){
+    public static String login(String username,String password,String url){
         DataRequest request = new DataRequest();
         User user = new User();
         user.setUserName(username);
         user.setPassword(password);
         request.add("user",user);
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(serverUrl + "/api/user/login"))
+                .uri(URI.create(serverUrl + url))
                 .POST(HttpRequest.BodyPublishers.ofString(JSON.toJSONString(request)))
                 .headers("Content-Type", "application/json")
                 .build();//

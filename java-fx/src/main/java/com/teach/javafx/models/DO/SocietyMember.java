@@ -33,4 +33,8 @@ public class SocietyMember implements Serializable {
 
     private String relation;
 
+    private String name;
+
+    private String phone;
+
 }
