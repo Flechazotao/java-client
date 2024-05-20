@@ -86,10 +86,10 @@ public class Teacher_MainFrame_controller {
         }
 
         public void onHonor(ActionEvent actionEvent) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Honorpanel_S.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Honorpanel_T.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((Honor_S_Controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((Honor_Controller) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);

@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.teach.javafx.controller.TeacherController.Student_Information_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -50,7 +51,7 @@ public class Family_Addition_Controller {
         familyMember.setUnit(WorkplaceField.getText());
         familyMember.setBirthday(birthdayPicker.getEditor().getText());
         familyMember.setPhone(phoneField.getText());
-        familyMember.setStudent(StudentManageController.SM_ButtonCellFactory.getStudent());
+        familyMember.setStudent(Family_Manage_Controller.getStudent());
         DataRequest req=new DataRequest();
         req.add("familyMember",familyMember);
         DataResponse res = HttpRequestUtil.request("/api/familyMember/add",req);

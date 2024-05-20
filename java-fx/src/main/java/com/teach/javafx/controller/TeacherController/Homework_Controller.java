@@ -118,7 +118,7 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
 
     @FXML
     void onAdd(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseAddition.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkAddition.fxml"));
         Scene scene;
         try {
             scene = new Scene(fxmlLoader.load(), 600, 677);
@@ -130,8 +130,6 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
         stage.setTitle("发布作业");
         stage.show();
     }
-
-
 
 }
 class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {

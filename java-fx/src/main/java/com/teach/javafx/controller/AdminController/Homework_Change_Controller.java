@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.controller.TeacherController.Homework_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -57,7 +58,7 @@ public class Homework_Change_Controller {
     private static List<HomeworkInfo> homeworkInfoList = new ArrayList<>();
 
     public void initialize(){
-        homework = Homework_Manage_Controller.getHomeworkList().get(index);
+        homework = Homework_Controller.getHomeworkList().get(index);
 
         courseNumField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getNumber()));
         courseNameField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getName()));

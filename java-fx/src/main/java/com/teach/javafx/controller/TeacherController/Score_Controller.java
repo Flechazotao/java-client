@@ -95,8 +95,8 @@ public class Score_Controller extends Teacher_MainFrame_controller {
         courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("courseNumber"));
         courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
-        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
-        wayOfTest.setCellValueFactory(new PropertyValueFactory<>("wayOfTest"));
+//        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
+//        wayOfTest.setCellValueFactory(new PropertyValueFactory<>("wayOfTest"));
         studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         studentNumberColumn.setCellValueFactory(new PropertyValueFactory<>("studentNumber"));
         markColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));

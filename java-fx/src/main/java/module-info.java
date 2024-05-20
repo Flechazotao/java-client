@@ -28,7 +28,7 @@ module com.teach.javafx {
     exports com.teach.javafx.controller.other.base;
     exports com.teach.javafx.controller.AdminController;
     exports com.teach.javafx.controller.StudentController;
-//    exports com.teach.javafx.controller.TeacherController;
+    exports com.teach.javafx.controller.TeacherController;
     exports com.teach.javafx.request;
     exports com.teach.javafx.useless.teach.util;
     exports com.teach.javafx.useless.request;
@@ -40,7 +40,7 @@ module com.teach.javafx {
     exports com.teach.javafx.controller.other.likeUseless;
     opens com.teach.javafx.controller.other.likeUseless to com.google.gson, javafx.fxml;
     opens com.teach.javafx.controller.AdminController to com.google.gson, javafx.fxml;
-//    opens com.teach.javafx.controller.TeacherController to com.google.gson, javafx.fxml;
+    opens com.teach.javafx.controller.TeacherController to com.google.gson, javafx.fxml;
     opens com.teach.javafx.controller.StudentController;
 
 }

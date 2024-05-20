@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.teach.javafx.controller.TeacherController.Student_Information_Controller;
 import com.teach.javafx.models.DO.BeforeUniversity;
 import com.teach.javafx.models.DO.Student;
 import javafx.event.ActionEvent;
@@ -35,7 +36,7 @@ public class StudentBeforeInformationChange_Controller {
     @FXML
     private TextField schoolColumn;
 
-    Student student= StudentManageController.SM_ButtonCellFactory.getStudent();
+    private static Student student=Student_BeforeInfo_Manage_Controller.getStudent();
 
     BeforeUniversity beforeUniversity= Student_BeforeInfo_Manage_Controller.getBeforeUni();
 

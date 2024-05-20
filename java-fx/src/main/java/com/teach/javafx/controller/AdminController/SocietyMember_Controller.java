@@ -2,9 +2,11 @@ package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.TeacherController.Student_Information_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DO.SocietyMember;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
@@ -57,6 +59,9 @@ public class SocietyMember_Controller {
 
     @Getter
     private static  List<SocietyMember>societyMemberList=new ArrayList<>();
+
+    @Getter
+    private static Student student;
     private static ObservableList<SocietyMember> observableList= FXCollections.observableArrayList();
 
     public static void setDataTableView(List<SocietyMember> list){
@@ -76,8 +81,11 @@ public class SocietyMember_Controller {
 
 
     public void initialize(){
-
-        Long studentId= StudentManageController.SM_ButtonCellFactory.getStudent().getStudentId();
+        if (StudentManageController.SM_ButtonCellFactory.getStudent()==null){
+            student= Student_Information_Controller.getStudent();
+        }
+        else student= StudentManageController.SM_ButtonCellFactory.getStudent();
+        Long studentId= student.getStudentId();
         DataRequest req=new DataRequest();
         req.add("id",studentId);
         DataResponse res= HttpRequestUtil.request("/api/societyMember/findByStudent",req);

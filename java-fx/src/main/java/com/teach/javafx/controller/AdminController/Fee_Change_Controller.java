@@ -45,6 +45,7 @@ public class Fee_Change_Controller {
     @Getter
     private static Fee fee;
 
+    @Setter
     public List<Student> students;
 
     public void initialize(){

@@ -15,7 +15,8 @@ import javafx.stage.Stage;
 import java.net.http.HttpRequest;
 
 public class SocietyMember_Addition_Controller {
-
+    @FXML
+    private TextField phoneField;
     @FXML
     private TextField genderField;
 
@@ -31,11 +32,12 @@ public class SocietyMember_Addition_Controller {
     @FXML
     private TextField relationField;
     public void onComfirmation(ActionEvent actionEvent) {
-        Student student= StudentManageController.SM_ButtonCellFactory.getStudent();
+        Student student= SocietyMember_Controller.getStudent();
         SocietyMember societyMember = new SocietyMember();
         societyMember.setGender(genderField.getText());
         societyMember.setRelation(relationField.getText());
         societyMember.setName(nameField.getText());
+        societyMember.setPhone(phoneField.getText());
         societyMember.setStudent(student);
         DataRequest req=new DataRequest();
         req.add("societyMember",societyMember);
