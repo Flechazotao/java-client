@@ -31,7 +31,7 @@ public class Course_Addition_Controller {
     @FXML
     public TextField courseWeekField;
     @FXML
-    public TextField courseTimeField;
+    public ComboBox<String> courseTimeField;
     @FXML
     public ComboBox<String> wayOfTestField;
     @FXML
@@ -44,6 +44,9 @@ public class Course_Addition_Controller {
     public Button onConfirmation;
 
     private static List<Teacher> teacherList = new ArrayList<>();
+
+    //课程时间
+    private static String[] timeList = {"周一第一大节", "周一第二大节", "周一第三大节", "周一第四大节", "周一第五大节","周二第一大节", "周二第二大节", "周二第三大节", "周二第四大节", "周二第五大节","周二第一大节", "周二第二大节", "周二第三大节", "周二第四大节", "周二第五大节","周三第一大节", "周三第二大节", "周三第三大节", "周三第四大节", "周三第五大节","周四第一大节", "周四第二大节", "周四第三大节", "周四第四大节", "周四第五大节","周五第一大节", "周五第二大节", "周五第三大节", "周五第四大节", "周五第五大节"};
 
     //    "必修", "选修", "通选", "限选", "任选"
     private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
@@ -62,9 +65,15 @@ public class Course_Addition_Controller {
         for(String s:typelist){
             typeField.getItems().add(s);
         }
+
         //展示考核方式下拉框
         for (String s:wayOfTestlist){
             wayOfTestField.getItems().add(s);
+        }
+
+        //展示课程时间下拉框
+        for (String s:timeList){
+            courseTimeField.getItems().add(s);
         }
     }
     @FXML
@@ -105,7 +114,7 @@ public class Course_Addition_Controller {
         course.setCredit(Double.valueOf(creditField.getText()));
         course.setTeacherName(teacherNameField.getValue());
         course.setCourseBeginWeek(courseWeekField.getText());
-        course.setCourseTime(courseTimeField.getText());
+        course.setCourseTime(courseTimeField.getValue());
         course.setWayOfTest(wayOfTestField.getValue());
         course.setLocation(locationField.getText());
         course.setType(typeField.getValue());

@@ -27,7 +27,7 @@ public class Homework_Change_Controller {
     @FXML
     public ComboBox<String> courseNameField;
     @FXML
-    public TextField homeworkNameField;
+    public ComboBox<String> homeworkNameField;
     @FXML
     public ComboBox<String> studentNameField;
     @FXML
@@ -61,7 +61,7 @@ public class Homework_Change_Controller {
 
         courseNumField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getNumber()));
         courseNameField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getName()));
-        homeworkNameField.setText(homework.getHomeworkInfo().getName());
+        homeworkNameField.setValue(homework.getHomeworkInfo().getName());
         studentNameField.setValue(String.valueOf(homework.getStudent().getPerson().getName()));
         submitStatusField.setText(String.valueOf(homework.getIsSubmit()));
         studentIdField.setValue(String.valueOf(homework.getStudent().getStudentId()));
@@ -97,13 +97,18 @@ public class Homework_Change_Controller {
     }
     public void courseNameField(ActionEvent actionEvent) {
         courseNumField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
-
+        homeworkNameField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
     }
     public void courseNumField(ActionEvent actionEvent) {
         courseNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
+        homeworkNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
     }
 
 
+    public void homeworkNameField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+        courseNumField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+    }
 
 
     public void onConfirmation(ActionEvent actionEvent) {
