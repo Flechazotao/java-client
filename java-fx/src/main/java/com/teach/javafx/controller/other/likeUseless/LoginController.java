@@ -63,7 +63,7 @@ public class LoginController {
 //        passwordField.setText("123");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
-        AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
+        AnchorpaneRoot.setStyle("-fx-background-image: url('5line.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
 //        loginButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
     }
     @FXML

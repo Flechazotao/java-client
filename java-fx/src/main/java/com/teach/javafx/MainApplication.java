@@ -26,7 +26,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 596, 358);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 335);
         stage.setTitle("登录");
         stage.setScene(scene);
         stage.getScene().getStylesheets().add(MainApplication.class.getResource("bootstrap3.css").toExternalForm());
