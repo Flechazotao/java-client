@@ -95,6 +95,11 @@
             <artifactId>spring-beans</artifactId>
             <version>6.1.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.kordamp.bootstrapfx</groupId>
+            <artifactId>bootstrapfx-core</artifactId>
+            <version>0.2.4</version>
+        </dependency>
 
     </dependencies>
 

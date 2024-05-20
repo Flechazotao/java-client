@@ -26,9 +26,10 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 596, 358);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 335);
         stage.setTitle("登录");
         stage.setScene(scene);
+        stage.getScene().getStylesheets().add(MainApplication.class.getResource("bootstrap3.css").toExternalForm());
         stage.show();
         stage.setOnCloseRequest(event -> {
             if(canClose) {
@@ -55,6 +56,7 @@ public class MainApplication extends Application {
         }
         mainStage.setTitle(name);
         mainStage.setScene(scene);
+        mainStage.getScene().getStylesheets().add(MainApplication.class.getResource("bootstrap3.css").toExternalForm());
         mainStage.setMaximized(true);
         mainStage.show();
     }
@@ -64,6 +66,7 @@ public class MainApplication extends Application {
         stageHeight = mainStage.getHeight();
         mainStage.setTitle(name);
         mainStage.setScene(scene);
+        mainStage.getScene().getStylesheets().add(MainApplication.class.getResource("bootstrap3.css").toExternalForm());
         double x = (stageWidth-320)/2;
         double y = (stageHeight-240)/2;
         mainStage.setX(x);
