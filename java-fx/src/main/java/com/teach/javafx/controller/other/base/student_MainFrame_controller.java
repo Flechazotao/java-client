@@ -28,7 +28,7 @@ public class student_MainFrame_controller {
     }
 
     public void onExit(ActionEvent actionEvent) {
-        int ret = MessageDialog.choiceDialog("请确认是否退出系统?");
+        int ret = MessageDialog.choiceDialog("确认退出系统?");
         if(ret == MessageDialog.CHOICE_YES) {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/login-view.fxml"));
             try {
