@@ -25,7 +25,7 @@ public class Homework_Addition_Controller {
     @FXML
     public ComboBox<String> courseNameField;
     @FXML
-    public TextField homeworkNameField;
+    public ComboBox<String> homeworkNameField;
     @FXML
     public ComboBox<String> studentNameField;
     @FXML
@@ -68,6 +68,7 @@ public class Homework_Addition_Controller {
         for(HomeworkInfo homeworkInfo:homeworkInfoList){
             courseNameField.getItems().add(homeworkInfo.getCourse().getName());
             courseNumField.getItems().add(homeworkInfo.getCourse().getNumber());
+            homeworkNameField.getItems().add(homeworkInfo.getName());
         }
     }
     @FXML
@@ -133,15 +134,25 @@ public class Homework_Addition_Controller {
         return homework;
     }
 
-    public void courseNumField(ActionEvent actionEvent) {
-    }
-
     public void studentId(ActionEvent actionEvent) {
+        studentNameField.getSelectionModel().select(studentIdField.getSelectionModel().getSelectedIndex());
     }
 
     public void studentName(ActionEvent actionEvent) {
+        studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
+    }
+    public void courseNameField(ActionEvent actionEvent) {
+        courseNumField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
+        homeworkNameField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
+    }
+    public void courseNumField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
+        homeworkNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
     }
 
-    public void courseNameField(ActionEvent actionEvent) {
+
+    public void homeworkNameField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+        courseNumField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
     }
 }

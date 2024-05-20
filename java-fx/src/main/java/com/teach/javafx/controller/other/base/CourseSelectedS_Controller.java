@@ -253,113 +253,113 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
     }
 
 
-    public void MondayFirst(ActionEvent actionEvent) {
+    public void MondayFirst() {
     }
 
-    public void TuesdayFirst(ActionEvent actionEvent) {
+    public void TuesdayFirst() {
     }
 
-    public void WednesdayFirst(ActionEvent actionEvent) {
+    public void WednesdayFirst() {
     }
 
-    public void ThursdayFirst(ActionEvent actionEvent) {
+    public void ThursdayFirst() {
     }
 
-    public void FridayFirst(ActionEvent actionEvent) {
+    public void FridayFirst() {
     }
 
-    public void SaturdayFirst(ActionEvent actionEvent) {
+    public void SaturdayFirst() {
     }
 
-    public void SaturdaySecond(ActionEvent actionEvent) {
+    public void SaturdaySecond() {
     }
 
-    public void MondaySecond(ActionEvent actionEvent) {
+    public void MondaySecond() {
     }
 
-    public void TuesdaySecond(ActionEvent actionEvent) {
+    public void TuesdaySecond() {
     }
 
-    public void WednesdaySecond(ActionEvent actionEvent) {
+    public void WednesdaySecond() {
     }
 
-    public void ThursdaySecond(ActionEvent actionEvent) {
+    public void ThursdaySecond() {
     }
 
-    public void FridaySecond(ActionEvent actionEvent) {
+    public void FridaySecond() {
     }
 
-    public void SundayFirst(ActionEvent actionEvent) {
+    public void SundayFirst() {
     }
 
-    public void SundaySecond(ActionEvent actionEvent) {
+    public void SundaySecond() {
     }
 
-    public void MondayThird(ActionEvent actionEvent) {
+    public void MondayThird() {
     }
 
-    public void TuesdayThird(ActionEvent actionEvent) {
+    public void TuesdayThird() {
     }
 
-    public void WednesdayThird(ActionEvent actionEvent) {
+    public void WednesdayThird() {
     }
 
-    public void ThursdayThird(ActionEvent actionEvent) {
+    public void ThursdayThird() {
     }
 
-    public void FridayThird(ActionEvent actionEvent) {
+    public void FridayThird() {
     }
 
-    public void SaturdayThird(ActionEvent actionEvent) {
+    public void SaturdayThird() {
     }
 
-    public void MondayFourth(ActionEvent actionEvent) {
+    public void MondayFourth() {
     }
 
-    public void SundayThird(ActionEvent actionEvent) {
+    public void SundayThird() {
     }
 
-    public void TuesdayFourth(ActionEvent actionEvent) {
+    public void TuesdayFourth() {
     }
 
-    public void WednesdayFourth(ActionEvent actionEvent) {
+    public void WednesdayFourth() {
     }
 
-    public void ThursdayFourth(ActionEvent actionEvent) {
+    public void ThursdayFourth() {
     }
 
-    public void FridayFourth(ActionEvent actionEvent) {
+    public void FridayFourth() {
     }
 
-    public void SaturdayFourth(ActionEvent actionEvent) {
+    public void SaturdayFourth() {
     }
 
-    public void SundayFourth(ActionEvent actionEvent) {
+    public void SundayFourth() {
     }
 
-    public void TuesdayFifth(ActionEvent actionEvent) {
+    public void TuesdayFifth() {
     }
 
-    public void WednesdayFifth(ActionEvent actionEvent) {
+    public void WednesdayFifth() {
     }
 
-    public void ThursdayFifth(ActionEvent actionEvent) {
+    public void ThursdayFifth() {
     }
 
-    public void FridayFifth(ActionEvent actionEvent) {
+    public void FridayFifth() {
     }
 
-    public void SaturdayFifth(ActionEvent actionEvent) {
+    public void SaturdayFifth() {
     }
 
-    public void SundayFifth(ActionEvent actionEvent) {
+    public void SundayFifth() {
     }
 
-    public void MondayFifth(ActionEvent actionEvent) {
+    public void MondayFifth() {
     }
 
 
-    public void onSave(ActionEvent actionEvent) {
+    public void onSave() {
 
     }
 }

@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.Fee;
 import com.teach.javafx.models.DO.LeaveInfo;
@@ -11,6 +12,7 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,16 +20,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Leave_Change_Controller {
     @FXML
     public TextField isBackSchool;
     @FXML
-    public TextField studentNameField;
+    public ComboBox<String> studentNameField;
     @FXML
-    public TextField studentIdField;
+    public ComboBox<String> studentIdField;
     @FXML
     public TextField approverField;
+    @FXML
+    public TextField reasonField;
     @FXML
     public DatePicker leaveTimePicker;
     @FXML
@@ -39,6 +44,8 @@ public class Leave_Change_Controller {
     @FXML
     public Button onConfirmation;
 
+    public List<Student> students;
+
     @Getter
     @Setter
     private static Integer index;
@@ -47,11 +54,22 @@ public class Leave_Change_Controller {
     private static LeaveInfo leaveInfo;
 
     public void initialize(){
+
+        //学生有关信息下拉框
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        students= JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        studentIdField.getItems().add("请选择学号");
+        studentNameField.getItems().add("请选择学生");
+        for(Student student:students){
+            studentIdField.getItems().add(student.getStudentId().toString());
+            studentNameField.getItems().add(student.getPerson().getName());
+        }
+
         leaveInfo = LeaveInfo_Manage_Controller.getLeaveInfoList().get(index);
 
         isBackSchool.setText(leaveInfo.getIsBackSchool());
-        studentIdField.setText(String.valueOf(leaveInfo.getStudent().getStudentId()));
-        studentNameField.setText(leaveInfo.getStudent().getPerson().getName());
+        studentIdField.setValue(String.valueOf(leaveInfo.getStudent().getStudentId()));
+        studentNameField.setValue(leaveInfo.getStudent().getPerson().getName());
         leaveTimePicker.setValue(LocalDate.parse(leaveInfo.getLeaveTime()));
         beginTimePicker.setValue(LocalDate.parse(leaveInfo.getLeaveBeginTime()));
         endTimePicker.setValue(LocalDate.parse(leaveInfo.getLeaveEndTime()));
@@ -59,7 +77,7 @@ public class Leave_Change_Controller {
     }
 
     public void onConfirmation(ActionEvent actionEvent) {
-        if( studentIdField.getText().equals("")) {
+        if( studentIdField.getValue().equals("")) {
             MessageDialog.showDialog("学号为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
@@ -95,14 +113,21 @@ public class Leave_Change_Controller {
     private void setLeaveInfo(LeaveInfo leaveInfo) {
         Student s=leaveInfo.getStudent();
         Person person=s.getPerson();
-        s.setStudentId(Long.valueOf(studentIdField.getText()));
-        person.setNumber(Long.valueOf(studentIdField.getText()));
-        person.setName(studentNameField.getText());
+        s.setStudentId(Long.valueOf(studentIdField.getValue()));
+        person.setNumber(Long.valueOf(studentIdField.getValue()));
+        person.setName(studentNameField.getValue());
         leaveInfo.setLeaveTime(leaveTimePicker.getValue()==null ? LocalDate.now().toString() : leaveTimePicker.getValue().toString());
         leaveInfo.setLeaveBeginTime(beginTimePicker.getValue()==null ? LocalDate.now().toString() : beginTimePicker.getValue().toString());
         leaveInfo.setLeaveEndTime(endTimePicker.getValue()==null ? LocalDate.now().toString() : endTimePicker.getValue().toString());
-        leaveInfo.setLeaveReason("没写reasonField");
+        leaveInfo.setLeaveReason(reasonField.getText());
         leaveInfo.setApprover(approverField.getText());
         leaveInfo.setIsBackSchool(isBackSchool.getText());
+    }
+    public void studentNameField(ActionEvent actionEvent) {
+        studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
+    }
+    public void studentIdField(ActionEvent actionEvent) {
+        studentNameField.getSelectionModel().select(studentIdField.getSelectionModel().getSelectedIndex());
+
     }
 }
