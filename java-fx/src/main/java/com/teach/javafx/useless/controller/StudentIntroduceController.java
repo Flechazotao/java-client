@@ -202,7 +202,7 @@ public class StudentIntroduceController extends ToolController {
         File file = fileDialog.showOpenDialog(null);
         if(file == null)
             return;
-        com.teach.javafx.models.DTO.DataResponse res =HttpRequestUtil.uploadFile("/api/base/uploadPhoto",file.getPath(),"photo/" + personId + ".jpg");
+        DataResponse res = HttpRequestUtil.uploadFile("/api/base/uploadPhoto",file.getPath());
         if(res.getCode() == 0) {
             MessageDialog.showDialog("上传成功！");
             displayPhoto();

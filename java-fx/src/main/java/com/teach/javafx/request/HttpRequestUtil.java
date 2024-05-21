@@ -10,14 +10,19 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.useless.teach.util.CommonMethod;
 import com.teach.javafx.utils.JsonUtil;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
+import java.util.UUID;
 
 /**
  * HttpRequestUtil 后台请求实例程序，主要实践向后台发送请求的方法
@@ -104,144 +109,6 @@ public class HttpRequestUtil {
         return null;
     }
 
-//    public static List requestDataList(String url,DataRequest request){
-//        HttpRequest httpRequest = HttpRequest.newBuilder()
-//                .uri(URI.create(serverUrl + url))
-//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-//                .headers("Content-Type", "application/json")
-//                .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
-//                .build();
-//        request.add("username",AppStore.getJwt().getUsername());
-//        HttpClient client = HttpClient.newHttpClient();
-//        try {
-//            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-//            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
-//            if (response.statusCode() == 200) {
-//                return JsonConvertUtil.jsonToDataList(response.body());
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch(InterruptedException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//    public static Object requestDataObject(String url,DataRequest request){
-//        HttpRequest httpRequest = HttpRequest.newBuilder()
-//                .uri(URI.create(serverUrl + url))
-//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-//                .headers("Content-Type", "application/json")
-//                .headers("Authorization", "Bearer " + AppStore.getJwt().getAccessToken())
-//                .build();
-//        request.add("username",AppStore.getJwt().getUsername());
-//        HttpClient client = HttpClient.newHttpClient();
-//        try {
-//            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-//            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
-//            if (response.statusCode() == 200) {
-//                return JsonConvertUtil.jsonToDataObject(response.body());
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch(InterruptedException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//    /**
-//     *  MyTreeNode requestTreeNode(String url, DataRequest request) 获取树节点对象
-//     * @param url  Web请求的Url 对用后的 RequestMapping
-//     * @param request 请求参数对象
-//     * @return MyTreeNode 返回后台返回数据
-//     */
-//    public static MyTreeNode requestTreeNode(String url, DataRequest request){
-//        HttpRequest httpRequest = HttpRequest.newBuilder()
-//                .uri(URI.create(serverUrl + url))
-//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-//                .headers("Content-Type", "application/json")
-//                .headers("Authorization", "Bearer "+AppStore.getJwt().getAccessToken())
-//                .build();
-//        HttpClient client = HttpClient.newHttpClient();
-//        try {
-//            HttpResponse<String>  response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-//            if(response.statusCode() == 200) {
-//                return gson.fromJson(response.body(), MyTreeNode.class);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
-//    public static List<MyTreeNode> requestTreeNodeList(String url, DataRequest request){
-//        HttpRequest httpRequest = HttpRequest.newBuilder()
-//                .uri(URI.create(serverUrl + url))
-//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-//                .headers("Content-Type", "application/json")
-//                .headers("Authorization", "Bearer "+AppStore.getJwt().getAccessToken())
-//                .build();
-//        HttpClient client = HttpClient.newHttpClient();
-//        try {
-//            HttpResponse<String>  response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-//            if(response.statusCode() == 200) {
-//                List list = gson.fromJson(response.body(),List.class);
-//                List<MyTreeNode> rList = new ArrayList<>();
-//                for(int i = 0; i < list.size();i++) {
-//                    rList.add(new MyTreeNode((Map)list.get(i)));
-//                }
-//                return rList;
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
-//    /**
-//     *  List<OptionItem> requestOptionItemList(String url, DataRequest request) 获取OptionItemList对象
-//     * @param url  Web请求的Url 对用后的 RequestMapping
-//     * @param request 请求参数对象
-//     * @return List<OptionItem> 返回后台返回数据
-//     */
-//    public static List<OptionItem> requestOptionItemList(String url, DataRequest request){
-//        HttpRequest httpRequest = HttpRequest.newBuilder()
-//                .uri(URI.create(serverUrl + url))
-//                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(request)))
-//                .headers("Content-Type", "application/json")
-//                .headers("Authorization", "Bearer "+AppStore.getJwt().getAccessToken())
-//                .build();
-//        HttpClient client = HttpClient.newHttpClient();
-//        try {
-//            HttpResponse<String>  response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-//            if(response.statusCode() == 200) {
-//                OptionItemList o = gson.fromJson(response.body(), OptionItemList.class);
-//                if(o != null)
-//                return o.getItemList();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
-//    /**
-//     *   List<OptionItem> getDictionaryOptionItemList(String code) 获取数据字典OptionItemList对象
-//     * @param code  数据字典类型吗
-//     * @param
-//     * @return List<OptionItem> 返回后台返回数据
-//     */
-//    public static  List<OptionItem> getDictionaryOptionItemList(String code) {
-//        DataRequest req = new DataRequest();
-//        req.add("code", code);
-//        return requestOptionItemList("/api/base/getDictionaryOptionItemList",req);
-//    }
-
     /**
      *  byte[] requestByteData(String url, DataRequest request) 获取byte[] 对象 下载数据文件等
      * @param url  Web请求的Url 对用后的 RequestMapping
@@ -272,17 +139,16 @@ public class HttpRequestUtil {
     /**
      * DataResponse uploadFile(String fileName,String remoteFile) 上传数据文件
      * @param fileName  本地文件名
-     * @param remoteFile 远程文件路径
      * @return 上传操作信息
      */
-    public static DataResponse uploadFile(String uri,String fileName,String remoteFile)  {
+    public static DataResponse uploadFile(String uri,String fileName)  {
         try {
             Path file = Path.of(fileName);
             HttpClient client = HttpClient.newBuilder().build();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(serverUrl+uri+"?uploader=HttpTestApp&remoteFile="+remoteFile + "&fileName="
-                            + file.getFileName()))
-                    .POST(HttpRequest.BodyPublishers.ofFile(file))
+                    .uri(URI.create(serverUrl+uri+"?"+"fileName="+URLEncoder.encode(String.valueOf(file.getFileName()),StandardCharsets.UTF_8)))
+                    .headers("Content-Type", "application/octet-stream")
+                    .POST(HttpRequest.BodyPublishers.ofByteArray(Files.readAllBytes(file)))
                     .build();
             HttpResponse<String>  response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if(response.statusCode() == 200) {

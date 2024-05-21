@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
@@ -12,6 +13,7 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.FeeInfo;
 import com.teach.javafx.models.DTO.HomeworkInfoView;
 import com.teach.javafx.request.HttpRequestUtil;
+import javafx.application.Platform;
 import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,11 +23,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -108,7 +117,7 @@ public class HomeworkInfo_Manage_Controller extends manage_MainFrame_controller 
         courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("courseNumber"));
         courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         homeworkNameColumn.setCellValueFactory(new PropertyValueFactory<>("homeworkName"));
-        fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
+        fileColumn.setCellFactory(new HomeworkInfoM_ButtonCellFactory<>("下载文件"));
         changeColumn.setCellFactory(new HomeworkInfoM_ButtonCellFactory<>("修改"));
         deleteColumn.setCellFactory(new HomeworkInfoM_ButtonCellFactory<>("删除"));
 
@@ -179,6 +188,45 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                         } else {
                             MessageDialog.showDialog("删除成功!");
                             HomeworkInfo_Manage_Controller.updateDataTableView();
+                        }
+                    } else if (Objects.equals(property, "下载文件")) {
+
+                        String url = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
+//                        url=url.replace("\\","\\\\");
+//                        url=url.replace("\\","\\\\");
+                        DataRequest req = new DataRequest();
+                        req.add("url", url);
+                        String fileName=url.substring(url.lastIndexOf("\\")+1);
+//                        DataResponse res=HttpRequestUtil.requestByteData("/api/homeworkInfo/download", req);
+                        byte[] fileByte=HttpRequestUtil.requestByteData("/api/homeworkInfo/download", req);
+//                        File file= JSONObject.parseObject(JSON.toJSONString(res.getData()),File.class);
+//                        file.isFile();
+//                         = JSON.toJSONString(res.getData()).getBytes();
+
+                        if(fileByte==null){
+                            MessageDialog.showDialog("下载失败!");
+                            return;
+                        }
+
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.setTitle("Save File");
+                        fileChooser.setInitialFileName(fileName);
+                        Path path = fileChooser.showSaveDialog(null).toPath();
+                        if (path != null) {
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(path.toFile());
+                                fos.write(fileByte);
+                                fos.close();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                            MessageDialog.showDialog("下载成功!");
+                            return;
+                        }
+                        else {
+                            MessageDialog.showDialog("下载失败!");
+                            return;
                         }
                     }
                 });
