@@ -13,8 +13,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,25 +39,30 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
     public Button onConfirmation;
     @FXML
     public Button onCancel;
+    @FXML
+    public Button onSelectFile;
+
+    private byte[] fileContent;
+
+    private File file;
 
     ArrayList<String> courseNameList = new ArrayList<>();
     ArrayList<String> courseNumberList = new ArrayList<>();
 
     private static List<Course> courseList = new ArrayList<>();
     public void initialize(){
-
         DataResponse res = HttpRequestUtil.request("/api/course/findAll",new DataRequest());
         courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
-        int i=0;
-        for (;i<courseList.size();i++){
-            courseNameList.add(courseList.get(i).getName());
-            courseNumberList.add(courseList.get(i).getNumber());
+        courseNumberList.clear();
+        courseNameList.clear();
+        for (Course course : courseList) {
+            courseNameList.add(course.getName());
+            courseNumberList.add(course.getNumber());
         }
         courseNameField.setItems(FXCollections.observableArrayList(courseNameList));
         courseNumberField.setItems(FXCollections.observableArrayList(courseNumberList));
         courseNameField.setVisibleRowCount(5);
         courseNumberField.setVisibleRowCount(5);
-
     }
 
     @FXML
@@ -70,6 +80,21 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
             return;
         }
         HomeworkInfo homeworkInfo=getHomeworkInfo();
+        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HomeworkInfo"+"\\");
+        if(res1.getCode()==200){
+            MessageDialog.showDialog("文件上传成功！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("文件上传失败！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            return;
+        }
+        String url=res1.getMessage().substring(8);
+
+        homeworkInfo.setFile(url);
         DataRequest req=new DataRequest();
         req.add("homeworkInfo",homeworkInfo);
         DataResponse res = HttpRequestUtil.request("/api/homeworkInfo/add",req);
@@ -106,5 +131,11 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
 
     public void courseNameField(ActionEvent actionEvent) {
         courseNumberField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }

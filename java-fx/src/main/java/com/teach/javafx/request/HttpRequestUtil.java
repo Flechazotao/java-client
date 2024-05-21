@@ -137,16 +137,14 @@ public class HttpRequestUtil {
     }
 
     /**
-     * DataResponse uploadFile(String fileName,String remoteFile) 上传数据文件
-     * @param fileName  本地文件名
      * @return 上传操作信息
      */
-    public static DataResponse uploadFile(String uri,String fileName)  {
+    public static DataResponse uploadFile(String uri,Path file,String source)  {
         try {
-            Path file = Path.of(fileName);
+//            Path file = Path.of(filePath);
             HttpClient client = HttpClient.newBuilder().build();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(serverUrl+uri+"?"+"fileName="+URLEncoder.encode(String.valueOf(file.getFileName()),StandardCharsets.UTF_8)))
+                    .uri(URI.create(serverUrl+uri+"?"+"fileName="+URLEncoder.encode(String.valueOf(source+file.getFileName()),StandardCharsets.UTF_8)))
                     .headers("Content-Type", "application/octet-stream")
                     .POST(HttpRequest.BodyPublishers.ofByteArray(Files.readAllBytes(file)))
                     .build();
