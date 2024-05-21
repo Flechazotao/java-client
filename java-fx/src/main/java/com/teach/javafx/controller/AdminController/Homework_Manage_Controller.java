@@ -5,7 +5,9 @@ import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
+import com.teach.javafx.models.DO.Fee;
 import com.teach.javafx.models.DO.Homework;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.HomeworkView;
@@ -80,12 +82,28 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
+
+//        String query=InquireField.getText();
+//        DataRequest req=new DataRequest();
+//        req.add("id",query);
+//        DataResponse res= HttpRequestUtil.request("/api/homework/findByStudent",req);
+//        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
+//        setDataTableView(homeworkList);
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/homework/findByStudent",req);
-        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
-        setDataTableView(homeworkList);
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        List<Homework> newhomeworkList = new ArrayList<>();
+        for (Student s:studentList){
+            List<Homework> Lists = new ArrayList<>();
+            DataRequest request=new DataRequest();
+            request.add("id",s.getStudentId());
+            DataResponse response= HttpRequestUtil.request("/api/homework/findByStudent",request);
+            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Homework.class);
+            newhomeworkList.addAll(Lists);
+        }
+        setDataTableView(newhomeworkList);
     }
 
     @Getter
