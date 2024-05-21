@@ -24,6 +24,7 @@ import javafx.stage.FileChooser;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 /**
@@ -202,7 +203,7 @@ public class StudentIntroduceController extends ToolController {
         File file = fileDialog.showOpenDialog(null);
         if(file == null)
             return;
-        DataResponse res = HttpRequestUtil.uploadFile("/api/base/uploadPhoto",file.getPath());
+        DataResponse res = HttpRequestUtil.uploadFile("/api/base/uploadPhoto", Paths.get(file.getPath()),"Photo"+"\\");
         if(res.getCode() == 0) {
             MessageDialog.showDialog("上传成功！");
             displayPhoto();

@@ -178,6 +178,15 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                         if (ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
+                        DataRequest req1 = new DataRequest();
+                        String url=HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
+                        req1.add("url",url);
+                        DataResponse res = HttpRequestUtil.request("/api/file/delete", req1);
+                        if(res.getCode()!=200){
+                            MessageDialog.showDialog("文件删除失败!");
+                            return;
+                        }
+
                         Integer homeworkInfoId = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getHomeworkInfoId();
                         DataRequest req = new DataRequest();
                         req.add("id", homeworkInfoId);
@@ -192,16 +201,10 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                     } else if (Objects.equals(property, "下载文件")) {
 
                         String url = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
-//                        url=url.replace("\\","\\\\");
-//                        url=url.replace("\\","\\\\");
                         DataRequest req = new DataRequest();
                         req.add("url", url);
                         String fileName=url.substring(url.lastIndexOf("\\")+1);
-//                        DataResponse res=HttpRequestUtil.requestByteData("/api/homeworkInfo/download", req);
                         byte[] fileByte=HttpRequestUtil.requestByteData("/api/homeworkInfo/download", req);
-//                        File file= JSONObject.parseObject(JSON.toJSONString(res.getData()),File.class);
-//                        file.isFile();
-//                         = JSON.toJSONString(res.getData()).getBytes();
 
                         if(fileByte==null){
                             MessageDialog.showDialog("下载失败!");

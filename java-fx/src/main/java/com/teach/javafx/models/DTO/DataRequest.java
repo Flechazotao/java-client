@@ -151,7 +151,7 @@ public class DataRequest {
                 .replaceAll("'", " ")
                 .replaceAll("'", " ")
                 .replaceAll("\"", " ")
-                .replaceAll("\\\\", " ")
+//                .replaceAll("\\\\", " ")
                 .replaceAll("--", " ")
                 .replaceAll("%", " ")
                 .replaceAll("!", " ");
