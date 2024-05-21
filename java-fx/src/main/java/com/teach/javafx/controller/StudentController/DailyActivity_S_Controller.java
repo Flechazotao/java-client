@@ -10,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
@@ -44,6 +41,10 @@ public class DailyActivity_S_Controller extends student_MainFrame_controller{
 
     @FXML
     private Button onInquire;
+    @FXML
+    private ComboBox<String> typeField;
+
+    public static String[]typelists={"聚会","旅游","文艺演出","体育活动"};
 
     @Getter
     private static List<DailyActivity> dailyActivityList = new ArrayList<>();
@@ -77,17 +78,25 @@ public class DailyActivity_S_Controller extends student_MainFrame_controller{
         TableView.TableViewSelectionModel<DailyActivity> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(dailyActivityList);
+
+        //添加种类下拉框
+        for (String s:typelists)
+            typeField.getItems().add(s);
+
+        //未添加其他查询,先让textField不可见
+        InquireField.setVisible(false);
+        typeField.setVisible(true);
     }
 
     public void onInquire(ActionEvent actionEvent) {
-
-        String query = InquireField.getText();
-        DataRequest req = new DataRequest();
-        req.add("type", query);
-        req.add("id", LoginController.getNumber());
-        DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findByStudentIdAndType", req);
-        dailyActivityList = JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
-        setDataTableView(dailyActivityList);
-
+        if (typeField.isVisible()){
+            String query = typeField.getValue();
+            DataRequest req = new DataRequest();
+            req.add("type", query);
+            req.add("id", LoginController.getNumber());
+            DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findByStudentIdAndType", req);
+            dailyActivityList = JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
+            setDataTableView(dailyActivityList);
+        }
     }
 }

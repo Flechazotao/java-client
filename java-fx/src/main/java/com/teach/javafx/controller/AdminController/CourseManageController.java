@@ -102,18 +102,9 @@ public class CourseManageController extends manage_MainFrame_controller {
             String query=InquireField.getText();
             DataRequest req=new DataRequest();
             req.add("numName",query);
-            DataResponse res=HttpRequestUtil.request("/api/course/findByStudentIdOrName",req);
-            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
-            List<Course> newcourseList = new ArrayList<>();
-            for (Student s:studentList){
-                List<Course> Lists = new ArrayList<>();
-                DataRequest request=new DataRequest();
-                request.add("id",s.getStudentId());
-                DataResponse response= HttpRequestUtil.request("/api/course/findByStudent",request);
-                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Course.class);
-                newcourseList.addAll(Lists);
-            }
-            setDataTableView(newcourseList);
+            DataResponse res=HttpRequestUtil.request("/api/course/findByCourseNumberOrName",req);
+            courseList = JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
+            setDataTableView(courseList);
         }
         else if (typeField.isVisible()){
             String query = typeField.getValue();

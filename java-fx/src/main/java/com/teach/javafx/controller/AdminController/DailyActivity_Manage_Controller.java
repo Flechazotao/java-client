@@ -54,6 +54,14 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
     private Button onInquire;
     @FXML
     private TextField InquireField;
+    @FXML
+    private CheckBox findByStudent;
+    @FXML
+    private CheckBox findByType;
+    @FXML
+    private ComboBox<String>typeField;
+
+    public static String[]typelists={"聚会","旅游","文艺演出","体育活动"};
 
     @FXML
     void onInquire(ActionEvent event){
@@ -64,7 +72,7 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
 //        DataResponse res=HttpRequestUtil.request("/api/dailyActivity/findByStudent",req);
 //        dailyActivityList=JSON.parseArray(JSON.toJSONString(res.getData()),DailyActivity.class);
 //        setDataTableView(dailyActivityList);
-
+        if (InquireField.isVisible()){
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
         req.add("numName",query);
@@ -80,6 +88,7 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
             newdailyActivityList.addAll(Lists);
         }
         setDataTableView(newdailyActivityList);
+        }
     }
 
     @Getter
@@ -117,6 +126,11 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
         TableView.TableViewSelectionModel<DailyActivity> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(dailyActivityList);
+
+        //添加活动类型下拉框
+        for (String s:typelists)
+            typeField.getItems().add(s);
+
     }
 
     @FXML
@@ -132,6 +146,19 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
         stage.setScene(scene);
         stage.setTitle("添加日常活动信息");
         stage.show();
+    }
+    public void findByStudent(ActionEvent actionEvent) {
+        findByType.setSelected(false);
+
+        InquireField.setVisible(true);
+        typeField.setVisible(false);
+    }
+
+    public void findByType(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+
+        InquireField.setVisible(false);
+        typeField.setVisible(true);
     }
 
 }

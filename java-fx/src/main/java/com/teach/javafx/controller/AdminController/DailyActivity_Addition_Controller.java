@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -34,12 +35,17 @@ public class DailyActivity_Addition_Controller {
     @FXML
     private TextField locationField;
     @FXML
-    private TextField activityTypeField;
+    private ComboBox<String> activityTypeField;
+
+    public static String[]typelists={"聚会","旅游","文艺演出","体育活动"};
 
     public static List<Student> addedStudents;
 
     public void initialize(){
         addedStudents=new ArrayList<>();
+        //添加活动类型下拉框
+        for (String s:typelists)
+            activityTypeField.getItems().add(s);
     }
 
     public static String getStudentName(){
@@ -85,7 +91,7 @@ public class DailyActivity_Addition_Controller {
     private DailyActivity getDailyActivity() {
         DailyActivity daily=new DailyActivity();
         daily.setActivityName(activityNameField.getText());
-        daily.setActivityType(activityTypeField.getText());
+        daily.setActivityType(activityTypeField.getValue());
         daily.setBeginTime(beginTime.getValue()==null ? LocalDate.now().toString() : beginTime.getValue().toString());
         daily.setEndTime(endTime.getValue()==null ? LocalDate.now().toString() : endTime.getValue().toString());
         daily.setStudentName(getStudentName());

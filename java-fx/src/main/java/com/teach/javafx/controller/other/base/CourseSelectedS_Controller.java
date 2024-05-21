@@ -420,6 +420,7 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         property="选课";
                     }
                 });
+
             }
 
             @Override

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -36,7 +37,7 @@ public class DailyActivity_Change_Controller {
     @FXML
     private TextField locationField;
     @FXML
-    private TextField activityTypeField;
+    private ComboBox<String> activityTypeField;
 
     @FXML
     private Button onAdd;
@@ -59,7 +60,7 @@ public class DailyActivity_Change_Controller {
     @Getter
     @Setter
     private static List<Student> deleteStudents;
-
+    public static String[]typelists={"聚会","旅游","文艺演出","体育活动"};
     private List<DailyActivityStudent> dailyActivityStudents;
 
     public static String getStudentName(){
@@ -74,7 +75,7 @@ public class DailyActivity_Change_Controller {
         dailyActivity = DailyActivity_Manage_Controller.getDailyActivityList().get(index);
 
         activityNameField.setText(dailyActivity.getActivityName());
-        activityTypeField.setText(dailyActivity.getActivityType());
+        activityTypeField.setValue(dailyActivity.getActivityType());
         beginTime.setValue(LocalDate.parse(dailyActivity.getBeginTime()));
         endTime.setValue(LocalDate.parse(dailyActivity.getEndTime()));
         locationField.setText(dailyActivity.getLocation());
@@ -88,6 +89,10 @@ public class DailyActivity_Change_Controller {
         for(DailyActivityStudent dailyActivityStudent:dailyActivityStudents){
             addedStudents.add(dailyActivityStudent.getStudent());
         }
+
+        //添加活动类型下拉框
+        for (String s:typelists)
+            activityTypeField.getItems().add(s);
     }
 
     public void onConfirmation(ActionEvent actionEvent) {
@@ -136,7 +141,7 @@ public class DailyActivity_Change_Controller {
 
     private void setDailyActivity(DailyActivity daily) {
         daily.setActivityName(activityNameField.getText());
-        daily.setActivityType(activityTypeField.getText());
+        daily.setActivityType(activityTypeField.getValue());
         daily.setBeginTime(beginTime.getValue()==null ? LocalDate.now().toString() : beginTime.getValue().toString());
         daily.setEndTime(endTime.getValue()==null ? LocalDate.now().toString() : endTime.getValue().toString());
         daily.setStudentName(getStudentName());

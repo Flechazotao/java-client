@@ -130,6 +130,7 @@ public class CourseSelected_Controller extends manage_MainFrame_controller {
 
     public void onInquire(ActionEvent actionEvent) {
 
+
     }
 
     public void onAddCourse(ActionEvent actionEvent) {

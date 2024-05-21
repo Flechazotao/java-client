@@ -51,7 +51,7 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+        <Button fx:id="onInquire" layoutX="333.0" layoutY="331.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
@@ -64,7 +64,7 @@
                 <TableColumn fx:id="isAttendedColumn" prefWidth="90.66670735677087" style="-fx-font-size: 20px;" text="是否考勤" />
             </columns>
         </TableView>
-        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入活动名称" />
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="331.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入活动名称" visible="false" />
         <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
             <items>
                 <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
@@ -74,5 +74,6 @@
                 <Font name="System Bold Italic" size="14.0" />
             </font>
         </MenuButton>
+      <ComboBox fx:id="isAttendedField" layoutX="100.0" layoutY="335.0" prefHeight="23.0" prefWidth="217.0" visibleRowCount="2" />
     </children>
 </AnchorPane>

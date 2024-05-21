@@ -14,10 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
@@ -49,6 +46,8 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     @FXML
     private TableColumn<Course,String> fileColumn;
     @FXML
+    private ComboBox<String> typeField;
+    @FXML
     private Button onInquire;
     @FXML
     private TextField InquireField;
@@ -57,6 +56,7 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
 
     @Getter
     private static List<Course> courseList = new ArrayList<>();
+    private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
 
     private static ObservableList<Course> observableList= FXCollections.observableArrayList();
 
@@ -92,6 +92,10 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
         TableView.TableViewSelectionModel<Course> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(courseList);
+        //展示课程类型下拉框
+        for(String s:typelist){
+            typeField.getItems().add(s);
+        }
     }
 
     public void inSelectingCourse(ActionEvent actionEvent) {
@@ -107,6 +111,11 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void onInquire(ActionEvent actionEvent) {
-
+        String query = typeField.getValue();
+        DataRequest req1 = new DataRequest();
+        req1.add("type", query);
+        DataResponse res = HttpRequestUtil.request("/api/course/findByCourseType", req1);
+        courseList = JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
+        setDataTableView(courseList);
     }
 }

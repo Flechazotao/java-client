@@ -35,6 +35,8 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
     public TableColumn<AttendanceInfoInfo,String> isAttendedColumn;
     @FXML
     public TextField InquireField;
+    @FXML
+    public ComboBox<String>isAttendedField;
 
     @FXML
     public Button onInquire;
@@ -62,6 +64,11 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
     }
 
     public void initialize(){
+        // 展示考勤情况下拉框,没有补充其他查询,暂时隐藏textField
+        InquireField.setVisible(false);
+        isAttendedField.getItems().add("是");
+        isAttendedField.getItems().add("否");
+
         dataTableView.setItems(observableList);
         DataRequest req=new DataRequest();
         req.add("id",studentid);
@@ -81,8 +88,14 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
     }
 
     public void onInquire(){
-
-
+        if (isAttendedField.isVisible()){
+        String query = isAttendedField.getValue();
+        DataRequest req = new DataRequest();
+        req.add("isAttended", query);
+        DataResponse res = HttpRequestUtil.request("/api/attendance/findByIsAttended", req);
+        attendanceInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
+        setDataTableView(attendanceInfoList);
+        }
     }
 
 }
