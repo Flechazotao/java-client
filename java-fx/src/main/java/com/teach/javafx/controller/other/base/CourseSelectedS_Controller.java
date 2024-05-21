@@ -3,9 +3,11 @@ package com.teach.javafx.controller.other.base;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.likeUseless.LoginController;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.*;
 import com.teach.javafx.request.HttpRequestUtil;
+import jakarta.persistence.Column;
 import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,11 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -148,21 +147,22 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
     @Getter
     @Setter
     private static SelectedCourseInfo[][] selectedCourseView = new SelectedCourseInfo[5][7];
+
     public static void calIndex(Integer[] index, String s){
-        Integer rowIndex=0;
-        Integer columnIndex=0;
-        if(s.contains("First"))rowIndex=0;
-        else if(s.contains("Second"))rowIndex=1;
-        else if(s.contains("Third"))rowIndex=2;
-        else if(s.contains("Fourth"))rowIndex=3;
-        else if(s.contains("Fifth"))rowIndex=4;
-        if(s.contains("Monday"))columnIndex=0;
-        else if(s.contains("Tuesday"))columnIndex=1;
-        else if(s.contains("Wednesday"))columnIndex=2;
-        else if(s.contains("Thursday"))columnIndex=3;
-        else if(s.contains("Friday"))columnIndex=4;
-        else if(s.contains("Saturday"))columnIndex=5;
-        else if(s.contains("Sunday"))columnIndex=6;
+        int rowIndex=0;
+        int columnIndex=0;
+        if(s.contains("第一大节"))rowIndex=0;
+        else if(s.contains("第二大节"))rowIndex=1;
+        else if(s.contains("第三大节"))rowIndex=2;
+        else if(s.contains("第四大节"))rowIndex=3;
+        else if(s.contains("第五大节"))rowIndex=4;
+        if(s.contains("周一"))columnIndex=0;
+        else if(s.contains("周二"))columnIndex=1;
+        else if(s.contains("周三"))columnIndex=2;
+        else if(s.contains("周四"))columnIndex=3;
+        else if(s.contains("周五"))columnIndex=4;
+        else if(s.contains("周六"))columnIndex=5;
+        else if(s.contains("周七"))columnIndex=6;
         index[0]=rowIndex;
         index[1]=columnIndex;
         return;
@@ -246,13 +246,25 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
         nowSelectNumberColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfSelected"));
         maxSelectedColumn.setCellValueFactory(new PropertyValueFactory<>("MaxNumberOfSelected"));
         workButton.setCellFactory(new CourseSS_ButtonCellFactory<>("选课"));
-
         TableView.TableViewSelectionModel<SelectedCourseInfoInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(selectedCourseInfoList);
+
+        DataRequest req=new DataRequest();
+        req.add("id",studentId);
+        res=HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req);
+        List<SelectedCourse> selectedCourses=JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourse.class);
+        if(selectedCourses==null){
+            for (SelectedCourse selectedCourse:selectedCourses){
+                studentSelectedCourseInfoList.add(selectedCourse.getSelectedCourseInfo());
+            }
+        }
+        else{
+            studentSelectedCourseInfoList=new ArrayList<>();
+        }
+
+
     }
-
-
     public void MondayFirst() {
     }
 
@@ -358,12 +370,26 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
     public void MondayFifth() {
     }
 
+    public static String studentId = LoginController.getNumber();
 
+    public static List<SelectedCourseInfo> studentSelectedCourseInfoList;
     public void onSave() {
-
+        Student student=new Student();
+        student.setStudentId(Long.valueOf(studentId));
+        DataRequest req=new DataRequest();
+        req.add("student",student);
+        req.add("selectedCourseInfos",studentSelectedCourseInfoList);
+        DataResponse res=HttpRequestUtil.request("/api/selectedCourse/addByStudentAndList",req);
+        if(res.getCode()!=200){
+            MessageDialog.showDialog("保存失败！");
+            return;
+        }
+        MessageDialog.showDialog("保存成功！");
+        return;
     }
 }
 class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
+    @Setter
     private String property;
     public CourseSS_ButtonCellFactory(@NamedArg("property") String var1) {
         this.property = var1;
@@ -373,10 +399,33 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
         return new TableCell<S, T>() {
             private Button button = new Button(property);
             {
+                if(getIndex()!=-1&&CourseSelectedS_Controller.studentSelectedCourseInfoList.contains(CourseSelectedS_Controller.getSelectedCourseInfoList().get(getIndex()))){
+                    Integer rowIndex=0;
+                    Integer columnIndex=0;
+                    SelectedCourseInfo selectedCourseInfo=CourseSelectedS_Controller.getSelectedCourseInfoList().get(getIndex());
+                    Integer[] index=new Integer[2];
+                    CourseSelectedS_Controller.calIndex(index,selectedCourseInfo.getCourse().getCourseTime());
+                    rowIndex=index[0];
+                    columnIndex=index[1];
+                    Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
+                    button1.setStyle(
+                            "-fx-background-radius:20;"+//设置背景圆角
+                                    "-fx-background-color:#FFA07A;"+//设置背景颜色
+                                    "-fx-text-fill:#4a2107;"+        //设置字体颜色
+                                    "-fx-font-weight:bold;"+         //设置字体粗细
+                                    "-fx-font-size:16;"+             //设置字体颜色
+                                    "-fx-border-radius:10;"          //设置边框圆角
+                    );
+                    button1.setText(selectedCourseInfo.getCourse().getName());
+                    CourseSelectedS_Controller.getSelectedCourseView()[rowIndex][columnIndex]=selectedCourseInfo;
+                    button1.setOnAction((ActionEvent event1) -> {
+                        MessageDialog.showDialog("课程名称: "+selectedCourseInfo.getCourse().getName()+"\n"+"授课教师: "+selectedCourseInfo.getCourse().getTeacherName()+"\n"+"上课地点: "+selectedCourseInfo.getCourse().getLocation()+"\n"+"学分: "+selectedCourseInfo.getCourse().getCredit());
+                    });
+                    button.setText("退课");
+                    property="退课";
+                }
                 button.setOnAction(event -> {
-
                     FXMLLoader fxmlLoader = null;
-
                     if (Objects.equals(property, "选课")){
                         Integer rowIndex=0;
                         Integer columnIndex=0;
@@ -401,6 +450,7 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         });
                         button.setText("退课");
                         property="退课";
+                        CourseSelectedS_Controller.studentSelectedCourseInfoList.add(selectedCourseInfo);
                     }
                     else if (Objects.equals(property, "退课")) {
                         Integer rowIndex=0;
@@ -418,8 +468,11 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         button1.setOnAction(null);
                         button.setText("选课");
                         property="选课";
+                        CourseSelectedS_Controller.studentSelectedCourseInfoList.remove(selectedCourseInfo);
                     }
-                });
+                }
+
+                );
             }
 
             @Override

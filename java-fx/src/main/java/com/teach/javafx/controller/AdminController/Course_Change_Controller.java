@@ -128,7 +128,7 @@ public class Course_Change_Controller {
     private void setCourse(Course course) {
         course.setNumber(courseNumberField.getText());
         course.setName(courseNameField.getText());
-        course.setCredit(Double.valueOf(creditField.getText()));
+        course.setCredit(Double.valueOf(creditField.getText()==null? "0.0" :creditField.getText()));
         course.setTeacherName(teacherNameField.getValue());
         course.setCourseBeginWeek(courseWeekField.getText());
         course.setCourseTime(courseTimeField.getValue());
