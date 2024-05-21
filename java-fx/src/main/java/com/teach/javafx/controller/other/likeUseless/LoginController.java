@@ -58,10 +58,10 @@ public class LoginController {
 //        数据库:C:/Users\17991/Desktop/java shared code/java-course-program/data.db
 //        usernameField.setText("2022030001");
 //        usernameField.setText("200799013517");
-        usernameField.setText("admin");
-        passwordField.setText("123456");
-//        usernameField.setText("123");
-//        passwordField.setText("123");
+//        usernameField.setText("admin");
+//        passwordField.setText("123456");
+        usernameField.setText("123");
+        passwordField.setText("123");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
         AnchorpaneRoot.setStyle("-fx-background-image: url('5line.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器

@@ -44,7 +44,7 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
     @Getter
     private static List<AttendanceInfo> attendanceInfoList = new ArrayList<>();
 
-    private static String studentid= LoginController.getNumber();
+    private static String studentId = LoginController.getNumber();
 
     private static ObservableList<AttendanceInfoInfo> observableList= FXCollections.observableArrayList();
 
@@ -58,7 +58,7 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
 
     public static void updateDataTableView(){
         DataRequest req=new DataRequest();
-        req.add("id",studentid);
+        req.add("id", studentId);
         DataResponse res = HttpRequestUtil.request("/api/attendance/findByStudent",new DataRequest());
         setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),AttendanceInfo.class));
     }
@@ -71,7 +71,7 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
 
         dataTableView.setItems(observableList);
         DataRequest req=new DataRequest();
-        req.add("id",studentid);
+        req.add("id", studentId);
         DataResponse res = HttpRequestUtil.request("/api/attendance/findByStudent",req);
         attendanceInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
 
