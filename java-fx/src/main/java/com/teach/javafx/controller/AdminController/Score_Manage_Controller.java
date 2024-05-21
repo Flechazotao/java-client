@@ -4,7 +4,9 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
+import com.teach.javafx.models.DO.Fee;
 import com.teach.javafx.models.DO.Score;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.ScoreInfo;
@@ -64,12 +66,27 @@ public class Score_Manage_Controller extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
+//        String query=InquireField.getText();
+//        DataRequest req=new DataRequest();
+//        req.add("id",query);
+//        DataResponse res= HttpRequestUtil.request("/api/score/findByStudentId",req);
+//        scoreList= JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
+//        setDataTableView(scoreList);
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/score/findByStudentId",req);
-        scoreList= JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
-        setDataTableView(scoreList);
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        List<Score> newscoreList = new ArrayList<>();
+        for (Student s:studentList){
+            List<Score> Lists = new ArrayList<>();
+            DataRequest request=new DataRequest();
+            request.add("id",s.getStudentId());
+            DataResponse response= HttpRequestUtil.request("/api/score/findByStudentId",request);
+            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Score.class);
+            newscoreList.addAll(Lists);
+        }
+        setDataTableView(newscoreList);
     }
 
     @Getter

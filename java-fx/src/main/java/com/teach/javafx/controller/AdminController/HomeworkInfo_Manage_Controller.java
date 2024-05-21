@@ -82,7 +82,7 @@ public class HomeworkInfo_Manage_Controller extends manage_MainFrame_controller 
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
         req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/homeworkInfo/findByStudent",req);
+        DataResponse res= HttpRequestUtil.request("/api/homeworkInfo/findByCourseId",req);
         homeworkInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HomeworkInfo.class);
         setDataTableView(homeworkInfoList);
     }
