@@ -1,0 +1,13 @@
+
+#HBox{
+    -fx-background-image: url("LoginTitle.png");
+    -fx-background-size: cover;
+  }
+  .button {
+   -fx-background-color: red;
+   -fx-text-fill: white;
+  }
+  
+  
+  
+  

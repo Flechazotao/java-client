@@ -7,46 +7,46 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.base.manage_MainFrame_controller">
+<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.base.manage_MainFrame_controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
-        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1250.0">
+        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1077.0" style="-fx-background-color: seashell;">
             <children>
-                <Button fx:id="onStudentManage" mnemonicParsing="false" onAction="#onStudentManage" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生信息" textFill="#fbf7f7">
+                <Button mnemonicParsing="false" onAction="#onStudentInfo" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生信息" textFill="#fbf7f7">
                     <font>
                         <Font name="System Bold Italic" size="24.0" />
                     </font>
                 </Button>
-                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: indianred;" text="学习信息" textFill="#fbf5f5">
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="210.0" style="-fx-background-color: indianred;" text="学习信息管理" textFill="#fbf5f5">
                     <items>
-                        <MenuItem fx:id="onCourseManage" mnemonicParsing="false" onAction="#onCourseManage" text="课程管理" />
-                        <MenuItem fx:id="onAttendance" mnemonicParsing="false" onAction="#onAttendance" text="考勤中心" />
-                        <MenuItem fx:id="onHomework" mnemonicParsing="false" onAction="#onHomework" text="作业信息" />
-                        <MenuItem fx:id="onScore" mnemonicParsing="false" onAction="#onScore" text="成绩信息" />
+                        <MenuItem mnemonicParsing="false" onAction="#onCourseManage" text="课程管理" />
+                        <MenuItem mnemonicParsing="false" onAction="#onAttendance" text="考勤中心" />
+                        <MenuItem mnemonicParsing="false" onAction="#onHomework" text="作业信息" />
+                        <MenuItem mnemonicParsing="false" onAction="#onScore" text="成绩信息" />
                     </items>
                     <font>
                         <Font name="System Bold Italic" size="24.0" />
                     </font>
                 </MenuButton>
-                <Button fx:id="onInnovativePractice" mnemonicParsing="false" onAction="#onInnovativePractice" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#fbf7f7">
+                <Button mnemonicParsing="false" onAction="#onInnovativePractice" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fdfafa">
                     <font>
                         <Font name="System Bold Italic" size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="onHonor" mnemonicParsing="false" onAction="#onHonor" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fbf7f7">
+                <Button mnemonicParsing="false" onAction="#onDailyActivity" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日常活动" textFill="#f8f5f5">
                     <font>
-                        <Font name="System Bold Italic" size="24.0" />
-                    </font>
-                </Button>
-                <Button fx:id="onDailyActivity" mnemonicParsing="false" onAction="#onDailyActivity" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日常活动" textFill="#fbf7f7">
-                    <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
                 <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日志信息" textFill="#fdf9f9">
                     <items>
-                        <MenuItem fx:id="onLeaveInformation" mnemonicParsing="false" onAction="#onLeaveInformation" text="学生外出请假信息" />
-                        <MenuItem fx:id="onFee" mnemonicParsing="false" onAction="#onFee" text="生活学习消费" />
+                        <MenuItem mnemonicParsing="false" onAction="#onLeaveInformation" text="学生外出请假信息" />
+                        <MenuItem mnemonicParsing="false" onAction="#onFee" text="生活学习消费" />
                     </items>
                     <font>
                         <Font name="System Bold Italic" size="24.0" />

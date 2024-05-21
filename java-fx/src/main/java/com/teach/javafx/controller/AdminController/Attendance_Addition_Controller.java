@@ -35,7 +35,7 @@ public class Attendance_Addition_Controller {
     @FXML
     public Button onCancel;
     public List<Student> students;
-// "上课考勤","会议考勤","活动考勤"
+    // "上课考勤","会议考勤","活动考勤"
     public static String[]typelist={"上课考勤","会议考勤","活动考勤"};
 
     public static String[]isAttendedlist={"是","否"};

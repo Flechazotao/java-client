@@ -18,8 +18,8 @@
             <children>
                 <GridPane prefHeight="499.0" prefWidth="265.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.66664632161456" minWidth="0.0" prefWidth="77.66666666666666" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0000098546346" minWidth="10.0" prefWidth="188.33333333333334" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.66664632161456" minWidth="0.0" prefWidth="125.3333740234375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0000098546346" minWidth="10.0" prefWidth="181.33329264322913" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -32,18 +32,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="homeworkInfoIdField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" />
-                        <Label prefHeight="24.0" prefWidth="75.0" text="作业编号" textFill="#4a3030">
-                            <font>
-                                <Font name="System Bold Italic" size="18.0" />
-                            </font>
-                        </Label>
                         <Label prefHeight="24.0" prefWidth="73.0" text="课程名称" textFill="#4a3030" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="courseNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="作业名称" textFill="#4a3030" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -59,15 +52,12 @@
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="homeworkNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="studentNameField" prefHeight="23.0" prefWidth="412.0" style="-fx-border-style: round;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="submitStatusField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label prefHeight="24.0" prefWidth="40.0" text="学号" textFill="#4a3030" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="studentIdField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label prefHeight="24.0" prefWidth="75.0" text="提交时间" textFill="#4a3030" GridPane.rowIndex="6">
                             <font>
                                 <Font name="System Bold Italic" size="18.0" />
@@ -79,14 +69,24 @@
                             </font>
                         </Label>
                         <TextField fx:id="homeworkScoreField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <DatePicker fx:id="submitTimePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <DatePicker fx:id="checkTimeField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <ComboBox fx:id="courseNameField" onAction="#courseNameField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="studentNameField" onAction="#studentName" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="studentIdField" onAction="#studentId" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="homeworkNameField" onAction="#homeworkNameField" prefHeight="23.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label prefHeight="24.0" prefWidth="73.0" text="课程编号" textFill="#4a3030">
+                            <font>
+                                <Font name="System Bold Italic" size="18.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="courseNumField" onAction="#courseNumField" prefWidth="150.0" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
             </children>
         </VBox>
     </center>
     <right>
-        <Pane prefHeight="604.0" prefWidth="173.0" BorderPane.alignment="CENTER">
+        <Pane prefHeight="522.0" prefWidth="190.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="209.0" fitWidth="339.0" layoutX="74.0" layoutY="260.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
                     <image>

@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.controller.TeacherController.Student_Information_Controller;
 import com.teach.javafx.models.DO.BeforeUniversity;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -48,7 +49,12 @@ public class Student_BeforeInfo_Manage_Controller {
 
 
     public  void  initialize(){
-        student = StudentManageController.SM_ButtonCellFactory.getStudent();
+
+        if (StudentManageController.SM_ButtonCellFactory.getStudent()==null){
+            student= Student_Information_Controller.getStudent();
+        }
+        else student= StudentManageController.SM_ButtonCellFactory.getStudent();
+
         DataRequest req=new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);

@@ -98,12 +98,12 @@ public class StudentManageController extends manage_MainFrame_controller {
     public void initialize() {
         dataTableView.setItems(observableList);
 
-        for (Student s:studentList) {
-            DataRequest req = new DataRequest();
-            req.add("id", s.getStudentId());
-            DataResponse res=HttpRequestUtil.request("/api/score/getGradePointsByStudentId",req);
-            s.setGPA(String.valueOf(JSON.parseObject(JSON.toJSONString(res.getData()),double.class)));
-        }
+//        for (Student s:studentList) {
+//            DataRequest req = new DataRequest();
+//            req.add("id", s.getStudentId());
+//            DataResponse res=HttpRequestUtil.request("/api/score/getGradePointsByStudentId",req);
+//            s.setGPA(String.valueOf(JSON.parseObject(JSON.toJSONString(res.getData()),double.class)));
+//        }
 
         DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
         studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);

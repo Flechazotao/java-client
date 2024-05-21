@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" style="-fx-background-color: seashell;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.TeacherController.Score_Controller">
+    <children>
+        <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
+        <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1077.0" style="-fx-background-color: seashell;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onStudentInfo" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="学生信息" textFill="#fbf7f7">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </Button>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="210.0" style="-fx-background-color: indianred;" text="学习信息管理" textFill="#fbf5f5">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onCourseManage" text="课程管理" />
+                        <MenuItem mnemonicParsing="false" onAction="#onAttendance" text="考勤中心" />
+                        <MenuItem mnemonicParsing="false" onAction="#onHomework" text="作业信息" />
+                        <MenuItem mnemonicParsing="false" onAction="#onScore" text="成绩信息" />
+                    </items>
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+                <Button mnemonicParsing="false" onAction="#onInnovativePractice" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="创新实践" textFill="#f4f0f0">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onHonor" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fdfafa">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onDailyActivity" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日常活动" textFill="#f8f5f5">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Button>
+                <MenuButton mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="日志信息" textFill="#fdf9f9">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onLeaveInformation" text="学生外出请假信息" />
+                        <MenuItem mnemonicParsing="false" onAction="#onFee" text="生活学习消费" />
+                    </items>
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </MenuButton>
+            </children>
+        </HBox>
+        <Label layoutX="100.0" layoutY="262.0" text="学习信息管理&lt;&lt;成绩信息" textFill="#667fe2f0">
+            <font>
+                <Font name="System Bold Italic" size="32.0" />
+            </font>
+        </Label>
+        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1245.0">
+            <columns>
+                <TableColumn fx:id="courseNumberColumn" prefWidth="186.6666488647461" style="-fx-font-size: 20px;" text="课程编号" />
+                <TableColumn fx:id="courseNameColumn" prefWidth="156.66668701171875" style="-fx-font-size: 20px;" text="课程名称" />
+                <TableColumn fx:id="creditColumn" editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
+                <TableColumn prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
+                <TableColumn prefWidth="108.0" style="-fx-font-size: 20px;" text="考核方式" />
+                <TableColumn fx:id="studentNameColumn" prefWidth="91.3333740234375" style="-fx-font-size: 20px;" text="姓名" />
+                <TableColumn fx:id="studentNumberColumn" prefWidth="218.0" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn fx:id="markColumn" prefWidth="102.0001220703125" style="-fx-font-size: 20px;" text="成绩" />
+                <TableColumn fx:id="markPointColumn" prefWidth="105.333251953125" style="-fx-font-size: 20px;" text="绩点" />
+                <TableColumn fx:id="rankingColumn" prefWidth="108.0001220703125" style="-fx-font-size: 20px;" text="排名" />
+            </columns>
+        </TableView>
+        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
+        <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
+            <items>
+                <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
+                <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
+            </items>
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+        </MenuButton>
+    </children>
+</AnchorPane>

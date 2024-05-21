@@ -73,7 +73,7 @@
                   <ComboBox fx:id="courseNameField" onAction="#courseNameField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ComboBox fx:id="studentNameField" onAction="#studentName" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="studentIdField" onAction="#studentId" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="homeworkNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="homeworkNameField" onAction="#homeworkNameField" prefHeight="23.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="24.0" prefWidth="73.0" text="课程编号" textFill="#4a3030">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />

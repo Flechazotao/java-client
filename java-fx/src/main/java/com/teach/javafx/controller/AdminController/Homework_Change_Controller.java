@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.controller.TeacherController.Homework_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -27,7 +28,7 @@ public class Homework_Change_Controller {
     @FXML
     public ComboBox<String> courseNameField;
     @FXML
-    public TextField homeworkNameField;
+    public ComboBox<String> homeworkNameField;
     @FXML
     public ComboBox<String> studentNameField;
     @FXML
@@ -57,11 +58,11 @@ public class Homework_Change_Controller {
     private static List<HomeworkInfo> homeworkInfoList = new ArrayList<>();
 
     public void initialize(){
-        homework = Homework_Manage_Controller.getHomeworkList().get(index);
+        homework = Homework_Controller.getHomeworkList().get(index);
 
         courseNumField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getNumber()));
         courseNameField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getName()));
-        homeworkNameField.setText(homework.getHomeworkInfo().getName());
+        homeworkNameField.setValue(homework.getHomeworkInfo().getName());
         studentNameField.setValue(String.valueOf(homework.getStudent().getPerson().getName()));
         submitStatusField.setText(String.valueOf(homework.getIsSubmit()));
         studentIdField.setValue(String.valueOf(homework.getStudent().getStudentId()));
@@ -97,13 +98,18 @@ public class Homework_Change_Controller {
     }
     public void courseNameField(ActionEvent actionEvent) {
         courseNumField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
-
+        homeworkNameField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
     }
     public void courseNumField(ActionEvent actionEvent) {
         courseNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
+        homeworkNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
     }
 
 
+    public void homeworkNameField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+        courseNumField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+    }
 
 
     public void onConfirmation(ActionEvent actionEvent) {

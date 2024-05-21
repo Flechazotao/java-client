@@ -2,6 +2,7 @@ package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.TeacherController.*;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DO.Student;
@@ -102,7 +103,15 @@ public class Family_Manage_Controller {
     }
 
     public void initialize(){
-        student= StudentManageController.SM_ButtonCellFactory.getStudent();
+
+
+        if (StudentManageController.SM_ButtonCellFactory.getStudent()==null){
+            student=Student_Information_Controller.getStudent();
+        }
+        else student= StudentManageController.SM_ButtonCellFactory.getStudent();
+
+
+
         DataRequest req= new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);

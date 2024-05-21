@@ -2,6 +2,7 @@ package com.teach.javafx;
 
 
 import com.teach.javafx.controller.StudentController.Fee_S_Controller;
+import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.models.DO.Student;
@@ -16,6 +17,8 @@ public class AppStore {
     private static manage_MainFrame_controller manage_MainFrame_controller;
 
     private static student_MainFrame_controller student_MainFrame_controller;
+    private static Teacher_MainFrame_controller teacherMainFrameController;
+
     private AppStore(){
     }
 
@@ -38,4 +41,8 @@ public class AppStore {
     public static void setMainFrameController(student_MainFrame_controller controller) {
         AppStore.student_MainFrame_controller = controller;
     }
+    public static void setMainFrameController(Teacher_MainFrame_controller controller) {
+        AppStore.teacherMainFrameController = controller;
+    }
+
 }

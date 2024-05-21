@@ -3,6 +3,7 @@ package com.teach.javafx.controller.other.likeUseless;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.models.DO.User;
@@ -63,7 +64,7 @@ public class LoginController {
 //        passwordField.setText("123");
 //        vbox.setId("min");  // id选择器 #
 //        vbox.getStyleClass().add("min");  类选择器 .
-        AnchorpaneRoot.setStyle("-fx-background-image: url('shanda1.jpg'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
+        AnchorpaneRoot.setStyle("-fx-background-image: url('5line.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; ");  //inline选择器
 //        loginButton.setStyle("-fx-background-color: red; -fx-text-fill: white;");
     }
     @FXML
@@ -124,7 +125,7 @@ public class LoginController {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher_MainFrame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((Teacher_MainFrame_controller) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);

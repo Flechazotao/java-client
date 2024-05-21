@@ -37,6 +37,10 @@ public class Score_Manage_Controller extends manage_MainFrame_controller {
     @FXML
     public TableColumn<ScoreInfo,String> creditColumn;
     @FXML
+    public TableColumn<ScoreInfo,String> teacherColumn;
+    @FXML
+    public TableColumn<ScoreInfo,String> wayOfTest;
+    @FXML
     public TableColumn<ScoreInfo,String> studentNameColumn;
     @FXML
     public TableColumn<ScoreInfo,String> studentNumberColumn;
@@ -94,6 +98,8 @@ public class Score_Manage_Controller extends manage_MainFrame_controller {
         courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("courseNumber"));
         courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
+        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
+        wayOfTest.setCellValueFactory(new PropertyValueFactory<>("wayOfTest"));
         studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         studentNumberColumn.setCellValueFactory(new PropertyValueFactory<>("studentNumber"));
         markColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));

@@ -1,5 +1,6 @@
 package com.teach.javafx.controller.AdminController;
 
+import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -8,35 +9,68 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Homework_Addition_Controller {
     @FXML
-    public TextField homeworkInfoIdField;
+    public ComboBox<String> courseNumField;
     @FXML
-    public TextField courseNameField;
+    public ComboBox<String> courseNameField;
     @FXML
-    public TextField homeworkNameField;
+    public ComboBox<String> homeworkNameField;
     @FXML
-    public TextField studentNameField;
+    public ComboBox<String> studentNameField;
+    @FXML
+    public ComboBox<String> studentIdField;
     @FXML
     public TextField submitStatusField;
     @FXML
-    public TextField studentIdField;
-    @FXML
     public TextField homeworkScoreField;
     @FXML
-    public DatePicker submitTimePicker;
+    public DatePicker checkTimeField;
 
     @FXML
     public Button onCancel;
     @FXML
     public Button onConfirmation;
 
+    public List<Student> students;
+
+    @Getter
+    private static List<HomeworkInfo> homeworkInfoList = new ArrayList<>();
+
+
+    public void initialize(){
+
+
+        //学生有关信息下拉框
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        students= JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        studentIdField.getItems().add("请选择学号");
+        studentNameField.getItems().add("请选择学生");
+        for(Student student:students){
+            studentIdField.getItems().add(student.getStudentId().toString());
+            studentNameField.getItems().add(student.getPerson().getName());
+        }
+
+        //课程有关信息下拉框
+
+        DataResponse response = HttpRequestUtil.request("/api/homeworkInfo/findAll",new DataRequest());
+        homeworkInfoList= JSON.parseArray(JSON.toJSONString(response.getData()), HomeworkInfo.class);
+        for(HomeworkInfo homeworkInfo:homeworkInfoList){
+            courseNameField.getItems().add(homeworkInfo.getCourse().getName());
+            courseNumField.getItems().add(homeworkInfo.getCourse().getNumber());
+            homeworkNameField.getItems().add(homeworkInfo.getName());
+        }
+    }
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
@@ -45,13 +79,8 @@ public class Homework_Addition_Controller {
 
     @FXML
     public void onConfirmation(ActionEvent actionEvent) {
-        if(studentIdField.getText().equals("")) {
+        if(studentIdField.getValue().equals("")) {
             MessageDialog.showDialog("学号为空，不能添加");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
-            return;
-        }else if(homeworkInfoIdField.getText().isEmpty()){
-            MessageDialog.showDialog("作业信息编号为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             return;
@@ -81,13 +110,12 @@ public class Homework_Addition_Controller {
         Homework homework=new Homework();
         Student s=new Student();
         Person person=new Person();
-        s.setStudentId(Long.valueOf(studentIdField.getText()));
-        person.setNumber(Long.valueOf(studentIdField.getText()));
-        person.setName(studentNameField.getText());
+        s.setStudentId(Long.valueOf(studentIdField.getValue()));
+        person.setNumber(Long.valueOf(studentIdField.getValue()));
+        person.setName(studentNameField.getValue());
         s.setPerson(person);
         homework.setStudent(s);
         HomeworkInfo homeworkInfo=new HomeworkInfo();
-        homeworkInfo.setHomeworkInfoId(Integer.valueOf(homeworkInfoIdField.getText()));
         homework.setIsSubmit(submitStatusField.getText());
 //        if(submitStatusField.getText().equals("未提交")){
 //            homework.setIsSubmit("未提交");
@@ -102,7 +130,29 @@ public class Homework_Addition_Controller {
 //        }
         homework.setHomeworkInfo(homeworkInfo);
         homework.setHomeworkScore(homeworkScoreField.getText());
-        homework.setSubmitTime(submitTimePicker.getValue()==null ? LocalDate.now().toString() : submitTimePicker.getValue().toString());
+//        homework.setSubmitTime(submitTimePicker.getValue()==null ? LocalDate.now().toString() : submitTimePicker.getValue().toString());
         return homework;
+    }
+
+    public void studentId(ActionEvent actionEvent) {
+        studentNameField.getSelectionModel().select(studentIdField.getSelectionModel().getSelectedIndex());
+    }
+
+    public void studentName(ActionEvent actionEvent) {
+        studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
+    }
+    public void courseNameField(ActionEvent actionEvent) {
+        courseNumField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
+        homeworkNameField.getSelectionModel().select(courseNameField.getSelectionModel().getSelectedIndex());
+    }
+    public void courseNumField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
+        homeworkNameField.getSelectionModel().select(courseNumField.getSelectionModel().getSelectedIndex());
+    }
+
+
+    public void homeworkNameField(ActionEvent actionEvent) {
+        courseNameField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+        courseNumField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
     }
 }

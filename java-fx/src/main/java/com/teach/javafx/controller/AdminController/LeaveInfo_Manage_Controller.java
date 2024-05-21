@@ -35,6 +35,8 @@ public class LeaveInfo_Manage_Controller extends manage_MainFrame_controller {
     @FXML
     private TableColumn<LeaveInfoInfo, Long> studentIdColumn;
     @FXML
+    private TableColumn<LeaveInfoInfo, String> studentNameColumn;
+    @FXML
     private TableColumn<LeaveInfoInfo, String> leaveReasonColumn;
     @FXML
     private TableColumn<LeaveInfoInfo, String> leaveBeginTimeColumn;
@@ -91,6 +93,7 @@ public class LeaveInfo_Manage_Controller extends manage_MainFrame_controller {
 
         leaveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveTime"));
         studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         leaveReasonColumn.setCellValueFactory(new PropertyValueFactory<>("leaveReason"));
         leaveBeginTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveBeginTime"));
         leaveEndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveEndTime"));
