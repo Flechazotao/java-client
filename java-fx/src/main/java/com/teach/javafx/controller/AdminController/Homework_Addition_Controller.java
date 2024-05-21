@@ -70,6 +70,7 @@ public class Homework_Addition_Controller {
             courseNumField.getItems().add(homeworkInfo.getCourse().getNumber());
             homeworkNameField.getItems().add(homeworkInfo.getName());
         }
+
     }
     @FXML
     public void onCancel(ActionEvent actionEvent) {
@@ -108,13 +109,13 @@ public class Homework_Addition_Controller {
 
     private Homework getHomework() {
         Homework homework=new Homework();
-        Student s=new Student();
-        Person person=new Person();
-        s.setStudentId(Long.valueOf(studentIdField.getValue()));
-        person.setNumber(Long.valueOf(studentIdField.getValue()));
-        person.setName(studentNameField.getValue());
-        s.setPerson(person);
-        homework.setStudent(s);
+//        Student s=new Student();
+//        Person person=new Person();
+//        s.setStudentId(Long.valueOf(studentIdField.getValue()));
+//        person.setNumber(Long.valueOf(studentIdField.getValue()));
+//        person.setName(studentNameField.getValue());
+//        s.setPerson(person);
+        homework.setStudent(students.get(studentIdField.getSelectionModel().getSelectedIndex()));
         HomeworkInfo homeworkInfo=new HomeworkInfo();
         homework.setIsSubmit(submitStatusField.getText());
 //        if(submitStatusField.getText().equals("未提交")){
@@ -128,7 +129,7 @@ public class Homework_Addition_Controller {
 //            homework.setIsSubmit("已提交");
 //            homework.setIsChecked("已审核");
 //        }
-        homework.setHomeworkInfo(homeworkInfo);
+        homework.setHomeworkInfo(homeworkInfoList.get(homeworkNameField.getSelectionModel().getSelectedIndex()));
         homework.setHomeworkScore(homeworkScoreField.getText());
 //        homework.setSubmitTime(submitTimePicker.getValue()==null ? LocalDate.now().toString() : submitTimePicker.getValue().toString());
         return homework;
