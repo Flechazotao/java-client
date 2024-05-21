@@ -4,6 +4,8 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.HonorInfo;
+import com.teach.javafx.models.DO.InnovativePractice;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.HonorInfoInfo;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
@@ -62,12 +64,27 @@ public class HonorManageController extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
+//        String query=InquireField.getText();
+//        DataRequest req=new DataRequest();
+//        req.add("id",query);
+//        DataResponse res= HttpRequestUtil.request("/api/honorInfo/findByStudent",req);
+//        honorInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HonorInfo.class);
+//        setDataTableView(honorInfoList);
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/honorInfo/findByStudent",req);
-        honorInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HonorInfo.class);
-        setDataTableView(honorInfoList);
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        List<HonorInfo> newhonorInfoList = new ArrayList<>();
+        for (Student s:studentList){
+            List<HonorInfo> Lists = new ArrayList<>();
+            DataRequest request=new DataRequest();
+            request.add("id",s.getStudentId());
+            DataResponse response= HttpRequestUtil.request("/api/honorInfo/findByStudent",request);
+            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), HonorInfo.class);
+            newhonorInfoList.addAll(Lists);
+        }
+        setDataTableView(newhonorInfoList);
     }
 
     @Getter

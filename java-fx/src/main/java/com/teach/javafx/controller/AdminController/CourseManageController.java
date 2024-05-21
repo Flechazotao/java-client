@@ -9,6 +9,8 @@ import com.teach.javafx.controller.other.base.HonorManageController;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.models.DO.Course;
 import com.teach.javafx.models.DO.HonorInfo;
+import com.teach.javafx.models.DO.InnovativePractice;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.HonorInfoInfo;
@@ -59,7 +61,12 @@ public class CourseManageController extends manage_MainFrame_controller {
     private TableColumn<Course,String> changeColumn;
     @FXML
     private TableColumn<Course,String> deleteColumn;
-
+    @FXML
+    private ComboBox<String>typeField;
+    @FXML
+    private CheckBox findByCourseNumberOrName;
+    @FXML
+    private CheckBox findByCourseType;
     @FXML
     private Button onInquire;
     @FXML
@@ -68,6 +75,8 @@ public class CourseManageController extends manage_MainFrame_controller {
     private Button onAddCourse;
     @FXML
     private Button inSelectingCourse;
+
+    private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
 
     public void inSelectingCourse(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseSelect_Panel.fxml"));
@@ -82,12 +91,39 @@ public class CourseManageController extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("numberName",query);
-        DataResponse res= HttpRequestUtil.request("/api/course/findByCourseNumberOrName",req);
-        courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
-        setDataTableView(courseList);
+//        String query=InquireField.getText();
+//        DataRequest req=new DataRequest();
+//        req.add("numberName",query);
+//        DataResponse res= HttpRequestUtil.request("/api/course/findByCourseNumberOrName",req);
+//        courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
+//        setDataTableView(courseList);
+
+        if (InquireField.isVisible()) {
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/course/findByStudentIdOrName",req);
+            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<Course> newcourseList = new ArrayList<>();
+            for (Student s:studentList){
+                List<Course> Lists = new ArrayList<>();
+                DataRequest request=new DataRequest();
+                request.add("id",s.getStudentId());
+                DataResponse response= HttpRequestUtil.request("/api/course/findByStudent",request);
+                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Course.class);
+                newcourseList.addAll(Lists);
+            }
+            setDataTableView(newcourseList);
+        }
+        else if (typeField.isVisible()){
+            String query = typeField.getValue();
+            DataRequest req1 = new DataRequest();
+            req1.add("type", query);
+            DataResponse res = HttpRequestUtil.request("/api/course/findByCourseType", req1);
+            courseList = JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
+            setDataTableView(courseList);
+        }
+
     }
 
     @Getter
@@ -129,6 +165,12 @@ public class CourseManageController extends manage_MainFrame_controller {
         TableView.TableViewSelectionModel<Course> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(courseList);
+
+        //展示课程类型下拉框
+        for(String s:typelist){
+            typeField.getItems().add(s);
+        }
+
     }
 
     @FXML
@@ -144,6 +186,20 @@ public class CourseManageController extends manage_MainFrame_controller {
         stage.setScene(scene);
         stage.setTitle("添加课程信息");
         stage.show();
+    }
+
+    public void findByCourseNumberOrName() {
+        findByCourseType.setSelected(false);
+
+        InquireField.setVisible(true);
+        typeField.setVisible(false);
+    }
+
+    public void findByCourseType() {
+        findByCourseNumberOrName.setSelected(false);
+
+        InquireField.setVisible(false);
+        typeField.setVisible(true);
     }
 }
 class CM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {

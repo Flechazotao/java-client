@@ -5,9 +5,12 @@ import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.models.DO.AttendanceInfo;
+import com.teach.javafx.models.DO.InnovativePractice;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.AttendanceInfoInfo;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.StudentInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
@@ -23,6 +26,7 @@ import javafx.util.Callback;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -56,13 +60,43 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     public Button onAddAttendance;
 
     @FXML
+    public ComboBox<String> isAttendedField;
+    @FXML
+    private CheckBox findByStudent;
+    @FXML
+    private CheckBox findByIsAttended;
+    @FXML
     void onInquire(ActionEvent event){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/attendance/findByStudent",req);
-        attendanceInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
-        setDataTableView(attendanceInfoList);
+//        String query=InquireField.getText();
+//        DataRequest req=new DataRequest();
+//        req.add("id",query);
+//        DataResponse res= HttpRequestUtil.request("/api/attendance/findByStudent",req);
+//        attendanceInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
+//        setDataTableView(attendanceInfoList);
+        if (InquireField.isVisible()){String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<AttendanceInfo> newattendanceInfoList = new ArrayList<>();
+            for (Student s:studentList){
+                List<AttendanceInfo> Lists = new ArrayList<>();
+                DataRequest request=new DataRequest();
+                request.add("id",s.getStudentId());
+                DataResponse response= HttpRequestUtil.request("/api/attendance/findByStudent",request);
+                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), AttendanceInfo.class);
+                newattendanceInfoList.addAll(Lists);
+            }
+            setDataTableView(newattendanceInfoList);
+        } else if (isAttendedField.isVisible()) {
+            String query = isAttendedField.getValue();
+            DataRequest req1 = new DataRequest();
+            req1.add("isAttended", query);
+            DataResponse res = HttpRequestUtil.request("/api/attendance/findByIsAttended", req1);
+            attendanceInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
+            setDataTableView(attendanceInfoList);
+        }
+
     }
 
     @Getter
@@ -84,6 +118,10 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+        //展示考勤情况下拉框
+        isAttendedField.getItems().add("是");
+        isAttendedField.getItems().add("否");
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/attendance/findAll",new DataRequest());
         attendanceInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
@@ -117,6 +155,17 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
         stage.show();
     }
 
+    public void findByStudent(ActionEvent actionEvent) {
+        findByIsAttended.setSelected(false);
+        isAttendedField.setVisible(false);
+        InquireField.setVisible(true);
+    }
+
+    public void findByIsAttended(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        isAttendedField.setVisible(true);
+        InquireField.setVisible(false);
+    }
 }
 
 

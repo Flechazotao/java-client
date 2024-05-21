@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
+import com.teach.javafx.models.DO.AttendanceInfo;
 import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -12,6 +13,7 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -55,6 +57,15 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
     private TextField InquireField;
     @FXML
     private Button onAdd;
+    @FXML
+    private CheckBox findByStudent;
+    @FXML
+    private CheckBox findByType;
+    @FXML
+    private ComboBox<String>typeField;
+
+    public static String[]typelist={"社会实践","学科竞赛","科技成果","培训讲座","创新项目","校外实习","志愿服务"};
+
 
     @Getter
     private static List<InnovativePractice> innovativePracticeList = new ArrayList<>();
@@ -75,6 +86,13 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
+        //添加类型下拉框
+        for(String s:typelist){
+            typeField.getItems().add(s);
+        }
+        typeField.setVisibleRowCount(5);
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findAll",new DataRequest());
         innovativePracticeList= JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
@@ -107,12 +125,51 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
 
 
     public void onInquire() {
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res=HttpRequestUtil.request("/api/innovativePractice/findByStudent",req);
-        innovativePracticeList=JSON.parseArray(JSON.toJSONString(res.getData()),InnovativePractice.class);
-        setDataTableView(innovativePracticeList);
+//            String query = InquireField.getText();
+//            DataRequest req = new DataRequest();
+//            req.add("id", query);
+//            DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findByStudent", req);
+//            innovativePracticeList = JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
+//            setDataTableView(innovativePracticeList);
+        if (InquireField.isVisible()) {
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<InnovativePractice> newinnovativePracticeList = new ArrayList<>();
+            for (Student s:studentList){
+                List<InnovativePractice> Lists = new ArrayList<>();
+                DataRequest request=new DataRequest();
+                request.add("id",s.getStudentId());
+                DataResponse response= HttpRequestUtil.request("/api/innovativePractice/findByStudent",request);
+                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), InnovativePractice.class);
+                newinnovativePracticeList.addAll(Lists);
+            }
+            setDataTableView(newinnovativePracticeList);
+        }
+        else if (typeField.isVisible()){
+            String query = typeField.getValue();
+            DataRequest req1 = new DataRequest();
+            req1.add("type", query);
+            DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findByType", req1);
+            innovativePracticeList = JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
+            setDataTableView(innovativePracticeList);
+        }
+    }
+
+    public void findByStudent(ActionEvent actionEvent) {
+        findByType.setSelected(false);
+
+        InquireField.setVisible(true);
+        typeField.setVisible(false);
+    }
+
+    public void findByType(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+
+        InquireField.setVisible(false);
+        typeField.setVisible(true);
     }
 
     class IPM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
