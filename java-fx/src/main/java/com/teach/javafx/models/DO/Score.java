@@ -14,6 +14,7 @@ import java.io.Serializable;
  * <p>Integer ranking 排名
  * <p>Boolean IsCal 是否计入学分绩点
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

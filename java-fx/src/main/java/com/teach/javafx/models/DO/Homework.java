@@ -1,9 +1,6 @@
 package com.teach.javafx.models.DO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -19,6 +16,7 @@ import java.io.Serializable;
  * <p>String submitTime 提交时间
  * <p>String file 学生提交的作业文件
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

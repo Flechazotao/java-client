@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -17,7 +14,7 @@ import java.io.Serializable;
  * <p>String attendanceTime 考勤时间
  * <p>String isAttended 是否考勤
  */
-
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

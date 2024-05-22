@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -16,7 +13,7 @@ import java.io.Serializable;
  * <p>String graduatedSchool 毕业学校
  */
 
-
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

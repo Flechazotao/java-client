@@ -68,8 +68,8 @@ public class CourseSelected_Addition_Controller {
         c.setNumber(courseNumber.getValue());
         SelectedCourseInfo s=new SelectedCourseInfo();
         s.setCourse(c);
-        s.setMaxNumberOfSelected(Integer.valueOf(maxSelectedField.getText()));
-        s.setNumberOfSelected(Integer.valueOf(nowSelectNumberField.getText()));
+        s.setMaxNumberOfSelected(maxSelectedField.getText().isEmpty()?0: Integer.parseInt(maxSelectedField.getText()));
+        s.setNumberOfSelected(nowSelectNumberField.getText().isEmpty()?0: Integer.parseInt(nowSelectNumberField.getText()));
         DataRequest req=new DataRequest();
         req.add("selectedCourseInfo",s);
         DataResponse res= HttpRequestUtil.request("/api/selectedCourseInfo/add",req);

@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -19,6 +16,7 @@ import java.io.Serializable;
  * <p>String type 荣誉类别
  * <p>String file 证明文件的路径
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -18,6 +15,7 @@ import java.io.Serializable;
  * <p>String location 活动地点
  * <p>String activityName 活动名称
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

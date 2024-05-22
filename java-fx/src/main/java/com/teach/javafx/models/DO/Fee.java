@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -17,6 +14,7 @@ import java.io.Serializable;
  * <p>Double money 消费金额
  * <p>String description 消费描述，描述具体买了啥
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

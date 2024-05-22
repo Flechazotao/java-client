@@ -111,7 +111,7 @@ public class Course_Addition_Controller {
         Course course=new Course();
         course.setNumber(courseNumberField.getText());
         course.setName(courseNameField.getText());
-        course.setCredit(Double.valueOf(creditField.getText()));
+        course.setCredit(creditField.getText().isEmpty()?0.0: Double.parseDouble(creditField.getText()));
         course.setTeacherName(teacherNameField.getValue());
         course.setCourseBeginWeek(courseWeekField.getText());
         course.setCourseTime(courseTimeField.getValue());

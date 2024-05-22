@@ -2,10 +2,7 @@ package com.teach.javafx.models.DO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -19,7 +16,7 @@ import java.io.Serializable;
  * <p>String password 用户密码 非对称加密，这能加密，无法解码
  *
  */
-
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

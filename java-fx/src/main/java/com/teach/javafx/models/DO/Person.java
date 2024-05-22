@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -24,6 +21,7 @@ import java.io.Serializable;
  * <p>String introduce 个人简介
  * <p>String politicalStatus 政治面貌
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

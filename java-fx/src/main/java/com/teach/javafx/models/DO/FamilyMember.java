@@ -1,10 +1,7 @@
 package com.teach.javafx.models.DO;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -19,6 +16,7 @@ import java.io.Serializable;
  * <p>String birthday 出生日期
  * <p>String phone 联系电话
  */
+@Data
 @Getter
 @Setter
 @AllArgsConstructor

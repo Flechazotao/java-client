@@ -272,6 +272,7 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
         req.add("id",studentId);
         res=HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req);
         List<SelectedCourse> selectedCourses=JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourse.class);
+        studentSelectedCourseInfoList.clear();
         if(selectedCourses!=null){
             for (SelectedCourse selectedCourse:selectedCourses){
                 studentSelectedCourseInfoList.add(selectedCourse.getSelectedCourseInfo());
@@ -435,31 +436,7 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
         return new TableCell<S, T>() {
             private Button button = new Button(property);
             {
-                if(getIndex()!=-1&&CourseSelectedS_Controller.studentSelectedCourseInfoList.contains(CourseSelectedS_Controller.getSelectedCourseInfoList().get(getIndex()))){
-                    Integer rowIndex=0;
-                    Integer columnIndex=0;
-                    SelectedCourseInfo selectedCourseInfo=CourseSelectedS_Controller.getSelectedCourseInfoList().get(getIndex());
-                    Integer[] index=new Integer[2];
-                    CourseSelectedS_Controller.calIndex(index,selectedCourseInfo.getCourse().getCourseTime());
-                    rowIndex=index[0];
-                    columnIndex=index[1];
-                    Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
-                    button1.setStyle(
-                            "-fx-background-radius:20;"+//设置背景圆角
-                                    "-fx-background-color:#FFA07A;"+//设置背景颜色
-                                    "-fx-text-fill:#4a2107;"+        //设置字体颜色
-                                    "-fx-font-weight:bold;"+         //设置字体粗细
-                                    "-fx-font-size:16;"+             //设置字体颜色
-                                    "-fx-border-radius:10;"          //设置边框圆角
-                    );
-                    button1.setText(selectedCourseInfo.getCourse().getName());
-                    CourseSelectedS_Controller.getSelectedCourseView()[rowIndex][columnIndex]=selectedCourseInfo;
-                    button1.setOnAction((ActionEvent event1) -> {
-                        MessageDialog.showDialog("课程名称: "+selectedCourseInfo.getCourse().getName()+"\n"+"授课教师: "+selectedCourseInfo.getCourse().getTeacherName()+"\n"+"上课地点: "+selectedCourseInfo.getCourse().getLocation()+"\n"+"学分: "+selectedCourseInfo.getCourse().getCredit());
-                    });
-                    button.setText("退课");
-                    property="退课";
-                }
+
                 button.setOnAction(event -> {
                     FXMLLoader fxmlLoader = null;
                     if (Objects.equals(property, "选课")){
@@ -518,6 +495,33 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                     setGraphic(null);
                 } else {
                     setGraphic(button);
+                }
+                property="选课";
+                button.setText("选课");
+                if(getIndex()!=-1&&getIndex()<CourseSelectedS_Controller.getSelectedCourseInfoList().size()&& CourseSelectedS_Controller.studentSelectedCourseInfoList.contains(CourseSelectedS_Controller.getSelectedCourseInfoList().get(getIndex()))){
+                    Integer rowIndex=0;
+                    Integer columnIndex=0;
+                    SelectedCourseInfo selectedCourseInfo=CourseSelectedS_Controller.getSelectedCourseInfoList().get(getIndex());
+                    Integer[] index=new Integer[2];
+                    CourseSelectedS_Controller.calIndex(index,selectedCourseInfo.getCourse().getCourseTime());
+                    rowIndex=index[0];
+                    columnIndex=index[1];
+                    Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
+                    button1.setStyle(
+                            "-fx-background-radius:20;"+//设置背景圆角
+                                    "-fx-background-color:#FFA07A;"+//设置背景颜色
+                                    "-fx-text-fill:#4a2107;"+        //设置字体颜色
+                                    "-fx-font-weight:bold;"+         //设置字体粗细
+                                    "-fx-font-size:16;"+             //设置字体颜色
+                                    "-fx-border-radius:10;"          //设置边框圆角
+                    );
+                    button1.setText(selectedCourseInfo.getCourse().getName());
+                    CourseSelectedS_Controller.getSelectedCourseView()[rowIndex][columnIndex]=selectedCourseInfo;
+                    button1.setOnAction((ActionEvent event1) -> {
+                        MessageDialog.showDialog("课程名称: "+selectedCourseInfo.getCourse().getName()+"\n"+"授课教师: "+selectedCourseInfo.getCourse().getTeacherName()+"\n"+"上课地点: "+selectedCourseInfo.getCourse().getLocation()+"\n"+"学分: "+selectedCourseInfo.getCourse().getCredit());
+                    });
+                    button.setText("退课");
+                    property="退课";
                 }
             }
         };

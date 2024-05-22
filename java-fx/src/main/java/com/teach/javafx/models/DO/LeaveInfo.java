@@ -11,13 +11,10 @@ package com.teach.javafx.models.DO;
  * <p>String isBackSchool 是否回到学校（是否销假）
  */
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
-
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
