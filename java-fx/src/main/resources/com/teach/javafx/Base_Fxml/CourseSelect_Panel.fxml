@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -110,5 +111,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      <CheckBox fx:id="findByCourseNumberOrName" layoutX="100.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByCourseNumberOrName" text="根据课程编号或名称查询" />
+      <CheckBox fx:id="findByTeacherName" layoutX="264.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByTeacherName" text="根据教师名称查询" />
     </children>
 </AnchorPane>

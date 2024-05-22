@@ -155,5 +155,8 @@ public class Teacher_MainFrame_controller {
             throw new RuntimeException(e);
         }
     }
+    public void personalInformation(){
+
+    }
 }
 

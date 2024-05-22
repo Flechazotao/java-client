@@ -63,7 +63,7 @@
                 <TableColumn fx:id="creditColumn" editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
                 <TableColumn fx:id="courseTimeColumn" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="课程时间" />
                 <TableColumn fx:id="teacherNameColumn" prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
-                <TableColumn fx:id="courseBeginWeekColumn" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程起始周" />
+                <TableColumn fx:id="courseBeginWeekColumn" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程周期" />
                 <TableColumn fx:id="wayOfTestColumn" prefWidth="102.66668701171875" style="-fx-font-size: 20px;" text="考核方式" />
                 <TableColumn fx:id="locationColumn" prefWidth="164.00006103515625" style="-fx-font-size: 20px;" text="上课地点" />
                 <TableColumn fx:id="typeColumn" prefWidth="117.333251953125" style="-fx-font-size: 20px;" text="课程类型" />

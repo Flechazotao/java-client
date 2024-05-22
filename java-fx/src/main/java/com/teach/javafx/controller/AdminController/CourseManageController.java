@@ -187,6 +187,12 @@ public class CourseManageController extends manage_MainFrame_controller {
 
         InquireField.setVisible(true);
         typeField.setVisible(false);
+
+        if (InquireField.isVisible())
+        {
+            findByCourseNumberOrName.setSelected(true);
+            findByCourseType.setSelected(false);
+        }
     }
 
     public void findByCourseType() {
@@ -194,6 +200,12 @@ public class CourseManageController extends manage_MainFrame_controller {
 
         InquireField.setVisible(false);
         typeField.setVisible(true);
+
+        if (typeField.isVisible())
+        {
+            findByCourseNumberOrName.setSelected(false);
+            findByCourseType.setSelected(true);
+        }
     }
 }
 class CM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {

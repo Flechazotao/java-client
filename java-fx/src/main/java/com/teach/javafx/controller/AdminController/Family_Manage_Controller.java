@@ -110,8 +110,6 @@ public class Family_Manage_Controller {
         }
         else student= StudentManageController.SM_ButtonCellFactory.getStudent();
 
-
-
         DataRequest req= new DataRequest();
         req.add("id",student.getStudentId());
         DataResponse res = HttpRequestUtil.request("/api/familyMember/findByStudent",req);

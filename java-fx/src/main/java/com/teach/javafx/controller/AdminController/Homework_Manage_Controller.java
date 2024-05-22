@@ -62,7 +62,10 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
     public TableColumn<HomeworkView,String> changeColumn;
     @FXML
     public TableColumn<HomeworkView,String> deleteColumn;
-
+    @FXML
+    public CheckBox findByStudent;
+    @FXML
+    public CheckBox findByCourseNumberOrName;
     @FXML
     public Button onInquire;
     @FXML
@@ -82,24 +85,36 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
             throw new RuntimeException(e);
         }
     }
-
     @FXML
     void onInquire(ActionEvent event){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("numName",query);
-        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
-        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
-        List<Homework> newhomeworkList = new ArrayList<>();
-        for (Student s:studentList){
-            List<Homework> Lists = new ArrayList<>();
-            DataRequest request=new DataRequest();
-            request.add("id",s.getStudentId());
-            DataResponse response= HttpRequestUtil.request("/api/homework/findByStudent",request);
-            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Homework.class);
-            newhomeworkList.addAll(Lists);
+
+        if (findByStudent.isSelected()){
+            //按照学生姓名或学号查询
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<Homework> newhomeworkList = new ArrayList<>();
+            for (Student s:studentList){
+                List<Homework> Lists = new ArrayList<>();
+                DataRequest request=new DataRequest();
+                request.add("id",s.getStudentId());
+                DataResponse response= HttpRequestUtil.request("/api/homework/findByStudent",request);
+                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Homework.class);
+                newhomeworkList.addAll(Lists);
+            }
+            setDataTableView(newhomeworkList);
         }
-        setDataTableView(newhomeworkList);
+        else if (findByCourseNumberOrName.isSelected()){
+//            根据课程编号或名称查询
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/homework/findByCourseNumberOrName",req);
+            homeworkList=JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
+            setDataTableView(homeworkList);
+        }
     }
 
     @Getter
@@ -121,6 +136,8 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/homework/findAll",new DataRequest());
         homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
@@ -159,6 +176,18 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
         stage.show();
     }
 
+    public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        if (!findByStudent.isSelected())
+            findByCourseNumberOrName.setSelected(true);
+    }
+
+    public void findByStudent(ActionEvent actionEvent) {
+        findByCourseNumberOrName.setSelected(false);
+
+        if (!findByCourseNumberOrName.isSelected())
+            findByStudent.setSelected(true);
+    }
 }
 
 
