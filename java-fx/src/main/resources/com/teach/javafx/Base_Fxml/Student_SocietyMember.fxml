@@ -57,12 +57,12 @@
     <center>
         <TableView fx:id="dataTableView" prefHeight="537.0" prefWidth="455.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="RelationCol" prefWidth="86.00001275539398" style="-fx-font-size: 20px;" text="关系" />
+                <TableColumn fx:id="relationCol" prefWidth="86.00001275539398" style="-fx-font-size: 20px;" text="关系" />
                 <TableColumn fx:id="nameCol" prefWidth="110.00000762939453" style="-fx-font-size: 20px;" text="姓名" />
                 <TableColumn fx:id="genderCol" prefWidth="67.99998474121094" style="-fx-font-size: 20px;" text="性别" />
-            <TableColumn fx:id="phoneCol" prefWidth="189.33322143554688" style="-fx-font-size: 20px;" text="联系电话" />
-                <TableColumn fx:id="ChangeCol" prefWidth="78.66671752929688" style="-fx-font-size: 20px;" text="修改" />
-                <TableColumn fx:id="DetectCol" prefWidth="76.0001220703125" style="-fx-font-size: 20px;" text="删除" />
+                <TableColumn fx:id="phoneCol" prefWidth="189.33322143554688" style="-fx-font-size: 20px;" text="联系电话" />
+                <TableColumn fx:id="changeCol" prefWidth="78.66671752929688" style="-fx-font-size: 20px;" text="修改" />
+                <TableColumn fx:id="deleteCol" prefWidth="76.0001220703125" style="-fx-font-size: 20px;" text="删除" />
             </columns>
         </TableView>
     </center>

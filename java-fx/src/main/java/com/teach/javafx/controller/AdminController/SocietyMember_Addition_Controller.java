@@ -12,8 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.net.http.HttpRequest;
-
 public class SocietyMember_Addition_Controller {
     @FXML
     private TextField phoneField;
@@ -24,14 +22,14 @@ public class SocietyMember_Addition_Controller {
     private TextField nameField;
 
     @FXML
-    private Button onComfirmation;
+    private Button onConfirmation;
 
     @FXML
     private Button onReturn;
 
     @FXML
     private TextField relationField;
-    public void onComfirmation(ActionEvent actionEvent) {
+    public void onConfirmation(ActionEvent actionEvent) {
         Student student= SocietyMember_Controller.getStudent();
         SocietyMember societyMember = new SocietyMember();
         societyMember.setGender(genderField.getText());

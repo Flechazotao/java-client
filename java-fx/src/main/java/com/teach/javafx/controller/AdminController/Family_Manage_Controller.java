@@ -74,8 +74,8 @@ public class Family_Manage_Controller {
     public static void setDataTableView(List<FamilyMember> list){
         familyMemberList=list;
         observableList.clear();
-        for(FamilyMember s:familyMemberList){
-            observableList.addAll(FXCollections.observableArrayList(s));
+        for(FamilyMember familyMember:familyMemberList){
+            observableList.addAll(FXCollections.observableArrayList(familyMember));
         }
     }
 

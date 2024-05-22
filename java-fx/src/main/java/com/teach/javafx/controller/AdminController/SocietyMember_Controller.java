@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.TeacherController.Student_Information_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.models.DO.FamilyMember;
 import com.teach.javafx.models.DO.SocietyMember;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -34,41 +33,36 @@ import java.util.Objects;
 
 public class SocietyMember_Controller {
     @FXML
-    private TableColumn<SocietyMember, String> ChangeCol;
-
-    @FXML
-    private TableColumn<SocietyMember, String> DetectCol;
-
-    @FXML
-    private TableColumn<SocietyMember, String> RelationCol;
-
-    @FXML
     private TableView<SocietyMember> dataTableView;
-
+    @FXML
+    private TableColumn<SocietyMember, String> relationCol;
     @FXML
     private TableColumn<SocietyMember, String> genderCol;
-
     @FXML
     private TableColumn<SocietyMember, String> nameCol;
-
     @FXML
     private TableColumn<SocietyMember, String> phoneCol;
+    @FXML
+    private TableColumn<SocietyMember, String> changeCol;
+    @FXML
+    private TableColumn<SocietyMember, String> deleteCol;
 
     @FXML
     private Button onAddition;
 
     @Getter
-    private static  List<SocietyMember>societyMemberList=new ArrayList<>();
+    private static  List<SocietyMember> societyMemberList=new ArrayList<>();
 
     @Getter
     private static Student student;
+
     private static ObservableList<SocietyMember> observableList= FXCollections.observableArrayList();
 
     public static void setDataTableView(List<SocietyMember> list){
         societyMemberList=list;
         observableList.clear();
-        for(SocietyMember s:societyMemberList){
-            observableList.addAll(FXCollections.observableArrayList(s));
+        for(SocietyMember societyMember:societyMemberList){
+            observableList.addAll(FXCollections.observableArrayList(societyMember));
         }
     }
 
@@ -91,12 +85,13 @@ public class SocietyMember_Controller {
         DataResponse res= HttpRequestUtil.request("/api/societyMember/findByStudent",req);
         societyMemberList= JSON.parseArray(JSON.toJSONString(res.getData()),SocietyMember.class);
 
-        RelationCol.setCellValueFactory(new PropertyValueFactory<>("relation"));
+        dataTableView.setItems(observableList);
+        relationCol.setCellValueFactory(new PropertyValueFactory<>("relation"));
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        DetectCol.setCellFactory(new SoM_ButtonCellFactory<>("删除"));
-        ChangeCol.setCellFactory(new SoM_ButtonCellFactory<>("修改"));
+        deleteCol.setCellFactory(new SoM_ButtonCellFactory<>("删除"));
+        changeCol.setCellFactory(new SoM_ButtonCellFactory<>("修改"));
 
         TableView.TableViewSelectionModel<SocietyMember> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
@@ -132,11 +127,10 @@ class SoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCe
                 button.setOnAction(event -> {
 
                     FXMLLoader fxmlLoader = null;
-
                     if (Objects.equals(property, "修改")){
                         index=getIndex();
-                        List<FamilyMember> familyMemberList = Family_Manage_Controller.getFamilyMemberList();
-                        Integer memberid=familyMemberList.get(getIndex()).getMemberId();
+                        List<SocietyMember> societyMemberList = SocietyMember_Controller.getSocietyMemberList();
+                        Integer societyId=societyMemberList.get(getIndex()).getSocietyId();
                         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_SocietyMember-Change.fxml"));
                         Scene scene = null;
                         try {
@@ -154,11 +148,10 @@ class SoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCe
                         if(ret != MessageDialog.CHOICE_YES) {
                             return;
                         }
-
                         List<SocietyMember> societyMemberList = SocietyMember_Controller.getSocietyMemberList();
-                        Integer memberid=societyMemberList.get(getIndex()).getSocietyId();
+                        Integer societyId=societyMemberList.get(getIndex()).getSocietyId();
                         DataRequest request=new DataRequest();
-                        request.add("id",memberid);
+                        request.add("id",societyId);
                         DataResponse response= HttpRequestUtil.request("/api/societyMember/deleteById",request);
 
                         if (response.getCode()==401){

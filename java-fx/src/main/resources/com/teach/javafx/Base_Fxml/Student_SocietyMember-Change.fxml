@@ -92,7 +92,7 @@
         <HBox prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="103.0" prefWidth="250.0" />
-                <Button fx:id="onComfirmation" mnemonicParsing="false" onAction="#onComfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="#fffcfc">
+                <Button fx:id="onConfirmation" mnemonicParsing="false" onAction="#onConfirmation" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: #4a3030;" text="确定" textFill="#fffcfc">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

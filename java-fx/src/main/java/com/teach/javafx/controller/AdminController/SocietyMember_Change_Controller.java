@@ -14,19 +14,17 @@ import javafx.stage.Stage;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SocietyMember_Change_Controller {
     @FXML
     private TextField phoneField;
     @FXML
     private TextField genderField;
-
     @FXML
     private TextField nameField;
 
     @FXML
-    private Button onComfirmation;
+    private Button onConfirmation;
 
     @FXML
     private Button onReturn;
@@ -35,22 +33,21 @@ public class SocietyMember_Change_Controller {
     private TextField relationField;
 
     @Setter
-    private static List<SocietyMember>societyMemberList=new ArrayList<>();
+    private static SocietyMember societyMember;
 
     public void initialize(){
-        societyMemberList=SocietyMember_Controller.getSocietyMemberList();
-        genderField.setText(societyMemberList.get(SoM_ButtonCellFactory.getIndex()).getGender());
-        nameField.setText(societyMemberList.get(SoM_ButtonCellFactory.getIndex()).getName());
-        relationField.setText(societyMemberList.get(SoM_ButtonCellFactory.getIndex()).getRelation());
-        phoneField.setText(societyMemberList.get(SoM_ButtonCellFactory.getIndex()).getRelation());
-
+        societyMember =SocietyMember_Controller.getSocietyMemberList().get(SoM_ButtonCellFactory.getIndex());
+        genderField.setText(societyMember.getGender());
+        nameField.setText(societyMember.getName());
+        relationField.setText(societyMember.getRelation());
+        phoneField.setText(societyMember.getPhone());
     }
-    public void onComfirmation(ActionEvent actionEvent) {
+    public void onConfirmation(ActionEvent actionEvent) {
         Student student= SocietyMember_Controller.getStudent();
-        SocietyMember societyMember = new SocietyMember();
         societyMember.setGender(genderField.getText());
         societyMember.setRelation(relationField.getText());
         societyMember.setName(nameField.getText());
+        societyMember.setPhone(phoneField.getText());
         societyMember.setStudent(student);
         DataRequest req=new DataRequest();
         req.add("societyMember",societyMember);
@@ -58,8 +55,10 @@ public class SocietyMember_Change_Controller {
         if (res.getCode() == 401){
             MessageDialog.showDialog("信息不完整,无法修改");
         }
-        else MessageDialog.showDialog("修改成功!!!");
-
+        else {
+            MessageDialog.showDialog("修改成功!!!");
+            ((Stage)onConfirmation.getScene().getWindow()).close();
+        }
     }
 
     public void onReturn(ActionEvent actionEvent) {
