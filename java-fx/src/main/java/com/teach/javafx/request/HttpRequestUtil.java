@@ -63,7 +63,7 @@ public class HttpRequestUtil {
         try {
             HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             DataResponse dataResponse = JSONObject.parseObject(response.body(), DataResponse.class);
-            System.out.println("url=" + "/api/user/login" +"    response.statusCode="+response.statusCode());
+            System.out.println("url=" + url +"    response.statusCode="+response.statusCode());
             if (dataResponse.getCode() == 200) {
                 JwtResponse jwt = gson.fromJson(response.body(), JwtResponse.class);
                 AppStore.setJwt(jwt);
