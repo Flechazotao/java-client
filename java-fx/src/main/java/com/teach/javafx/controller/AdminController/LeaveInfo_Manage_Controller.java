@@ -61,12 +61,7 @@ public class LeaveInfo_Manage_Controller extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
-//        String query=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",query);
-//        DataResponse res= HttpRequestUtil.request("/api/leaveInfo/findByStudent",req);
-//        leaveInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), LeaveInfo.class);
-//        setDataTableView(leaveInfoList);
+
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
         req.add("numName",query);

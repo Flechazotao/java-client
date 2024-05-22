@@ -114,10 +114,6 @@ public class StudentManageController extends manage_MainFrame_controller {
 
     public void initialize() {
         dataTableView.setItems(observableList);
-
-
-
-
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         deptColumn.setCellValueFactory(new PropertyValueFactory<>("dept"));

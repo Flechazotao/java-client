@@ -30,6 +30,7 @@ import java.util.Objects;
 
 public class DailyActivity_Manage_Controller extends manage_MainFrame_controller {
 
+    public CheckBox findByName;
     @FXML
     private TableView<DailyActivity> dataTableView;
     @FXML
@@ -66,29 +67,40 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
     @FXML
     void onInquire(ActionEvent event){
 
-//        String query=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",query);
-//        DataResponse res=HttpRequestUtil.request("/api/dailyActivity/findByStudent",req);
-//        dailyActivityList=JSON.parseArray(JSON.toJSONString(res.getData()),DailyActivity.class);
-//        setDataTableView(dailyActivityList);
-        if (InquireField.isVisible()){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("numName",query);
-        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
-        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
-        List<DailyActivity> newdailyActivityList = new ArrayList<>();
-        for (Student s:studentList){
-            List<DailyActivity> Lists = new ArrayList<>();
-            DataRequest request=new DataRequest();
-            request.add("id",s.getStudentId());
-            DataResponse response= HttpRequestUtil.request("/api/dailyActivity/findByStudent",request);
-            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), DailyActivity.class);
-            newdailyActivityList.addAll(Lists);
+        if (findByStudent.isSelected()){
+                String query=InquireField.getText();
+                DataRequest req=new DataRequest();
+                req.add("numName",query);
+                DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+                List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+                List<DailyActivity> newdailyActivityList = new ArrayList<>();
+                for (Student s:studentList){
+                    List<DailyActivity> Lists = new ArrayList<>();
+                    DataRequest request=new DataRequest();
+                    request.add("id",s.getStudentId());
+                    DataResponse response= HttpRequestUtil.request("/api/dailyActivity/findByStudent",request);
+                    Lists=JSON.parseArray(JSON.toJSONString(response.getData()), DailyActivity.class);
+                    newdailyActivityList.addAll(Lists);
+                }
+                setDataTableView(newdailyActivityList);
         }
-        setDataTableView(newdailyActivityList);
+        else if (findByType.isSelected()) {
+            String query=typeField.getValue();
+            DataRequest req=new DataRequest();
+            req.add("type",query);
+            DataResponse res=HttpRequestUtil.request("/api/dailyActivity/findByType",req);
+            dailyActivityList=JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
+            setDataTableView(dailyActivityList);
         }
+        else if (findByName.isSelected()) {
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("name",query);
+            DataResponse res=HttpRequestUtil.request("/api/dailyActivity/findByName",req);
+            dailyActivityList=JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
+            setDataTableView(dailyActivityList);
+        }
+
     }
 
     @Getter
@@ -110,6 +122,8 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findAll",new DataRequest());
         dailyActivityList= JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
@@ -149,18 +163,35 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
     }
     public void findByStudent(ActionEvent actionEvent) {
         findByType.setSelected(false);
+        findByName.setSelected(false);
 
         InquireField.setVisible(true);
         typeField.setVisible(false);
+
+        if (!(findByType.isSelected()&&findByName.isSelected()))
+            findByStudent.setSelected(true);
     }
 
     public void findByType(ActionEvent actionEvent) {
         findByStudent.setSelected(false);
+        findByName.setSelected(false);
 
         InquireField.setVisible(false);
         typeField.setVisible(true);
+        if (!(findByStudent.isSelected()&&findByName.isSelected()))
+            findByType.setSelected(true);
     }
 
+    public void findByName(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        findByName.setSelected(false);
+
+        InquireField.setVisible(true);
+        typeField.setVisible(false);
+
+        if (!(findByStudent.isSelected()&&findByType.isSelected()))
+             findByName.setSelected(true);
+    }
 }
 
 
