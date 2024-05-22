@@ -15,7 +15,6 @@ import com.teach.javafx.request.JwtResponse;
 public class AppStore {
     private static JwtResponse jwt;
     private static manage_MainFrame_controller manage_MainFrame_controller;
-
     private static student_MainFrame_controller student_MainFrame_controller;
     private static Teacher_MainFrame_controller teacherMainFrameController;
 
