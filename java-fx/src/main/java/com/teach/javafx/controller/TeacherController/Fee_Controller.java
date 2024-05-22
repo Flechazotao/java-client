@@ -3,6 +3,7 @@ package com.teach.javafx.controller.TeacherController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.models.DO.Fee;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.FeeInfo;
@@ -48,10 +49,19 @@ public class Fee_Controller extends Teacher_MainFrame_controller {
     void onInquire(ActionEvent event){
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/fee/findByStudent",req);
-        feeList= JSON.parseArray(JSON.toJSONString(res.getData()), Fee.class);
-        setDataTableView(feeList);
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        List<Fee> newfeeList = new ArrayList<>();
+        for (Student s:studentList){
+            List<Fee> Lists = new ArrayList<>();
+            DataRequest request=new DataRequest();
+            request.add("id",s.getStudentId());
+            DataResponse response= HttpRequestUtil.request("/api/fee/findByStudent",request);
+            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Fee.class);
+            newfeeList.addAll(Lists);
+        }
+        setDataTableView(newfeeList);
     }
 
     @Getter

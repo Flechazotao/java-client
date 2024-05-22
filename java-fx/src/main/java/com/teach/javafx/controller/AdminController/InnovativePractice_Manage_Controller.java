@@ -131,11 +131,6 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
 
 
     public void onInquire() {
-//        //根据名称查找
-//        @PostMapping("/findByName")
-//        public DataResponse findByName(@RequestBody DataRequest dataRequest){
-//            return innovativePracticeService.findByName(JsonUtil.parse(dataRequest.get("name"), String.class));
-//        }
 
         if (findByStudent.isSelected()) {
             String query=InquireField.getText();
@@ -172,7 +167,6 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
         }
 
     }
-
     public void findByStudent(ActionEvent actionEvent) {
         findByType.setSelected(false);
         findByName.setSelected(false);

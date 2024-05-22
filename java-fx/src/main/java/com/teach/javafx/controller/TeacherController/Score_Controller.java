@@ -3,6 +3,7 @@ package com.teach.javafx.controller.TeacherController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.models.DO.Score;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.ScoreInfo;
@@ -11,10 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import lombok.Getter;
@@ -58,14 +56,37 @@ public class Score_Controller extends Teacher_MainFrame_controller {
     public TextField InquireField;
     @FXML
     public Button onInquire;
+    @FXML
+    public CheckBox findByStudent;
+    @FXML
+    public CheckBox findByCourseNumberOrName;
 
     @FXML
     void onInquire(ActionEvent event){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/score/findByStudentId",req);
-        scoreList= JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
+        if (findByStudent.isSelected()){
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<Score> newscoreList = new ArrayList<>();
+            for (Student s:studentList){
+                List<Score> Lists = new ArrayList<>();
+                DataRequest request=new DataRequest();
+                request.add("id",s.getStudentId());
+                DataResponse response= HttpRequestUtil.request("/api/score/findByStudentId",request);
+                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Score.class);
+                newscoreList.addAll(Lists);
+            }
+            setDataTableView(newscoreList);
+        }
+        else if (findByCourseNumberOrName.isSelected()) {
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/score/findByCourseNumberOrName",req);
+            scoreList=JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
+        }
         setDataTableView(scoreList);
     }
 
@@ -88,6 +109,7 @@ public class Score_Controller extends Teacher_MainFrame_controller {
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/score/findAll",new DataRequest());
         scoreList= JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
@@ -106,5 +128,16 @@ public class Score_Controller extends Teacher_MainFrame_controller {
         TableView.TableViewSelectionModel<ScoreInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(scoreList);
+    }
+    public void findByStudent(ActionEvent actionEvent) {
+        findByCourseNumberOrName.setSelected(false);
+        if (!findByCourseNumberOrName.isSelected())
+            findByStudent.setSelected(true);
+    }
+
+    public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        if (!findByStudent.isSelected())
+            findByCourseNumberOrName.setSelected(true);
     }
 }

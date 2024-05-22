@@ -7,6 +7,7 @@ import com.teach.javafx.controller.AdminController.Homework_Manage_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.models.DO.Homework;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.HomeworkView;
@@ -63,15 +64,40 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
     public TextField InquireField;
     @FXML
     public Button onAdd;
+    @FXML
+    public CheckBox findByStudent;
+    @FXML
+    public CheckBox findByCourseNumberOrName;
 
     @FXML
     void onInquire(ActionEvent event){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/homework/findByStudent",req);
-        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
-        setDataTableView(homeworkList);
+        if (findByStudent.isSelected()){
+            //按照学生姓名或学号查询
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+            List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<Homework> newhomeworkList = new ArrayList<>();
+            for (Student s:studentList){
+                List<Homework> Lists = new ArrayList<>();
+                DataRequest request=new DataRequest();
+                request.add("id",s.getStudentId());
+                DataResponse response= HttpRequestUtil.request("/api/homework/findByStudent",request);
+                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Homework.class);
+                newhomeworkList.addAll(Lists);
+            }
+            setDataTableView(newhomeworkList);
+        }
+        else if (findByCourseNumberOrName.isSelected()){
+//            根据课程编号或名称查询
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/homework/findByCourseNumberOrName",req);
+            homeworkList=JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
+            setDataTableView(homeworkList);
+        }
     }
 
     @Getter
@@ -129,6 +155,18 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
         stage.setScene(scene);
         stage.setTitle("发布作业");
         stage.show();
+    }
+    public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        if (!findByStudent.isSelected())
+            findByCourseNumberOrName.setSelected(true);
+    }
+
+    public void findByStudent(ActionEvent actionEvent) {
+        findByCourseNumberOrName.setSelected(false);
+
+        if (!findByCourseNumberOrName.isSelected())
+            findByStudent.setSelected(true);
     }
 
 }

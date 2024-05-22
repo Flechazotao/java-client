@@ -5,6 +5,7 @@ import com.teach.javafx.controller.AdminController.CourseManageController;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.models.DO.LeaveInfo;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.LeaveInfoInfo;
@@ -54,10 +55,19 @@ public class LeaveInformation_Controller extends Teacher_MainFrame_controller {
     void onInquire(ActionEvent event){
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/leaveInfo/findByStudent",req);
-        leaveInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), LeaveInfo.class);
-        setDataTableView(leaveInfoList);
+        req.add("numName",query);
+        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
+        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+        List<LeaveInfo> newleaveInfoList = new ArrayList<>();
+        for (Student s:studentList){
+            List<LeaveInfo> Lists = new ArrayList<>();
+            DataRequest request=new DataRequest();
+            request.add("id",s.getStudentId());
+            DataResponse response= HttpRequestUtil.request("/api/leaveInfo/findByStudent",request);
+            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), LeaveInfo.class);
+            newleaveInfoList.addAll(Lists);
+        }
+        setDataTableView(newleaveInfoList);
     }
 
     @Getter

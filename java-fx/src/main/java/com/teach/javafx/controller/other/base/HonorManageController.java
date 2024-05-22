@@ -73,17 +73,6 @@ public class HonorManageController extends manage_MainFrame_controller {
     @FXML
     void onInquire(ActionEvent event){
 
-//        根据名称查找
-//        @PostMapping("/findByName")
-//        public DataResponse findByName(@RequestBody DataRequest dataRequest){
-//            return honorInfoService.findByName(JsonUtil.parse(dataRequest.get("name"), String.class));
-//        }
-//
-//        根据类型查找
-//        @PostMapping("/findHonorInfosByType")
-//        public DataResponse findHonorInfosByType(@RequestBody DataRequest dataRequest){
-//            return honorInfoService.findHonorInfosByType(JsonUtil.parse(dataRequest.get("type"), String.class));
-//        }
         if (findByStudent.isSelected()) {
             String query = InquireField.getText();
             DataRequest req = new DataRequest();

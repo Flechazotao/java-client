@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.TeacherController.InnovativePractice_Controller">
+<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.TeacherController.InnovativePractice_Controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1077.0" style="-fx-background-color: seashell;">
@@ -30,7 +30,7 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fdfafa">
+                <Button mnemonicParsing="false" onAction="#onHonor" opacity="0.8" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: indianred;" text="荣誉信息" textFill="#fdfafa">
                     <font>
                         <Font name="System Bold Italic" size="24.0" />
                     </font>
@@ -83,5 +83,9 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </MenuButton>
+      <CheckBox fx:id="findByStudent" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" onAction="#findByStudent" text="根据学号或姓名查询" />
+      <CheckBox fx:id="findByType" layoutX="244.0" layoutY="380.0" mnemonicParsing="false" onAction="#findByType" text="根据类别查询" />
+      <CheckBox fx:id="findByName" layoutX="346.0" layoutY="380.0" mnemonicParsing="false" onAction="#findByName" text="根据活动名称查询" />
+      <ComboBox fx:id="typeField" layoutX="100.0" layoutY="333.0" prefHeight="23.0" prefWidth="217.0" visible="false" />
     </children>
 </AnchorPane>

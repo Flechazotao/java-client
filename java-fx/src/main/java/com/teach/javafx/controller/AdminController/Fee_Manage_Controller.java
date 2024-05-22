@@ -60,12 +60,7 @@ public class Fee_Manage_Controller extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
-//        String query=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",query);
-//        DataResponse res= HttpRequestUtil.request("/api/fee/findByStudent",req);
-//        feeList= JSON.parseArray(JSON.toJSONString(res.getData()), Fee.class);
-//        setDataTableView(feeList);
+
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
         req.add("numName",query);
