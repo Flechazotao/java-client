@@ -12,9 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +47,10 @@ public class Homework_Addition_Controller {
     public Button onConfirmation;
 
     public List<Student> students;
+
+    @FXML
+    public Button onSelectFile;
+    private File file;
 
     @Getter
     private static List<HomeworkInfo> homeworkInfoList = new ArrayList<>();
@@ -87,6 +95,22 @@ public class Homework_Addition_Controller {
             return;
         }
         Homework homework=getHomework();
+        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Homework"+"\\");
+        if(res1.getCode()==200){
+            MessageDialog.showDialog("文件上传成功！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("文件上传失败！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            return;
+        }
+        String url=res1.getMessage().substring(8);
+        homework.setFile(url);
+
+
         DataRequest req=new DataRequest();
         req.add("homework",homework);
         DataResponse res = HttpRequestUtil.request("/api/homework/add",req);
@@ -155,5 +179,11 @@ public class Homework_Addition_Controller {
     public void homeworkNameField(ActionEvent actionEvent) {
         courseNameField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
         courseNumField.getSelectionModel().select(homeworkNameField.getSelectionModel().getSelectedIndex());
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }

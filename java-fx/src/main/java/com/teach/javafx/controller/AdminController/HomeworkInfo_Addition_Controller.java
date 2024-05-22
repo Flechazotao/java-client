@@ -42,8 +42,6 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
     @FXML
     public Button onSelectFile;
 
-    private byte[] fileContent;
-
     private File file;
 
     ArrayList<String> courseNameList = new ArrayList<>();
@@ -93,8 +91,8 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
             return;
         }
         String url=res1.getMessage().substring(8);
-
         homeworkInfo.setFile(url);
+
         DataRequest req=new DataRequest();
         req.add("homeworkInfo",homeworkInfo);
         DataResponse res = HttpRequestUtil.request("/api/homeworkInfo/add",req);

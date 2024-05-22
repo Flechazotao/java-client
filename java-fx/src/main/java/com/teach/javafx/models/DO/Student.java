@@ -35,11 +35,12 @@ public class Student implements Serializable {
 
     private String className;
 
-//    private String GPA;
+    private String GPA;
 
     public Student(StudentInfo studentInfo){
         studentId= studentInfo.getNumber();
         major=studentInfo.getMajor();
         className=studentInfo.getClassName();
+        GPA=studentInfo.getGPA();
     }
 }

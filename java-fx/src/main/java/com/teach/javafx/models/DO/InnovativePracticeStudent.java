@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "daily_activity_student")
+@Table(name = "innovative_practice_student")
 @Entity
 public class InnovativePracticeStudent implements Serializable {
     @Id

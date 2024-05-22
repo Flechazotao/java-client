@@ -21,11 +21,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -82,13 +85,6 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
-
-//        String query=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",query);
-//        DataResponse res= HttpRequestUtil.request("/api/homework/findByStudent",req);
-//        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
-//        setDataTableView(homeworkList);
         String query=InquireField.getText();
         DataRequest req=new DataRequest();
         req.add("numName",query);
@@ -139,7 +135,7 @@ public class Homework_Manage_Controller extends manage_MainFrame_controller {
         isCheckedColumn.setCellValueFactory(new PropertyValueFactory<>("isChecked"));
         checkTimeColumn.setCellValueFactory(new PropertyValueFactory<>("checkTime"));
         homeworkScoreColumn.setCellValueFactory(new PropertyValueFactory<>("homeworkScore"));
-        fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
+        fileColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("下载文件"));
         changeColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("修改"));
         deleteColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("删除"));
 
@@ -211,6 +207,39 @@ class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
                         else {
                             MessageDialog.showDialog("删除成功!");
                             Homework_Manage_Controller.updateDataTableView();
+                        }
+                    }else if (Objects.equals(property, "下载文件")) {
+
+                        String url = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
+                        DataRequest req = new DataRequest();
+                        req.add("url", url);
+                        String fileName=url.substring(url.lastIndexOf("\\")+1);
+                        byte[] fileByte=HttpRequestUtil.requestByteData("/api/file/download", req);
+
+                        if(fileByte==null){
+                            MessageDialog.showDialog("下载失败!");
+                            return;
+                        }
+
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.setTitle("Save File");
+                        fileChooser.setInitialFileName(fileName);
+                        Path path = fileChooser.showSaveDialog(null).toPath();
+                        if (path != null) {
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(path.toFile());
+                                fos.write(fileByte);
+                                fos.close();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                            MessageDialog.showDialog("下载成功!");
+                            return;
+                        }
+                        else {
+                            MessageDialog.showDialog("下载失败!");
+                            return;
                         }
                     }
                 });

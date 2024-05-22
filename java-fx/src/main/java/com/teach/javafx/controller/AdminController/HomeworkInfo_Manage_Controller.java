@@ -140,7 +140,6 @@ public class HomeworkInfo_Manage_Controller extends manage_MainFrame_controller 
         stage.setTitle("添加选课信息");
         stage.show();
     }
-
 }
 
 
@@ -204,7 +203,7 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                         DataRequest req = new DataRequest();
                         req.add("url", url);
                         String fileName=url.substring(url.lastIndexOf("\\")+1);
-                        byte[] fileByte=HttpRequestUtil.requestByteData("/api/homeworkInfo/download", req);
+                        byte[] fileByte=HttpRequestUtil.requestByteData("/api/file/download", req);
 
                         if(fileByte==null){
                             MessageDialog.showDialog("下载失败!");

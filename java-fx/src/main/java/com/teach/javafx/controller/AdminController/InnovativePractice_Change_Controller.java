@@ -3,6 +3,7 @@ package com.teach.javafx.controller.AdminController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.base.HonorManageController;
 import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DO.InnovativePracticeStudent;
 import com.teach.javafx.models.DO.Student;
@@ -18,11 +19,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +48,10 @@ public class InnovativePractice_Change_Controller {
     private ComboBox<String> typeField;
     @FXML
     private Button onCancel;
+
+    @FXML
+    public Button onSelectFile;
+    private File file;
 
     @Getter
     @Setter
@@ -129,6 +138,32 @@ public class InnovativePractice_Change_Controller {
         InnovativePractice ip=innovativePractice;
         setInnovativePractice(ip);
 
+        if(innovativePractice.getFile()!=null&&file!=null){
+            DataRequest req1 = new DataRequest();
+            String url= InnovativePractice_Manage_Controller.getInnovativePracticeList().get(getIndex()).getFile();
+            req1.add("url",url);
+            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+            if(res1.getCode()!=200){
+                MessageDialog.showDialog("文件删除失败!");
+                return;
+            }
+
+            DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"InnovativePractice"+"\\");
+            if(res.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            url=res.getMessage().substring(8);
+            innovativePractice.setFile(url);
+        }
+
         DataRequest req=new DataRequest();
         req.add("id",innovativePractice.getInnovativeId());
         req.add("students",deleteStudents);
@@ -202,5 +237,11 @@ public class InnovativePractice_Change_Controller {
         stage.setScene(scene);
         stage.setTitle("添加参与人员");
         stage.show();
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }

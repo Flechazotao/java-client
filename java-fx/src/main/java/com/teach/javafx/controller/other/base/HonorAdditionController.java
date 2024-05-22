@@ -14,8 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -41,7 +45,11 @@ public class HonorAdditionController {
     public Button onConfirmation;
     public List<Student> students;
 
-    public static String[]levellist={"班级","年级","院级","校级","市级","省级","国家级","世界级"};
+    @FXML
+    public Button onSelectFile;
+    private File file;
+
+    public static String[] levelList ={"班级","年级","院级","校级","市级","省级","国家级","世界级"};
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();
@@ -62,7 +70,7 @@ public class HonorAdditionController {
         }
 
         //荣誉等级下拉框
-        for (String s:levellist){
+        for (String s: levelList){
             levelField.getItems().add(s);
         }
 
@@ -77,6 +85,21 @@ public class HonorAdditionController {
             return;
         }
         HonorInfo honorInfo=getHonorInfo();
+        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HonorInfo"+"\\");
+        if(res1.getCode()==200){
+            MessageDialog.showDialog("文件上传成功！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("文件上传失败！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            return;
+        }
+        String url=res1.getMessage().substring(8);
+        honorInfo.setFile(url);
+
         DataRequest req=new DataRequest();
         req.add("honorInfo",honorInfo);
         DataResponse res = HttpRequestUtil.request("/api/honorInfo/add",req);
@@ -117,4 +140,11 @@ public class HonorAdditionController {
     public void studentNameField(ActionEvent actionEvent) {
         studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
     }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
+    }
+
 }

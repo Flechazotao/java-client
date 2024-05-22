@@ -3,6 +3,7 @@ package com.teach.javafx.controller.AdminController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.TeacherController.Homework_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.base.HonorManageController;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
@@ -14,10 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +53,10 @@ public class Homework_Change_Controller {
     @Getter
     @Setter
     private static Integer index;
+
+    @FXML
+    public Button onSelectFile;
+    private File file;
 
     @Getter
     private static Homework homework;
@@ -121,6 +130,33 @@ public class Homework_Change_Controller {
         }
 
         setHomework(homework);
+
+        if(homework.getFile()!=null&&file!=null){
+            DataRequest req1 = new DataRequest();
+            String url= Homework_Manage_Controller.getHomeworkList().get(getIndex()).getFile();
+            req1.add("url",url);
+            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+            if(res1.getCode()!=200){
+                MessageDialog.showDialog("文件删除失败!");
+                return;
+            }
+
+            DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Homework"+"\\");
+            if(res.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            url=res.getMessage().substring(8);
+            homework.setFile(url);
+        }
+
         DataRequest req=new DataRequest();
         req.add("homework",homework);
         DataResponse res = HttpRequestUtil.request("/api/homework/add",req);
@@ -159,6 +195,10 @@ public class Homework_Change_Controller {
         homework.setSubmitTime(checkTimeField.getValue()==null ? LocalDate.now().toString() : checkTimeField.getValue().toString());
     }
 
-
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
+    }
 
 }

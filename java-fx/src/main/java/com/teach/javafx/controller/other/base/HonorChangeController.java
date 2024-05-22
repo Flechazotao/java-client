@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.other.base;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.controller.AdminController.HomeworkInfo_Manage_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.HonorInfo;
 import com.teach.javafx.models.DO.Person;
@@ -14,10 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -45,12 +50,16 @@ public class HonorChangeController {
     @Setter
     private static Integer index;
 
+    @FXML
+    public Button onSelectFile;
+    private File file;
+
     @Getter
     private static HonorInfo honor;
 
     public List<Student> students;
 
-    public static String[]levellist={"班级","年级","院级","校级","市级","省级","国家级","世界级"};
+    public static String[] levelList ={"班级","年级","院级","校级","市级","省级","国家级","世界级"};
 
     public void initialize(){
 
@@ -65,7 +74,7 @@ public class HonorChangeController {
         }
 
         //荣誉等级下拉框
-        for (String s:levellist){
+        for (String s: levelList){
             levelField.getItems().add(s);
         }
 
@@ -90,6 +99,33 @@ public class HonorChangeController {
         }
 
         setHonorInfo(honor);
+
+        if(honor.getFile()!=null&&file!=null){
+            DataRequest req1 = new DataRequest();
+            String url= HonorManageController.getHonorInfoList().get(getIndex()).getFile();
+            req1.add("url",url);
+            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+            if(res1.getCode()!=200){
+                MessageDialog.showDialog("文件删除失败!");
+                return;
+            }
+
+            DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HonorInfo"+"\\");
+            if(res.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            url=res.getMessage().substring(8);
+            honor.setFile(url);
+        }
+
         DataRequest req=new DataRequest();
         req.add("honorInfo",honor);
         DataResponse res = HttpRequestUtil.request("/api/honorInfo/add",req);
@@ -134,5 +170,11 @@ public class HonorChangeController {
 
     public void studentNameField(ActionEvent actionEvent) {
         studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }

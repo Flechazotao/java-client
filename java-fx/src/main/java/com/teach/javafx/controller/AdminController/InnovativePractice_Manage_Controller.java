@@ -19,14 +19,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class InnovativePractice_Manage_Controller extends manage_MainFrame_controller {
 
@@ -104,7 +108,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
         teacherNameColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
         studentColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         achievementColumn.setCellValueFactory(new PropertyValueFactory<>("achievement"));
-        fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
+        changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("下载文件"));
         changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("修改"));
         deleteColumn.setCellFactory(new IPM_ButtonCellFactory<>("删除"));
 
@@ -232,6 +236,39 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
                             stage.setScene(scene);
                             stage.setTitle("修改创新实践信息");
                             stage.show();
+                        }else if (Objects.equals(property, "下载文件")) {
+
+                            String url = InnovativePractice_Manage_Controller.getInnovativePracticeList().get(getIndex()).getFile();
+                            DataRequest req = new DataRequest();
+                            req.add("url", url);
+                            String fileName=url.substring(url.lastIndexOf("\\")+1);
+                            byte[] fileByte=HttpRequestUtil.requestByteData("/api/file/download", req);
+
+                            if(fileByte==null){
+                                MessageDialog.showDialog("下载失败!");
+                                return;
+                            }
+
+                            FileChooser fileChooser = new FileChooser();
+                            fileChooser.setTitle("Save File");
+                            fileChooser.setInitialFileName(fileName);
+                            Path path = fileChooser.showSaveDialog(null).toPath();
+                            if (path != null) {
+                                FileOutputStream fos = null;
+                                try {
+                                    fos = new FileOutputStream(path.toFile());
+                                    fos.write(fileByte);
+                                    fos.close();
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
+                                MessageDialog.showDialog("下载成功!");
+                                return;
+                            }
+                            else {
+                                MessageDialog.showDialog("下载失败!");
+                                return;
+                            }
                         }
                         else{//不知道这里有啥用
                             Scene scene = null;

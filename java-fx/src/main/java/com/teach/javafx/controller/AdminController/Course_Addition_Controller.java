@@ -14,6 +14,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +44,10 @@ public class Course_Addition_Controller {
     public Button onCancel;
     @FXML
     public Button onConfirmation;
+
+    @FXML
+    public Button onSelectFile;
+    private File file;
 
     private static List<Teacher> teacherList = new ArrayList<>();
 
@@ -91,6 +97,22 @@ public class Course_Addition_Controller {
             return;
         }
         Course course=getCourse();
+        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Course"+"\\");
+        if(res1.getCode()==200){
+            MessageDialog.showDialog("文件上传成功！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("文件上传失败！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            return;
+        }
+        String url=res1.getMessage().substring(8);
+        course.setFile(url);
+
+
         DataRequest req=new DataRequest();
         req.add("course",course);
         DataResponse res = HttpRequestUtil.request("/api/course/add",req);

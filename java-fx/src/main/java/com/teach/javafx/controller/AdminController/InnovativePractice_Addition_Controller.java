@@ -17,9 +17,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,10 @@ public class InnovativePractice_Addition_Controller {
     private ComboBox<String> typeField;
     @FXML
     private Button onCancel;
+
+    @FXML
+    public Button onSelectFile;
+    private File file;
 
     public static List<Student> addedStudents;
     private static List<Teacher> teacherList = new ArrayList<>();
@@ -92,6 +100,21 @@ public class InnovativePractice_Addition_Controller {
             return;
         }
         InnovativePractice ip=getInnovativePractice();
+        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"InnovativePractice"+"\\");
+        if(res1.getCode()==200){
+            MessageDialog.showDialog("文件上传成功！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            MessageDialog.showDialog("文件上传失败！");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            return;
+        }
+        String url=res1.getMessage().substring(8);
+        ip.setFile(url);
+
         DataRequest req=new DataRequest();
         req.add("innovativePractice",ip);
         req.add("students",addedStudents);
@@ -135,5 +158,11 @@ public class InnovativePractice_Addition_Controller {
         stage.setScene(scene);
         stage.setTitle("添加创新实践参与人员");
         stage.show();
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }

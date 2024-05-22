@@ -12,10 +12,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +52,10 @@ public class Course_Change_Controller {
     @Setter
     private static Integer index;
 
+    @FXML
+    public Button onSelectFile;
+    private File file;
+
     @Getter
     private static Course course;
 
@@ -60,6 +68,8 @@ public class Course_Change_Controller {
     private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
     //        考试、无、项目答辩、提交报告、其它
     private static String[] wayOfTestlist= {"无", "考试", "项目答辩", "提交报告", "其它"};
+    private Course ;
+
     public void initialize(){
         course = CourseManageController.getCourseList().get(index);
         courseNumberField.setText(course.getNumber());
@@ -104,6 +114,32 @@ public class Course_Change_Controller {
         }
 
         setCourse(course);
+
+        if(course.getFile()!=null&&file!=null){
+            DataRequest req1 = new DataRequest();
+            String url= course.getFile();
+            req1.add("url",url);
+            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+            if(res1.getCode()!=200){
+                MessageDialog.showDialog("文件删除失败!");
+                return;
+            }
+
+            DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Course"+"\\");
+            if(res.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            url=res.getMessage().substring(8);
+            course.setFile(url);
+        }
         DataRequest req=new DataRequest();
         req.add("course",course);
         DataResponse res = HttpRequestUtil.request("/api/course/add",req);
@@ -135,5 +171,11 @@ public class Course_Change_Controller {
         course.setWayOfTest(wayOfTestField.getValue());
         course.setLocation(locationField.getText());
         course.setType(typeField.getValue());
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }
