@@ -25,6 +25,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +83,21 @@ public class StudentManageController extends manage_MainFrame_controller {
 
     public static void setDataTableView(List<Student> list){
         studentList=list;
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+        for (Student s:studentList) {
+            DataRequest req1 = new DataRequest();
+            req1.add("id", s.getStudentId());
+            DataResponse res1 = HttpRequestUtil.request("/api/score/getGradePointsByStudentId",req1);
+            if(res1.getCode()==200){
+                double gpa=JSON.parseObject(JSON.toJSONString(res1.getData()),double.class)/10-5;
+                BigDecimal bigDecimal=new BigDecimal(gpa).setScale(2, RoundingMode.HALF_DOWN);
+                s.setGPA(String.valueOf(bigDecimal));
+            }
+            else if(res1.getCode()==404){
+                s.setGPA("没有成绩信息");
+            }
+        }
         observableList.clear();
         for(Student s:studentList){
             StudentInfo studentInfo=new StudentInfo(s);
@@ -98,15 +115,6 @@ public class StudentManageController extends manage_MainFrame_controller {
     public void initialize() {
         dataTableView.setItems(observableList);
 
-//        for (Student s:studentList) {
-//            DataRequest req = new DataRequest();
-//            req.add("id", s.getStudentId());
-//            DataResponse res=HttpRequestUtil.request("/api/score/getGradePointsByStudentId",req);
-//            s.setGPA(String.valueOf(JSON.parseObject(JSON.toJSONString(res.getData()),double.class)));
-//        }
-
-        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
-        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
 
 
 
