@@ -1,13 +1,11 @@
 package com.teach.javafx.controller.other.base;
 
 import com.alibaba.fastjson2.JSON;
-import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.controller.other.likeUseless.LoginController;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.*;
 import com.teach.javafx.request.HttpRequestUtil;
-import jakarta.persistence.Column;
 import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,16 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

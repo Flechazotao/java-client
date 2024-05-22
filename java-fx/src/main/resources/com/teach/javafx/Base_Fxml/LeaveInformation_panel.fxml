@@ -82,7 +82,7 @@
                 <TableColumn fx:id="leaveBeginTimeColumn" prefWidth="128.66668701171875" style="-fx-font-size: 20px;" text="请假开始时间" />
                 <TableColumn fx:id="leaveEndTimeColumn" prefWidth="133.99993896484375" style="-fx-font-size: 20px;" text="请假结束时间" />
                 <TableColumn fx:id="approverColumn" prefWidth="136.66668701171875" style="-fx-font-size: 20px;" text="批假人" />
-                <TableColumn fx:id="isBackSchoolColumn" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="请假状态" />
+                <TableColumn fx:id="leaveStatusColumn" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="请假状态" />
             <TableColumn fx:id="ChangeCol" prefWidth="73.333251953125" style="-fx-font-size: 20px;" text="修改" />
             <TableColumn fx:id="deleteCol" prefWidth="77.33349609375" style="-fx-font-size: 20px;" text="删除" />
             </columns>

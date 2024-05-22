@@ -1,8 +1,7 @@
 package com.teach.javafx.controller.StudentController;
 import com.alibaba.fastjson2.JSON;
-import com.teach.javafx.controller.AdminController.InnovativePractice_Manage_Controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
-import com.teach.javafx.controller.other.likeUseless.LoginController;
+import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
@@ -10,7 +9,6 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;

@@ -32,7 +32,7 @@ public class LeaveInfoInfo implements Serializable {
 
     private String leaveReason;
 
-    private String isBackSchool;
+    private String leaveStatus;
 
     public LeaveInfoInfo(LeaveInfo leaveInfo){
         leaveId=leaveInfo.getLeaveId();
@@ -43,7 +43,7 @@ public class LeaveInfoInfo implements Serializable {
         leaveTime=leaveInfo.getLeaveTime();
         approver=leaveInfo.getApprover();
         leaveReason=leaveInfo.getLeaveReason();
-        isBackSchool=leaveInfo.getIsBackSchool();
+        leaveStatus=leaveInfo.getLeaveStatus();
     }
 }
 

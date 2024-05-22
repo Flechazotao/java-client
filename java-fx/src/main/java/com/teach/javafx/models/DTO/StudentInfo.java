@@ -17,6 +17,8 @@ public class StudentInfo extends Person {
 
     private String className;
 
+    private String GPA;
+
     public StudentInfo(Student student){
         this.major=student.getMajor();
         this.className=student.getClassName();
@@ -34,5 +36,6 @@ public class StudentInfo extends Person {
         this.setPhone(person.getPhone());
         this.setPoliticalStatus(person.getPoliticalStatus());
         this.setType(person.getType());
+        this.setGPA(student.getGPA());
     }
 }

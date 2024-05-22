@@ -8,7 +8,6 @@ import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
-import com.teach.javafx.useless.teach.util.CommonMethod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +21,7 @@ import java.util.List;
 
 public class Leave_Addition_Controller {
     @FXML
-    public TextField isBackSchool;
+    public TextField leaveStatusField;
     @FXML
     public ComboBox<String> studentNameField;
     @FXML
@@ -107,7 +106,7 @@ public class Leave_Addition_Controller {
         leaveInfo.setLeaveEndTime(endTimePicker.getValue()==null ? LocalDate.now().toString() : endTimePicker.getValue().toString());
         leaveInfo.setLeaveReason(reasonField.getText());
         leaveInfo.setApprover(approverField.getText());
-        leaveInfo.setIsBackSchool(isBackSchool.getText());
+        leaveInfo.setLeaveStatus(leaveStatusField.getText().isEmpty()?"未审核": leaveStatusField.getText());
         return leaveInfo;
     }
 

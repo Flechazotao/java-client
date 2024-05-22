@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
-import com.teach.javafx.models.DO.Fee;
 import com.teach.javafx.models.DO.LeaveInfo;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -47,7 +46,7 @@ public class LeaveInfo_Manage_Controller extends manage_MainFrame_controller {
     @FXML
     private TableColumn<LeaveInfoInfo, String> approverColumn;
     @FXML
-    private TableColumn<LeaveInfoInfo,String> isBackSchoolColumn;
+    private TableColumn<LeaveInfoInfo,String> leaveStatusColumn;
     @FXML
     private TableColumn<LeaveInfoInfo, String> ChangeCol;
     @FXML
@@ -110,13 +109,13 @@ public class LeaveInfo_Manage_Controller extends manage_MainFrame_controller {
 
         leaveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveTime"));
         studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
-        studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         leaveReasonColumn.setCellValueFactory(new PropertyValueFactory<>("leaveReason"));
         leaveBeginTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveBeginTime"));
         leaveEndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveEndTime"));
         approverColumn.setCellValueFactory(new PropertyValueFactory<>("approver"));
         leaveTimeColumn.setCellValueFactory(new PropertyValueFactory<>("leaveTime"));
-        isBackSchoolColumn.setCellValueFactory(new PropertyValueFactory<>("isBackSchool"));
+        leaveStatusColumn.setCellValueFactory(new PropertyValueFactory<>("leaveStatus"));
         ChangeCol.setCellFactory(new LIM_ButtonCellFactory<>("修改"));
         deleteCol.setCellFactory(new LIM_ButtonCellFactory<>("删除"));
 

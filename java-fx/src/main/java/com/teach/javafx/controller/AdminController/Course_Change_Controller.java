@@ -68,7 +68,6 @@ public class Course_Change_Controller {
     private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
     //        考试、无、项目答辩、提交报告、其它
     private static String[] wayOfTestlist= {"无", "考试", "项目答辩", "提交报告", "其它"};
-    private Course ;
 
     public void initialize(){
         course = CourseManageController.getCourseList().get(index);

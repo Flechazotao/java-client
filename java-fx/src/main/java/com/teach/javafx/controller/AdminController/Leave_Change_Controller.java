@@ -2,7 +2,6 @@ package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.models.DO.Fee;
 import com.teach.javafx.models.DO.LeaveInfo;
 import com.teach.javafx.models.DO.Person;
 import com.teach.javafx.models.DO.Student;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class Leave_Change_Controller {
     @FXML
-    public TextField isBackSchool;
+    public TextField leaveStatusField;
     @FXML
     public ComboBox<String> studentNameField;
     @FXML
@@ -67,7 +66,7 @@ public class Leave_Change_Controller {
 
         leaveInfo = LeaveInfo_Manage_Controller.getLeaveInfoList().get(index);
 
-        isBackSchool.setText(leaveInfo.getIsBackSchool());
+        leaveStatusField.setText(leaveInfo.getLeaveStatus());
         studentIdField.setValue(String.valueOf(leaveInfo.getStudent().getStudentId()));
         studentNameField.setValue(leaveInfo.getStudent().getPerson().getName());
         leaveTimePicker.setValue(LocalDate.parse(leaveInfo.getLeaveTime()));
@@ -121,7 +120,7 @@ public class Leave_Change_Controller {
         leaveInfo.setLeaveEndTime(endTimePicker.getValue()==null ? LocalDate.now().toString() : endTimePicker.getValue().toString());
         leaveInfo.setLeaveReason(reasonField.getText());
         leaveInfo.setApprover(approverField.getText());
-        leaveInfo.setIsBackSchool(isBackSchool.getText());
+        leaveInfo.setLeaveStatus(leaveStatusField.getText()==null?"未审核": leaveStatusField.getText());
     }
     public void studentNameField(ActionEvent actionEvent) {
         studentIdField.getSelectionModel().select(studentNameField.getSelectionModel().getSelectedIndex());

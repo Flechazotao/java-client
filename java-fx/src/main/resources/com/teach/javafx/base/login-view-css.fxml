@@ -6,9 +6,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<!-- 用户登录对话框FXML配置文件 对应页面交互控制类 com.teach.javafx.controller.other.likeUseless.LoginController -->
+<!-- 用户登录对话框FXML配置文件 对应页面交互控制类 com.teach.javafx.controller.other.LoginController -->
 
-<VBox fx:id="min" alignment="CENTER" prefHeight="243.0" prefWidth="469.0" spacing="20.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.likeUseless.LoginController">
+<VBox fx:id="min" alignment="CENTER" prefHeight="243.0" prefWidth="469.0" spacing="20.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.other.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>

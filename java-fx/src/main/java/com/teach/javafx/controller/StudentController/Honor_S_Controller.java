@@ -1,11 +1,9 @@
 package com.teach.javafx.controller.StudentController;
 
 import com.alibaba.fastjson2.JSON;
-import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
-import com.teach.javafx.controller.other.likeUseless.LoginController;
+import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.models.DO.HonorInfo;
-import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.HonorInfoInfo;
@@ -17,7 +15,6 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 
 import java.util.ArrayList;
