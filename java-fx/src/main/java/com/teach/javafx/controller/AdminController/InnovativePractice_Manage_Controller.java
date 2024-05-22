@@ -66,6 +66,8 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
     @FXML
     private CheckBox findByType;
     @FXML
+    private CheckBox findByName;
+    @FXML
     private ComboBox<String>typeField;
 
     public static String[]typelist={"社会实践","学科竞赛","科技成果","培训讲座","创新项目","校外实习","志愿服务"};
@@ -129,13 +131,13 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
 
 
     public void onInquire() {
-//            String query = InquireField.getText();
-//            DataRequest req = new DataRequest();
-//            req.add("id", query);
-//            DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findByStudent", req);
-//            innovativePracticeList = JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
-//            setDataTableView(innovativePracticeList);
-        if (InquireField.isVisible()) {
+//        //根据名称查找
+//        @PostMapping("/findByName")
+//        public DataResponse findByName(@RequestBody DataRequest dataRequest){
+//            return innovativePracticeService.findByName(JsonUtil.parse(dataRequest.get("name"), String.class));
+//        }
+
+        if (findByStudent.isSelected()) {
             String query=InquireField.getText();
             DataRequest req=new DataRequest();
             req.add("numName",query);
@@ -152,7 +154,15 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
             }
             setDataTableView(newinnovativePracticeList);
         }
-        else if (typeField.isVisible()){
+        else if (findByName.isSelected()){
+            String query = InquireField.getText();
+            DataRequest req1 = new DataRequest();
+            req1.add("name", query);
+            DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findByName", req1);
+            innovativePracticeList = JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
+            setDataTableView(innovativePracticeList);
+        }
+        else if (findByType.isSelected()){
             String query = typeField.getValue();
             DataRequest req1 = new DataRequest();
             req1.add("type", query);
@@ -160,20 +170,41 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
             innovativePracticeList = JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
             setDataTableView(innovativePracticeList);
         }
+
     }
 
     public void findByStudent(ActionEvent actionEvent) {
         findByType.setSelected(false);
+        findByName.setSelected(false);
 
         InquireField.setVisible(true);
         typeField.setVisible(false);
+
+        if (!(findByType.isSelected()&&findByName.isSelected()))
+            findByStudent.setSelected(true);
     }
 
     public void findByType(ActionEvent actionEvent) {
         findByStudent.setSelected(false);
+        findByName.setSelected(false);
+
 
         InquireField.setVisible(false);
         typeField.setVisible(true);
+
+        if (!(findByStudent.isSelected()&&findByName.isSelected()))
+            findByType.setSelected(true);
+    }
+
+    public void findByName(ActionEvent actionEvent) {
+        findByType.setSelected(false);
+        findByStudent.setSelected(false);
+
+        InquireField.setVisible(true);
+        typeField.setVisible(false);
+
+        if (!(findByType.isSelected()&&findByStudent.isSelected()))
+            findByName.setSelected(true);
     }
 
     class IPM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {

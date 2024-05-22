@@ -34,6 +34,10 @@ import java.util.Objects;
 
 public class HonorManageController extends manage_MainFrame_controller {
     @FXML
+    public CheckBox findByStudent;
+    @FXML
+    public CheckBox findByName;
+    @FXML
     private TableView <HonorInfoInfo> dataTableView;
     @FXML
     private TableColumn<HonorInfoInfo, String> typeColumn;
@@ -68,27 +72,43 @@ public class HonorManageController extends manage_MainFrame_controller {
 
     @FXML
     void onInquire(ActionEvent event){
-//        String query=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",query);
-//        DataResponse res= HttpRequestUtil.request("/api/honorInfo/findByStudent",req);
-//        honorInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HonorInfo.class);
-//        setDataTableView(honorInfoList);
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("numName",query);
-        DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
-        List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
-        List<HonorInfo> newhonorInfoList = new ArrayList<>();
-        for (Student s:studentList){
-            List<HonorInfo> Lists = new ArrayList<>();
-            DataRequest request=new DataRequest();
-            request.add("id",s.getStudentId());
-            DataResponse response= HttpRequestUtil.request("/api/honorInfo/findByStudent",request);
-            Lists=JSON.parseArray(JSON.toJSONString(response.getData()), HonorInfo.class);
-            newhonorInfoList.addAll(Lists);
+
+//        根据名称查找
+//        @PostMapping("/findByName")
+//        public DataResponse findByName(@RequestBody DataRequest dataRequest){
+//            return honorInfoService.findByName(JsonUtil.parse(dataRequest.get("name"), String.class));
+//        }
+//
+//        根据类型查找
+//        @PostMapping("/findHonorInfosByType")
+//        public DataResponse findHonorInfosByType(@RequestBody DataRequest dataRequest){
+//            return honorInfoService.findHonorInfosByType(JsonUtil.parse(dataRequest.get("type"), String.class));
+//        }
+        if (findByStudent.isSelected()) {
+            String query = InquireField.getText();
+            DataRequest req = new DataRequest();
+            req.add("numName", query);
+            DataResponse res = HttpRequestUtil.request("/api/student/findByStudentIdOrName", req);
+            List<Student> studentList = JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            List<HonorInfo> newhonorInfoList = new ArrayList<>();
+            for (Student s : studentList) {
+                List<HonorInfo> Lists = new ArrayList<>();
+                DataRequest request = new DataRequest();
+                request.add("id", s.getStudentId());
+                DataResponse response = HttpRequestUtil.request("/api/honorInfo/findByStudent", request);
+                Lists = JSON.parseArray(JSON.toJSONString(response.getData()), HonorInfo.class);
+                newhonorInfoList.addAll(Lists);
+            }
+            setDataTableView(newhonorInfoList);
         }
-        setDataTableView(newhonorInfoList);
+        else if (findByName.isSelected()){
+            String query = InquireField.getText();
+            DataRequest req = new DataRequest();
+            req.add("name", query);
+            DataResponse res = HttpRequestUtil.request("/api/honorInfo/findByName", req);
+            honorInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), HonorInfo.class);
+            setDataTableView(honorInfoList);
+        }
     }
 
     @Getter
@@ -110,6 +130,8 @@ public class HonorManageController extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/honorInfo/findAll",new DataRequest());
         honorInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HonorInfo.class);
@@ -145,6 +167,18 @@ public class HonorManageController extends manage_MainFrame_controller {
         stage.show();
     }
 
+    public void findByStudent(ActionEvent actionEvent) {
+        findByName.setSelected(false);
+
+        if (!findByName.isSelected())
+            findByStudent.setSelected(true);
+    }
+
+    public void findByName(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        if (!findByStudent.isSelected())
+            findByName.setSelected(true);
+    }
 }
 
 

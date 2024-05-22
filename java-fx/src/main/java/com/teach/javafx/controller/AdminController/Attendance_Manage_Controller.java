@@ -58,6 +58,8 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     public Button onInquire;
     @FXML
     public Button onAddAttendance;
+    @FXML
+    private ComboBox<String> typeField;
 
     @FXML
     public ComboBox<String> isAttendedField;
@@ -65,6 +67,10 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     private CheckBox findByStudent;
     @FXML
     private CheckBox findByIsAttended;
+    @FXML
+    private CheckBox findAttendanceInfoByType;
+
+    public static String[]typelist={"上课考勤","会议考勤","活动考勤"};
     @FXML
     void onInquire(ActionEvent event){
 //        String query=InquireField.getText();
@@ -89,7 +95,8 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
                 newattendanceInfoList.addAll(Lists);
             }
             setDataTableView(newattendanceInfoList);
-        } else if (isAttendedField.isVisible()) {
+        }
+        else if (isAttendedField.isVisible()) {
             String query = isAttendedField.getValue();
             DataRequest req1 = new DataRequest();
             req1.add("isAttended", query);
@@ -97,7 +104,14 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
             attendanceInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
             setDataTableView(attendanceInfoList);
         }
-
+        else if (typeField.isVisible()) {
+            String query = isAttendedField.getValue();
+            DataRequest req1 = new DataRequest();
+            req1.add("type", query);
+            DataResponse res = HttpRequestUtil.request("/api/attendance/findAttendanceInfoByType", req1);
+            attendanceInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
+            setDataTableView(attendanceInfoList);
+        }
     }
 
     @Getter
@@ -119,6 +133,12 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+
+        //展示类型下拉框
+        for(String s:typelist){
+            typeField.getItems().add(s);
+        }
+
         //展示考勤情况下拉框
         isAttendedField.getItems().add("是");
         isAttendedField.getItems().add("否");
@@ -158,14 +178,47 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
 
     public void findByStudent(ActionEvent actionEvent) {
         findByIsAttended.setSelected(false);
+        findAttendanceInfoByType.setSelected(false);
+
+        typeField.setVisible(false);
         isAttendedField.setVisible(false);
         InquireField.setVisible(true);
+
+        if(InquireField.isVisible()){
+            findByStudent.setSelected(true);
+            findByIsAttended.setSelected(false);
+            findAttendanceInfoByType.setSelected(false);
+        }
     }
 
     public void findByIsAttended(ActionEvent actionEvent) {
         findByStudent.setSelected(false);
+        findAttendanceInfoByType.setSelected(false);
+
+        typeField.setVisible(false);
         isAttendedField.setVisible(true);
         InquireField.setVisible(false);
+
+        if(isAttendedField.isVisible()){
+            findByIsAttended.setSelected(true);
+            findByStudent.setSelected(false);
+            findAttendanceInfoByType.setSelected(false);
+        }
+    }
+
+    public void findAttendanceInfoByType(ActionEvent actionEvent) {
+        findByStudent.setSelected(false);
+        findByIsAttended.setSelected(false);
+
+        typeField.setVisible(true);
+        InquireField.setVisible(false);
+        isAttendedField.setVisible(false);
+
+        if(typeField.isVisible()){
+            findByIsAttended.setSelected(false);
+            findByStudent.setSelected(false);
+            findAttendanceInfoByType.setSelected(true);
+        }
     }
 }
 

@@ -107,5 +107,6 @@
       <CheckBox fx:id="findByStudent" layoutX="100.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByStudent" text="根据学号或姓名查询" />
       <CheckBox fx:id="findByType" layoutX="247.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByType" text="根据类别查询" />
       <ComboBox fx:id="typeField" layoutX="100.0" layoutY="337.0" prefHeight="23.0" prefWidth="217.0" visible="false" />
+      <CheckBox fx:id="findByName" layoutX="355.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByName" text="根据活动名称查询" />
     </children>
 </AnchorPane>

@@ -2,11 +2,15 @@ package com.teach.javafx.controller.StudentController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.controller.other.base.CourseSelectedS_Controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.models.DO.Course;
+import com.teach.javafx.models.DO.SelectedCourse;
+import com.teach.javafx.models.DO.SelectedCourseInfo;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
+import com.teach.javafx.models.DTO.SelectedCourseInfoInfo;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,27 +28,27 @@ import java.util.List;
 
 public class CourseManage_S_Controller extends student_MainFrame_controller{
     @FXML
-    private TableView<Course> dataTableView;
+    private TableView<SelectedCourseInfoInfo> dataTableView;
     @FXML
-    private TableColumn<Course,String> courseNumberColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> courseNumberColumn;
     @FXML
-    private TableColumn<Course,String> courseNameColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> courseNameColumn;
     @FXML
-    private TableColumn<Course,String> creditColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> creditColumn;
     @FXML
-    private TableColumn<Course,String> courseTimeColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> courseTimeColumn;
     @FXML
-    private TableColumn<Course,String> teacherNameColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> teacherNameColumn;
     @FXML
-    private TableColumn<Course,String> courseBeginWeekColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> courseBeginWeekColumn;
     @FXML
-    private TableColumn<Course,String> wayOfTestColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> wayOfTestColumn;
     @FXML
-    private TableColumn<Course,String> locationColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> locationColumn;
     @FXML
-    private TableColumn<Course,String> typeColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> typeColumn;
     @FXML
-    private TableColumn<Course,String> fileColumn;
+    private TableColumn<SelectedCourseInfoInfo,String> fileColumn;
     @FXML
     private ComboBox<String> typeField;
     @FXML
@@ -55,28 +59,40 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     private Button inSelectingCourse;
 
     @Getter
-    private static List<Course> courseList = new ArrayList<>();
+    private static List<SelectedCourseInfo> selectedCourseInfoList = new ArrayList<>();
     private static String[] typelist = {"必修", "选修", "通选", "限选", "任选"};
 
-    private static ObservableList<Course> observableList= FXCollections.observableArrayList();
+    private static ObservableList<SelectedCourseInfoInfo> observableList= FXCollections.observableArrayList();
 
-    public static void setDataTableView(List<Course> list){
-        courseList=list;
+    public static void setDataTableView(List<SelectedCourseInfo> list){
+        selectedCourseInfoList =list;
         observableList.clear();
-        for(Course course:courseList){
-            observableList.addAll(FXCollections.observableArrayList(course));
+        for(SelectedCourseInfo selectedCourseInfo: selectedCourseInfoList){
+            observableList.addAll(FXCollections.observableArrayList(new SelectedCourseInfoInfo(selectedCourseInfo)));
         }
     }
 
     public static void updateDataTableView(){
-        DataResponse res = HttpRequestUtil.request("/api/course/findAll",new DataRequest());
-        setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),Course.class));
+        DataRequest req=new DataRequest();
+        req.add("id", LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req);
+        List<SelectedCourse> lists = JSON.parseArray(JSON.toJSONString(res.getData()),SelectedCourse.class);
+        List<SelectedCourseInfo> newlists = new ArrayList<>();
+        for (SelectedCourse selectedCourse:lists)
+            newlists.add(selectedCourse.getSelectedCourseInfo());
+        selectedCourseInfoList=newlists;
+        setDataTableView(selectedCourseInfoList);
     }
 
     public void initialize() {
-        dataTableView.setItems(observableList);
-        DataResponse res = HttpRequestUtil.request("/api/course/findAll",new DataRequest());
-        courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
+        DataRequest req=new DataRequest();
+        req.add("id", LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req);
+        List<SelectedCourse> lists = JSON.parseArray(JSON.toJSONString(res.getData()),SelectedCourse.class);
+        List<SelectedCourseInfo> newlists = new ArrayList<>();
+        for (SelectedCourse selectedCourse:lists)
+            newlists.add(selectedCourse.getSelectedCourseInfo());
+        selectedCourseInfoList=newlists;
 
         courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -89,9 +105,10 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
 
-        TableView.TableViewSelectionModel<Course> tsm = dataTableView.getSelectionModel();
+        TableView.TableViewSelectionModel<SelectedCourseInfoInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
-        setDataTableView(courseList);
+        setDataTableView(selectedCourseInfoList);
+
         //展示课程类型下拉框
         for(String s:typelist){
             typeField.getItems().add(s);
@@ -111,11 +128,13 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void onInquire(ActionEvent actionEvent) {
+
         String query = typeField.getValue();
         DataRequest req1 = new DataRequest();
         req1.add("type", query);
-        DataResponse res = HttpRequestUtil.request("/api/course/findByCourseType", req1);
-        courseList = JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
-        setDataTableView(courseList);
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByCourseType", req1);
+        selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+        setDataTableView(selectedCourseInfoList);
     }
+
 }

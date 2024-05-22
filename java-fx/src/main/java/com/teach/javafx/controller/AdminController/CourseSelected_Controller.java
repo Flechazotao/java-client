@@ -76,6 +76,11 @@ public class CourseSelected_Controller extends manage_MainFrame_controller {
 
     @FXML
     private TableColumn<SelectedCourseInfoInfo, String> wayOfTest;
+    @FXML
+    private CheckBox findByCourseNumberOrName;
+
+    @FXML
+    private CheckBox findByTeacherName;
 
     @FXML
     private Button onAddCourse;
@@ -129,7 +134,24 @@ public class CourseSelected_Controller extends manage_MainFrame_controller {
 
 
     public void onInquire(ActionEvent actionEvent) {
-
+        if(findByCourseNumberOrName.isSelected()) {
+            //根据课程编号或名称查询
+            String query = InquireField.getText();
+            DataRequest req = new DataRequest();
+            req.add("numName", query);
+            DataResponse res = HttpRequestUtil.request("/api/selectedCourseInfo/findByCourseNumberOrName", req);
+            selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+            setDataTableView(selectedCourseInfoList);
+        }
+        else if(findByTeacherName.isSelected()){
+            //根据教师姓名查询
+            String query = InquireField.getText();
+            DataRequest req = new DataRequest();
+            req.add("teacherName", query);
+            DataResponse res = HttpRequestUtil.request("/api/selectedCourseInfo/findByTeacherName", req);
+            selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+            setDataTableView(selectedCourseInfoList);
+        }
 
     }
 
@@ -156,6 +178,16 @@ public class CourseSelected_Controller extends manage_MainFrame_controller {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        findByTeacherName.setSelected(false);
+
+    }
+
+    public void findByTeacherName(ActionEvent actionEvent) {
+        findByCourseNumberOrName.setSelected(false);
+
     }
 }
 class CS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
