@@ -71,7 +71,7 @@
         <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
             <items>
                 <MenuItem mnemonicParsing="false" text="退出" />
-                <MenuItem mnemonicParsing="false" text="个人信息" />
+                <MenuItem mnemonicParsing="false" text="首页" />
                 <MenuItem mnemonicParsing="false" text="修改密码" />
             </items>
             <font>
