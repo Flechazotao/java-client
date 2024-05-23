@@ -69,6 +69,7 @@ public class DailyActivity_S_Controller extends student_MainFrame_controller{
         DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findAll",new DataRequest());
         dailyActivityList= JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
 
+
         activityTypeColumn.setCellValueFactory(new PropertyValueFactory<>("activityType"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("activityName"));
         beginTimeColumn.setCellValueFactory(new PropertyValueFactory<>("beginTime"));
