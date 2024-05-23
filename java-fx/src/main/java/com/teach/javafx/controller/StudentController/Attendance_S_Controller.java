@@ -91,8 +91,9 @@ public class Attendance_S_Controller extends student_MainFrame_controller{
         if (isAttendedField.isVisible()){
         String query = isAttendedField.getValue();
         DataRequest req = new DataRequest();
+        req.add("id",studentId);
         req.add("isAttended", query);
-        DataResponse res = HttpRequestUtil.request("/api/attendance/findByIsAttended", req);
+        DataResponse res = HttpRequestUtil.request("/api/attendance/findByStudentIdAndIsAttended", req);
         attendanceInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
         setDataTableView(attendanceInfoList);
         }

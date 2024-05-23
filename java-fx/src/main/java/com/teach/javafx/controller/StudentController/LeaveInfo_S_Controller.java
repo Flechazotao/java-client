@@ -41,20 +41,6 @@ public class LeaveInfo_S_Controller extends student_MainFrame_controller{
     private TableColumn<LeaveInfoInfo,String> leaveStatusColumn;
     @FXML
     private TableColumn<LeaveInfoInfo,String> cancelColumn;
-    @FXML
-    private Button onInquire;
-    @FXML
-    private TextField InquireField;
-
-    @FXML
-    void onInquire(ActionEvent event){
-        String query=InquireField.getText();
-        DataRequest req=new DataRequest();
-        req.add("id",query);
-        DataResponse res= HttpRequestUtil.request("/api/leaveInfo/findByStudent",req);
-        leaveInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), LeaveInfo.class);
-        setDataTableView(leaveInfoList);
-    }
 
     private static Long studentId= Long.valueOf(LoginController.getNumber());
 

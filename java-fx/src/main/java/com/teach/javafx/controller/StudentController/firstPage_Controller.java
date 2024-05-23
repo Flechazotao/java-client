@@ -202,15 +202,11 @@ public class firstPage_Controller extends student_MainFrame_controller {
         DataRequest req=new DataRequest();
         req.add("id",LoginController.getNumber());
 
-
-
-
-
         AddButtonToList();
 
-        DataRequest req=new DataRequest();
-        req.add("id", LoginController.getNumber());
-        DataResponse res= HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req);
+        DataRequest req1=new DataRequest();
+        req1.add("id", LoginController.getNumber());
+        DataResponse res= HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req1);
         List<SelectedCourse> selectedCourses= JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourse.class);
         studentSelectedCourseInfoList.clear();
         if(selectedCourses!=null){
