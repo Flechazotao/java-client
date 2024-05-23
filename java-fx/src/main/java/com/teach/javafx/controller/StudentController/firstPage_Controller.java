@@ -1,12 +1,16 @@
 package com.teach.javafx.controller.StudentController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.AppStore;
+import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.AdminController.Homework_Manage_Controller;
 import com.teach.javafx.controller.AdminController.StudentManageController;
 import com.teach.javafx.controller.AdminController.Student_BeforeInfo_Manage_Controller;
 import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.CourseSelectedS_Controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
+import com.teach.javafx.controller.other.likeUseless.HtmlEditController;
 import com.teach.javafx.models.DO.HonorInfo;
 import com.teach.javafx.models.DO.SelectedCourse;
 import com.teach.javafx.models.DO.SelectedCourseInfo;
@@ -17,13 +21,17 @@ import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -378,4 +386,18 @@ public class firstPage_Controller extends student_MainFrame_controller {
     public void MondayFifth() {
     }
 
+    public void onResume (ActionEvent actionEvent) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/html-edit_panel.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1500, 800);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("个人简历");
+        stage.show();
+    }
 }

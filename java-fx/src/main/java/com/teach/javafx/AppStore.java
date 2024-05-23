@@ -5,6 +5,7 @@ import com.teach.javafx.controller.StudentController.Fee_S_Controller;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
+import com.teach.javafx.controller.other.likeUseless.HtmlEditController;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.request.JwtResponse;
 
@@ -18,6 +19,7 @@ public class AppStore {
     private static student_MainFrame_controller student_MainFrame_controller;
     private static Teacher_MainFrame_controller teacherMainFrameController;
 
+    private static HtmlEditController HtmlEditController;
     private AppStore(){
     }
 
@@ -43,5 +45,7 @@ public class AppStore {
     public static void setMainFrameController(Teacher_MainFrame_controller controller) {
         AppStore.teacherMainFrameController = controller;
     }
-
+    public static void setMainFrameController(HtmlEditController controller) {
+        AppStore.HtmlEditController = controller;
+    }
 }
