@@ -7,8 +7,10 @@ import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.CourseSelectedS_Controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
+import com.teach.javafx.models.DO.HonorInfo;
 import com.teach.javafx.models.DO.SelectedCourse;
 import com.teach.javafx.models.DO.SelectedCourseInfo;
+import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
@@ -17,6 +19,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +29,13 @@ import java.util.List;
 
 public class firstPage_Controller extends student_MainFrame_controller {
 
+    public Label phone;
+    public Label name;
+    public Label num;
+    public Label email;
+    public Label politic;
+    public Label address;
+    public TextArea honorTextArea;
     @FXML
     private javafx.scene.layout.GridPane GridPane;
 
@@ -196,16 +207,37 @@ public class firstPage_Controller extends student_MainFrame_controller {
         }
     }
 
-    public static List<SelectedCourseInfo> studentSelectedCourseInfoList=new ArrayList<>();;
+    public static List<SelectedCourseInfo> studentSelectedCourseInfoList=new ArrayList<>();
+    @Getter
+    private static List<HonorInfo> honorInfoList = new ArrayList<>();
+
     public void initialize(){
 
-        DataRequest req=new DataRequest();
-        req.add("id",LoginController.getNumber());
 
+        DataRequest req1=new DataRequest();
+        req1.add("numName",LoginController.getNumber());
+        DataResponse res1= HttpRequestUtil.request("/api/student/findByStudentIdOrName",req1);
+        List<Student> studentList= JSON.parseArray(JSON.toJSONString(res1.getData()), Student.class);
+        Student student=studentList.get(0);
 
+        phone.setText(student.getPerson().getPhone());
+        name.setText(student.getPerson().getName());
+        num.setText(String.valueOf(student.getStudentId()));
+        email.setText(student.getPerson().getEmail());
+        address.setText(student.getPerson().getAddress());
+        politic.setText(student.getPerson().getAddress());
+        res1= HttpRequestUtil.request("/api/honorInfo/findByStudent",req1);
+        honorInfoList= JSON.parseArray(JSON.toJSONString(res1.getData()), HonorInfo.class);
 
-
-
+        if (honorInfoList!=null){
+        List<String>Texts=new ArrayList<>();
+        for (HonorInfo honorInfo:honorInfoList){
+            Texts.add(honorInfo.getHonorTime()+"\t"+honorInfo.getHonorName()+honorInfo.getLevel());
+        }
+        for (String s:Texts)
+            honorTextArea.setText(s+"\n");
+        }
+        
         AddButtonToList();
 
         DataRequest req=new DataRequest();
