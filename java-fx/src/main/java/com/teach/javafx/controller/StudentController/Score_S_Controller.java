@@ -49,33 +49,20 @@ public class Score_S_Controller extends student_MainFrame_controller{
     @FXML
     public Button onInquire;
 
+//    //    根据学号和(课程编号或名称)查询
+//    @PostMapping("/findByStudentIdAndNumName")
+//    public DataResponse findByStudentIdAndNumName(@RequestBody DataRequest dataRequest){
+//        return scoreService.findByStudentIdAndNumName(JsonUtil.parse(dataRequest.get("studentId"), Long.class),JsonUtil.parse(dataRequest.get("numName"), String.class));
+//    }
     @FXML
     void onInquire(ActionEvent event){
-//        if (findByStudent.isSelected()){
-//            String query=InquireField.getText();
-//            DataRequest req=new DataRequest();
-//            req.add("numName",query);
-//            DataResponse res= HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
-//            List<Student> studentList= JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
-//            List<Score> newscoreList = new ArrayList<>();
-//            for (Student s:studentList){
-//                List<Score> Lists = new ArrayList<>();
-//                DataRequest request=new DataRequest();
-//                request.add("id",s.getStudentId());
-//                DataResponse response= HttpRequestUtil.request("/api/score/findByStudentId",request);
-//                Lists=JSON.parseArray(JSON.toJSONString(response.getData()), Score.class);
-//                newscoreList.addAll(Lists);
-//            }
-//            setDataTableView(newscoreList);
-//        }
-//        else if (findByCourseNumberOrName.isSelected()) {
-//            String query=InquireField.getText();
-//            DataRequest req=new DataRequest();
-//            req.add("numName",query);
-//            DataResponse res=HttpRequestUtil.request("/api/score/findByCourseNumberOrName",req);
-//            scoreList=JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
-//        }
-//        setDataTableView(scoreList);
+            String query=InquireField.getText();
+            DataRequest req=new DataRequest();
+            req.add("studentId",LoginController.getNumber());
+            req.add("numName",query);
+            DataResponse res=HttpRequestUtil.request("/api/score/findByStudentIdAndNumName",req);
+            scoreList=JSON.parseArray(JSON.toJSONString(res.getData()), Score.class);
+            setDataTableView(scoreList);
     }
 
     @Getter

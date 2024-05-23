@@ -199,6 +199,13 @@ public class firstPage_Controller extends student_MainFrame_controller {
     public static List<SelectedCourseInfo> studentSelectedCourseInfoList=new ArrayList<>();;
     public void initialize(){
 
+        DataRequest req=new DataRequest();
+        req.add("id",LoginController.getNumber());
+
+
+
+
+
         AddButtonToList();
 
         DataRequest req=new DataRequest();
