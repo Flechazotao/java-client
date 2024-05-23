@@ -2,6 +2,8 @@ package com.teach.javafx.controller.other;
 
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.AdminController.StudentManageController;
+import com.teach.javafx.controller.TeacherController.Student_Information_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
@@ -101,10 +103,10 @@ public class LoginController {
             return;
         }
         if (checkBox3.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/manager_MainFrame.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -122,10 +124,10 @@ public class LoginController {
             }
         }
         else if (checkBox2.isSelected()){
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher_MainFrame.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_Information_T.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((Teacher_MainFrame_controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((Student_Information_Controller) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -145,10 +147,10 @@ public class LoginController {
             return;
         }
         if (checkBox3.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/manager_MainFrame.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/StudentManage_Frame.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((StudentManageController) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -166,10 +168,10 @@ public class LoginController {
             }
         }
         else if (checkBox2.isSelected()){
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Teacher_MainFrame.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_Information_T.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-                AppStore.setMainFrameController((manage_MainFrame_controller) fxmlLoader.getController());
+                AppStore.setMainFrameController((Student_Information_Controller) fxmlLoader.getController());
                 MainApplication.resetStage("教学管理系统", scene);
             } catch (IOException e) {
                 throw new RuntimeException(e);
