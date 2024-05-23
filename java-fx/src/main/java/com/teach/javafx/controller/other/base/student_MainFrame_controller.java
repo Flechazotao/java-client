@@ -160,4 +160,15 @@ public class student_MainFrame_controller {
         }
     }
 
+    public void onFirstPage(){
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/Student_Mainframe.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+            AppStore.setMainFrameController((firstPage_Controller) fxmlLoader.getController());
+            MainApplication.resetStage("教学管理系统", scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
