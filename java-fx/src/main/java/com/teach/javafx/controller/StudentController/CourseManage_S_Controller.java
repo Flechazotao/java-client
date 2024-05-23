@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseManage_S_Controller extends student_MainFrame_controller{
+    public CheckBox findByCourseType;
+    public CheckBox findByNumName;
+    public CheckBox findByTeacherName;
     @FXML
     private TableView<SelectedCourseInfoInfo> dataTableView;
     @FXML
@@ -114,7 +117,6 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
             typeField.getItems().add(s);
         }
     }
-
     public void inSelectingCourse(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseSelect-S.fxml"));
         try {
@@ -145,13 +147,65 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
 //        public DataResponse findByStudentIdAndTeacherName(@RequestBody DataRequest dataRequest){
 //            return selectedCourseService.findByStudentIdAndTeacherName(JsonUtil.parse(dataRequest.get("studentId"), Long.class),JsonUtil.parse(dataRequest.get("teacherName"), String.class));
 //        }
-
-        String query = typeField.getValue();
-        DataRequest req1 = new DataRequest();
-        req1.add("type", query);
-        DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByCourseType", req1);
-        selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
-        setDataTableView(selectedCourseInfoList);
+        if (findByCourseType.isSelected()){
+            String query = typeField.getValue();
+            DataRequest req = new DataRequest();
+            req.add("courseType", query);
+            req.add("studentId", LoginController.getNumber());
+            DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByStudentIdAndCourseType", req);
+            selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+            setDataTableView(selectedCourseInfoList);
+        }
+        else if (findByNumName.isSelected()) {
+            String query = InquireField.getText();
+            DataRequest req = new DataRequest();
+            req.add("numName", query);
+            req.add("studentId", LoginController.getNumber());
+            DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByStudentIdAndNumName", req);
+            selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+            setDataTableView(selectedCourseInfoList);
+        }
+        else if (findByTeacherName.isSelected()) {
+            String query = InquireField.getText();
+            DataRequest req = new DataRequest();
+            req.add("teacherName", query);
+            req.add("studentId", LoginController.getNumber());
+            DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByStudentIdAndTeacherName", req);
+            selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+            setDataTableView(selectedCourseInfoList);
+        }
     }
 
+    public void findByCourseType(ActionEvent actionEvent) {
+        findByNumName.setSelected(false);
+        findByTeacherName.setSelected(false);
+
+        if (!(findByTeacherName.isSelected()&&findByNumName.isSelected()))
+            findByCourseType.setSelected(true);
+
+        typeField.setVisible(true);
+        InquireField.setVisible(false);
+    }
+
+    public void findByNumName(ActionEvent actionEvent) {
+        findByCourseType.setSelected(false);
+        findByTeacherName.setSelected(false);
+
+        if (!(findByTeacherName.isSelected()&&findByCourseType.isSelected()))
+            findByNumName.setSelected(true);
+
+        typeField.setVisible(false);
+        InquireField.setVisible(true);
+    }
+
+    public void findByTeacherName(ActionEvent actionEvent) {
+        findByCourseType.setSelected(false);
+        findByNumName.setSelected(false);
+
+        if (!(findByNumName.isSelected()&&findByCourseType.isSelected()))
+            findByTeacherName.setSelected(true);
+
+        typeField.setVisible(false);
+        InquireField.setVisible(true);
+    }
 }

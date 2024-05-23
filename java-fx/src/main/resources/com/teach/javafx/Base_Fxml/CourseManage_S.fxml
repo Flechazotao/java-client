@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.StudentController.CourseManage_S_Controller">
+<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.StudentController.CourseManage_S_Controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1250.0">
@@ -96,8 +87,8 @@
          </font>
       </Button>
       <ComboBox fx:id="typeField" layoutX="100.0" layoutY="333.0" prefHeight="23.0" prefWidth="217.0" visible="false" />
-      <CheckBox layoutX="100.0" layoutY="373.0" mnemonicParsing="false" text="根据课程种类查询" />
-      <CheckBox layoutX="230.0" layoutY="373.0" mnemonicParsing="false" text="根据课程编号或名称查询" />
-      <CheckBox layoutX="393.0" layoutY="373.0" mnemonicParsing="false" text="根据教师名称" />
+      <CheckBox fx:id="findByCourseType" layoutX="100.0" layoutY="373.0" mnemonicParsing="false" onAction="#findByCourseType" text="根据课程种类查询" />
+      <CheckBox fx:id="findByNumName" layoutX="230.0" layoutY="373.0" mnemonicParsing="false" onAction="#findByNumName" text="根据课程编号或名称查询" />
+      <CheckBox fx:id="findByTeacherName" layoutX="393.0" layoutY="373.0" mnemonicParsing="false" onAction="#findByTeacherName" text="根据教师名称" />
     </children>
 </AnchorPane>
