@@ -97,6 +97,7 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
             newlists.add(selectedCourse.getSelectedCourseInfo());
         selectedCourseInfoList=newlists;
 
+        dataTableView.setItems(observableList);
         courseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));

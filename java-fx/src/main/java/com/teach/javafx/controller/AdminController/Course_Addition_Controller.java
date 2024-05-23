@@ -12,9 +12,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -141,5 +143,11 @@ public class Course_Addition_Controller {
         course.setLocation(locationField.getText());
         course.setType(typeField.getValue());
         return course;
+    }
+
+    public void onSelectFile(ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选择文件");
+        file = fileChooser.showOpenDialog(onSelectFile.getScene().getWindow());
     }
 }

@@ -6,7 +6,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -58,12 +57,7 @@
                 <Font name="System Bold Italic" size="32.0" />
             </font>
         </Label>
-        <Button fx:id="onInquire" layoutX="325.0" layoutY="333.0" mnemonicParsing="false" onAction="#onInquire" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: peachpuff;" text="查询">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1012.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="345.0" prefHeight="561.0" prefWidth="1012.0">
             <columns>
                 <TableColumn fx:id="leaveTimeColumn" prefWidth="161.99996948242188" style="-fx-font-size: 20px;" text="请假日期" />
                 <TableColumn fx:id="leaveReasonColumn" editable="false" prefWidth="252.00006103515625" sortable="false" style="-fx-font-size: 20px;" text="请假理由" />
@@ -74,7 +68,6 @@
             <TableColumn fx:id="cancelColumn" prefWidth="77.3333740234375" style="-fx-font-size: 20;" text="取消" />
             </columns>
         </TableView>
-        <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
         <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
             <items>
                 <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />

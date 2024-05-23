@@ -152,7 +152,7 @@ public class CourseManageController extends manage_MainFrame_controller {
         wayOfTestColumn.setCellValueFactory(new PropertyValueFactory<>("wayOfTest"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
+        fileColumn.setCellFactory(new CM_ButtonCellFactory<>("下载文件"));
         changeColumn.setCellFactory(new CM_ButtonCellFactory<>("修改"));
         deleteColumn.setCellFactory(new CM_ButtonCellFactory<>("删除"));
 
