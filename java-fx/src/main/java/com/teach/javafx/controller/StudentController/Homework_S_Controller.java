@@ -97,6 +97,13 @@ public class Homework_S_Controller extends student_MainFrame_controller{
 
     public void onInquire(ActionEvent actionEvent) {
 
+        String query=InquireField.getText();
+        DataRequest req=new DataRequest();
+        req.add("numName",query);
+        req.add("studentId",LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/homework/findByStudentIdAndNumName",req);
+        homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
+        setDataTableView(homeworkList);
 
     }
 }
