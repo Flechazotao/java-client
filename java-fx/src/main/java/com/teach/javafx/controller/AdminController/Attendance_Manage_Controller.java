@@ -73,12 +73,6 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     public static String[]typelist={"上课考勤","会议考勤","活动考勤"};
     @FXML
     void onInquire(ActionEvent event){
-//        String query=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",query);
-//        DataResponse res= HttpRequestUtil.request("/api/attendance/findByStudent",req);
-//        attendanceInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
-//        setDataTableView(attendanceInfoList);
         if (InquireField.isVisible()){
             String query=InquireField.getText();
             DataRequest req=new DataRequest();

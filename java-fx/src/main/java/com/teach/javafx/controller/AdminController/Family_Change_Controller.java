@@ -55,9 +55,10 @@ public class Family_Change_Controller {
                 stage.close();
             }
             FamilyMember familyMember=new FamilyMember();
+            familyMember.setRelation(relationField.getText());
             familyMember.setName(nameField.getText());
             familyMember.setGender(genderField.getText());
-
+            familyMember.setPhone(phoneField.getText());
             familyMember.setUnit(WorkplaceField.getText());
             familyMember.setBirthday(birthdayPicker.getEditor().getText());
             familyMember.setMemberId(Family_Manage_Controller.getFamilyMemberList().get(FI_ButtonCellFactory.getIndex()).getMemberId());

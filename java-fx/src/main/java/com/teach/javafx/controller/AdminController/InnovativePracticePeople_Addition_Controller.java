@@ -54,6 +54,7 @@ public class InnovativePracticePeople_Addition_Controller {
     }
 
     public void onConfirmation(ActionEvent actionEvent) {
+
         addedStudents.add(students.get(studentId.getSelectionModel().getSelectedIndex()-1));
         ((Stage)onCancel.getScene().getWindow()).close();
     }

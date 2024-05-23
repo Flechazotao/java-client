@@ -8,7 +8,9 @@ import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.request.HttpRequestUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,7 +38,10 @@ public class InnovativePractice_S_Controller extends student_MainFrame_controlle
     @FXML
     private TableColumn<InnovativePractice, String> achievementColumn;
     @FXML
-    private TextField InquireField;
+    private ComboBox<String> typeField;
+
+
+    public static String[]typelist={"社会实践","学科竞赛","科技成果","培训讲座","创新项目","校外实习","志愿服务"};
 
     @Getter
     private static List<InnovativePractice> innovativePracticeList = new ArrayList<>();
@@ -58,6 +63,12 @@ public class InnovativePractice_S_Controller extends student_MainFrame_controlle
     }
 
     public void initialize() {
+        //添加类型下拉框
+        for(String s:typelist){
+            typeField.getItems().add(s);
+        }
+        typeField.setVisibleRowCount(5);
+
         dataTableView.setItems(observableList);
         DataRequest req=new DataRequest();
         req.add("id", LoginController.getNumber());
@@ -79,4 +90,14 @@ public class InnovativePractice_S_Controller extends student_MainFrame_controlle
     }
 
 
+    public void onquire(ActionEvent actionEvent) {
+        String query = typeField.getValue();
+        DataRequest req1 = new DataRequest();
+        req1.add("type", query);
+        req1.add("id",LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/innovativePractice/findByStudentIdAndType", req1);
+        innovativePracticeList = JSON.parseArray(JSON.toJSONString(res.getData()), InnovativePractice.class);
+        setDataTableView(innovativePracticeList);
+
+    }
 }

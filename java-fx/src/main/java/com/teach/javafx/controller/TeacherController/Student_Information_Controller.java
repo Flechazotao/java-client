@@ -25,6 +25,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +79,19 @@ public class Student_Information_Controller extends Teacher_MainFrame_controller
 
     public static void setDataTableView(List<Student> list){
         studentList=list;
+        for (Student s:studentList) {
+            DataRequest req1 = new DataRequest();
+            req1.add("id", s.getStudentId());
+            DataResponse res1 = HttpRequestUtil.request("/api/score/getGradePointsByStudentId",req1);
+            if(res1.getCode()==200){
+                double gpa=JSON.parseObject(JSON.toJSONString(res1.getData()),double.class)/10-5;
+                BigDecimal bigDecimal=new BigDecimal(gpa).setScale(2, RoundingMode.HALF_DOWN);
+                s.setGPA(String.valueOf(bigDecimal));
+            }
+            else if(res1.getCode()==404){
+                s.setGPA("无");
+            }
+        }
         observableList.clear();
         for(Student s:studentList){
             StudentInfo studentInfo=new StudentInfo(s);

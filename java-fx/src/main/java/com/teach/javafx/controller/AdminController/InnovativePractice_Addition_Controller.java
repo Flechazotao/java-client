@@ -52,6 +52,7 @@ public class InnovativePractice_Addition_Controller {
 
     public static List<Student> addedStudents;
     private static List<Teacher> teacherList = new ArrayList<>();
+
     public static String[]typelist={"社会实践","学科竞赛","科技成果","培训讲座","创新项目","校外实习","志愿服务"};
     public static String[]achievementlist={"特等奖","一等奖","二等奖","三等奖","优秀奖","金奖","银奖","铜奖","参与奖","校级优秀","院级优秀","专利奖"};
 
@@ -93,6 +94,14 @@ public class InnovativePractice_Addition_Controller {
     }
 
     public void onConformation(ActionEvent actionEvent) {
+
+        if( this.file==null) {
+            MessageDialog.showDialog("请上传相关证明文件!");
+            Stage stage = (Stage) onCancel.getScene().getWindow();
+            stage.close();
+            return;
+        }
+
         if( activityNameField.getText().equals("")) {
             MessageDialog.showDialog("项目名为空，不能添加");
             Stage stage = (Stage) onCancel.getScene().getWindow();

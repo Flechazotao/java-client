@@ -92,6 +92,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
     }
 
     public void initialize() {
+
         findByStudent.setSelected(true);
         //添加类型下拉框
         for(String s:typelist){
@@ -138,6 +139,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
             req.add("numName",query);
             DataResponse res=HttpRequestUtil.request("/api/student/findByStudentIdOrName",req);
             List<Student>studentList=JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
+            if (studentList!=null){
             List<InnovativePractice> newinnovativePracticeList = new ArrayList<>();
             for (Student s:studentList){
                 List<InnovativePractice> Lists = new ArrayList<>();
@@ -148,6 +150,10 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
                 newinnovativePracticeList.addAll(Lists);
             }
             setDataTableView(newinnovativePracticeList);
+            }
+            else {
+                MessageDialog.showDialog("该学生不存在!");
+                setDataTableView(innovativePracticeList);}
         }
         else if (findByName.isSelected()){
             String query = InquireField.getText();

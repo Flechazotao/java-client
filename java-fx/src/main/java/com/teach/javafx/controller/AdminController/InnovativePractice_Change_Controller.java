@@ -189,6 +189,7 @@ public class InnovativePractice_Change_Controller {
             }
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
+            MessageDialog.showDialog("修改成功!");
             InnovativePractice_Manage_Controller.updateDataTableView();
         }
     }

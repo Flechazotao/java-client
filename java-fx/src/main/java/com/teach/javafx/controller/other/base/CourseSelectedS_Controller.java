@@ -281,7 +281,7 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
                 Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
                 button1.setStyle(
                         "-fx-background-radius:20;"+//设置背景圆角
-                                "-fx-background-color:#FFA07A;"+//设置背景颜色
+                                "-fx-background-color:bisque;"+//设置背景颜色
                                 "-fx-text-fill:#4a2107;"+        //设置字体颜色
                                 "-fx-font-weight:bold;"+         //设置字体粗细
                                 "-fx-font-size:16;"+             //设置字体颜色
@@ -446,7 +446,7 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
                         button1.setStyle(
                                 "-fx-background-radius:20;"+//设置背景圆角
-                                        "-fx-background-color:#FFA07A;"+//设置背景颜色
+                                        "-fx-background-color:bisque;"+//设置背景颜色
                                         "-fx-text-fill:#4a2107;"+        //设置字体颜色
                                         "-fx-font-weight:bold;"+         //设置字体粗细
                                         "-fx-font-size:16;"+             //设置字体颜色
@@ -505,7 +505,7 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                     Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
                     button1.setStyle(
                             "-fx-background-radius:20;"+//设置背景圆角
-                                    "-fx-background-color:#FFA07A;"+//设置背景颜色
+                                    "-fx-background-color:bisque;"+//设置背景颜色
                                     "-fx-text-fill:#4a2107;"+        //设置字体颜色
                                     "-fx-font-weight:bold;"+         //设置字体粗细
                                     "-fx-font-size:16;"+             //设置字体颜色

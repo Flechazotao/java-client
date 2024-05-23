@@ -3,6 +3,7 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.models.DO.Fee;
+import com.teach.javafx.models.DO.HonorInfo;
 import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.FeeInfo;
@@ -11,10 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 
@@ -23,6 +21,7 @@ import java.util.List;
 
 public class Fee_S_Controller extends student_MainFrame_controller {
 
+    public DatePicker datePicker;
     @FXML
     private TableView<FeeInfo> dataTableView;
     @FXML
@@ -80,12 +79,18 @@ public class Fee_S_Controller extends student_MainFrame_controller {
         setDataTableView(feeList);
     }
     public void onInquire(ActionEvent actionEvent) {
-//        String type=InquireField.getText();
-//        DataRequest req=new DataRequest();
-//        req.add("id",LoginController.getNumber());
-//        req.add("type",type);
-//        DataResponse res= HttpRequestUtil.request("/api/fee/findByStudent",req);
-//        feeList= JSON.parseArray(JSON.toJSONString(res.getData()), Fee.class);
-//        setDataTableView(feeList);
+//        //根据学生id和日期查询
+//        @PostMapping("/findByStudentIdAndDay")
+//        public DataResponse findByStudentIdAndDay(@RequestBody DataRequest dataRequest){
+//            return feeService.findByStudentIdAndDay(JsonUtil.parse(dataRequest.get("id"), Long.class), JsonUtil.parse(dataRequest.get("day"), String.class));
+//        }
+        DataRequest req=new DataRequest();
+        req.add("id",LoginController.getNumber());
+        req.add("day", datePicker.getEditor().getText());
+        DataResponse res= HttpRequestUtil.request("/api/fee/findByStudentIdAndDay",req);
+        feeList= JSON.parseArray(JSON.toJSONString(res.getData()), Fee.class);
+        setDataTableView(feeList);
+
+
     }
 }

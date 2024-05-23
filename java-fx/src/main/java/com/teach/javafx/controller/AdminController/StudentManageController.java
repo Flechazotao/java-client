@@ -83,8 +83,7 @@ public class StudentManageController extends manage_MainFrame_controller {
 
     public static void setDataTableView(List<Student> list){
         studentList=list;
-        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
-        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
+
         for (Student s:studentList) {
             DataRequest req1 = new DataRequest();
             req1.add("id", s.getStudentId());
@@ -95,9 +94,10 @@ public class StudentManageController extends manage_MainFrame_controller {
                 s.setGPA(String.valueOf(bigDecimal));
             }
             else if(res1.getCode()==404){
-                s.setGPA("没有成绩信息");
+                s.setGPA("无");
             }
         }
+
         observableList.clear();
         for(Student s:studentList){
             StudentInfo studentInfo=new StudentInfo(s);
@@ -113,6 +113,8 @@ public class StudentManageController extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+        DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
+        studentList= JSON.parseArray(JSON.toJSONString(res.getData()),Student.class);
         dataTableView.setItems(observableList);
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

@@ -80,6 +80,7 @@ public class Homework_Addition_Controller {
         }
 
     }
+
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) onCancel.getScene().getWindow();

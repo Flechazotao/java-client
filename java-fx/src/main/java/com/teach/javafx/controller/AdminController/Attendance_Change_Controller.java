@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.controller.TeacherController.Attendance_panel_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.AttendanceInfo;
 import com.teach.javafx.models.DO.Person;
@@ -114,6 +115,7 @@ public class Attendance_Change_Controller {
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             Attendance_Manage_Controller.updateDataTableView();
+            Attendance_panel_Controller.updateDataTableView();
         }
     }
 

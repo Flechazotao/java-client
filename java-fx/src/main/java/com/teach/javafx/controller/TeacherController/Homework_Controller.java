@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.TeacherController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.AdminController.Homework_Change_Controller;
 import com.teach.javafx.controller.AdminController.Homework_Manage_Controller;
@@ -68,6 +69,17 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
     public CheckBox findByStudent;
     @FXML
     public CheckBox findByCourseNumberOrName;
+
+    public void inHomeworkCenter(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkInfo_panel-T.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+            AppStore.setMainFrameController((HomeworkInfo_Manage_Controller) fxmlLoader.getController());
+            MainApplication.resetStage("选课信息中心", scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     void onInquire(ActionEvent event){

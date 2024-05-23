@@ -265,7 +265,7 @@ public class firstPage_Controller extends student_MainFrame_controller {
                 columnIndex=index[1];
                 Button button1= firstPage_Controller.getButtonView()[rowIndex][columnIndex];
                 button1.setStyle(
-                                "-fx-background-color:antuquewhite;"+//设置背景颜色
+                                "-fx-background-color:bisque;"+//设置背景颜色
                                 "-fx-text-fill:#4a2107;"+        //设置字体颜色
                                 "-fx-font-weight:bold;"+         //设置字体粗细
                                 "-fx-font-size:16;"+            //设置字体大小
