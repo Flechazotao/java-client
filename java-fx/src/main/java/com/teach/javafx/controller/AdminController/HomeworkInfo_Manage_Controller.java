@@ -77,17 +77,6 @@ public class HomeworkInfo_Manage_Controller extends manage_MainFrame_controller 
         }
     }
 
-//    //根据课程id查找
-//    @PostMapping("/findByCourseId")
-//    public DataResponse findByCourseId(@RequestBody DataRequest dataRequest){
-//        return homeworkInfoService.findByCourseId(JsonUtil.parse(dataRequest.get("id"),Integer.class));
-//    }
-//
-//    //根据课程编号或名称查询
-//    @PostMapping("/findByCourseNumberOrName")
-//    public DataResponse findByCourseNumberOrName(@RequestBody DataRequest dataRequest){
-//        return homeworkInfoService.findByCourseNumberOrName(JsonUtil.parse(dataRequest.get("numName"), String.class));
-//    }
 
     @FXML
     void onInquire(ActionEvent event){

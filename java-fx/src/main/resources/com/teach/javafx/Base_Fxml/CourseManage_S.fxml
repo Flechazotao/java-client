@@ -58,10 +58,10 @@
         </Button>
         <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1259.0">
             <columns>
-                <TableColumn fx:id="courseNumberColumn" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
-                <TableColumn fx:id="courseNameColumn" prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />
-                <TableColumn fx:id="creditColumn" editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
-                <TableColumn fx:id="courseTimeColumn" prefWidth="117.3333740234375" style="-fx-font-size: 20px;" text="课程时间" />
+                <TableColumn fx:id="courseNumberColumn" prefWidth="166.3333511352539" style="-fx-font-size: 20px;" text="课程编号" />
+                <TableColumn fx:id="courseNameColumn" prefWidth="141.33334350585938" style="-fx-font-size: 20px;" text="课程名称" />
+                <TableColumn fx:id="creditColumn" editable="false" prefWidth="66.0" sortable="false" style="-fx-font-size: 20px;" text="学分" />
+                <TableColumn fx:id="courseTimeColumn" prefWidth="154.0" style="-fx-font-size: 20px;" text="课程时间" />
                 <TableColumn fx:id="teacherNameColumn" prefWidth="100.0" style="-fx-font-size: 20px;" text="授课老师" />
                 <TableColumn fx:id="courseBeginWeekColumn" prefWidth="126.6666259765625" style="-fx-font-size: 20px;" text="课程周期" />
                 <TableColumn fx:id="wayOfTestColumn" prefWidth="102.66668701171875" style="-fx-font-size: 20px;" text="考核方式" />

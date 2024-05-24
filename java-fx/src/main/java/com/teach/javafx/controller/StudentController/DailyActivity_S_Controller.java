@@ -60,13 +60,23 @@ public class DailyActivity_S_Controller extends student_MainFrame_controller{
     }
 
     public static void updateDataTableView(){
-        DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findAll",new DataRequest());
-        setDataTableView(JSON.parseArray(JSON.toJSONString(res.getData()),DailyActivity.class));
-    }
 
+        DataRequest request=new DataRequest();
+        request.add("id",LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findByStudent",request);
+        dailyActivityList= JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
+        
+    }
+//    //查找某学生的信息
+//    @PostMapping("/findByStudent")
+//    public DataResponse findByStudentId(@RequestBody DataRequest dataRequest){
+//        return dailyActivityService.findByStudentId(JsonUtil.parse(dataRequest.get("id"), Long.class));
+//    }
     public void initialize() {
         dataTableView.setItems(observableList);
-        DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findAll",new DataRequest());
+        DataRequest request=new DataRequest();
+        request.add("id",LoginController.getNumber());
+        DataResponse res = HttpRequestUtil.request("/api/dailyActivity/findByStudent",request);
         dailyActivityList= JSON.parseArray(JSON.toJSONString(res.getData()), DailyActivity.class);
 
 

@@ -170,6 +170,8 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
 
         if (!(findByType.isSelected()&&findByName.isSelected()))
             findByStudent.setSelected(true);
+
+        InquireField.setPromptText("请输入学生姓名或学号");
     }
 
     public void findByType(ActionEvent actionEvent) {
@@ -180,17 +182,21 @@ public class DailyActivity_Manage_Controller extends manage_MainFrame_controller
         typeField.setVisible(true);
         if (!(findByStudent.isSelected()&&findByName.isSelected()))
             findByType.setSelected(true);
+
+        typeField.setPromptText("请选择活动类型");
     }
 
     public void findByName(ActionEvent actionEvent) {
         findByStudent.setSelected(false);
-        findByName.setSelected(false);
+        findByType.setSelected(false);
 
         InquireField.setVisible(true);
         typeField.setVisible(false);
 
         if (!(findByStudent.isSelected()&&findByType.isSelected()))
              findByName.setSelected(true);
+
+        InquireField.setPromptText("根据活动名称查询");
     }
 }
 

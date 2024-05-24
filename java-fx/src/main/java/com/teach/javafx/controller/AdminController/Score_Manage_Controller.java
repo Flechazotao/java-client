@@ -162,6 +162,7 @@ public class Score_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入课程编号或名称");
         findByStudent.setSelected(false);
         if (!findByStudent.isSelected())
             findByCourseNumberOrName.setSelected(true);

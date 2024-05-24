@@ -182,6 +182,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
 
         if (!(findByType.isSelected()&&findByName.isSelected()))
             findByStudent.setSelected(true);
+        InquireField.setPromptText("请输入学生姓名或学号");
     }
 
     public void findByType(ActionEvent actionEvent) {
@@ -194,6 +195,8 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
 
         if (!(findByStudent.isSelected()&&findByName.isSelected()))
             findByType.setSelected(true);
+
+        typeField.setPromptText("请选择活动类型");
     }
 
     public void findByName(ActionEvent actionEvent) {
@@ -205,6 +208,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
 
         if (!(findByType.isSelected()&&findByStudent.isSelected()))
             findByName.setSelected(true);
+        InquireField.setPromptText("根据活动名称");
     }
     class IPM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
         @Getter

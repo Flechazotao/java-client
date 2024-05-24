@@ -86,7 +86,7 @@ public class Fee_S_Controller extends student_MainFrame_controller {
 //        }
         DataRequest req=new DataRequest();
         req.add("id",LoginController.getNumber());
-        req.add("day", datePicker.getEditor().getText());
+        req.add("day", datePicker.getValue().toString());
         DataResponse res= HttpRequestUtil.request("/api/fee/findByStudentIdAndDay",req);
         feeList= JSON.parseArray(JSON.toJSONString(res.getData()), Fee.class);
         setDataTableView(feeList);
