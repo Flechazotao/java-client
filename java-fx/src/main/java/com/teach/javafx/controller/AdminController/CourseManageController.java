@@ -207,7 +207,7 @@ public class CourseManageController extends manage_MainFrame_controller {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseSelect_Student.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), -1, -1);
-            AppStore.setMainFrameController((CourseSelected_Controller) fxmlLoader.getController());
+            AppStore.setMainFrameController((CourseSelectStudent_Manage_Controller) fxmlLoader.getController());
             MainApplication.resetStage("查看选课学生信息", scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
