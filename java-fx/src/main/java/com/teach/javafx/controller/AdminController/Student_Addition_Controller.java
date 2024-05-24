@@ -73,6 +73,11 @@ public class Student_Addition_Controller {
         req.add("student",s);
         req.add("user",user);
         DataResponse res = HttpRequestUtil.request("/api/student/addStudent",req);
+        if(res.getCode()!=200){
+            MessageDialog.showDialog(res.getMessage());
+            ((Stage)onCancel.getScene().getWindow()).close();
+            return;
+        }
         s= JSON.parseObject(JSON.toJSONString(res.getData()),Student.class);
         beforeUniversity.setStudent(s);
         DataRequest request=new DataRequest();

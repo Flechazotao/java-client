@@ -124,16 +124,27 @@ public class StudentChange_Controller {
             ((Stage)onCancel.getScene().getWindow()).close();
             return;
         }
-
-        BeforeUniversity beforeUniversity=new BeforeUniversity();
+        s= JSON.parseObject(JSON.toJSONString(res.getData()),Student.class);
+        req=new DataRequest();
+        req.add("id",s.getStudentId());
+        res=HttpRequestUtil.request("/api/beforeUniversity/findByStudent",req);
+        if(res.getCode()!=200){
+            MessageDialog.showDialog(res.getMessage());
+            ((Stage)onCancel.getScene().getWindow()).close();
+            return;
+        }
+        BeforeUniversity beforeUniversity=JSON.parseObject(JSON.toJSONString(res.getData()), BeforeUniversity.class);
         beforeUniversity.setGraduatedProvince(graduatedProvinceCol.getText());
         beforeUniversity.setGraduatedSchool(graduatedSchoolCol.getText());
         beforeUniversity.setStudent(s);
         DataRequest request=new DataRequest();
         request.add("beforeUniversity",beforeUniversity);
-        DataResponse response=HttpRequestUtil.request("/api/beforeUniversity/add",request);
-
-
+        res=HttpRequestUtil.request("/api/beforeUniversity/add",request);
+        if(res.getCode()!=200){
+            MessageDialog.showDialog(res.getMessage());
+            ((Stage)onCancel.getScene().getWindow()).close();
+            return;
+        }
         MessageDialog.showDialog("修改成功！");
         Stage stage = (Stage) onCancel.getScene().getWindow();
         stage.close();
