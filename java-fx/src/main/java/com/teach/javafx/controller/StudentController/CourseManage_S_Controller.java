@@ -98,6 +98,9 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void initialize() {
+        InquireField.setPromptText("请输入学号或学生姓名");
+        findByNumName.setSelected(true);
+
         DataRequest req=new DataRequest();
         req.add("id", LoginController.getNumber());
         DataResponse res = HttpRequestUtil.request("/api/selectedCourse/findByStudentId",req);
@@ -141,23 +144,6 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void onInquire(ActionEvent actionEvent) {
-//        //根据学号和课程种类查询
-//        @PostMapping("/findByStudentIdAndCourseType")
-//        public DataResponse findByStudentIdAndCourseType(@RequestBody DataRequest dataRequest){
-//            return selectedCourseService.findByStudentIdAndCourseType(JsonUtil.parse(dataRequest.get("studentId"), Long.class),JsonUtil.parse(dataRequest.get("courseType"), String.class));
-//        }
-//
-//        //根据学号和(课程编号或名称)查询
-//        @PostMapping("/findByStudentIdAndNumName")
-//        public DataResponse findByStudentIdAndNumName(@RequestBody DataRequest dataRequest){
-//            return selectedCourseService.findByStudentIdAndNumName(JsonUtil.parse(dataRequest.get("studentId"), Long.class),JsonUtil.parse(dataRequest.get("numName"), String.class));
-//        }
-//
-//        //根据学号和教师名称
-//        @PostMapping("/findByStudentIdAndTeacherName")
-//        public DataResponse findByStudentIdAndTeacherName(@RequestBody DataRequest dataRequest){
-//            return selectedCourseService.findByStudentIdAndTeacherName(JsonUtil.parse(dataRequest.get("studentId"), Long.class),JsonUtil.parse(dataRequest.get("teacherName"), String.class));
-//        }
         if (findByCourseType.isSelected()){
             String query = typeField.getValue();
             DataRequest req = new DataRequest();
@@ -188,6 +174,7 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void findByCourseType(ActionEvent actionEvent) {
+        typeField.setPromptText("请选择课程类型");
         findByNumName.setSelected(false);
         findByTeacherName.setSelected(false);
 
@@ -199,6 +186,7 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void findByNumName(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入学号或学生姓名");
         findByCourseType.setSelected(false);
         findByTeacherName.setSelected(false);
 
@@ -210,6 +198,7 @@ public class CourseManage_S_Controller extends student_MainFrame_controller{
     }
 
     public void findByTeacherName(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入教师姓名");
         findByCourseType.setSelected(false);
         findByNumName.setSelected(false);
 

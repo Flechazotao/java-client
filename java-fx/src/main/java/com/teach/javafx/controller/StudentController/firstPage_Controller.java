@@ -239,10 +239,12 @@ public class firstPage_Controller extends student_MainFrame_controller {
         res1= HttpRequestUtil.request("/api/honorInfo/findByStudent",req1);
         honorInfoList= JSON.parseArray(JSON.toJSONString(res1.getData()), HonorInfo.class);
 
+
+
         if (honorInfoList!=null){
         List<String>Texts=new ArrayList<>();
         for (HonorInfo honorInfo:honorInfoList){
-            Texts.add(honorInfo.getHonorTime()+"\t"+honorInfo.getHonorName()+honorInfo.getLevel());
+            Texts.add(honorInfo.getHonorTime()+"\t"+honorInfo.getHonorName()+"\t"+honorInfo.getLevel());
         }
         for (String s:Texts)
             honorTextArea.setText(s+"\n");
