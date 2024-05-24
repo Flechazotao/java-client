@@ -99,7 +99,7 @@ public class Attendance_panel_Controller extends Teacher_MainFrame_controller {
             setDataTableView(attendanceInfoList);
         }
         else if (typeField.isVisible()) {
-            String query = isAttendedField.getValue();
+            String query = typeField.getValue();
             DataRequest req1 = new DataRequest();
             req1.add("type", query);
             DataResponse res = HttpRequestUtil.request("/api/attendance/findAttendanceInfoByType", req1);

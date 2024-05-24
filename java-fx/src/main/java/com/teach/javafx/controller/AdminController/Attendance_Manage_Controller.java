@@ -99,10 +99,13 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
             setDataTableView(attendanceInfoList);
         }
         else if (typeField.isVisible()) {
-            String query = isAttendedField.getValue();
+            String query = typeField.getValue();
             DataRequest req1 = new DataRequest();
             req1.add("type", query);
             DataResponse res = HttpRequestUtil.request("/api/attendance/findAttendanceInfoByType", req1);
+            if(res.getCode()==404){
+                attendanceInfoList=new ArrayList<>();
+            }
             attendanceInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), AttendanceInfo.class);
             setDataTableView(attendanceInfoList);
         }
