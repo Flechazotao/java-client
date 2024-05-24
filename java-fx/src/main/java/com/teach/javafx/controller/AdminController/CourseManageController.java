@@ -201,6 +201,18 @@ public class CourseManageController extends manage_MainFrame_controller {
             findByCourseType.setSelected(true);
         }
     }
+
+    public void inStudentSelectingCourse(ActionEvent actionEvent) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/CourseSelect_Student.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), -1, -1);
+            AppStore.setMainFrameController((CourseSelected_Controller) fxmlLoader.getController());
+            MainApplication.resetStage("查看选课学生信息", scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 class CM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
     private final String property;

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.CourseManageController">
+<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1707.0" stylesheets="@../css/bg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teach.javafx.controller.AdminController.CourseSelect_Student_Controller">
     <children>
         <HBox id="HBox" alignment="BOTTOM_CENTER" prefHeight="177.0" prefWidth="1707.0" stylesheets="@../css/stylesdemo.css" />
         <HBox layoutY="177.0" prefHeight="64.0" prefWidth="1251.0" style="-fx-background-color: seashell;">
@@ -65,7 +65,7 @@
                 </MenuButton>
             </children>
         </HBox>
-        <Label layoutX="100.0" layoutY="262.0" prefHeight="42.0" prefWidth="387.0" text="学习信息管理&lt;&lt;课程管理" textFill="#667fe2f0">
+        <Label layoutX="100.0" layoutY="262.0" prefHeight="42.0" prefWidth="619.0" text="学习信息管理&lt;&lt;课程管理&lt;&lt;查看选课学生" textFill="#667fe2f0">
             <font>
                 <Font name="System Bold Italic" size="32.0" />
             </font>
@@ -75,49 +75,40 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="409.0" prefHeight="561.0" prefWidth="1467.0">
+        <TableView fx:id="dataTableView" layoutX="100.0" layoutY="416.0" prefHeight="561.0" prefWidth="1491.0">
             <columns>
                 <TableColumn fx:id="courseNumberColumn" prefWidth="197.33332061767578" style="-fx-font-size: 20px;" text="课程编号" />
                 <TableColumn fx:id="courseNameColumn" prefWidth="146.0" style="-fx-font-size: 20px;" text="课程名称" />
                 <TableColumn fx:id="creditColumn" editable="false" prefWidth="65.3333740234375" sortable="false" style="-fx-font-size: 20px;" text="学分" />
-                <TableColumn fx:id="courseTimeColumn" prefWidth="164.66671752929688" style="-fx-font-size: 20px;" text="课程时间" />
-                <TableColumn fx:id="teacherNameColumn" prefWidth="122.66668701171875" style="-fx-font-size: 20px;" text="授课老师" />
-                <TableColumn fx:id="courseBeginWeekColumn" prefWidth="127.33331298828125" style="-fx-font-size: 20px;" text="授课周期" />
-                <TableColumn fx:id="wayOfTestColumn" prefWidth="117.33343505859375" style="-fx-font-size: 20px;" text="考核方式" />
-                <TableColumn fx:id="locationColumn" prefWidth="182.0001220703125" style="-fx-font-size: 20px;" text="上课地点" />
-                <TableColumn fx:id="typeColumn" prefWidth="96.6666259765625" style="-fx-font-size: 20px;" text="课程类型" />
-                <TableColumn fx:id="fileColumn" prefWidth="91.3333740234375" style="-fx-font-size: 20px;" text="课程资料" />
-                <TableColumn fx:id="changeColumn" prefWidth="78.666748046875" style="-fx-font-size: 20px;" text="修改" />
-                <TableColumn fx:id="deleteColumn" prefWidth="76.666748046875" style="-fx-font-size: 20px;" text="删除" />
+                <TableColumn fx:id="nameColumn" prefWidth="96.6666259765625" style="-fx-font-size: 20px;" text="学生姓名" />
+                <TableColumn fx:id="studentIdColumn" prefWidth="198.0" style="-fx-font-size: 20px;" text="学号" />
+                <TableColumn fx:id="courseTimeColumn" prefWidth="146.0" style="-fx-font-size: 20px;" text="课程时间" />
+                <TableColumn fx:id="teacherNameColumn" prefWidth="103.3333740234375" style="-fx-font-size: 20px;" text="授课老师" />
+                <TableColumn fx:id="courseBeginWeekColumn" prefWidth="144.0" style="-fx-font-size: 20px;" text="授课周期" />
+                <TableColumn fx:id="wayOfTestColumn" prefWidth="108.6666259765625" style="-fx-font-size: 20px;" text="考核方式" />
+                <TableColumn fx:id="locationColumn" prefWidth="141.9998779296875" style="-fx-font-size: 20px;" text="上课地点" />
+                <TableColumn fx:id="changeColumn" prefWidth="70.666748046875" style="-fx-font-size: 20px;" text="修改" />
+                <TableColumn fx:id="deleteColumn" prefWidth="74.0" style="-fx-font-size: 20px;" text="删除" />
             </columns>
         </TableView>
         <TextField fx:id="InquireField" layoutX="100.0" layoutY="333.0" prefHeight="31.0" prefWidth="217.0" promptText="请输入学号或姓名" />
-        <Button fx:id="onAddCourse" layoutX="394.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAddCourse" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="添加课程">
+        <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
+            <items>
+                <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
+                <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
+            </items>
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="System Bold Italic" size="14.0" />
             </font>
-        </Button>
-      <MenuButton layoutX="1587.0" layoutY="188.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: indianred;" text="欢迎登录! " textFill="#f4f1f1">
-         <items>
-             <MenuItem fx:id="onExit" mnemonicParsing="false" onAction="#onExit" text="退出" />
-             <MenuItem fx:id="onChangePassword" mnemonicParsing="false" onAction="#onChangePassword" text="修改密码" />
-         </items>
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </MenuButton>
-      <Button fx:id="inSelectingCourse" layoutX="487.0" layoutY="333.0" mnemonicParsing="false" onAction="#inSelectingCourse" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: peachpuff;" text="进入选课">
+        </MenuButton>
+        <CheckBox fx:id="findByCourseNumberOrName" layoutX="100.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByCourseNumberOrName" text="根据课程编号或名称查询" />
+        <CheckBox fx:id="findByCourseType" layoutX="265.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByCourseType" text="根据课程类型查询" />
+        <ComboBox fx:id="typeField" layoutX="100.0" layoutY="337.0" prefHeight="23.0" prefWidth="217.0" visible="false" />
+      <Button fx:id="onReturn" layoutX="403.0" layoutY="333.0" mnemonicParsing="false" onAction="#onReturn" prefHeight="31.0" prefWidth="118.0" style="-fx-background-color: peachpuff;" text="返回课程管理">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <CheckBox fx:id="findByCourseNumberOrName" layoutX="100.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByCourseNumberOrName" text="根据课程编号或名称查询" />
-      <CheckBox fx:id="findByCourseType" layoutX="265.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByCourseType" text="根据课程类型查询" />
-      <ComboBox fx:id="typeField" layoutX="100.0" layoutY="337.0" prefHeight="23.0" prefWidth="217.0" visible="false" />
-      <Button layoutX="583.0" layoutY="333.0" mnemonicParsing="false" onAction="#inStudentSelectingCourse" prefHeight="31.0" prefWidth="141.0" style="-fx-background-color: peachpuff;" text="查看学生选课信息">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
+      <CheckBox fx:id="findByStudent" layoutX="403.0" layoutY="379.0" mnemonicParsing="false" onAction="#findByStudent" text="根据学号或学生姓名查询" />
     </children>
 </AnchorPane>
