@@ -63,8 +63,6 @@ public class Homework_Addition_Controller {
         //学生有关信息下拉框
         DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
         students= JSON.parseArray(JSON.toJSONString(res.getData()), Student.class);
-        studentIdField.getItems().add("请选择学号");
-        studentNameField.getItems().add("请选择学生");
         for(Student student:students){
             studentIdField.getItems().add(student.getStudentId().toString());
             studentNameField.getItems().add(student.getPerson().getName());
