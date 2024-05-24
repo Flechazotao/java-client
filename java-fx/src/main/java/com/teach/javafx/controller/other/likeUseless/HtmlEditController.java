@@ -146,8 +146,8 @@ public class HtmlEditController implements Initializable {
                 e.printStackTrace();
             }
         }
-        if (bytes!=null)
-            MessageDialog.pdfViewerDialog(bytes);
+//        if (bytes!=null)
+//            MessageDialog.pdfViewerDialog(bytes);
     }
 
 }

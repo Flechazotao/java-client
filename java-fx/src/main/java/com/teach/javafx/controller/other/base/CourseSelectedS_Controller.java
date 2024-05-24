@@ -471,7 +471,7 @@ class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, Ta
                         columnIndex=index[1];
                         Button button1=CourseSelectedS_Controller.getButtonView()[rowIndex][columnIndex];
                         button1.setStyle(
-                                "-fx-background-color: peachpuff;"
+                                "-fx-background-color: oldlace;"
                         );
                         button1.setText("");
                         button1.setOnAction(null);
