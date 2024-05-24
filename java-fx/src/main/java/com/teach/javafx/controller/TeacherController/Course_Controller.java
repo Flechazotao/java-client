@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Course_Controller extends Teacher_MainFrame_controller {
+    public TextField inqueryField;
     @FXML
     private TableView<SelectedCourseInfoInfo> dataTableView;
     @FXML
@@ -103,6 +104,17 @@ public class Course_Controller extends Teacher_MainFrame_controller {
         TableView.TableViewSelectionModel<SelectedCourseInfoInfo> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
         setDataTableView(selectedCourseInfoList);
+    }
+
+    public void onquire(ActionEvent actionEvent) {
+        //根据课程编号或名称查询
+        String query = inqueryField.getText();
+        DataRequest req = new DataRequest();
+        req.add("numName", query);
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourseInfo/findByCourseNumberOrName", req);
+        selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+        setDataTableView(selectedCourseInfoList);
+
     }
 }
 class TCM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
