@@ -87,6 +87,8 @@ public class TeacherManageController extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+        InquireField.setPromptText("请输入工号或姓名");
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/teacher/getTeacherList",new DataRequest());
         teacherList= JSON.parseArray(JSON.toJSONString(res.getData()),Teacher.class);

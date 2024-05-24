@@ -134,6 +134,9 @@ public class CourseManageController extends manage_MainFrame_controller {
 
     public void initialize() {
         dataTableView.setItems(observableList);
+        findByCourseNumberOrName.setSelected(true);
+        InquireField.setPromptText("请输入课程编号或课程名称");
+        
         DataResponse res = HttpRequestUtil.request("/api/course/findAll",new DataRequest());
         courseList= JSON.parseArray(JSON.toJSONString(res.getData()), Course.class);
 
@@ -177,6 +180,7 @@ public class CourseManageController extends manage_MainFrame_controller {
     }
 
     public void findByCourseNumberOrName() {
+        InquireField.setPromptText("请输入课程编号或课程名称");
         findByCourseType.setSelected(false);
 
         InquireField.setVisible(true);
@@ -190,6 +194,7 @@ public class CourseManageController extends manage_MainFrame_controller {
     }
 
     public void findByCourseType() {
+        typeField.setPromptText("请选择课程类型");
         findByCourseNumberOrName.setSelected(false);
 
         InquireField.setVisible(false);
