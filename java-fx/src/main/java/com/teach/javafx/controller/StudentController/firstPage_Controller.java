@@ -388,10 +388,10 @@ public class firstPage_Controller extends student_MainFrame_controller {
 
     public void onResume (ActionEvent actionEvent) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/html-edit_panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("base/html-edit_panel_Demo.fxml"));
         Scene scene;
         try {
-            scene = new Scene(fxmlLoader.load(), 1500, 800);
+            scene = new Scene(fxmlLoader.load(), 1270, 700);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -19,4 +19,5 @@ public class ProjectPdfController {
         pagination.setPageCount(model.numPages());
         pagination.setPageFactory(index -> new ImageView(model.getImage(index)));
     }
+
 }

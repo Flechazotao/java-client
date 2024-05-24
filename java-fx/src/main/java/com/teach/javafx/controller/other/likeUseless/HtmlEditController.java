@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
@@ -61,20 +62,36 @@ public class HtmlEditController implements Initializable {
         fileDialog.setTitle("前选择要保存的文件！");
         fileDialog.setInitialDirectory(new File("C:/"));
         fileDialog.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("html 文件", "*.html"));
+//                new FileChooser.ExtensionFilter("html 文件", "*.html"));
+                new FileChooser.ExtensionFilter("pdf 文件", "*.pdf"));
+        String html = textArea.getText();
+        int htmlCount = HttpRequestUtil.uploadHtmlString(html);
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load(HttpRequestUtil.serverUrl+"/api/base/getHtmlPage?htmlCount="+ htmlCount);
+        DataRequest req = new DataRequest();
+        req.add("htmlCount",htmlCount);
+        byte[] bytes = HttpRequestUtil.requestByteData("/api/base/getPdfData", req);
+        if (bytes != null) {
+            try {
+                model = new PdfModel(bytes,0.75f);
+                pagination.setPageCount(model.numPages());
+                pagination.setPageFactory(index -> new ImageView(model.getImage(index)));
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
         File file = fileDialog.showSaveDialog(null);
-        try {
-            String text = textArea.getText();
-            String str;
-            StringTokenizer sz = new StringTokenizer(text,"\n");
-            PrintWriter out = new PrintWriter(new FileWriter(file));
-            while(sz.hasMoreTokens()) {
-                str = sz.nextToken();
-                out.println(str);
-            };
-            out.close();
-        }catch(Exception e) {
-            e.printStackTrace();
+        if (file != null) {
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(file);
+                fos.write(bytes);
+                fos.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            MessageDialog.showDialog("下载成功!");
+            return;
         }
     }
 
@@ -84,10 +101,10 @@ public class HtmlEditController implements Initializable {
     @FXML
     public void importButtonClick(){
         FileChooser fileDialog = new FileChooser();
-        fileDialog.setTitle("前选择要导入的Html文件！");
+        fileDialog.setTitle("前选择要导入的pdf文件！");
         fileDialog.setInitialDirectory(new File("C:/"));
         fileDialog.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("html 文件", "*.html"));
+                new FileChooser.ExtensionFilter("pdf 文件", "*.pdf"));
         File file = fileDialog.showOpenDialog(null);
         try {
             String text = "";
@@ -110,6 +127,9 @@ public class HtmlEditController implements Initializable {
      */
     @FXML
     public void viewButtonClick(){
+
+        htmlToTextButtonClick();
+
         String html = textArea.getText();
         int htmlCount = HttpRequestUtil.uploadHtmlString(html);
         WebEngine webEngine = webView.getEngine();
