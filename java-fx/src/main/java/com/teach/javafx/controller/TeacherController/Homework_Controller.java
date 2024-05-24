@@ -135,6 +135,8 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
+        InquireField.setPromptText("请输入学号或学生姓名");
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/homework/findAll",new DataRequest());
         homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
@@ -173,12 +175,14 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
         stage.show();
     }
     public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入课程编号或课程名称");
         findByStudent.setSelected(false);
         if (!findByStudent.isSelected())
             findByCourseNumberOrName.setSelected(true);
     }
 
     public void findByStudent(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入学号或学生姓名");
         findByCourseNumberOrName.setSelected(false);
 
         if (!findByCourseNumberOrName.isSelected())
