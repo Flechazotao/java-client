@@ -99,7 +99,7 @@ class LICS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableC
                 button.setOnAction(event -> {
                     FXMLLoader fxmlLoader = null;
                     if (Objects.equals(property, "取消")){
-                        LeaveInfo leaveInfo= LeaveInformation_Controller.getLeaveInfoList().get(getIndex());
+                        LeaveInfo leaveInfo= LeaveInfo_S_Controller.getLeaveInfoList().get(getIndex());
                         if(!Objects.equals(leaveInfo.getLeaveStatus(), "未审核")){
                             MessageDialog.showDialog("审核过的信息不可以取消");
                             return;
@@ -113,7 +113,7 @@ class LICS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableC
                         }
                         else {
                             MessageDialog.showDialog("取消成功!");
-                            LeaveInformation_Controller.updateDataTableView();
+                            LeaveInfo_S_Controller.updateDataTableView();
                         }
                     }
                 });
