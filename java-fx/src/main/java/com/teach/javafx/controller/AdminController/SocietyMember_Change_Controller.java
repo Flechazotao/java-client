@@ -58,6 +58,7 @@ public class SocietyMember_Change_Controller {
         else {
             MessageDialog.showDialog("修改成功!!!");
             ((Stage)onConfirmation.getScene().getWindow()).close();
+            SocietyMember_Controller.updateDataTableView();
         }
     }
 

@@ -70,7 +70,7 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="markField" onAction="#markField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="markField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="rankingField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ComboBox fx:id="courseNumberField" onAction="#courseNumberField" prefWidth="150.0" GridPane.columnIndex="1" />
                   <ComboBox fx:id="courseNameField" onAction="#courseNameField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
