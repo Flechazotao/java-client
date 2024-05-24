@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Getter
 @Setter
@@ -44,6 +46,8 @@ public class ScoreInfo implements Serializable {
         mark= score.getMark();
         markPoint= score.getMark() /10-5;
         if(markPoint<0)markPoint=0.0;
+        BigDecimal bigDecimal=new BigDecimal(markPoint).setScale(2, RoundingMode.HALF_DOWN);
+        markPoint=bigDecimal.doubleValue();
         ranking=score.getRanking();
     }
 

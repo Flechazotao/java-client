@@ -29,8 +29,6 @@ public class Score_Addition_Controller {
     @FXML
     public TextField markField;
     @FXML
-    public TextField markPointField;
-    @FXML
     public TextField rankingField;
     
     @FXML
@@ -133,11 +131,4 @@ public class Score_Addition_Controller {
 
     }
 
-    public void markField(ActionEvent actionEvent) {
-        markPointField.setText(String.valueOf(Double.parseDouble(markField.getText())/10-5));
-    }
-
-    public void markPointField(ActionEvent actionEvent) {
-        markField.setText(String.valueOf((Double.parseDouble(markPointField.getText())+5)*10));
-    }
 }

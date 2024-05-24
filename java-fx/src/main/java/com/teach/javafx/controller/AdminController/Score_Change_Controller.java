@@ -31,8 +31,6 @@ public class Score_Change_Controller {
     @FXML
     public TextField markField;
     @FXML
-    public TextField markPointField;
-    @FXML
     public TextField rankingField;
 
     @FXML
@@ -58,7 +56,6 @@ public class Score_Change_Controller {
         studentNameField.setValue(score.getStudent().getPerson().getName());
         studentNumberField.setValue(String.valueOf(score.getStudent().getStudentId()));
         markField.setText(String.valueOf(score.getMark()));
-        markPointField.setText(String.valueOf(score.getMark()/10-5));
         rankingField.setText(String.valueOf(score.getRanking()));
 
         //学生有关信息下拉框
@@ -145,11 +142,4 @@ public class Score_Change_Controller {
 
     }
 
-    public void markField(ActionEvent actionEvent) {
-        markPointField.setText(String.valueOf(Double.parseDouble(markField.getText())/10-5));
-    }
-
-    public void markPointField(ActionEvent actionEvent) {
-        markField.setText(String.valueOf((Double.parseDouble(markPointField.getText())+5)*10));
-    }
 }
