@@ -1,16 +1,10 @@
 package com.teach.javafx.controller.StudentController;
 
 import com.alibaba.fastjson2.JSON;
-import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
-import com.teach.javafx.controller.AdminController.Homework_Manage_Controller;
-import com.teach.javafx.controller.AdminController.StudentManageController;
-import com.teach.javafx.controller.AdminController.Student_BeforeInfo_Manage_Controller;
 import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.controller.other.base.CourseSelectedS_Controller;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
-import com.teach.javafx.controller.other.likeUseless.HtmlEditController;
 import com.teach.javafx.models.DO.HonorInfo;
 import com.teach.javafx.models.DO.SelectedCourse;
 import com.teach.javafx.models.DO.SelectedCourseInfo;

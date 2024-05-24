@@ -1,8 +1,9 @@
-package com.teach.javafx.controller.other.base;
+package com.teach.javafx.controller.StudentController;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.*;
 import com.teach.javafx.request.HttpRequestUtil;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CourseSelectedS_Controller extends student_MainFrame_controller{
+public class CourseSelectedS_Controller extends student_MainFrame_controller {
     @FXML
     private GridPane GridPane;
 
@@ -132,6 +133,11 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
 
     @FXML
     private Button onWednesdayThird;
+
+    @FXML
+    public Button onInquire;
+    @FXML
+    public TextField InquireField;
 
     ArrayList<Button> buttons=new ArrayList<>();
 
@@ -419,6 +425,16 @@ public class CourseSelectedS_Controller extends student_MainFrame_controller{
     }
 
     public void MondayFifth() {
+    }
+
+    public void onInquire(ActionEvent actionEvent) {
+        //根据课程编号或名称查询
+        String query = InquireField.getText();
+        DataRequest req = new DataRequest();
+        req.add("numName", query);
+        DataResponse res = HttpRequestUtil.request("/api/selectedCourseInfo/findByCourseNumberOrName", req);
+        selectedCourseInfoList = JSON.parseArray(JSON.toJSONString(res.getData()), SelectedCourseInfo.class);
+        setDataTableView(selectedCourseInfoList);
     }
 }
 class CourseSS_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
