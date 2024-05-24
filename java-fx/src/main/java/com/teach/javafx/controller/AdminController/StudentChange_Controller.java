@@ -119,6 +119,11 @@ public class StudentChange_Controller {
         DataRequest req=new DataRequest();
         req.add("student",s);
         DataResponse res = HttpRequestUtil.request("/api/student/addOrUpdateStudent",req);
+        if(res.getCode()!=200){
+            MessageDialog.showDialog(res.getMessage());
+            ((Stage)onCancel.getScene().getWindow()).close();
+            return;
+        }
 
         BeforeUniversity beforeUniversity=new BeforeUniversity();
         beforeUniversity.setGraduatedProvince(graduatedProvinceCol.getText());
@@ -143,7 +148,6 @@ public class StudentChange_Controller {
 
     private void setStudent(Student s) {
         Person p=s.getPerson();
-        s.setStudentId(Long.valueOf(numField.getText()));
         p.setIntroduce("");
         p.setNumber(Long.valueOf(numField.getText()));
         p.setName(NameField.getText());

@@ -84,6 +84,11 @@ public class TeacherChange_Controller {
         DataRequest req=new DataRequest();
         req.add("teacher",teacher);
         DataResponse res = HttpRequestUtil.request("/api/teacher/addOrUpdateTeacher",req);
+        if(res.getCode()!=200){
+            MessageDialog.showDialog(res.getMessage());
+            ((Stage)onCancel.getScene().getWindow()).close();
+            return;
+        }
 
         MessageDialog.showDialog("修改成功！");
         Stage stage = (Stage) onCancel.getScene().getWindow();
@@ -100,7 +105,7 @@ public class TeacherChange_Controller {
     private void setTeacher(Teacher t) {
         Person p=t.getPerson();
         p.setIntroduce("");
-        t.setTeacherId(Long.valueOf(teacherIdField.getText()));
+//        t.setTeacherId(Long.valueOf(teacherIdField.getText()));
         p.setNumber(Long.valueOf(teacherIdField.getText()));
         p.setName(nameField.getText());
         p.setDept(deptField.getText());
