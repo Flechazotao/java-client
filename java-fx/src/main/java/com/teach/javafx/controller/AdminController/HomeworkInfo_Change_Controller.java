@@ -143,8 +143,7 @@ public class HomeworkInfo_Change_Controller extends manage_MainFrame_controller 
     private void setHomeworkInfo(HomeworkInfo homeworkInfo) {
         Course course=homeworkInfo.getCourse();
         homeworkInfo.setName(homeworkNameField.getText());
-        course.setNumber(courseNumberField.getValue());
-        course.setName(courseNameField.getValue());
+        homeworkInfo.setCourse(courseList.get(courseNumberField.getSelectionModel().getSelectedIndex()));
     }
 
     public void courseNumberField(ActionEvent actionEvent) {

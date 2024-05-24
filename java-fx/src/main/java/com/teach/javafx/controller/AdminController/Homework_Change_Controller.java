@@ -79,7 +79,7 @@ public class Homework_Change_Controller {
         submitStatusField.setText(String.valueOf(homework.getIsSubmit()));
         studentIdField.setValue(String.valueOf(homework.getStudent().getStudentId()));
         homeworkScoreField.setText(String.valueOf(homework.getHomeworkScore()));
-        checkTimeField.setValue(LocalDate.parse(homework.getSubmitTime()));
+        if(homework.getSubmitTime()!=null)checkTimeField.setValue(LocalDate.parse(homework.getSubmitTime()));
 
         //学生有关信息下拉框
         DataResponse res = HttpRequestUtil.request("/api/student/getStudentList",new DataRequest());
