@@ -30,6 +30,7 @@ import lombok.Getter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -149,7 +150,7 @@ public class Homework_Controller extends Teacher_MainFrame_controller {
         checkTimeColumn.setCellValueFactory(new PropertyValueFactory<>("checkTime"));
         homeworkScoreColumn.setCellValueFactory(new PropertyValueFactory<>("homeworkScore"));
         fileColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("下载文件"));
-        checkColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("修改"));
+        checkColumn.setCellFactory(new HomeworkM_ButtonCellFactory<>("批改"));
 
 
         TableView.TableViewSelectionModel<HomeworkView> tsm = dataTableView.getSelectionModel();
@@ -199,7 +200,8 @@ class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
 
                     FXMLLoader fxmlLoader = null;
 
-                    if (Objects.equals(property, "修改")){
+                    if (Objects.equals(property, "批改")){
+                        Homework_Controller.getHomeworkList().get(getIndex()).setCheckTime(LocalDate.now().toString());
                         Homework_Change_Controller.setFromHomework(Homework_Controller.getHomeworkList().get(getIndex()));
                         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkChange.fxml"));
                         Scene scene;
