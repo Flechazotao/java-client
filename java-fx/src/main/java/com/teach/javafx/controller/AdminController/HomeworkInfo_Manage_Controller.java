@@ -193,11 +193,13 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                         }
                         DataRequest req1 = new DataRequest();
                         String url=HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
-                        req1.add("url",url);
-                        DataResponse res = HttpRequestUtil.request("/api/file/delete", req1);
-                        if(res.getCode()!=200){
-                            MessageDialog.showDialog("文件删除失败!");
-                            return;
+                        if(url!=null){
+                            req1.add("url",url);
+                            DataResponse res = HttpRequestUtil.request("/api/file/delete", req1);
+                            if(res.getCode()!=200){
+                                MessageDialog.showDialog("文件删除失败!");
+                                return;
+                            }
                         }
 
                         Integer homeworkInfoId = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getHomeworkInfoId();
