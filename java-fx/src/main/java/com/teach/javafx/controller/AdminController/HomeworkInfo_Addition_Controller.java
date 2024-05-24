@@ -78,20 +78,22 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
             return;
         }
         HomeworkInfo homeworkInfo=getHomeworkInfo();
-        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HomeworkInfo"+"\\");
-        if(res1.getCode()==200){
-            MessageDialog.showDialog("文件上传成功！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
+        if(file!=null){
+            DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HomeworkInfo"+"\\");
+            if(res1.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            String url=res1.getMessage().substring(8);
+            homeworkInfo.setFile(url);
         }
-        else {
-            MessageDialog.showDialog("文件上传失败！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
-            return;
-        }
-        String url=res1.getMessage().substring(8);
-        homeworkInfo.setFile(url);
 
         DataRequest req=new DataRequest();
         req.add("homeworkInfo",homeworkInfo);
@@ -110,6 +112,7 @@ public class HomeworkInfo_Addition_Controller extends manage_MainFrame_controlle
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             HomeworkInfo_Manage_Controller.updateDataTableView();
+            com.teach.javafx.controller.TeacherController.HomeworkInfo_Manage_Controller.updateDataTableView();
         }
     }
 

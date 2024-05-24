@@ -207,7 +207,7 @@ class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
                     FXMLLoader fxmlLoader = null;
 
                     if (Objects.equals(property, "修改")){
-                        Homework_Change_Controller.setIndex(getIndex());
+                        Homework_Change_Controller.setFromHomework(Homework_Manage_Controller.getHomeworkList().get(getIndex()));
                         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkChange.fxml"));
                         Scene scene;
                         try {
@@ -239,7 +239,11 @@ class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
                         }
                     }else if (Objects.equals(property, "下载文件")) {
 
-                        String url = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
+                        String url = Homework_Manage_Controller.getHomeworkList().get(getIndex()).getFile();
+                        if(url==null){
+                            MessageDialog.showDialog("未上传文件!");
+                            return;
+                        }
                         DataRequest req = new DataRequest();
                         req.add("url", url);
                         String fileName=url.substring(url.lastIndexOf("\\")+1);

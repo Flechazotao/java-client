@@ -114,14 +114,16 @@ public class Course_Change_Controller {
 
         setCourse(course);
 
-        if(course.getFile()!=null&&file!=null){
-            DataRequest req1 = new DataRequest();
-            String url= course.getFile();
-            req1.add("url",url);
-            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
-            if(res1.getCode()!=200){
-                MessageDialog.showDialog("文件删除失败!");
-                return;
+        if(file!=null){
+            if(course.getFile()!=null){
+                DataRequest req1 = new DataRequest();
+                String url= course.getFile();
+                req1.add("url",url);
+                DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+                if(res1.getCode()!=200){
+                    MessageDialog.showDialog("文件删除失败!");
+                    return;
+                }
             }
 
             DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Course"+"\\");
@@ -136,7 +138,7 @@ public class Course_Change_Controller {
                 stage.close();
                 return;
             }
-            url=res.getMessage().substring(8);
+            String url=res.getMessage().substring(8);
             course.setFile(url);
         }
         DataRequest req=new DataRequest();

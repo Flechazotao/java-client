@@ -138,14 +138,16 @@ public class InnovativePractice_Change_Controller {
         InnovativePractice ip=innovativePractice;
         setInnovativePractice(ip);
 
-        if(innovativePractice.getFile()!=null&&file!=null){
-            DataRequest req1 = new DataRequest();
-            String url= InnovativePractice_Manage_Controller.getInnovativePracticeList().get(getIndex()).getFile();
-            req1.add("url",url);
-            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
-            if(res1.getCode()!=200){
-                MessageDialog.showDialog("文件删除失败!");
-                return;
+        if(file!=null){
+            if(innovativePractice.getFile()!=null){
+                DataRequest req1 = new DataRequest();
+                String url= innovativePractice.getFile();
+                req1.add("url",url);
+                DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+                if(res1.getCode()!=200){
+                    MessageDialog.showDialog("文件删除失败!");
+                    return;
+                }
             }
 
             DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"InnovativePractice"+"\\");
@@ -160,7 +162,7 @@ public class InnovativePractice_Change_Controller {
                 stage.close();
                 return;
             }
-            url=res.getMessage().substring(8);
+            String url=res.getMessage().substring(8);
             innovativePractice.setFile(url);
         }
 

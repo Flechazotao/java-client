@@ -109,20 +109,22 @@ public class InnovativePractice_Addition_Controller {
             return;
         }
         InnovativePractice ip=getInnovativePractice();
-        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"InnovativePractice"+"\\");
-        if(res1.getCode()==200){
-            MessageDialog.showDialog("文件上传成功！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
+        if(file!=null){
+            DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"InnovativePractice"+"\\");
+            if(res1.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            String url=res1.getMessage().substring(8);
+            ip.setFile(url);
         }
-        else {
-            MessageDialog.showDialog("文件上传失败！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
-            return;
-        }
-        String url=res1.getMessage().substring(8);
-        ip.setFile(url);
 
         DataRequest req=new DataRequest();
         req.add("innovativePractice",ip);

@@ -46,6 +46,11 @@ public class HomeworkInfo_Change_Controller extends manage_MainFrame_controller 
     @Setter
     private static Integer index;
 
+
+    @Setter
+    @Getter
+    private static HomeworkInfo fromHomeworkInfo;
+
     @Getter
     private static HomeworkInfo homeworkInfo;
     ArrayList<String> courseNameList = new ArrayList<>();
@@ -54,7 +59,7 @@ public class HomeworkInfo_Change_Controller extends manage_MainFrame_controller 
     private static List<Course> courseList = new ArrayList<>();
 
     public void initialize(){
-        homeworkInfo = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(index);
+        homeworkInfo=fromHomeworkInfo;
 
         courseNumberField.setValue(homeworkInfo.getCourse().getNumber());
         courseNameField.setValue(homeworkInfo.getCourse().getName());
@@ -81,14 +86,16 @@ public class HomeworkInfo_Change_Controller extends manage_MainFrame_controller 
         }
         setHomeworkInfo(homeworkInfo);
 
-        if(homeworkInfo.getFile()!=null&&file!=null){
-            DataRequest req1 = new DataRequest();
-            String url=HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
-            req1.add("url",url);
-            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
-            if(res1.getCode()!=200){
-                MessageDialog.showDialog("文件删除失败!");
-                return;
+        if(file!=null){
+            if(homeworkInfo.getFile()!=null){
+                DataRequest req1 = new DataRequest();
+                String url=homeworkInfo.getFile();
+                req1.add("url",url);
+                DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+                if(res1.getCode()!=200){
+                    MessageDialog.showDialog("文件删除失败!");
+                    return;
+                }
             }
 
             DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HomeworkInfo"+"\\");
@@ -103,7 +110,7 @@ public class HomeworkInfo_Change_Controller extends manage_MainFrame_controller 
                 stage.close();
                 return;
             }
-            url=res.getMessage().substring(8);
+            String url=res.getMessage().substring(8);
             homeworkInfo.setFile(url);
         }
 
@@ -124,6 +131,7 @@ public class HomeworkInfo_Change_Controller extends manage_MainFrame_controller 
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             HomeworkInfo_Manage_Controller.updateDataTableView();
+            com.teach.javafx.controller.TeacherController.HomeworkInfo_Manage_Controller.updateDataTableView();
         }
     }
 

@@ -100,14 +100,16 @@ public class HonorChangeController {
 
         setHonorInfo(honor);
 
-        if(honor.getFile()!=null&&file!=null){
-            DataRequest req1 = new DataRequest();
-            String url= HonorManageController.getHonorInfoList().get(getIndex()).getFile();
-            req1.add("url",url);
-            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
-            if(res1.getCode()!=200){
-                MessageDialog.showDialog("文件删除失败!");
-                return;
+        if(file!=null){
+            if(honor.getFile()!=null){
+                DataRequest req1 = new DataRequest();
+                String url= honor.getFile();
+                req1.add("url",url);
+                DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+                if(res1.getCode()!=200){
+                    MessageDialog.showDialog("文件删除失败!");
+                    return;
+                }
             }
 
             DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"HonorInfo"+"\\");
@@ -122,7 +124,7 @@ public class HonorChangeController {
                 stage.close();
                 return;
             }
-            url=res.getMessage().substring(8);
+            String url=res.getMessage().substring(8);
             honor.setFile(url);
         }
 

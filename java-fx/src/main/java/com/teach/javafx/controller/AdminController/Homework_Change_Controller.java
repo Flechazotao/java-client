@@ -58,6 +58,10 @@ public class Homework_Change_Controller {
     public Button onSelectFile;
     private File file;
 
+    @Setter
+    @Getter
+    private static Homework fromHomework;
+
     @Getter
     private static Homework homework;
 
@@ -67,7 +71,8 @@ public class Homework_Change_Controller {
     private static List<HomeworkInfo> homeworkInfoList = new ArrayList<>();
 
     public void initialize(){
-        homework = Homework_Controller.getHomeworkList().get(index);
+        homework=fromHomework;
+//        homework = Homework_Manage_Controller.getHomeworkList().get(index);
 
         courseNumField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getNumber()));
         courseNameField.setValue(String.valueOf(homework.getHomeworkInfo().getCourse().getName()));
@@ -131,14 +136,16 @@ public class Homework_Change_Controller {
 
         setHomework(homework);
 
-        if(homework.getFile()!=null&&file!=null){
-            DataRequest req1 = new DataRequest();
-            String url= Homework_Manage_Controller.getHomeworkList().get(getIndex()).getFile();
-            req1.add("url",url);
-            DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
-            if(res1.getCode()!=200){
-                MessageDialog.showDialog("文件删除失败!");
-                return;
+        if(file!=null){
+            if(homework.getFile()!=null){
+                DataRequest req1 = new DataRequest();
+                String url= homework.getFile();
+                req1.add("url",url);
+                DataResponse res1 = HttpRequestUtil.request("/api/file/delete", req1);
+                if(res1.getCode()!=200){
+                    MessageDialog.showDialog("文件删除失败!");
+                    return;
+                }
             }
 
             DataResponse res=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Homework"+"\\");
@@ -153,7 +160,7 @@ public class Homework_Change_Controller {
                 stage.close();
                 return;
             }
-            url=res.getMessage().substring(8);
+            String url=res.getMessage().substring(8);
             homework.setFile(url);
         }
 
@@ -174,6 +181,7 @@ public class Homework_Change_Controller {
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             Homework_Manage_Controller.updateDataTableView();
+            Homework_Controller.updateDataTableView();
         }
     }
 

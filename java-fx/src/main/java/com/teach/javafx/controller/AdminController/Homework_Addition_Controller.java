@@ -1,6 +1,7 @@
 package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
+import com.teach.javafx.controller.TeacherController.Homework_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.models.DO.*;
 import com.teach.javafx.models.DTO.DataRequest;
@@ -96,20 +97,22 @@ public class Homework_Addition_Controller {
             return;
         }
         Homework homework=getHomework();
-        DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Homework"+"\\");
-        if(res1.getCode()==200){
-            MessageDialog.showDialog("文件上传成功！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
+        if(file!=null){
+            DataResponse res1=HttpRequestUtil.uploadFile("/api/file/upload", Paths.get(file.getPath()),"Homework"+"\\");
+            if(res1.getCode()==200){
+                MessageDialog.showDialog("文件上传成功！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                MessageDialog.showDialog("文件上传失败！");
+                Stage stage = (Stage) onCancel.getScene().getWindow();
+                stage.close();
+                return;
+            }
+            String url=res1.getMessage().substring(8);
+            homework.setFile(url);
         }
-        else {
-            MessageDialog.showDialog("文件上传失败！");
-            Stage stage = (Stage) onCancel.getScene().getWindow();
-            stage.close();
-            return;
-        }
-        String url=res1.getMessage().substring(8);
-        homework.setFile(url);
 
 
         DataRequest req=new DataRequest();
@@ -129,6 +132,7 @@ public class Homework_Addition_Controller {
             Stage stage = (Stage) onCancel.getScene().getWindow();
             stage.close();
             Homework_Manage_Controller.updateDataTableView();
+            Homework_Controller.updateDataTableView();
         }
     }
 

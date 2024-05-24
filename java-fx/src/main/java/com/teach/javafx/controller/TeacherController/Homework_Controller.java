@@ -197,7 +197,7 @@ class HomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, T
                     FXMLLoader fxmlLoader = null;
 
                     if (Objects.equals(property, "修改")){
-                        Homework_Change_Controller.setIndex(getIndex());
+                        Homework_Change_Controller.setFromHomework(Homework_Controller.getHomeworkList().get(getIndex()));
                         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkChange.fxml"));
                         Scene scene;
                         try {

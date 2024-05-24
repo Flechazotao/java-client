@@ -219,6 +219,10 @@ class HM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCel
                         }
                     }else if (Objects.equals(property, "下载文件")) {
                         String url = HonorManageController.getHonorInfoList().get(getIndex()).getFile();
+                        if(url==null){
+                            MessageDialog.showDialog("未上传文件!");
+                            return;
+                        }
                         DataRequest req = new DataRequest();
                         req.add("url", url);
                         String fileName=url.substring(url.lastIndexOf("\\")+1);

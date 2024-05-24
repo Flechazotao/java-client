@@ -206,7 +206,6 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
         if (!(findByType.isSelected()&&findByStudent.isSelected()))
             findByName.setSelected(true);
     }
-
     class IPM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
         @Getter
         @Setter
@@ -268,8 +267,11 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
                             stage.setTitle("修改创新实践信息");
                             stage.show();
                         }else if (Objects.equals(property, "下载文件")) {
-
                             String url = InnovativePractice_Manage_Controller.getInnovativePracticeList().get(getIndex()).getFile();
+                            if(url==null){
+                                MessageDialog.showDialog("未上传文件!");
+                                return;
+                            }
                             DataRequest req = new DataRequest();
                             req.add("url", url);
                             String fileName=url.substring(url.lastIndexOf("\\")+1);
