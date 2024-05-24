@@ -111,7 +111,7 @@ public class InnovativePractice_Manage_Controller extends manage_MainFrame_contr
         teacherNameColumn.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
         studentColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         achievementColumn.setCellValueFactory(new PropertyValueFactory<>("achievement"));
-        changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("下载文件"));
+        fileColumn.setCellFactory(new IPM_ButtonCellFactory<>("下载文件"));
         changeColumn.setCellFactory(new IPM_ButtonCellFactory<>("修改"));
         deleteColumn.setCellFactory(new IPM_ButtonCellFactory<>("删除"));
 

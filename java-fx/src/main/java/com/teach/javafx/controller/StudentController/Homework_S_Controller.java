@@ -1,6 +1,10 @@
 package com.teach.javafx.controller.StudentController;
 import com.alibaba.fastjson2.JSON;
 
+import com.teach.javafx.MainApplication;
+import com.teach.javafx.controller.AdminController.Homework_Change_Controller;
+import com.teach.javafx.controller.AdminController.Homework_Manage_Controller;
+import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.student_MainFrame_controller;
 import com.teach.javafx.controller.other.LoginController;
 import com.teach.javafx.models.DO.Homework;
@@ -8,19 +12,26 @@ import com.teach.javafx.models.DTO.DataRequest;
 import com.teach.javafx.models.DTO.DataResponse;
 import com.teach.javafx.models.DTO.HomeworkView;
 import com.teach.javafx.request.HttpRequestUtil;
+import javafx.beans.NamedArg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 import lombok.Getter;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Homework_S_Controller extends student_MainFrame_controller{
     @FXML
@@ -86,7 +97,7 @@ public class Homework_S_Controller extends student_MainFrame_controller{
         isCheckedColumn.setCellValueFactory(new PropertyValueFactory<>("isChecked"));
         checkTimeColumn.setCellValueFactory(new PropertyValueFactory<>("checkTime"));
         homeworkScoreColumn.setCellValueFactory(new PropertyValueFactory<>("homeworkScore"));
-        fileColumn.setCellValueFactory(new PropertyValueFactory<>("file"));
+        fileColumn.setCellFactory(new SCM_ButtonCellFactory<>("下载文件"));
 
         TableView.TableViewSelectionModel<HomeworkView> tsm = dataTableView.getSelectionModel();
         ObservableList<Integer> list = tsm.getSelectedIndices();
@@ -103,5 +114,72 @@ public class Homework_S_Controller extends student_MainFrame_controller{
         homeworkList= JSON.parseArray(JSON.toJSONString(res.getData()), Homework.class);
         setDataTableView(homeworkList);
 
+    }
+}
+class SHomeworkM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
+    private final String property;
+    public SHomeworkM_ButtonCellFactory(@NamedArg("property") String var1) {
+        this.property = var1;
+    }
+    @Override
+    public TableCell<S, T> call(TableColumn<S, T> param) {
+        return new TableCell<S, T>() {
+            private Button button = new Button(property);
+            {
+                button.setOnAction(event -> {
+
+                    FXMLLoader fxmlLoader = null;
+
+                    if (Objects.equals(property, "下载文件")) {
+
+                        String url = Homework_S_Controller.getHomeworkList().get(getIndex()).getFile();
+                        if(url==null){
+                            MessageDialog.showDialog("未上传文件!");
+                            return;
+                        }
+                        DataRequest req = new DataRequest();
+                        req.add("url", url);
+                        String fileName=url.substring(url.lastIndexOf("\\")+1);
+                        byte[] fileByte=HttpRequestUtil.requestByteData("/api/file/download", req);
+
+                        if(fileByte==null){
+                            MessageDialog.showDialog("下载失败!");
+                            return;
+                        }
+
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.setTitle("Save File");
+                        fileChooser.setInitialFileName(fileName);
+                        Path path = fileChooser.showSaveDialog(null).toPath();
+                        if (path != null) {
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(path.toFile());
+                                fos.write(fileByte);
+                                fos.close();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                            MessageDialog.showDialog("下载成功!");
+                            return;
+                        }
+                        else {
+                            MessageDialog.showDialog("下载失败!");
+                            return;
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(button);
+                }
+            }
+        };
     }
 }

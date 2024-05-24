@@ -1,4 +1,4 @@
-package com.teach.javafx.controller.other.base;
+package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.controller.other.MessageDialog;

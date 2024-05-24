@@ -1,11 +1,10 @@
-package com.teach.javafx.controller.other.base;
+package com.teach.javafx.controller.AdminController;
 
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
-import com.teach.javafx.controller.AdminController.HomeworkInfo_Manage_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
+import com.teach.javafx.controller.other.base.manage_MainFrame_controller;
 import com.teach.javafx.models.DO.HonorInfo;
-import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DO.Student;
 import com.teach.javafx.models.DTO.HonorInfoInfo;
 import com.teach.javafx.models.DTO.DataRequest;

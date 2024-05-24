@@ -3,7 +3,6 @@ package com.teach.javafx.controller.AdminController;
 import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.other.MessageDialog;
-import com.teach.javafx.controller.other.base.HonorManageController;
 import com.teach.javafx.models.DO.InnovativePractice;
 import com.teach.javafx.models.DO.InnovativePracticeStudent;
 import com.teach.javafx.models.DO.Student;

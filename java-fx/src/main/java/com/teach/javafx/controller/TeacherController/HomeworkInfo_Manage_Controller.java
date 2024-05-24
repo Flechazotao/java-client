@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSON;
 import com.teach.javafx.AppStore;
 import com.teach.javafx.MainApplication;
 import com.teach.javafx.controller.AdminController.HomeworkInfo_Change_Controller;
-import com.teach.javafx.controller.AdminController.Homework_Manage_Controller;
 import com.teach.javafx.controller.other.MessageDialog;
 import com.teach.javafx.controller.other.base.Teacher_MainFrame_controller;
 import com.teach.javafx.models.DO.HomeworkInfo;
@@ -186,7 +185,7 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                             return;
                         }
                         DataRequest req1 = new DataRequest();
-                        String url= com.teach.javafx.controller.AdminController.HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
+                        String url= HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getFile();
                         req1.add("url",url);
                         DataResponse res = HttpRequestUtil.request("/api/file/delete", req1);
                         if(res.getCode()!=200){
@@ -194,7 +193,7 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                             return;
                         }
 
-                        Integer homeworkInfoId = com.teach.javafx.controller.AdminController.HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getHomeworkInfoId();
+                        Integer homeworkInfoId = HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()).getHomeworkInfoId();
                         DataRequest req = new DataRequest();
                         req.add("id", homeworkInfoId);
                         DataResponse response = HttpRequestUtil.request("/api/homeworkInfo/deleteById", req);
@@ -203,7 +202,7 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                             MessageDialog.showDialog("信息不完整!");
                         } else {
                             MessageDialog.showDialog("删除成功!");
-                            com.teach.javafx.controller.AdminController.HomeworkInfo_Manage_Controller.updateDataTableView();
+                            com.teach.javafx.controller.TeacherController.HomeworkInfo_Manage_Controller.updateDataTableView();
                         }
                     } else if (Objects.equals(property, "下载文件")) {
 
