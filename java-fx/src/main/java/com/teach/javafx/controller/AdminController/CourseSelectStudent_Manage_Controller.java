@@ -136,6 +136,7 @@ public class CourseSelectStudent_Manage_Controller extends manage_MainFrame_cont
     
     public void initialize(){
         findByCourseNumberOrName.setSelected(true);
+        InquireField.setPromptText("请输入课程编号或课程名称");
 
         //展示课程类型下拉框
         for(String s:typelist){
@@ -180,6 +181,7 @@ public class CourseSelectStudent_Manage_Controller extends manage_MainFrame_cont
 
 
     public void findByStudent(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入学号或学生姓名");
         findByCourseNumberOrName.setSelected(false);
         findByCourseType.setSelected(false);
 
@@ -191,6 +193,7 @@ public class CourseSelectStudent_Manage_Controller extends manage_MainFrame_cont
     }
 
     public void findByCourseType(ActionEvent actionEvent) {
+        typeField.setPromptText("请选择课程类型");
         findByCourseNumberOrName.setSelected(false);
         findByStudent.setSelected(false);
 
@@ -202,6 +205,7 @@ public class CourseSelectStudent_Manage_Controller extends manage_MainFrame_cont
     }
 
     public void findByCourseNumberOrName(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入课程编号或课程名称");
         findByStudent.setSelected(false);
         findByCourseType.setSelected(false);
 
