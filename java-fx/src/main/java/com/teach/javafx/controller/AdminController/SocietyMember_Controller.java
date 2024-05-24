@@ -107,7 +107,7 @@ public class SocietyMember_Controller {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("修改家庭信息");
+        stage.setTitle("添加社会成员信息");
         stage.show();
     }
 }

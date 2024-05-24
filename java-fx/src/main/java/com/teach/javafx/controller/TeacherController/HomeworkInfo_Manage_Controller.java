@@ -166,7 +166,7 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
 
                     FXMLLoader fxmlLoader = null;
 
-                    if (Objects.equals(property, "修改")) {
+                    if (Objects.equals(property, "批改")) {
                         HomeworkInfo_Change_Controller.setFromHomeworkInfo(HomeworkInfo_Manage_Controller.getHomeworkInfoList().get(getIndex()));
                         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Base_Fxml/HomeworkInfoChange.fxml"));
                         Scene scene;
@@ -177,7 +177,7 @@ class HomeworkInfoM_ButtonCellFactory<S, T> implements Callback<TableColumn<S, T
                         }
                         Stage stage = new Stage();
                         stage.setScene(scene);
-                        stage.setTitle("修改选课信息");
+                        stage.setTitle("批改作业");
                         stage.show();
                     } else if (Objects.equals(property, "删除")) {
                         int ret = MessageDialog.choiceDialog("确认要删除吗?");

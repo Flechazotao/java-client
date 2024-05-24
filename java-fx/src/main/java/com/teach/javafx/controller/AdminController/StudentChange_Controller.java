@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Setter
@@ -102,6 +103,8 @@ public class StudentChange_Controller {
         emailField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getEmail()));
         majorField.setText(String.valueOf(studentList.get(getIndex()).getMajor()));
         phoneField.setText(String.valueOf(studentList.get(getIndex()).getPerson().getPhone()));
+        deptField.setText(studentList.get(getIndex()).getPerson().getDept());
+        birthdayPick.setValue(LocalDate.parse(studentList.get(getIndex()).getPerson().getBirthday()));
         graduatedSchoolCol.setText(beforeUni.getGraduatedSchool());
         graduatedProvinceCol.setText(beforeUni.getGraduatedProvince());
     }
@@ -167,7 +170,7 @@ public class StudentChange_Controller {
         s.setClassName(classField.getText());
         p.setCard(cardField.getText());
         p.setGender(SexField.getText());
-        p.setBirthday(birthdayPick.getEditor().getText());
+        p.setBirthday(birthdayPick.getValue().toString());
         p.setEmail(emailField.getText());
         p.setPhone(phoneField.getText());
         p.setAddress(addressField.getText());

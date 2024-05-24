@@ -48,6 +48,7 @@ public class SocietyMember_Addition_Controller {
             Stage stage = (Stage) onReturn.getScene().getWindow();
             stage.close();
         }
+        SocietyMember_Controller.updateDataTableView();
     }
 
     public  void onReturn(ActionEvent actionEvent) {

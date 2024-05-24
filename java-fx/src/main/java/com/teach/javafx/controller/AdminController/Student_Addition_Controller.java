@@ -110,7 +110,7 @@ public class Student_Addition_Controller {
         s.setClassName(classField.getText());
         p.setCard(cardField.getText());
         p.setGender(genderField.getText());
-        p.setBirthday(birthdayPick.getEditor().getText());
+        p.setBirthday(birthdayPick.getValue().toString());
         p.setEmail(emailField.getText());
         p.setPhone(phoneField.getText());
         p.setAddress(addressField.getText());

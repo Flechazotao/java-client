@@ -64,11 +64,8 @@ public class CourseSelected_Change_Controller {
         courseNumber.setVisibleRowCount(5);
     }
     public void onConfirmation(ActionEvent actionEvent) {
-        Course c=new Course();
-        c.setName(courseName.getValue());
-        c.setNumber(courseNumber.getValue());
-        SelectedCourseInfo s=new SelectedCourseInfo();
-        s.setCourse(c);
+        SelectedCourseInfo s=CourseSelected_Controller.getSelectedCourseInfoList().get(getIndex());
+        s.setCourse(courseList.get(courseName.getSelectionModel().getSelectedIndex()));
         s.setMaxNumberOfSelected(Integer.valueOf(maxSelectedField.getText()));
         s.setNumberOfSelected(Integer.valueOf(nowSelectNumberField.getText()));
         DataRequest req=new DataRequest();
