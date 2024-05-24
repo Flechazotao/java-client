@@ -123,6 +123,8 @@ public class HomeworkInfo_Manage_Controller extends manage_MainFrame_controller 
     }
 
     public void initialize() {
+        InquireField.setPromptText("请输入课程编号或课程名称");
+
         dataTableView.setItems(observableList);
         DataResponse res = HttpRequestUtil.request("/api/homeworkInfo/findAll",new DataRequest());
         homeworkInfoList= JSON.parseArray(JSON.toJSONString(res.getData()), HomeworkInfo.class);
