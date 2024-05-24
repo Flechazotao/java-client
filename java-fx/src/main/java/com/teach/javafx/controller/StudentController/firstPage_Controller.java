@@ -234,6 +234,8 @@ public class firstPage_Controller extends student_MainFrame_controller {
         email.setText(student.getPerson().getEmail());
         address.setText(student.getPerson().getAddress());
         politic.setText(student.getPerson().getAddress());
+        req1=new DataRequest();
+        req1.add("id",student.getStudentId());
         res1= HttpRequestUtil.request("/api/honorInfo/findByStudent",req1);
         honorInfoList= JSON.parseArray(JSON.toJSONString(res1.getData()), HonorInfo.class);
 
