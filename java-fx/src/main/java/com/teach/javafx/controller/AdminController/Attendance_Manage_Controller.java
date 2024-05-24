@@ -130,6 +130,8 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void initialize() {
+        findByStudent.setSelected(true);
+        InquireField.setPromptText("请输入学号或学生姓名");
 
         //展示类型下拉框
         for(String s:typelist){
@@ -174,6 +176,7 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void findByStudent(ActionEvent actionEvent) {
+        InquireField.setPromptText("请输入学号或学生姓名");
         findByIsAttended.setSelected(false);
         findAttendanceInfoByType.setSelected(false);
 
@@ -189,6 +192,7 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void findByIsAttended(ActionEvent actionEvent) {
+        isAttendedField.setPromptText("请选择考勤状态");
         findByStudent.setSelected(false);
         findAttendanceInfoByType.setSelected(false);
 
@@ -204,6 +208,7 @@ public class Attendance_Manage_Controller extends manage_MainFrame_controller {
     }
 
     public void findAttendanceInfoByType(ActionEvent actionEvent) {
+        typeField.setPromptText("请选择考勤类型");
         findByStudent.setSelected(false);
         findByIsAttended.setSelected(false);
 
