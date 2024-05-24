@@ -73,6 +73,7 @@ public class Leave_Change_Controller {
         beginTimePicker.setValue(LocalDate.parse(leaveInfo.getLeaveBeginTime()));
         endTimePicker.setValue(LocalDate.parse(leaveInfo.getLeaveEndTime()));
         approverField.setText(leaveInfo.getApprover());
+        reasonField.setText(leaveInfo.getLeaveReason());
     }
 
     public void onConfirmation(ActionEvent actionEvent) {
