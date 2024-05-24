@@ -60,7 +60,7 @@ public class SelectedCourseInfoInfo extends Course implements Serializable {
         wayOfTest=selectedCourseInfo.getCourse().getWayOfTest();
         courseLocation=selectedCourseInfo.getCourse().getLocation();
         type=selectedCourseInfo.getCourse().getType();
-        numberOfSelected=selectedCourseInfo.getCourse().getCourseId();
-        MaxNumberOfSelected=selectedCourseInfo.getCourse().getCourseId();
+        numberOfSelected=selectedCourseInfo.getNumberOfSelected();
+        MaxNumberOfSelected=selectedCourseInfo.getMaxNumberOfSelected();
     }
 }
